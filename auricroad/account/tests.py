@@ -1,9 +1,8 @@
-from django.test import TestCase
-from django.urls import reverse
 from django.contrib.auth.hashers import make_password
-from model_mommy import mommy
-from django.test import Client
+from django.test import Client, TestCase
+from django.urls import reverse
 
+from model_mommy import mommy
 
 from .forms import RegistrationForm
 from .models import User
@@ -198,4 +197,3 @@ class UserAdminTest(TestCase):
         actual = response = self.client.post(url, form_data)
         expected = reverse("admin:account_user_changelist")
         self.assertRedirects(actual, expected, target_status_code=302)
-

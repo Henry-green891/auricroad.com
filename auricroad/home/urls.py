@@ -1,9 +1,7 @@
-from .views import error, ExampleFormView
-
 from django.urls import path
-
 from django.views.generic.base import TemplateView
 
+from .views import ExampleFormView, error
 
 urlpatterns = [
     path(r'error/', error, name='error'),

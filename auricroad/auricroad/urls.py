@@ -5,8 +5,8 @@ from django.views.generic.base import RedirectView
 from django.views.static import serve as static_serve
 
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 urlpatterns = [
     path(

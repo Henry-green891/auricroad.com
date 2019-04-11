@@ -1,7 +1,9 @@
-from django.urls import path, include
+from django.contrib.auth import urls as auth_urls  # NOQA
+from django.urls import include, path
+
+from .views import LoginView, RegistrationView  # NOQA
+
 urlpatterns = []
-from .views import LoginView, RegistrationView # NOQA
-from django.contrib.auth import urls as auth_urls # NOQA
 
 urlpatterns.extend([
     path(r'login/', LoginView.as_view(), name='login'),

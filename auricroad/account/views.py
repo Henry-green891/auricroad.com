@@ -1,8 +1,8 @@
 
 
-from django.contrib.auth.views import LoginView as DjangoLoginView  # NOQA
 from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model  # NOQA
-from django.contrib.auth.forms import AuthenticationForm # NOQA
+from django.contrib.auth.forms import AuthenticationForm  # NOQA
+from django.contrib.auth.views import LoginView as DjangoLoginView  # NOQA
 
 from registration.backends.simple.views import \
     RegistrationView as SimpleRegistrationView
