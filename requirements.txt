@@ -5,6 +5,7 @@ django-environ==0.4.3
 Pillow==4.2.1
 django-localflavor==1.5.2
 django-import-export==1.0.1
+wagtail==2.4
 
 #DB
 psycopg2-binary==2.7.5
@@ -12,9 +13,6 @@ psycopg2-binary==2.7.5
 #User Accounts
 django-registration-redux==2.4
 social-auth-app-django==2.1.0
-
-
-
 
 
 #Utils
