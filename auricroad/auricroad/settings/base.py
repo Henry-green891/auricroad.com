@@ -197,7 +197,12 @@ TEMPLATES = [
             "match_regex": r"^(?!admin/).*",  # this is additive to match_extension
             "context_processors": CONTEXT_PROCESSORS,
             "extensions": DEFAULT_EXTENSIONS
-            + ["webpack_loader.contrib.jinja2ext.WebpackExtension"],
+            + [
+                "webpack_loader.contrib.jinja2ext.WebpackExtension",
+                "wagtail.core.jinja2tags.core",
+                "wagtail.admin.jinja2tags.userbar",
+                "wagtail.images.jinja2tags.images",
+            ],
         },
     },
     {

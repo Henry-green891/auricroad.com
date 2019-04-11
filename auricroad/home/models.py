@@ -1,5 +1,8 @@
 from django.db import models  # NOQA
 
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 
 
@@ -22,3 +25,9 @@ class CustomRendition(AbstractRendition):
 
     class Meta:
         unique_together = (("image", "filter_spec", "focal_point_key"),)
+
+
+class HomePage(Page):
+    body = RichTextField()
+
+    content_panels = Page.content_panels + [FieldPanel("body", classname="full")]
