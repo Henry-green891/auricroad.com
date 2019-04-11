@@ -1,0 +1,57 @@
+Django>=2.1,<2.2
+django-environ==0.4.3
+
+#Admin
+Pillow==4.2.1
+django-localflavor==1.5.2
+django-import-export==1.0.1
+
+#DB
+psycopg2-binary==2.7.5
+
+#User Accounts
+django-registration-redux==2.4
+social-auth-app-django==2.1.0
+
+
+
+
+
+#Utils
+django-extensions==2.0.0
+django-jinja==2.3.1
+django-model-utils==3.0.0
+django-braces==1.11.0
+pytz==2018.3
+easy-thumbnails==2.4.1
+
+#REDIS CACHING
+hiredis==0.2.0
+redis==2.10.5
+django-redis-cache==1.7.1
+django-redis-sessions==0.5.6
+
+## AWS
+boto3==1.7.82
+django-storages==1.6.6
+
+#HEROKU
+whitenoise==3.3.0
+ipython==6.1.0
+gunicorn==19.7.1
+
+#OPTIONAL TOOLS
+#whoosh
+#django-haystack
+
+#Money
+
+
+stripe==1.62.0
+
+
+#standard utilities
+raven==6.1.0
+#celery==3.1.18
+sendgrid-django==4.0.4
+django-webpack-loader==0.5.0
