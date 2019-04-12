@@ -9,7 +9,7 @@
     {{ render_bundle('style') }}
     <title>{% block title %}{% endblock title %}</title>
   </head>
-  <body>
+  <body class="{% block page_class %}{% endblock page_class %}">
       {% include "header.html" %}
 
       <div id="main">

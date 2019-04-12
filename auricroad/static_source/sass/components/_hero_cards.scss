@@ -4,7 +4,7 @@
     .block-card {
         @include xy-cell(4);
         .hero-card {
-            background-color: $off-white-bg;
+            background-color: $pearl;
             @include xy-grid('vertical');
             width: 100%;
             padding: 40px 80px;
