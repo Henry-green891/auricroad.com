@@ -1,0 +1,12 @@
+<div class="hero">
+    <div class="static-hero">
+        <h1 class="font-f size-1">{{ value.static_tagline }}</h1>
+        <h2 class="font-a size-2">{{ value.static_header }}</h2>
+        <p class="font-e size-2">{{ value.static_body|richtext }}</p>
+    </div>
+    {% if value.cards %}
+        <div class="hero-cards">
+            {{ value.cards }}
+        </div>
+    {% endif %}
+</div>

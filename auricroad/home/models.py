@@ -1,9 +1,20 @@
 from django.db import models  # NOQA
 
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
+
+from .blocks import Hero
+from .constants import ENVIRONMENT_CHOICES
+
+
+class Hotel(models.Model):
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    environment = models.CharField(
+        max_length=50, choices=ENVIRONMENT_CHOICES, default=""
+    )
 
 
 class CustomImage(AbstractImage):
@@ -31,3 +42,11 @@ class HomePage(Page):
     body = RichTextField()
 
     content_panels = Page.content_panels + [FieldPanel("body", classname="full")]
+
+
+class HotelsPage(Page):
+    body = StreamField([("hero", Hero())], null=True, blank=True)
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]

@@ -10,9 +10,9 @@ from .models import User
 
 class UserManager(TestCase):
     def test_create_user(self):
-        user = User.objects.create_user(
+        user = User.objects.create_user(  # nosec
             "jonnyrico@fednet.gov", password="iwanttoknowmore"
-        )  # nosec
+        )
         User.objects.get(id=user.id)
 
 

@@ -1,8 +1,8 @@
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import RedirectView
-from django.views.static import serve as static_serve
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -27,9 +27,5 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += [
-        path(
-            r"media/<str:path>.*", static_serve, {"document_root": settings.MEDIA_ROOT}
-        ),
-        path(r"__debug__/", include(debug_toolbar.urls)),
-    ]  # noqa
+    urlpatterns += [path(r"__debug__/", include(debug_toolbar.urls))]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
