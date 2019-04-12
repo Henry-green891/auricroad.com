@@ -1,0 +1,26 @@
+.hero-cards {
+    @include xy-grid();
+    @include xy-cell(10);
+    .block-card {
+        @include xy-cell(4);
+        .hero-card {
+            background-color: $off-white-bg;
+            @include xy-grid('vertical');
+            width: 100%;
+            padding: 40px 80px;
+            opacity: 0.9;
+            align-items: center;
+            text-align: center;
+            .hero-card-icon {
+                margin-bottom: 20px;
+            }
+            .header {
+                margin-bottom: 15px;
+            }
+            .body {
+                margin-top: 20px;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,12 @@
+.center-vertical-line {
+    height: 25px;
+    border-left: 1px solid;
+    align-self: center;
+    &.white {
+        border-left-color: black;
+    }
+}
+.partial-horizontal-line {
+    border-top: 1px solid black;
+    width: 25px;
+}

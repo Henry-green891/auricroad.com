@@ -16,6 +16,7 @@ class Hero(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100)
     static_tagline = blocks.CharBlock(max_length=50)
     static_body = blocks.RichTextBlock()
+    background_image = ImageChooserBlock()
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
