@@ -25,4 +25,11 @@
             margin-bottom: 150px;
         }
     }
+    .hero-video {
+        margin-top: 80px;
+        @include xy-cell(10);
+        video {
+            @include xy-cell(12);
+        }
+    }
 }

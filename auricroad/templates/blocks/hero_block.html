@@ -10,4 +10,12 @@
             {{ value.cards }}
         </div>
     {% endif %}
+    {% if value.hero_video %}
+        <div class="hero-video">
+            <video poster="{{ value.hero_video.thumbnail.url }}" controls>
+                <source src="{{ value.hero_video.file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    {% endif %}
 </div>

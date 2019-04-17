@@ -5,6 +5,8 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 
+from wagtailmedia.models import AbstractMedia
+
 from .blocks import Hero
 from .constants import ENVIRONMENT_CHOICES
 
@@ -36,6 +38,19 @@ class CustomRendition(AbstractRendition):
 
     class Meta:
         unique_together = (("image", "filter_spec", "focal_point_key"),)
+
+
+class CustomMedia(AbstractMedia):
+    admin_form_fields = (
+        "title",
+        "file",
+        "collection",
+        "duration",
+        "width",
+        "height",
+        "thumbnail",
+        "tags",
+    )
 
 
 class HomePage(Page):
