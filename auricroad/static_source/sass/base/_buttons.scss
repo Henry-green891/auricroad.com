@@ -1,1 +1,11 @@
 //buttons scss goes here
+.button {
+    padding: 14px 30px;
+    &.white {
+        background-color: $white;
+        color: $text-gray;
+    }
+    &.rounded {
+        border-radius: 50px;
+    }
+}

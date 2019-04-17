@@ -16,6 +16,7 @@ Env.read_env(repo_root(".env"))
 
 WAGTAIL_SITE_NAME = "Auric Road"
 WAGTAILIMAGES_IMAGE_MODEL = "home.CustomImage"
+WAGTAILMEDIA_MEDIA_MODEL = "home.CustomMedia"
 
 PROJECT_ROOT = root()
 DEBUG = env("DEBUG")
@@ -105,6 +106,7 @@ INSTALLED_APPS = (
     "auricroad.account",
     "auricroad.util",
     "wagtail.contrib.forms",
+    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
     "wagtail.sites",
@@ -115,8 +117,10 @@ INSTALLED_APPS = (
     "wagtail.search",
     "wagtail.admin",
     "wagtail.core",
+    "wagtailmodelchooser",
     "modelcluster",
     "taggit",
+    "wagtailmedia",
 )
 
 # A sample logging configuration. The only tangible logging

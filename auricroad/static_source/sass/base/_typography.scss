@@ -49,6 +49,19 @@ select {
       line-height: 90px;
     }
   }
+  &.size-3 {
+    font-size: 35px;
+    line-height: 41px;
+    letter-spacing: 0.025em;
+    @include breakpoint(medium) {
+      font-size: 50px;
+      line-height: 60px;
+    }
+    @include breakpoint(large) {
+      font-size: 65px;
+      line-height: 65px;
+    }
+  }
   &.size-6 {
     font-size: 21px;
     line-height: 27px;
@@ -59,6 +72,15 @@ select {
     @include breakpoint(large) {
       font-size: 28px;
       line-height: 35px;
+    }
+  }
+  &.size-7 {
+    font-size: 21px;
+    line-height: 26px;
+    letter-spacing: 0.025em;
+    @include breakpoint(large) {
+      font-size: 25px;
+      line-height: 32px;
     }
   }
 }
