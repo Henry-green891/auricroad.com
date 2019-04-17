@@ -9,10 +9,11 @@
             @include xy-cell(8);
         }
         @include breakpoint(large) {
-            @include xy-cell(6);
+            @include xy-cell(7);
         }
         margin-top: 180px;
         text-align: center;
+        align-items: center;
         .tagline {
             margin-bottom: 11px;
         }
@@ -24,6 +25,9 @@
         }
         .body {
             margin-bottom: 150px;
+            @include breakpoint(large) {
+                @include xy-cell(10);
+            }
         }
     }
     .hero-video {

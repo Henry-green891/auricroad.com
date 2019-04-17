@@ -29,10 +29,15 @@
                 margin-bottom: 20px;
             }
             .header {
+                color: $text-black;
                 margin-bottom: 15px;
+            }
+            .subheader {
+                color: $text-black;
             }
             .body {
                 margin-top: 20px;
+                color: $text-charcoal;
             }
         }
     }

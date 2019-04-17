@@ -1,9 +1,10 @@
 //buttons scss goes here
 .button {
+    line-height: 12px !important;
     padding: 14px 30px;
     &.white {
         background-color: $white;
-        color: $text-gray;
+        color: $text-black;
     }
     &.rounded {
         border-radius: 50px;
