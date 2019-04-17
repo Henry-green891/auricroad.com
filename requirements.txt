@@ -1,5 +1,6 @@
 Django>=2.1,<2.2
 django-environ==0.4.3
+django-autoslug==1.9.4
 
 #Admin
 Pillow==4.2.1
@@ -22,6 +23,7 @@ django-model-utils==3.0.0
 django-braces==1.11.0
 pytz==2018.3
 easy-thumbnails==2.4.1
+wagtail-modelchooser==2.2.1
 -e git+git://github.com/anfema/wagtailmedia.git@08f27a89522228653fa309c5a1149e2e9dce2002#egg=wagtailmedia
 
 #REDIS CACHING

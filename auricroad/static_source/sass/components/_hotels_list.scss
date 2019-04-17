@@ -1,0 +1,27 @@
+.hotels-list {
+    margin-top: 100px;
+    @include xy-grid('vertical');
+    align-items: center;
+    .hotel-card {
+        // TEMPORARY BORDER AND BACKGROUND
+        border: 1px solid $black;
+        background-color: $green-bg;
+        position: relative;
+        .arrow-down {
+            position: absolute;
+            top: -1px;
+        }
+        padding: 60px;
+        color: $white;
+        @include xy-cell(10);
+        margin-bottom: 25px;
+        h3 {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            max-width: 500px;
+        }
+        p {
+            margin-bottom: 220px;
+        }
+    }
+}

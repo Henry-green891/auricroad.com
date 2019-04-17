@@ -2,8 +2,8 @@ from django.utils.html import format_html
 
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-
 from wagtailmedia.blocks import AbstractMediaChooserBlock
+from wagtailmodelchooser.blocks import ModelChooserBlock
 
 
 class MediaBlock(AbstractMediaChooserBlock):
@@ -44,3 +44,10 @@ class Hero(blocks.StructBlock):
 
     class Meta:
         template = "blocks/hero_block.html"
+
+
+class HotelsList(blocks.StructBlock):
+    hotels = blocks.ListBlock(ModelChooserBlock("home.Hotel"))
+
+    class Meta:
+        template = "blocks/hotels_list.html"

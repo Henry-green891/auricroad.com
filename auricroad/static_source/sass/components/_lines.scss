@@ -1,12 +1,28 @@
+.text-dash {
+    @include xy-grid();
+    align-items: center;
+    > * {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
 .center-vertical-line {
     height: 25px;
     border-left: 1px solid;
     align-self: center;
     &.white {
-        border-left-color: black;
+        border-left-color: $white;
     }
 }
 .partial-horizontal-line {
-    border-top: 1px solid black;
+    border-top: 1px solid $black;
     width: 25px;
+    &.double-width {
+        width: 50px;
+    }
+    &.white {
+        border-top-color: $white;
+    }
 }

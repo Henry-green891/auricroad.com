@@ -2,6 +2,7 @@
     @include xy-grid('vertical');
     align-items: center;
     .static-hero {
+        color: $white;
         @include xy-grid('vertical');
         @include xy-cell(10);
         @include breakpoint(medium) {

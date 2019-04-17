@@ -1,0 +1,15 @@
+<div class="hotels-list">
+    {% for hotel in value.hotels %}
+        <div class="hotel-card">
+            <div class="arrow-down"></div>
+            <span class="text-dash">
+                <h1 class="font-f size-1">{{ hotel.get_environment_display()|upper }}</h1>
+                &nbsp;&nbsp;
+                <div class="partial-horizontal-line white double-width"></div>
+            </span>
+            <h3 class="font-a size-3">{{ hotel.name }}</h3>
+            <p class="font-a size-7">{{ hotel.location }}</p>
+            <button class="button white rounded font-e size-2">See Hotel Details</button>
+        </div>
+    {% endfor %}
+</div>
