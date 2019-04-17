@@ -41,7 +41,7 @@ jobs:
       - run: npm install webpack
       - run: npm run build
       - run: bandit -r auricroad/ -l --ini .bandit -x tests.py
-      - run: isort --recursive --check-only --builtin django --skip-glob "00*.py" auricroad/
+      - run: isort --recursive --check-only --builtin django --skip-glob "*/migrations/*.py" auricroad/
       - run: prospector auricroad -X -I "auricroad/settings/*"
       - run: coverage run --source='.' manage.py test
       - run: codecov
