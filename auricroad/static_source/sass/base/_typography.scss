@@ -28,6 +28,29 @@ select {
   }
 }
 
+.accented-text-wrapper {
+  .accented-text {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 5%;
+      left: -1.5%;
+      width: 103%;
+      height: 30%;
+      background-color: $auric-gold;
+      opacity: 0.85;
+      z-index: -1;
+      -webkit-transition: all .1s linear;
+      -moz-transition: all .1s linear;
+      transition: all .1s linear;
+    }
+  }
+}
+
+
 .font-a {
   &.size-1 {
     font-size: 80px;
