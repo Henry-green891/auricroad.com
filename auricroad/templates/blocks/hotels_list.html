@@ -1,7 +1,12 @@
 <div class="hotels-list">
     {% for hotel in value.hotels %}
-        <div class="hotel-card">
-            <div class="arrow-down"></div>
+        <div
+            class="hotel-card"
+            {% if hotel.background_image %}
+                style="background-image: url({{ hotel.background_image.file.url }});"
+            {% endif %}
+        >
+            <div class="arrow-down satin"></div>
             <span class="text-dash">
                 <h1 class="font-f size-1">{{ hotel.get_environment_display()|upper }}</h1>
                 &nbsp;&nbsp;

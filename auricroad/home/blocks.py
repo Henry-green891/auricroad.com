@@ -72,3 +72,14 @@ class HotelsDevelopment(blocks.StructBlock):
 
     class Meta:
         template = "blocks/hotels_development.html"
+
+
+class HotelsDestinations(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    body = blocks.RichTextBlock()
+    background_image = ImageChooserBlock(required=False)
+    foreground_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/hotels_destinations.html"

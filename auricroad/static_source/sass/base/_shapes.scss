@@ -5,6 +5,9 @@
   border-right: 20px solid transparent;
   
   border-top: 20px solid;
+  &.satin {
+    border-top-color: $satin;
+  }
 }
 
 .top-accent {

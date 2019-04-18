@@ -1,0 +1,24 @@
+.static-section-header {
+    color: $white;
+    @include xy-grid('vertical');
+    @include xy-cell(10);
+    @include breakpoint(medium) {
+        @include xy-cell(8);
+    }
+    @include breakpoint(large) {
+        @include xy-cell(7);
+    }
+    text-align: center;
+    align-items: center;
+    .tagline {
+        margin-bottom: 11px;
+    }
+    .header {
+        margin-bottom: 36px;
+    }
+    .body {
+        @include breakpoint(xxlarge) {
+            @include xy-cell(8);
+        }
+    }
+}

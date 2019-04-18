@@ -8,7 +8,7 @@ from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtailmedia.models import AbstractMedia
 from wagtailmodelchooser import register_model_chooser
 
-from .blocks import Hero, HotelsDevelopment, HotelsList
+from .blocks import Hero, HotelsDestinations, HotelsDevelopment, HotelsList
 from .constants import ENVIRONMENT_CHOICES
 
 
@@ -85,6 +85,7 @@ class HotelsPage(Page):
             ("hero", Hero()),
             ("hotels", HotelsList()),
             ("development", HotelsDevelopment()),
+            ("destinations", HotelsDestinations()),
         ],
         null=True,
         blank=True,
