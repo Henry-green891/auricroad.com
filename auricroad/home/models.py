@@ -8,7 +8,7 @@ from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtailmedia.models import AbstractMedia
 from wagtailmodelchooser import register_model_chooser
 
-from .blocks import Hero, HotelsList
+from .blocks import Hero, HotelsDestinations, HotelsDevelopment, HotelsList
 from .constants import ENVIRONMENT_CHOICES
 
 
@@ -81,7 +81,14 @@ class HomePage(Page):
 
 class HotelsPage(Page):
     body = StreamField(
-        [("hero", Hero()), ("hotels", HotelsList())], null=True, blank=True
+        [
+            ("hero", Hero()),
+            ("hotels", HotelsList()),
+            ("development", HotelsDevelopment()),
+            ("destinations", HotelsDestinations()),
+        ],
+        null=True,
+        blank=True,
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]

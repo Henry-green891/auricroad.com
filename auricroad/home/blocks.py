@@ -51,3 +51,35 @@ class HotelsList(blocks.StructBlock):
 
     class Meta:
         template = "blocks/hotels_list.html"
+
+
+class HotelsDevelopmentCard(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    background_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/development_card.html"
+
+
+class HotelsDevelopment(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    body = blocks.RichTextBlock()
+    cards = blocks.StreamBlock(
+        [("card", HotelsDevelopmentCard())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/hotels_development.html"
+
+
+class HotelsDestinations(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    body = blocks.RichTextBlock()
+    background_image = ImageChooserBlock(required=False)
+    foreground_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/hotels_destinations.html"

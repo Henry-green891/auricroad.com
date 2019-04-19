@@ -4,4 +4,5 @@ ENVIRONMENT_CHOICES = (
     ("desert_riad", "Desert Riad"),
     ("beach", "Beach"),
     ("desert_ranch", "Desert Ranch"),
+    ("vineyard", "Vineyard"),
 )

@@ -1,0 +1,36 @@
+.hotels-destination {
+    @include xy-grid();
+    justify-content: center;
+    margin-top: 100px;
+    .static-section-header {
+        color: $text-black;
+        .tagline, .body {
+            color: $text-charcoal;
+        }
+        .body {
+            margin-bottom: 40px;
+        }
+        .center-vertical-line {
+            margin-bottom: 40px;
+        }
+    }
+    .destinations-image-section {
+        margin-top: 10px;
+        min-height: 800px;
+        background-size: cover;
+        @include xy-grid('vertical');
+        align-items: center;
+        justify-content: center;
+        @include breakpoint(large) {
+            justify-content: unset;
+        }
+        img {
+            @include xy-cell(11);
+            @include breakpoint(large) {
+                @include xy-cell(8);
+                position: relative;
+                top: -100px;
+            }
+        }
+    }
+}

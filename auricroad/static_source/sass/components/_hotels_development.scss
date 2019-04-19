@@ -1,0 +1,24 @@
+.hotels-development {
+    @include xy-grid();
+    justify-content: center;
+    .hotels-development-inner {
+        @include xy-cell(10);
+        @include xy-grid('vertical');
+        align-items: center;
+        background-color: $gray-bg;
+        padding-top: 70px;
+        padding-bottom: 100px;
+    }
+    .static-section-header {
+        color: $text-black;
+        .tagline, .body {
+            color: $text-charcoal;
+        }
+        .body {
+            margin-bottom: 40px;
+        }
+        .center-vertical-line {
+            margin-bottom: 40px;
+        }
+    }
+}

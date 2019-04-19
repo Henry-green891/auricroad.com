@@ -1,36 +1,30 @@
 .hero {
     @include xy-grid('vertical');
     align-items: center;
-    .static-hero {
-        color: $white;
-        @include xy-grid('vertical');
-        @include xy-cell(10);
-        @include breakpoint(medium) {
-            @include xy-cell(8);
-        }
-        @include breakpoint(large) {
-            @include xy-cell(6);
-        }
-        margin-top: 180px;
-        text-align: center;
-        .tagline {
-            margin-bottom: 11px;
-        }
-        .center-vertical-line {
-            margin-bottom: 28px;
-        }
-        .header {
-            margin-bottom: 36px;
-        }
-        .body {
-            margin-bottom: 150px;
-        }
-    }
     .hero-video {
-        margin-top: 80px;
+        position: relative;
+        top: -20px;
+        margin-bottom: -20px;
         @include xy-cell(10);
         video {
             @include xy-cell(12);
         }
     }
+    .hero-background-wrapper {
+        @include xy-grid('vertical');
+        align-items: center;
+        padding-bottom: 90px;
+        background-size: cover;
+        background-position-x: center;
+        .static-section-header {
+            margin-top: 180px;
+            .body {
+                margin-bottom: 150px;
+            }
+            .center-vertical-line {
+                margin-bottom: 28px;
+            }
+        }
+    }
+    
 }

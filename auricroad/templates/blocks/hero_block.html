@@ -1,15 +1,24 @@
 <div class="hero">
-    <div class="static-hero">
-        <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
-        <div class="center-vertical-line white"></div>
-        <h2 class="header font-a size-2">{{ value.static_header }}</h2>
-        <div class="body font-e size-2">{{ value.static_body|richtext }}</div>
-    </div>
-    {% if value.cards %}
-        <div class="hero-cards">
-            {{ value.cards }}
+    <div
+        class="hero-background-wrapper"
+        {% if value.background_image %}
+            style="background-image: url('{{ value.background_image.file.url }}');"
+        {% endif %}
+    >
+        <div class="static-section-header">
+            <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
+            <div class="center-vertical-line white"></div>
+            <div class="accented-text-wrapper">
+                <h2 class="accented-text header font-a size-2">{{ value.static_header }}</h2>
+            </div>
+            <div class="body semi-bold font-e size-2">{{ value.static_body|richtext }}</div>
         </div>
-    {% endif %}
+        {% if value.cards %}
+            <div class="hero-cards">
+                {{ value.cards }}
+            </div>
+        {% endif %}
+    </div>
     {% if value.hero_video %}
         <div class="hero-video">
             <video poster="{{ value.hero_video.thumbnail.url }}" controls>

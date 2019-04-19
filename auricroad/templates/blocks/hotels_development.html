@@ -1,0 +1,18 @@
+<div class="hotels-development top-accent">
+    <div class="hotels-development-inner">
+        <div class="static-section-header">
+            <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
+            <div class="center-vertical-line gray"></div>
+            <div class="accented-text-wrapper">
+                <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
+            </div>
+            <h2 class="body semi-bold font-e size-2">{{ value.body|richtext }}</h2>
+        </div>
+        {% if value.cards %}
+            <div class="development-cards">
+                {{ value.cards }}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>

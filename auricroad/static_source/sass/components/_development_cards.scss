@@ -1,0 +1,32 @@
+.development-cards {
+    @include xy-cell(10);
+    @include xy-grid('vertical');
+    @include breakpoint(medium) {
+        @include xy-grid();
+    }
+    .block-card {
+        width: 100%;
+        @include breakpoint(medium) {
+            width: calc(50% - 3px);
+            margin-left: 1.5px;
+            margin-right: 1.5px;
+        }
+        @include breakpoint(large) {
+            width: calc(33.333% - 3px);
+            margin-left: 1.5px;
+            margin-right: 1.5px;
+        }
+        margin-bottom: 3px;
+        .development-card {
+            background-size: cover;
+            background-position: center center;
+            max-height: 170px;
+            padding: 20px;
+            color: white;
+            .environment {
+                margin-top: 20px;
+                margin-bottom: 80px;
+            }
+        }
+    }
+}
