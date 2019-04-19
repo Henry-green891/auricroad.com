@@ -15,7 +15,22 @@
         }
     }
     .destinations-image-section {
-        margin-top: 50px;
+        margin-top: 10px;
         min-height: 800px;
+        background-size: cover;
+        @include xy-grid('vertical');
+        align-items: center;
+        justify-content: center;
+        @include breakpoint(large) {
+            justify-content: unset;
+        }
+        img {
+            @include xy-cell(11);
+            @include breakpoint(large) {
+                @include xy-cell(8);
+                position: relative;
+                top: -100px;
+            }
+        }
     }
 }

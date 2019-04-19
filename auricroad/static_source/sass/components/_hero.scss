@@ -14,21 +14,8 @@
         @include xy-grid('vertical');
         align-items: center;
         padding-bottom: 90px;
-        background-position-x: 30%;
-        background-position-y: top;
         background-size: cover;
-        background-repeat: no-repeat;
-        @include breakpoint(large) {
-            background-position-x: 20%;
-            background-position-y: bottom;
-        }
-        @include breakpoint(xlarge) {
-            background-position-y: bottom;
-        }
-        @include breakpoint(xxlarge) {
-            background-position-y: bottom;
-            background-position-x: 30%;
-        }
+        background-position-x: center;
         .static-section-header {
             margin-top: 180px;
             .body {

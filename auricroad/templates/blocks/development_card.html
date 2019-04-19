@@ -1,4 +1,9 @@
-<div class="development-card">
+<div
+    class="development-card"
+    {% if value.background_image %}
+        style="background-image: url('{{ value.background_image.file.url }}');"
+    {% endif %}
+>
     <span class="text-dash">
         <h3 class="font-f size-3">{{ value.tagline|upper }}</h3>
         &nbsp;&nbsp;

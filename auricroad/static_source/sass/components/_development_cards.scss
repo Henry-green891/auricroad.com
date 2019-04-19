@@ -5,9 +5,6 @@
         @include xy-grid();
     }
     .block-card {
-        // TEMPORARY BORDER AND BACKGROUND
-        border: 1px solid $black;
-        background-color: $green-bg;
         width: 100%;
         @include breakpoint(medium) {
             width: calc(50% - 3px);
@@ -21,6 +18,8 @@
         }
         margin-bottom: 3px;
         .development-card {
+            background-size: cover;
+            background-position: center center;
             max-height: 170px;
             padding: 20px;
             color: white;
