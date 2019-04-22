@@ -27,7 +27,7 @@
         img {
             @include xy-cell(11);
             @include breakpoint(large) {
-                @include xy-cell(8);
+                @include xy-cell(9);
                 position: relative;
                 top: -100px;
             }
