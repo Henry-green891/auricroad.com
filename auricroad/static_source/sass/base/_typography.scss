@@ -3,7 +3,8 @@ h1 {
 }
 
 p {
-  font-size: 16px;
+  font-size: unset;
+  line-height: unset;
 }
 
 strong {
@@ -28,26 +29,11 @@ select {
   }
 }
 
-.accented-text-wrapper {
-  .accented-text {
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 5%;
-      left: -1.5%;
-      width: 103%;
-      height: 30%;
-      background-color: $auric-gold;
-      opacity: 0.85;
-      z-index: -1;
-      -webkit-transition: all .1s linear;
-      -moz-transition: all .1s linear;
-      transition: all .1s linear;
-    }
-  }
+.accented-text {
+  display: inline;
+  background: linear-gradient(to bottom, transparent 60%, $auric-gold-bg 40%);
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .semi-bold {
@@ -124,6 +110,14 @@ select {
       line-height: 35px;
     }
   }
+  &.size-3 {
+    font-size: 18px;
+    line-height: 24px;
+    @include breakpoint(large) {
+      font-size: 23px;
+      line-height: 35px;
+    }
+  }
 }
 
 .font-c {
@@ -137,6 +131,19 @@ select {
 }
 
 .font-d {
+  &.size-1 {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+    @include breakpoint(medium) {
+      font-size: 18px;
+      line-height: 30px;
+    }
+    @include breakpoint(large) {
+      font-size: 19px;
+      line-height: 31px;
+    }
+  }
   &.size-4 {
     font-size: 12px;
     line-height: 18px;

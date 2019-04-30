@@ -1,0 +1,63 @@
+.hotel-detail-cards {
+    @include xy-cell(10);
+    @include xy-grid('vertical');
+    @include breakpoint(large) {
+        @include xy-grid();
+    }
+    .block-card {
+        @include xy-cell(12);
+        margin-bottom: 25px;
+        @include breakpoint(large) {
+            @include xy-cell(6);
+        }
+        @include breakpoint(xxlarge) {
+            @include xy-cell(4);
+            margin-bottom: 0;
+        }
+        background-color: transparent;
+        .hotel-detail-card {
+            height: 100%;
+            @include xy-grid('vertical');
+            align-items: center;
+            .hotel-detail-card-top, .hotel-detail-card-bottom {
+                background-color: $pearl;
+                @include xy-grid('vertical');
+                width: 100%;
+                padding: 40px 80px;
+                @include breakpoint(large) {
+                    padding: 40px 40px;
+                }
+                @include breakpoint(xlarge) {
+                    padding: 40px 80px;
+                }
+                @include breakpoint(xxlarge) {
+                    padding: 40px 40px;
+                }
+                @include breakpoint(xxxlarge) {
+                    padding: 40px 80px;
+                }
+                opacity: 0.9;
+                align-items: center;
+                text-align: center;
+                .hero-card-icon {
+                    margin-bottom: 20px;
+                }
+                .header {
+                    color: $text-black;
+                    margin-bottom: 15px;
+                }
+                .subheader {
+                    color: $text-black;
+                }
+                .body {
+                    margin-top: 20px;
+                    color: $text-charcoal;
+                }
+            }
+            .hotel-detail-card-top {
+                margin-bottom: 10px;
+                flex-grow: 1;
+            }
+        }
+    }
+}

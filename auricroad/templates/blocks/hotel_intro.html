@@ -1,0 +1,21 @@
+<div class="hotel-intro">
+    <div class="hotel-intro-inner">
+        <div class="hotel-intro-inner-inner">
+            {% if value.tagline_bar_style == 'horizontal' %}
+                <span class="text-dash">
+                    <h3 class="font-f size-3">{{ value.tagline|upper }}</h3>
+                    &nbsp;&nbsp;
+                    <div class="partial-horizontal-line charcoal"></div>
+                </span>
+            {% else %}
+                <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
+                <div class="center-vertical-line gray"></div>
+            {% endif %}
+            <div class="accented-text-wrapper">
+                <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
+            </div>
+            <h2 class="body semi-bold font-d size-1">{{ value.body|richtext }}</h2>
+            <button class="button black rounded font-c size-2">See Hotel</button>
+        </div>
+    </div>
+</div>

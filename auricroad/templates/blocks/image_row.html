@@ -1,0 +1,31 @@
+<div class="image-row row-grid {{ value.layout }} stretch-section">
+    {% if value.layout == "half_width" %}
+        {% for image in value.images %}
+            <img class="row-half" src="{{ image.file.url }}">
+        {% endfor %}
+    {% elif value.layout == "half_two_quarter" %}
+        <img class="row-half" src="{{ value.images[0].file.url }}">
+        <div class="row-half no-margin row-grid">
+            <img class="row-half" src="{{ value.images[1].file.url }}">
+            <img class="row-half" src="{{ value.images[2].file.url }}">
+        </div>
+    {% elif value.layout == "double_height_half_right" %}
+        <div class="row-half column-grid">
+            <div class="row-grid only-inner-margins">
+                <img class="row-half" src="{{ value.images[0].file.url }}">
+                <img class="row-half" src="{{ value.images[1].file.url }}">
+            </div>
+            <img src="{{ value.images[2].file.url }}">
+        </div>
+        <img class="row-half" src="{{ value.images[3].file.url }}">
+    {% elif value.layout == "double_height_half_left" %}
+        <img class="row-half" src="{{ value.images[0].file.url }}">
+        <div class="row-half column-grid">
+            <div class="row-grid only-inner-margins">
+                <img class="row-half" src="{{ value.images[1].file.url }}">
+                <img class="row-half" src="{{ value.images[2].file.url }}">
+            </div>
+            <img src="{{ value.images[3].file.url }}">
+        </div>
+    {% endif %}
+</div>

@@ -5,11 +5,15 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
-from wagtailmedia.models import AbstractMedia
 from wagtailmodelchooser import register_model_chooser
 
-from .blocks import Hero, HotelsDestinations, HotelsDevelopment, HotelsList
+from .blocks import (ActivitySection, FloorPlanSection, Hero,
+                     HotelDetailSection, HotelIntro, HotelsDestinations,
+                     HotelsDevelopment, HotelsList, ImageSection)
 from .constants import ENVIRONMENT_CHOICES
+
+from wagtailmedia.models import AbstractMedia  # isort:skip
+
 
 
 @register_model_chooser
@@ -94,3 +98,22 @@ class HotelsPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
     parent_page_types = [HomePage]
+
+
+class HotelDetailPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("intro", HotelIntro()),
+            ("image_section", ImageSection()),
+            ("activity_section", ActivitySection()),
+            ("floor_plan_section", FloorPlanSection()),
+            ("detail_section", HotelDetailSection()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HotelsPage]

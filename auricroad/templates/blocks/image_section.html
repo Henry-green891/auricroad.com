@@ -1,0 +1,9 @@
+<div class="image-section">
+    {% if value.rows %}
+        <div class="image-rows">
+            {% for row in value.rows %}
+                {{ row }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

@@ -19,6 +19,15 @@
     &.gray {
         border-left-color: $gray-bar;
     }
+    &.charcoal {
+        border-left-color: $text-charcoal;
+    }
+    &.tide {
+        border-left-color: $tide;
+    }
+    &.double-height {
+        height: 50px;
+    }
 }
 .partial-horizontal-line {
     border-top: 1px solid $black;
@@ -29,4 +38,11 @@
     &.white {
         border-top-color: $white;
     }
+}
+
+.orange-accent-wave {
+    width: 86px;
+    height: 10px;
+    background-image: url('/media/original_images/auric-icon-wave-orange.png');
+    background-size: cover;
 }

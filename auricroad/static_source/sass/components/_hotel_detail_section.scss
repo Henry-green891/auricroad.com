@@ -1,0 +1,5 @@
+.hotel-detail-section {
+    @include xy-grid();
+    justify-content: center;
+    padding-top: 100px;
+}

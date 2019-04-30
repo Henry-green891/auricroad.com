@@ -1,0 +1,28 @@
+<div class="hotel-detail-card">
+    <div class="hotel-detail-card-top top-accent">
+        <h1 class="header font-a size-1">{{ value.header }}</h1>
+        <h6 class="subheader font-a size-7">{{ value.subheader }}</h6>
+        <div class="orange-accent-wave"></div>
+        <p class="body font-d size-4">{{ value.body|richtext }}</p>
+    </div>
+    <div class="hotel-detail-card-bottom top-accent">
+        <img src="{{ value.detail_icon.file.url }}">
+        <h3 class="action-header font-b size-3">{{ value.action_header }}</h3>
+        <div class="center-vertical-line double-height tide"></div>
+        {% if value.action_text %}
+            <h1 class="font-f size-1">{{ value.action_text }}</h1>
+        {% endif %}
+        {% if value.action_text_two %}
+            <h1 class="font-f size-1">{{ value.action_text_two }}</h1>
+        {% endif %}
+        {% if value.facebook %}
+            <h1 class="font-f size-1"><i class="fab fa-facebook-f"></i> {{ value.facebook }}</h1>
+        {% endif %}
+        {% if value.instagram %}
+            <h1 class="font-f size-1"><i class="fab fa-instagram"></i> {{ value.instagram }}</h1>
+        {% endif %}
+        {% if value.twitter %}
+            <h1 class="font-f size-1"><i class="fab fa-twitter"></i> {{ value.twitter }}</h1>
+        {% endif %}        
+    </div>
+</div> 

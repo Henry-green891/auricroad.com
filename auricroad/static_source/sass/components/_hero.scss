@@ -12,6 +12,7 @@
     }
     .hero-background-wrapper {
         @include xy-grid('vertical');
+        width: 100%;
         align-items: center;
         padding-bottom: 90px;
         background-size: cover;

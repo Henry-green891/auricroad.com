@@ -1,0 +1,17 @@
+<div class="hotel-activity top-accent">
+    <div class="hotel-activity-inner">
+        <div class="static-section-header">
+            <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
+            <div class="center-vertical-line gray"></div>
+            <div class="accented-text-wrapper">
+                <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
+            </div>
+        </div>
+        {% if value.cards %}
+            <div class="activity-cards">
+                {{ value.cards }}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>

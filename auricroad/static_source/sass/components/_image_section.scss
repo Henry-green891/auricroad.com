@@ -1,0 +1,36 @@
+.image-section {
+    .image-row {
+        margin-top: 10px;
+        &.stretch-section {
+            margin-left: -0.625rem;
+            margin-right: -0.625rem;
+        }
+        .row-half {
+            @include xy-cell(6);
+            &.no-margin {
+                width: 50%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        &.row-grid, .row-grid {
+            @include xy-grid();
+            align-items: center;
+        }
+        .column-grid, .row-grid {
+            &.only-inner-margins {
+                img:first-of-type {
+                    margin-left: 0;
+                    width: calc(50% - 0.625rem)
+                }
+                img:last-of-type {
+                    margin-right: 0;
+                    width: calc(50% - 0.625rem)
+                }
+            }
+        }
+        .row-grid.only-inner-margins {
+            margin-bottom: 10px;
+        }
+    }
+}

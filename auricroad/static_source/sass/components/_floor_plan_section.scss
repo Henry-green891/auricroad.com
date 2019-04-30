@@ -1,0 +1,21 @@
+.floor-plan-section {
+    @include xy-grid('vertical');
+    align-items: center;
+    background-color: $swirl;
+    margin-top: 70px;
+    padding-top: 70px;
+    padding-bottom: 100px;
+    .static-section-header {
+        @include xy-cell(10);
+        color: $text-black;
+        .tagline, .body {
+            color: $text-charcoal;
+        }
+        .body {
+            margin-bottom: 40px;
+        }
+        .center-vertical-line {
+            margin-bottom: 40px;
+        }
+    }
+}

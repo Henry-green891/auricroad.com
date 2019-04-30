@@ -1,0 +1,10 @@
+body.hotel-detail {
+    background-color: $satin;
+    .block-image_section {
+        @include xy-grid();
+        justify-content: center;
+        .image-section {
+            @include xy-cell(10);
+        }
+    }
+}
