@@ -1,0 +1,16 @@
+<div
+    class="events-footer"
+    {% if value.background_image %}
+        style="background-image: url({{ value.background_image.file.url }});"
+    {% endif %}
+>
+    <div class="static-section-header">
+        <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
+        <div class="center-vertical-line gray"></div>
+        <div class="accented-text-wrapper">
+            <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
+        </div>
+        <h2 class="body semi-bold font-d size-2">{{ value.body|richtext }}</h2>
+        <button class="button black rounded font-c size-2">Contact Us</button>
+    </div>
+</div>

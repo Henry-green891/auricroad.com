@@ -2,13 +2,16 @@ from django.utils.html import format_html
 
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailmodelchooser.blocks import ModelChooserBlock
 
-from .constants import (ACCENT_BAR_CHOICES, FONT_CHOICES, FONT_SIZE_CHOICES,
-                        IMAGE_GROUP_LAYOUTS)
+from .constants import (  # isort:skip
+    ACCENT_BAR_CHOICES,
+    FONT_CHOICES,
+    FONT_SIZE_CHOICES,
+    IMAGE_GROUP_LAYOUTS,
+    LAYOUT_CHOICES,
+)
 
 from wagtailmedia.blocks import AbstractMediaChooserBlock  # isort:skip
-
 
 
 class MediaBlock(AbstractMediaChooserBlock):
@@ -30,7 +33,7 @@ class MediaBlock(AbstractMediaChooserBlock):
 class HeroCard(blocks.StructBlock):
     icon = ImageChooserBlock()
     header = blocks.CharBlock(max_length=50)
-    subheader = blocks.CharBlock(max_length=50)
+    subheader = blocks.CharBlock(max_length=50, required=False)
     body = blocks.CharBlock(max_length=200)
 
     class Meta:
@@ -44,6 +47,7 @@ class Hero(blocks.StructBlock):
     body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=True)
     body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
     background_image = ImageChooserBlock(required=False)
+    show_diamond_overlay = blocks.BooleanBlock(required=False)
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
@@ -53,11 +57,51 @@ class Hero(blocks.StructBlock):
         template = "blocks/hero_block.html"
 
 
-class HotelsList(blocks.StructBlock):
-    hotels = blocks.ListBlock(ModelChooserBlock("home.Hotel"))
+class StaticTextSection(blocks.StructBlock):
+    static_header = blocks.CharBlock(max_length=100)
+    static_tagline = blocks.CharBlock(max_length=50)
+    static_body = blocks.RichTextBlock()
+    body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=True)
+    body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
 
     class Meta:
-        template = "blocks/hotels_list.html"
+        template = "blocks/static_text_section.html"
+
+
+class ImageCard(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    subheader = blocks.CharBlock(max_length=50, required=False)
+    body = blocks.RichTextBlock(required=False)
+    background_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/image_card.html"
+
+
+class HotelImageCard(ImageCard):
+    detail_link = blocks.PageChooserBlock(
+        target_model="home.HotelDetailPage", required=False
+    )
+
+
+class EventImageCard(ImageCard):
+    pass
+
+
+class ImageCardList(blocks.StructBlock):
+    hotels = blocks.StreamBlock(
+        [
+            ("hotel_image_card", HotelImageCard()),
+            ("event_image_card", EventImageCard()),
+        ],
+        null=True,
+        blank=True,
+        required=False,
+    )
+
+    class Meta:
+        template = "blocks/image_card_list.html"
 
 
 class HotelsDevelopmentCard(blocks.StructBlock):
@@ -169,3 +213,24 @@ class HotelDetailSection(blocks.StructBlock):
 
     class Meta:
         template = "blocks/hotel_detail_section.html"
+
+
+class SplitImageTextCardSection(blocks.StructBlock):
+    layout_style = blocks.ChoiceBlock(choices=LAYOUT_CHOICES, required=True)
+    image = ImageChooserBlock()
+    header = blocks.CharBlock(max_length=500)
+    body = blocks.RichTextBlock()
+    button_text = blocks.CharBlock(max_length=50, required=False)
+
+    class Meta:
+        template = "blocks/split_image_text_card_section.html"
+
+
+class EventsFooter(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=50)
+    body = blocks.RichTextBlock()
+    background_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/events_footer.html"

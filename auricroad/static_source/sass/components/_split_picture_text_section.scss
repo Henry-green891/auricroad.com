@@ -1,0 +1,51 @@
+.split-image-text-card-section {
+    position: relative;
+    margin-top: 30px;
+    @include xy-grid('vertical');
+    @include breakpoint(xxlarge) {
+        @include xy-grid();
+        &.reverse-order {
+            flex-direction: row-reverse;
+        }
+    }
+    .split-text-card,
+    .split-image-card {
+        @include xy-cell(12);
+        @include breakpoint(xxlarge) {
+            @include xy-cell(6);
+        }
+    }
+    .split-text-card {
+        position: relative;
+        padding: 80px 60px;
+        background-color: $pearl;
+        @include xy-grid('vertical');
+        align-items: flex-start;
+        .arrow-down {
+            position: absolute;
+            top: -1px;
+        }
+        margin-bottom: 30px;
+        @include breakpoint(xxlarge) {
+            margin-bottom: 0;
+        }
+    }
+    .split-image-card {
+        background-size: cover;
+        background-position: center center;
+        min-height: 50vw;
+        @include breakpoint(xxlarge) {
+            min-height: unset;
+        }
+    }
+    .tie-bar {
+        position: absolute;
+        left: calc(50% - 27.5px);
+        &#tie-bar-top {
+            top: 40px;
+        }
+        &#tie-bar-bottom {
+            bottom: 40px;
+        }
+    }
+}

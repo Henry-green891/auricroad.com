@@ -1,0 +1,24 @@
+<div
+    class="image-card"
+    {% if value.background_image %}
+        style="background-image: url({{ value.background_image.file.url }});"
+    {% endif %}
+>
+    <div class="arrow-down satin"></div>
+    <span class="text-dash">
+        <h1 class="font-f size-1">{{ value.tagline }}</h1>
+        &nbsp;&nbsp;
+        <div class="partial-horizontal-line white double-width"></div>
+    </span>
+    <h3 class="font-a size-3">{{ value.header }}</h3>
+    {% if value.subheader %}
+        <p class="subheader font-a size-7">{{ value.subheader }}</p>
+    {% elif value.body %}
+        <div class="body font-d size-3">{{ value.body | richtext }}</div>
+    {% endif %}
+    {% if value.detail_link %}
+        <a href=""><button class="button white rounded font-c size-2">See Hotel Details</button></a>
+    {% else %}
+        <button class="button white rounded font-c size-2">See Details</button>
+    {% endif %}
+</div>

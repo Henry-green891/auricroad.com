@@ -1,0 +1,33 @@
+body.events-list {
+    background-color: $satin;
+    .block-image_section,
+    .block-split_image_text_card_section {
+        @include xy-grid();
+        justify-content: center;
+        .image-section,
+        .split-image-text-card-section  {
+            @include xy-cell(10);
+        }
+    }
+    .block-static_text_section,
+    .block-events_footer {
+        .static-section-header {
+            margin-top: 100px;
+            color: $text-black;
+            .body,
+            .tagline {
+                color: $text-charcoal;
+            }
+            .body {
+                p {
+                    @extend .font-d;
+                    @extend .size-2;
+                    font-weight: normal;
+                }
+            }
+            .center-vertical-line {
+                border-left-color: $gray-bar;
+            }
+        }
+    }
+}

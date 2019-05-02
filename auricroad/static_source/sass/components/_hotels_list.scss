@@ -1,27 +1,42 @@
-.hotels-list {
+.image-card-list {
     margin-top: 100px;
     margin-bottom: 60px;
     @include xy-grid('vertical');
     align-items: center;
-    .hotel-card {
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        .arrow-down {
-            position: absolute;
-            top: -1px;
-        }
-        padding: 60px;
-        color: $white;
+    .block-hotel_image_card,
+    .block-event_image_card {
         @include xy-cell(10);
         margin-bottom: 25px;
-        h3 {
-            margin-top: 25px;
-            margin-bottom: 25px;
-            max-width: 500px;
-        }
-        p {
-            margin-bottom: 220px;
+        .image-card {
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            .arrow-down {
+                position: absolute;
+                top: -1px;
+            }
+            padding: 60px;
+            color: $white;
+            h3 {
+                margin-top: 25px;
+                margin-bottom: 25px;
+                max-width: 500px;
+            }
+            .subheader {
+                margin-bottom: 220px;
+                color: $white;
+            }
+            .body {
+                @include breakpoint(large) {
+                    max-width: 33%;
+                }
+                margin-bottom: 260px;
+                p {
+                    @extend .font-d;
+                    @extend .size-3;
+                }
+            }
         }
     }
+    
 }

@@ -17,6 +17,19 @@
         padding-bottom: 90px;
         background-size: cover;
         background-position-x: center;
+        &.has-overlay {
+            background-size: 0%, cover;
+            @include breakpoint(large) {
+                background-size: auto 130%, cover;
+                background-position-y: 50%, center;
+            }
+            @include breakpoint(xxlarge) {
+                background-size: 100% auto, cover;
+            }
+            background-position-x: center, center;
+            background-repeat: no-repeat, no-repeat;
+            
+        }
         .static-section-header {
             margin-top: 180px;
             .body {

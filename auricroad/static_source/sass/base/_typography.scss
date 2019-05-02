@@ -144,6 +144,28 @@ select {
       line-height: 31px;
     }
   }
+  &.size-2 {
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    @include breakpoint(medium) {
+      font-size: 17px;
+      line-height: 25px;
+    }
+  }
+  &.size-3 {
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    @include breakpoint(medium) {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    @include breakpoint(large) {
+      font-size: 15px;
+      line-height: 23px;
+    }
+  }
   &.size-4 {
     font-size: 12px;
     line-height: 18px;

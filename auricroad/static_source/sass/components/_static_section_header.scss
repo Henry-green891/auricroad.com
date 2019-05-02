@@ -1,3 +1,7 @@
+.block-static_text_section {
+  @include xy-grid();
+    justify-content: center;  
+}
 .static-section-header {
     color: $white;
     @include xy-grid('vertical');

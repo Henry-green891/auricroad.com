@@ -1,0 +1,10 @@
+.events-footer {
+    @include xy-grid();
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    .static-section-header {
+         margin-top: 100px;
+         margin-bottom: 220px;
+    }
+}

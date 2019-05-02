@@ -1,0 +1,13 @@
+<div class="split-image-text-card-section {% if value.layout_style == 'image_first'%}reverse-order{% endif %}">
+    <div class="split-text-card">
+        <div class="arrow-down satin"></div>
+        <h1>{{ value.header }}</h1>
+        <p>{{ value.body }}</p>
+        {% if value.button_text %}
+            <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+        {% endif %}
+    </div>
+    <div class="tie-bar" id="tie-bar-top"></div>
+    <div class="tie-bar" id="tie-bar-bottom"></div>
+    <div class="split-image-card" style="background-image: url({{ value.image.file.url }});"></div>
+</div>

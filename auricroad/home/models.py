@@ -7,13 +7,24 @@ from wagtail.core.models import Page
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtailmodelchooser import register_model_chooser
 
-from .blocks import (ActivitySection, FloorPlanSection, Hero,
-                     HotelDetailSection, HotelIntro, HotelsDestinations,
-                     HotelsDevelopment, HotelsList, ImageSection)
 from .constants import ENVIRONMENT_CHOICES
 
-from wagtailmedia.models import AbstractMedia  # isort:skip
+from .blocks import (  # isort:skip
+    ActivitySection,
+    EventsFooter,
+    FloorPlanSection,
+    Hero,
+    HotelDetailSection,
+    HotelIntro,
+    HotelsDestinations,
+    HotelsDevelopment,
+    ImageCardList,
+    ImageSection,
+    SplitImageTextCardSection,
+    StaticTextSection,
+)
 
+from wagtailmedia.models import AbstractMedia  # isort:skip
 
 
 @register_model_chooser
@@ -25,6 +36,13 @@ class Hotel(models.Model):
         max_length=50, choices=ENVIRONMENT_CHOICES, default=""
     )
     background_image = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    events_background_image = models.ForeignKey(
         "home.CustomImage",
         on_delete=models.SET_NULL,
         related_name="+",
@@ -87,7 +105,7 @@ class HotelsPage(Page):
     body = StreamField(
         [
             ("hero", Hero()),
-            ("hotels", HotelsList()),
+            ("hotels", ImageCardList()),
             ("development", HotelsDevelopment()),
             ("destinations", HotelsDestinations()),
         ],
@@ -117,3 +135,22 @@ class HotelDetailPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
     parent_page_types = [HotelsPage]
+
+
+class EventsPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("image_section", ImageSection()),
+            ("split_image_text_card_section", SplitImageTextCardSection()),
+            ("static_text_section", StaticTextSection()),
+            ("events_list", ImageCardList()),
+            ("events_footer", EventsFooter()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
