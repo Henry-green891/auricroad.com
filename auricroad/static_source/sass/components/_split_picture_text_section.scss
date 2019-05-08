@@ -39,6 +39,10 @@
         }
     }
     .tie-bar {
+        display: none;
+        @include breakpoint(xxlarge) {
+            display: block;
+        }
         position: absolute;
         left: calc(50% - 27.5px);
         &#tie-bar-top {

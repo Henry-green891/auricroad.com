@@ -12,6 +12,7 @@ from .constants import ENVIRONMENT_CHOICES
 from .blocks import (  # isort:skip
     ActivitySection,
     EventsFooter,
+    FadeInFooter,
     FloorPlanSection,
     Hero,
     HotelDetailSection,
@@ -146,6 +147,22 @@ class EventsPage(Page):
             ("static_text_section", StaticTextSection()),
             ("events_list", ImageCardList()),
             ("events_footer", EventsFooter()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
+class ExperiencesPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("experiences_list", ImageCardList()),
+            ("experiences_footer", FadeInFooter()),
         ],
         null=True,
         blank=True,

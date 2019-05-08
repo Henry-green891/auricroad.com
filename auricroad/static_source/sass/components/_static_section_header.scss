@@ -22,7 +22,7 @@
     }
     .body {
         @include breakpoint(xxlarge) {
-            @include xy-cell(8);
+            @include xy-cell(9);
         }
     }
 }

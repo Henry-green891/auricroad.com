@@ -1,6 +1,15 @@
 .hero {
     @include xy-grid('vertical');
     align-items: center;
+    &.extended-bottom-padding {
+        margin-bottom: -340px;
+        .hero-background-wrapper {
+            padding-bottom: 250px;
+            .static-section-header {
+                margin-top: 140px;
+            }
+        }
+    }
     .hero-video {
         position: relative;
         top: -20px;

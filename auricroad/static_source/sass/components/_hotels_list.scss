@@ -4,7 +4,8 @@
     @include xy-grid('vertical');
     align-items: center;
     .block-hotel_image_card,
-    .block-event_image_card {
+    .block-event_image_card,
+    .block-experience_image_card {
         @include xy-cell(10);
         margin-bottom: 25px;
         .image-card {
@@ -31,6 +32,12 @@
                     max-width: 33%;
                 }
                 margin-bottom: 260px;
+                &.reduced-margin {
+                    margin-bottom: 175px;
+                }
+                &.extra-reduced-margin {
+                    margin-bottom: 60px;
+                }
                 p {
                     @extend .font-d;
                     @extend .size-3;

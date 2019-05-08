@@ -48,6 +48,7 @@ class Hero(blocks.StructBlock):
     body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
     background_image = ImageChooserBlock(required=False)
     show_diamond_overlay = blocks.BooleanBlock(required=False)
+    extended_bottom_padding = blocks.BooleanBlock(required=False)
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
@@ -70,7 +71,11 @@ class StaticTextSection(blocks.StructBlock):
 
 class ImageCard(blocks.StructBlock):
     tagline = blocks.CharBlock(max_length=50)
-    header = blocks.CharBlock(max_length=50)
+    tagline_2 = blocks.CharBlock(max_length=50, required=False)
+    header = blocks.CharBlock(max_length=100)
+    header_size = blocks.ChoiceBlock(
+        choices=FONT_SIZE_CHOICES, required=True, default=3
+    )
     subheader = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock(required=False)
     background_image = ImageChooserBlock(required=False)
@@ -89,11 +94,16 @@ class EventImageCard(ImageCard):
     pass
 
 
+class ExperienceImageCard(ImageCard):
+    pass
+
+
 class ImageCardList(blocks.StructBlock):
     hotels = blocks.StreamBlock(
         [
             ("hotel_image_card", HotelImageCard()),
             ("event_image_card", EventImageCard()),
+            ("experience_image_card", ExperienceImageCard()),
         ],
         null=True,
         blank=True,
@@ -234,3 +244,10 @@ class EventsFooter(blocks.StructBlock):
 
     class Meta:
         template = "blocks/events_footer.html"
+
+
+class FadeInFooter(blocks.StructBlock):
+    background_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/fade_out_footer.html"
