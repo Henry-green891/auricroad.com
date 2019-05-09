@@ -97,7 +97,9 @@ class EventImageCard(ImageCard):
 
 
 class ExperienceImageCard(ImageCard):
-    pass
+    detail_link = blocks.PageChooserBlock(
+        target_model="home.ExperiencePage", required=False
+    )
 
 
 class ImageCardList(blocks.StructBlock):

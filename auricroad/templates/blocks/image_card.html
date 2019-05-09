@@ -20,8 +20,14 @@
         <div class="body font-d size-3{% if value.tagline_2 %}{% if value.header|length > 50 %} extra-reduced-margin{% else %} reduced-margin{% endif %}{% endif %}">{{ value.body | richtext }}</div>
     {% endif %}
     {% if value.detail_link %}
-        {{value.detail_link}}
-        <a href=""><button class="button white rounded font-c size-2">See Hotel Details</button></a>
+        {% if value.detail_link.__class__.__name__ == 'HotelDetailPage' %}
+            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Hotel Details</button></a>
+        {% elif value.detail_link.__class__.__name__ == 'EventDetailPage' %}
+            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
+        {% elif value.detail_link.__class__.__name__ == 'ExperiencePage' %}
+            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
+        {% endif %}
+        
     {% else %}
         <button class="button white rounded font-c size-2">See Details</button>
     {% endif %}
