@@ -261,3 +261,23 @@ class FadeInFooter(blocks.StructBlock):
 
     class Meta:
         template = "blocks/fade_out_footer.html"
+
+
+class ImageLogoLinkCard(blocks.StructBlock):
+    main_image = ImageChooserBlock(required=False)
+    logo_image = ImageChooserBlock(required=False)
+    header = blocks.CharBlock(max_length=200)
+    tagline = blocks.CharBlock(max_length=50)
+    link_url = blocks.CharBlock(max_length=500)
+
+    class Meta:
+        template = "blocks/image_logo_link_card.html"
+
+
+class ImageLogoLinkCardSection(blocks.StructBlock):
+    cards = blocks.StreamBlock(
+        [("card", ImageLogoLinkCard())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/image_logo_link_section.html"

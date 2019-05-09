@@ -20,6 +20,7 @@ from .blocks import (  # isort:skip
     HotelsDestinations,
     HotelsDevelopment,
     ImageCardList,
+    ImageLogoLinkCardSection,
     ImageSection,
     SplitImageTextCardSection,
     StaticTextSection,
@@ -181,3 +182,18 @@ class ExperiencePage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
     parent_page_types = [ExperiencesPage]
+
+
+class PressPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("image_logo_link_card_section", ImageLogoLinkCardSection()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]

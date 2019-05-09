@@ -70,6 +70,10 @@ select {
   font-weight: 500;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 .font-a {
   font-family: "ChronicleDisplayRoman";
   &.size-1 {
@@ -176,7 +180,7 @@ select {
 }
 
 .font-d {
-  font-family: "HelveticaNeueRegular";
+  font-family: "HelveticaNeueRegular", sans-serif;
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -224,7 +228,7 @@ select {
 }
 
 .font-e {
-  font-family: "HelveticaNeueMedium";
+  font-family: "HelveticaNeueMedium", sans-serif;
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -250,7 +254,7 @@ select {
 }
 
 .font-f {
-  font-family: "EngraversGothic";
+  font-family: "EngraversGothic", sans-serif;
   &.size-1 {
     font-size: 11px;
     letter-spacing: .2em;

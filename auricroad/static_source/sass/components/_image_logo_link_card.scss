@@ -1,0 +1,47 @@
+.image-logo-link-cards {
+    @include xy-cell(10);
+    @include xy-grid('vertical');
+    @include breakpoint(medium) {
+        @include xy-grid();
+    }
+    .block-card {
+        @include xy-cell(12);
+        background-color: $pearl;
+        margin-bottom: 30px;
+        @include breakpoint(medium) {
+            @include xy-cell(6);
+        }
+        @include breakpoint(xlarge) {
+            @include xy-cell(4);
+        }
+        @include breakpoint(xxxlarge) {
+            @include xy-cell(3);
+        }
+        .image-logo-link-card {
+            color: $text-charcoal;
+            @include xy-grid('vertical');
+            padding: 20px 20px 40px 20px;
+            &:hover {
+                padding: 17px 17px 30px 17px;
+                color: $link-blue;
+            }
+            .main-image-wrapper {
+                position: relative;
+                margin-bottom: 20px;
+                .main-image {
+                    width: 100%;
+                }
+                .arrow-up {
+                    position: absolute;
+                    bottom: 0;
+                    left: 20px;
+                }
+            }
+            
+            .logo-image {
+                width: 33%;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<a href="{{ value.link_url }}">
+    <div class="image-logo-link-card top-accent">
+        {% if value.main_image %}
+            <div class="main-image-wrapper">
+                {{ image(value.main_image, "fill-960x1280", class="main-image") }}
+                <div class="arrow-up small pearl"></div>
+            </div>
+            
+        {% endif %}
+        {% if value.logo_image %}
+            <img class="logo-image" src="{{ value.logo_image.file.url }}">
+        {% endif %}
+        <h6 class="header font-a size-7">{{ value.header }}</h6>
+        <h1 class="tagline font-f size-3">{{ value.tagline }}</h1>
+    </div>
+</a>
