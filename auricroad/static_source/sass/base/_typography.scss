@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'ChronicleDisplayRoman';
+  src: url('../fonts/ChronicleDisplayRoman.otf') format ('otf');
+}
+
+@font-face {
+  font-family: 'ChronicleDisplayBold';
+  src: url('../fonts/ChronicleDisplayBold.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'ChronicleTextRoman';
+  src: url('../fonts/ChronicleTextRoman.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueRegular';
+  src: url('../fonts/HelveticaNeueRegular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'HelveticaNeueMedium';
+  src: url('../fonts/HelveticaNeueMedium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'EngraversGothic';
+  src: url('../fonts/EngraversGothic.ttf') format('ttf');
+}
+
 h1 {
   letter-spacing: 1px;
 }
@@ -41,6 +71,7 @@ select {
 }
 
 .font-a {
+  font-family: "ChronicleDisplayRoman";
   &.size-1 {
     font-size: 80px;
     letter-spacing: 0.03em;
@@ -110,6 +141,7 @@ select {
 }
 
 .font-b {
+  font-family: "ChronicleDisplayBold";
   &.size-2 {
     font-size: 21px;
     line-height: 27px;
@@ -133,6 +165,7 @@ select {
 }
 
 .font-c {
+  font-family: "ChronicleTextRoman";
   &.size-2 {
     font-size: 15px;
     letter-spacing: 0.065em;
@@ -143,6 +176,7 @@ select {
 }
 
 .font-d {
+  font-family: "HelveticaNeueRegular";
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -190,6 +224,7 @@ select {
 }
 
 .font-e {
+  font-family: "HelveticaNeueMedium";
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -215,6 +250,7 @@ select {
 }
 
 .font-f {
+  font-family: "EngraversGothic";
   &.size-1 {
     font-size: 11px;
     letter-spacing: .2em;
