@@ -10,6 +10,24 @@
             }
         }
     }
+    &.reduced-padding {
+        .hero-background-wrapper {
+            .static-section-header {
+                margin-top: 100px;
+            }
+        }
+    }
+    &.wider-desktop-layout {
+        .static-section-header {
+            @include xy-cell(10);
+            @include breakpoint(medium) {
+                @include xy-cell(10);
+            }
+            @include breakpoint(large) {
+                @include xy-cell(10);
+            }
+        }
+    }
     .hero-video {
         position: relative;
         top: -20px;

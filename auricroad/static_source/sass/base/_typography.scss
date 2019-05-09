@@ -190,6 +190,19 @@ select {
 }
 
 .font-e {
+  &.size-1 {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.04em;
+    @include breakpoint(medium) {
+      font-size: 18px;
+      line-height: 30px;
+    }
+    @include breakpoint(large) {
+      font-size: 19px;
+      line-height: 31px;
+    }
+  }
   &.size-2 {
     font-size: 15px;
     line-height: 21px;

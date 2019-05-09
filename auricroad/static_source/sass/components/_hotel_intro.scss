@@ -2,6 +2,7 @@
     @include xy-grid();
     justify-content: center;
     .hotel-intro-inner {
+        margin-top: -150px;
         @include xy-cell(10);
         @include xy-grid('vertical');
         align-items: center;
@@ -13,9 +14,35 @@
         }
     }
     color: $text-black;
-    .tagline, .body {
+    .tagline,
+    .body,
+    .subheader,
+    .finer-points-header,
+    .finer-points-body {
         color: $text-charcoal;
+    }
+    .tagline, .body {
         margin-bottom: 50px;
+    }
+    .subheader {
+        margin: 0;
+    }
+    .intro-video {
+        width: 100%;
+        video {
+            width: 100%;
+        }
+    }
+    .accent-image {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        display: block;
+    }
+    .finer-points-body {
+        li {
+            @extend .font-d;
+            @extend .size-3;
+        }
     }
     .accented-text-wrapper {
         margin-bottom: 40px;

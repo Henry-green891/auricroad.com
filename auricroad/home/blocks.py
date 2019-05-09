@@ -48,7 +48,9 @@ class Hero(blocks.StructBlock):
     body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
     background_image = ImageChooserBlock(required=False)
     show_diamond_overlay = blocks.BooleanBlock(required=False)
+    reduced_padding = blocks.BooleanBlock(required=False)
     extended_bottom_padding = blocks.BooleanBlock(required=False)
+    wider_desktop_layout = blocks.BooleanBlock(required=False)
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
@@ -150,8 +152,14 @@ class HotelIntro(blocks.StructBlock):
     tagline = blocks.CharBlock(max_length=50)
     tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
     header = blocks.CharBlock(max_length=50)
+    subheader = blocks.CharBlock(max_length=50, required=False)
+    subheader_2 = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock()
     accent_image = ImageChooserBlock(required=False)
+    intro_video = MediaBlock(icon="media", required=False)
+    finer_points_header = blocks.CharBlock(max_length=50, required=False)
+    finer_points_body = blocks.RichTextBlock(required=False)
+    button_text = blocks.CharBlock(max_length=50, required=False)
 
     class Meta:
         template = "blocks/hotel_intro.html"

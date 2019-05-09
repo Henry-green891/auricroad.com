@@ -171,3 +171,13 @@ class ExperiencesPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
     parent_page_types = [HomePage]
+
+
+class ExperiencePage(Page):
+    body = StreamField(
+        [("hero", Hero()), ("intro", HotelIntro())], null=True, blank=True
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [ExperiencesPage]
