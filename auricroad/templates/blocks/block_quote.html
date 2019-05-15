@@ -1,0 +1,13 @@
+<div class="block-quote">
+    {% if value.background_text %}
+        <h1 class="background-text">{{ value.background_text }}</h1>
+    {% endif %}
+    <div class="block-quote-inner">
+        <span class="accent-quote-left">“</span>
+        <img src="{{ value.accent_image.file.url }}">
+        <h5 class="body font-a size-5">{{ value.body }}</h5>
+        <div class="partial-horizontal-line charcoal double-width"></div>
+        <h3 class="name bold font-b size-3">{{ value.name }}</h3>
+        <h1 class="title font-f size-1">{{ value.title }}</h1>
+    </div>
+</div>

@@ -11,6 +11,7 @@ from .constants import ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
     ActivitySection,
+    BlockQuote,
     EventsFooter,
     FadeInFooter,
     FloorPlanSection,
@@ -126,6 +127,7 @@ class HotelDetailPage(Page):
             ("hero", Hero()),
             ("intro", HotelIntro()),
             ("image_section", ImageSection()),
+            ("block_quote", BlockQuote()),
             ("activity_section", ActivitySection()),
             ("floor_plan_section", FloorPlanSection()),
             ("detail_section", HotelDetailSection()),
@@ -189,6 +191,7 @@ class PressPage(Page):
         [
             ("hero", Hero()),
             ("image_logo_link_card_section", ImageLogoLinkCardSection()),
+            ("block_quote", BlockQuote()),
         ],
         null=True,
         blank=True,

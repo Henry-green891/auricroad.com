@@ -60,6 +60,17 @@ class Hero(blocks.StructBlock):
         template = "blocks/hero_block.html"
 
 
+class BlockQuote(blocks.StructBlock):
+    body = blocks.RichTextBlock()
+    name = blocks.CharBlock(max_length=100, required=False)
+    title = blocks.CharBlock(max_length=100, required=False)
+    background_text = blocks.CharBlock(max_length=10, required=False)
+    accent_image = ImageChooserBlock()
+
+    class Meta:
+        template = "blocks/block_quote.html"
+
+
 class StaticTextSection(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100)
     static_tagline = blocks.CharBlock(max_length=50)

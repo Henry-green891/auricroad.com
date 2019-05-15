@@ -1,0 +1,29 @@
+.block-quote {
+    position: relative;
+    padding-top: 130px;
+    padding-bottom: 120px;
+    @include xy-grid();
+    justify-content: center;
+    .block-quote-inner {
+        @include xy-cell(6);
+        text-align: center;
+        @include xy-grid('vertical');
+        align-items: center;
+        .body {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            color: $text-black;
+        }
+        .name {
+            margin-top: 30px;
+        }
+        .name,
+        .title {
+            color: $text-charcoal;
+        }
+    }
+    .background-text {
+        position: absolute;
+        top: -525px;
+    }
+}
