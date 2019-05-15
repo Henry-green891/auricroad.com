@@ -1,31 +1,31 @@
 <div class="image-row row-grid {{ value.layout }} stretch-section">
     {% if value.layout == "half_width" %}
-        {% for image in value.images %}
-            <img class="row-half" src="{{ image.file.url }}">
+        {% for img in value.images %}
+            {{ image(img, "fill-1000x1000", class="row-half") }}
         {% endfor %}
     {% elif value.layout == "half_two_quarter" %}
-        <img class="row-half" src="{{ value.images[0].file.url }}">
+        {{ image(value.images[0], "fill-1020x500", class="row-half") }}
         <div class="row-half no-margin row-grid">
-            <img class="row-half" src="{{ value.images[1].file.url }}">
-            <img class="row-half" src="{{ value.images[2].file.url }}">
+            {{ image(value.images[1], "fill-500x500", class="row-half") }}
+            {{ image(value.images[2], "fill-500x500", class="row-half") }}
         </div>
     {% elif value.layout == "double_height_half_right" %}
         <div class="row-half column-grid">
             <div class="row-grid only-inner-margins">
-                <img class="row-half" src="{{ value.images[0].file.url }}">
-                <img class="row-half" src="{{ value.images[1].file.url }}">
+                {{ image(value.images[0], "fill-500x500", class="row-half") }}
+                {{ image(value.images[1], "fill-500x500", class="row-half") }}
             </div>
-            <img src="{{ value.images[2].file.url }}">
+            {{ image(value.images[2], "fill-1030x500") }}
         </div>
-        <img class="row-half" src="{{ value.images[3].file.url }}">
+        {{ image(value.images[3], "fill-1000x1000", class="row-half") }}
     {% elif value.layout == "double_height_half_left" %}
-        <img class="row-half" src="{{ value.images[0].file.url }}">
+        {{ image(value.images[0], "fill-1000x1000", class="row-half") }}
         <div class="row-half column-grid">
             <div class="row-grid only-inner-margins">
-                <img class="row-half" src="{{ value.images[1].file.url }}">
-                <img class="row-half" src="{{ value.images[2].file.url }}">
+                {{ image(value.images[1], "fill-500x500", class="row-half") }}
+                {{ image(value.images[2], "fill-500x500", class="row-half") }}
             </div>
-            <img src="{{ value.images[3].file.url }}">
+            {{ image(value.images[3], "fill-1030x500") }}
         </div>
     {% endif %}
 </div>
