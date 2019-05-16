@@ -1,0 +1,11 @@
+body.mission-page {
+    background-color: $satin;
+    .block-split_image_text_card_section {
+        @include xy-grid();
+        justify-content: center;
+        .image-section,
+        .split-image-text-card-section {
+            @include xy-cell(10);
+        }
+    }
+}

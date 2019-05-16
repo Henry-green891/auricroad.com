@@ -71,6 +71,14 @@ class BlockQuote(blocks.StructBlock):
         template = "blocks/block_quote.html"
 
 
+class BlockQuoteFooter(blocks.StructBlock):
+    block_quote = BlockQuote()
+    background_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/block_quote_footer.html"
+
+
 class StaticTextSection(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100)
     static_tagline = blocks.CharBlock(max_length=50)
@@ -127,6 +135,13 @@ class ImageCardList(blocks.StructBlock):
 
     class Meta:
         template = "blocks/image_card_list.html"
+
+
+class FullWidthImage(blocks.StructBlock):
+    image = ImageChooserBlock()
+
+    class Meta:
+        template = "blocks/full_width_image.html"
 
 
 class HotelsDevelopmentCard(blocks.StructBlock):
@@ -249,9 +264,11 @@ class HotelDetailSection(blocks.StructBlock):
 class SplitImageTextCardSection(blocks.StructBlock):
     layout_style = blocks.ChoiceBlock(choices=LAYOUT_CHOICES, required=True)
     image = ImageChooserBlock()
-    header = blocks.CharBlock(max_length=500)
+    header = blocks.RichTextBlock(required=False)
     body = blocks.RichTextBlock()
     button_text = blocks.CharBlock(max_length=50, required=False)
+    arrow_color = blocks.CharBlock(max_length=50, required=False)
+    text_accent_color = blocks.CharBlock(max_length=50, required=False)
 
     class Meta:
         template = "blocks/split_image_text_card_section.html"

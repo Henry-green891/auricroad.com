@@ -2,7 +2,7 @@
     position: relative;
     margin-top: 30px;
     @include xy-grid('vertical');
-    @include breakpoint(xxlarge) {
+    @include breakpoint(xlarge) {
         @include xy-grid();
         &.reverse-order {
             flex-direction: row-reverse;
@@ -11,7 +11,7 @@
     .split-text-card,
     .split-image-card {
         @include xy-cell(12);
-        @include breakpoint(xxlarge) {
+        @include breakpoint(xlarge) {
             @include xy-cell(6);
         }
     }
@@ -26,21 +26,27 @@
             top: -1px;
         }
         margin-bottom: 30px;
-        @include breakpoint(xxlarge) {
+        @include breakpoint(xlarge) {
             margin-bottom: 0;
+        }
+        .header {
+            color: $text-black;
+        }
+        .body {
+            color: $text-charcoal;
         }
     }
     .split-image-card {
         background-size: cover;
         background-position: center center;
         min-height: 50vw;
-        @include breakpoint(xxlarge) {
+        @include breakpoint(xlarge) {
             min-height: unset;
         }
     }
     .tie-bar {
         display: none;
-        @include breakpoint(xxlarge) {
+        @include breakpoint(xlarge) {
             display: block;
         }
         position: absolute;

@@ -77,6 +77,15 @@ select {
   background: linear-gradient(to bottom, transparent 60%, $auric-gold-bg 40%);
   padding-left: 5px;
   padding-right: 5px;
+  &.gray {
+    background: linear-gradient(to bottom, transparent 60%, $accent-gray 40%);
+    .rich-text {
+      display: inline;
+      & > * {
+        display: inline;
+      }
+    }
+  }
 }
 
 .accent-quote-left {

@@ -12,9 +12,11 @@ from .constants import ENVIRONMENT_CHOICES
 from .blocks import (  # isort:skip
     ActivitySection,
     BlockQuote,
+    BlockQuoteFooter,
     EventsFooter,
     FadeInFooter,
     FloorPlanSection,
+    FullWidthImage,
     Hero,
     HotelDetailSection,
     HotelIntro,
@@ -192,6 +194,23 @@ class PressPage(Page):
             ("hero", Hero()),
             ("image_logo_link_card_section", ImageLogoLinkCardSection()),
             ("block_quote", BlockQuote()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
+class MissionPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("split_image_text_card_section", SplitImageTextCardSection()),
+            ("full_width_image", FullWidthImage()),
+            ("mission_footer", BlockQuoteFooter()),
         ],
         null=True,
         blank=True,
