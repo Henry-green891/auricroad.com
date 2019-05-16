@@ -219,3 +219,19 @@ class MissionPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
     parent_page_types = [HomePage]
+
+
+class ReservePage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("hotels", ImageCardList()),
+            ("footer", HotelsDestinations()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]

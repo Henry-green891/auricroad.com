@@ -4,7 +4,12 @@
         style="background-image: url({{ value.background_image.file.url }});"
     {% endif %}
 >
-    <div class="arrow-down satin"></div>
+    <div
+        {% if value.arrow_color %}
+            style="border-top-color: {{ value.arrow_color }};"
+        {% endif %}
+        class="arrow-down satin"
+    ></div>
     <span class="text-dash">
         <h1 class="font-f size-1">{{ value.tagline }}</h1>
         &nbsp;&nbsp;
@@ -19,16 +24,22 @@
     {% elif value.body %}
         <div class="body font-d size-3{% if value.tagline_2 %}{% if value.header|length > 50 %} extra-reduced-margin{% else %} reduced-margin{% endif %}{% endif %}">{{ value.body | richtext }}</div>
     {% endif %}
-    {% if value.detail_link %}
-        {% if value.detail_link.__class__.__name__ == 'HotelDetailPage' %}
-            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Hotel Details</button></a>
-        {% elif value.detail_link.__class__.__name__ == 'EventDetailPage' %}
-            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
-        {% elif value.detail_link.__class__.__name__ == 'ExperiencePage' %}
-            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
+    <div class="image-card-link-row">
+        {% if value.detail_link %}
+            {% if value.detail_link.__class__.__name__ == 'HotelDetailPage' %}
+                <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Hotel Details</button></a>
+            {% elif value.detail_link.__class__.__name__ == 'EventDetailPage' %}
+                <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
+            {% elif value.detail_link.__class__.__name__ == 'ExperiencePage' %}
+                <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">See Details</button></a>
+            {% endif %}
+            
+        {% else %}
+            <a href=""><button class="button white rounded font-c size-2">See Details</button></a>
         {% endif %}
-        
-    {% else %}
-        <button class="button white rounded font-c size-2">See Details</button>
-    {% endif %}
+        {% if value.additional_link_text %}
+            <a href="{{ value.additional_link_url }}"><button class="button white rounded font-c size-2" {% if not value.additional_link_url %}disabled="disabled"{% endif %}>{{ value.additional_link_text }}</button></a>
+        {% endif %}
+    </div>
+    
 </div>

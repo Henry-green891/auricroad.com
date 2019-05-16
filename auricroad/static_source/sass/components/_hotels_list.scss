@@ -5,7 +5,8 @@
     align-items: center;
     .block-hotel_image_card,
     .block-event_image_card,
-    .block-experience_image_card {
+    .block-experience_image_card,
+    .block-book_now_image_card {
         @include xy-cell(10);
         margin-bottom: 25px;
         .image-card {
@@ -41,6 +42,12 @@
                 p {
                     @extend .font-d;
                     @extend .size-3;
+                }
+            }
+            .image-card-link-row {
+                @include xy-grid();
+                a {
+                    margin-right: 30px;
                 }
             }
         }

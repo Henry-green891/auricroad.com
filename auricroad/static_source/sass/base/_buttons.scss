@@ -3,15 +3,26 @@
     min-width: 192px;
     line-height: 12px !important;
     padding: 14px 30px;
-    &.white {
+    &.white, &[disabled].white {
         background-color: $white;
         color: $text-black;
+        &:hover {
+            background-color: $white;
+            color: $black;
+        }
     }
-    &.black {
+    &.black, &[disabled].black {
         background-color: $black;
         color: $white;
+        &:hover {
+            background-color: $black;
+            color: $white;
+        }
     }
     &.rounded {
         border-radius: 50px;
+    }
+    &[disabled] {
+        opacity: 0.6;
     }
 }

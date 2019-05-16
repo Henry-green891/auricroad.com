@@ -100,6 +100,7 @@ class ImageCard(blocks.StructBlock):
     subheader = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock(required=False)
     background_image = ImageChooserBlock(required=False)
+    arrow_color = blocks.CharBlock(max_length=50, required=False)
 
     class Meta:
         template = "blocks/image_card.html"
@@ -109,6 +110,14 @@ class HotelImageCard(ImageCard):
     detail_link = blocks.PageChooserBlock(
         target_model="home.HotelDetailPage", required=False
     )
+
+
+class BookNowImageCard(ImageCard):
+    detail_link = blocks.PageChooserBlock(
+        target_model="home.HotelDetailPage", required=False
+    )
+    additional_link_text = blocks.CharBlock(max_length=50, required=False)
+    additional_link_url = blocks.CharBlock(max_length=500, required=False)
 
 
 class EventImageCard(ImageCard):
@@ -127,6 +136,7 @@ class ImageCardList(blocks.StructBlock):
             ("hotel_image_card", HotelImageCard()),
             ("event_image_card", EventImageCard()),
             ("experience_image_card", ExperienceImageCard()),
+            ("book_now_image_card", BookNowImageCard()),
         ],
         null=True,
         blank=True,
