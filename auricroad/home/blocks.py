@@ -30,6 +30,16 @@ class MediaBlock(AbstractMediaChooserBlock):
         return format_html(player_code, value.file.url)
 
 
+class HeaderLinkBlock(blocks.StructBlock):
+    text = blocks.CharBlock(max_length=50)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
+    orange_accent_text = blocks.BooleanBlock(required=False)
+
+    class Meta:
+        template = "blocks/header_link_block.html"
+
+
 class HeroCard(blocks.StructBlock):
     icon = ImageChooserBlock()
     header = blocks.CharBlock(max_length=50)

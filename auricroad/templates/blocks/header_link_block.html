@@ -1,0 +1,11 @@
+<div class="header-link">
+    <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+        {% if value.orange_accent_text %}
+        <div class="accented-text-wrapper">
+            <h2 class="accented-text font-c size-2 bold">{{ value.text }}</h2>
+        </div>
+        {% else %}
+            <h2 class="font-c size-2 bold">{{ value.text }}</h2>
+        {% endif %}
+    </a>
+</div>

@@ -207,6 +207,7 @@ TEMPLATES = [
                 "wagtail.admin.jinja2tags.userbar",
                 "wagtail.images.jinja2tags.images",
             ],
+            "environment": "auricroad.home.context_processors.jinja_environment",
         },
     },
     {

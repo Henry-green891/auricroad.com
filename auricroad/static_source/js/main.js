@@ -27,6 +27,12 @@ import 'foundation-sites/dist/js/foundation.min.js';
   function init() {
     $('a').filter(_isExternalLink).each(_makeExternal);
     $('.nav-link a').filter(_isCurrentPage).each(_makeActive);
+
+    setHeaderClass($(window).scrollTop());
+    $(window).scroll(function(){
+      setHeaderClass($(window).scrollTop());
+    });
+
   }
 
   $(init);
@@ -37,6 +43,15 @@ $(document).ready(function($) {
   $(document).foundation();
 })
 
+
+function setHeaderClass(scrollVal) {
+  if (scrollVal > 16) {
+    $('header').addClass('fixed');
+   }
+   else {
+    $('header').removeClass('fixed');
+   }
+ }
 
 
 function addToDict(dict, key, value) {

@@ -1,0 +1,22 @@
+<header>
+    {% if global_nav_exists %}
+        <div class="left-section">
+            <div class="on-load-image">
+                <a href="/">
+                    <img src="{{ global_nav_obj.on_load_image.file.url }}">
+                </a>
+            </div>
+            <div class="on-scroll-image">
+                <a href="/">
+                    <img src="{{ global_nav_obj.on_scroll_image.file.url }}">
+                </a>
+            </div>
+        </div>
+        <div class="right-section">
+            {{ global_nav_obj.links }}
+        </div>
+    {% else %}
+        You need to create a Nav Bar called Global Nav Bar, in order for it to show up here
+    {% endif %}
+</header>
+

@@ -871,3 +871,10 @@ $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $block-grid-max: 8;
+
+$z-index-map: (
+  z-index-nav-bar: 1001,
+  z-index-slider-arrows: 1004,
+  z-index-alert: 1005,
+  z-index-modal: 1006
+);

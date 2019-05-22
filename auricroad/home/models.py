@@ -4,6 +4,7 @@ from autoslug import AutoSlugField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtailmodelchooser import register_model_chooser
 
@@ -17,6 +18,7 @@ from .blocks import (  # isort:skip
     FadeInFooter,
     FloorPlanSection,
     FullWidthImage,
+    HeaderLinkBlock,
     Hero,
     HotelDetailSection,
     HotelIntro,
@@ -64,6 +66,38 @@ class Hotel(models.Model):
         FieldPanel("environment"),
         FieldPanel("background_image"),
     ]
+
+
+@register_model_chooser
+class NavBar(models.Model):
+    name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    on_load_image = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    on_scroll_image = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+
+    links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+
+    panels = [
+        FieldPanel("name"),
+        ImageChooserPanel("on_load_image"),
+        ImageChooserPanel("on_scroll_image"),
+        StreamFieldPanel("links"),
+    ]
+
+    def __str__(self):
+        return self.name
 
 
 class CustomImage(AbstractImage):
