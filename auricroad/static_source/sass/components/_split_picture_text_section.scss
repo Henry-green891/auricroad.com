@@ -1,6 +1,6 @@
 .split-image-text-card-section {
     position: relative;
-    margin-top: 30px;
+    margin-top: 15px;
     @include xy-grid('vertical');
     @include breakpoint(xlarge) {
         @include xy-grid();
@@ -33,6 +33,7 @@
             color: $text-black;
         }
         .body {
+            margin-top: 30px;
             color: $text-charcoal;
         }
     }

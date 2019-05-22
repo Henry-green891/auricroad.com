@@ -5,7 +5,6 @@
         @include xy-cell(10);
         .full-width-image {
             margin-top: 15px;
-            margin-bottom: 15px;
             padding-left: 10px;
             padding-right: 10px;
             @include breakpoint(xlarge) {
