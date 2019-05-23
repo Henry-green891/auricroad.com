@@ -27,6 +27,7 @@ from .blocks import (  # isort:skip
     ImageCardList,
     ImageLogoLinkCardSection,
     ImageSection,
+    JobsList,
     SplitImageTextCardSection,
     StaticTextSection,
 )
@@ -262,6 +263,18 @@ class ReservePage(Page):
             ("hotels", ImageCardList()),
             ("footer", HotelsDestinations()),
         ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
+class CareersPage(Page):
+    body = StreamField(
+        [("hero", Hero()), ("intro", HotelIntro()), ("jobs_list", JobsList())],
         null=True,
         blank=True,
     )

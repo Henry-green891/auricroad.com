@@ -1,0 +1,19 @@
+.jobs-list {
+    @include xy-grid();
+    justify-content: center;
+    margin-top: 60px;
+    .jobs-list-inner {
+        @include xy-cell(10);
+        .list-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .job-listing {
+            text-align: center;
+            hr {
+                max-width: unset;
+            }
+        }
+        
+    }
+}

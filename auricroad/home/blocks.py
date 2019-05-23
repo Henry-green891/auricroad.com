@@ -1,6 +1,7 @@
 from django.utils.html import format_html
 
 from wagtail.core import blocks
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from .constants import (  # isort:skip
@@ -199,7 +200,7 @@ class HotelsDestinations(blocks.StructBlock):
 class HotelIntro(blocks.StructBlock):
     tagline = blocks.CharBlock(max_length=50)
     tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
-    header = blocks.CharBlock(max_length=50)
+    header = blocks.CharBlock(max_length=250)
     subheader = blocks.CharBlock(max_length=50, required=False)
     subheader_2 = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock()
@@ -329,3 +330,22 @@ class ImageLogoLinkCardSection(blocks.StructBlock):
 
     class Meta:
         template = "blocks/image_logo_link_section.html"
+
+
+class JobRow(blocks.StructBlock):
+    job_title = blocks.CharBlock(max_length=200)
+    job_document = DocumentChooserBlock()
+
+    class Meta:
+        template = "blocks/job_row.html"
+
+
+class JobsList(blocks.StructBlock):
+    info_text = blocks.RichTextBlock(required=False)
+
+    jobs = blocks.StreamBlock(
+        [("job", JobRow())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/jobs_list.html"
