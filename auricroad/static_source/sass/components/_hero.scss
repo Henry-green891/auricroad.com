@@ -48,7 +48,7 @@
             background-size: 0%, cover;
             @include breakpoint(large) {
                 background-size: auto 130%, cover;
-                background-position-y: 50%, center;
+                background-position-y: 50%, top;
             }
             @include breakpoint(xxlarge) {
                 background-size: 100% auto, cover;
