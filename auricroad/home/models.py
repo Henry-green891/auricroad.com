@@ -11,6 +11,7 @@ from wagtailmodelchooser import register_model_chooser
 from .constants import ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
+    ActionCardSection,
     ActivitySection,
     BlockQuote,
     BlockQuoteFooter,
@@ -190,6 +191,16 @@ class EventsPage(Page):
         ],
         null=True,
         blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
+class BrochuresPage(Page):
+    body = StreamField(
+        [("hero", Hero()), ("action_cards", ActionCardSection())], null=True, blank=True
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]

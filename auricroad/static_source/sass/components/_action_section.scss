@@ -1,0 +1,36 @@
+.action-card-section {
+    @include xy-grid();
+    justify-content: center;
+    margin-bottom: 300px;
+    .action-card-list {
+        @include xy-cell(10);
+        @include xy-grid('vertical');
+        @include breakpoint(large) {
+            @include xy-grid();
+        }
+        .block-card {
+            @include xy-cell(12);
+            @include breakpoint(large) {
+                @include xy-cell(6);
+            }
+            margin-bottom: 30px;
+            .action-card {
+                background-color: $white;
+                padding: 20px 20px 40px 20px;
+                .action-image {
+                    width: 100%;
+                }
+                .title {
+                    margin-top: 25px;
+                    margin-bottom: 25px;
+                }
+                .action-download-link, .download-icon {
+                    color: $auric-gold;
+                    &:hover {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

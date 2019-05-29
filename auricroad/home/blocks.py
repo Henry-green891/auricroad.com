@@ -351,3 +351,21 @@ class JobsList(blocks.StructBlock):
 
     class Meta:
         template = "blocks/jobs_list.html"
+
+
+class ActionCard(blocks.StructBlock):
+    title = blocks.CharBlock(max_length=200)
+    image = ImageChooserBlock()
+    download_file = DocumentChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/action_card.html"
+
+
+class ActionCardSection(blocks.StructBlock):
+    cards = blocks.StreamBlock(
+        [("card", ActionCard())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/action_card_section.html"

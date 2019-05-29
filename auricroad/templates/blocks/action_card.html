@@ -1,0 +1,7 @@
+<div class="action-card">
+    {{ image(value.image, 'fill-1080x540', class='action-image') }}
+    <h6 class="title font-a size-8">{{ value.title }}</h6>
+    {% if value.download_file %}
+        <a href="{{value.download_file.url}}" class="action-download-link font-c size-2">Download <img class="download-icon" src="{{static('img/download_icon.svg')}}"></a>
+    {% endif %}
+</div>
