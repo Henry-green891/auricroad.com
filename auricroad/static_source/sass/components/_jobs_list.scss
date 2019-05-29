@@ -10,10 +10,31 @@
         }
         .job-listing {
             text-align: center;
-            hr {
-                max-width: unset;
+        }
+        table {
+            thead {
+                background-color: $tide;
+                color: white;
+            }
+            tbody {
+                tr {
+                    border-bottom: solid 1px $tide !important;
+                    td {
+                        color: $text-charcoal;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        a {
+                            color: $text-charcoal;
+                            &:hover {
+                                color: $auric-gold;
+                            }
+                        }
+                    }
+                    &:hover {
+
+                    }
+                }
             }
         }
-        
     }
 }

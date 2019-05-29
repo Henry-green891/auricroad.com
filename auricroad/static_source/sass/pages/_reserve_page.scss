@@ -1,3 +1,14 @@
 body.reserve-page {
     background-color: $satin;
+    .hero {
+        &.extended-bottom-padding {
+            .hero-background-wrapper {
+                .static-section-header{
+                    .body {
+                        margin-bottom: 100px;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,4 +1,15 @@
-<div class="job-listing">
-    <a href="{{ value.job_document.url }}">{{ value.job_title }}</a>
-    <hr>
-</div>
+<tr class="job-listing">
+    <td class="font-d size-2">
+        {{ value.department or '' }}
+    </td>
+    <td class="font-d size-2">
+        {{ value.job_title }}
+    </td>
+    <td class="font-d size-2">
+        {{ value.location or '' }}
+    </td>
+    <td class="font-c size-2">
+        <a href="{{ value.job_document.url }}">Download Job Description</a>
+    </td>
+    
+</tr>

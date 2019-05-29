@@ -25,10 +25,10 @@ header {
     @include xy-grid();
     .left-section {
         .on-load-image {
-            width: 90px;
+            width: 200px;
         }
         .on-scroll-image {
-            width: 200px;
+            width: 90px;
         }
     }
     .right-section {

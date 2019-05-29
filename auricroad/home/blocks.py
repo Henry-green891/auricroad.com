@@ -333,7 +333,9 @@ class ImageLogoLinkCardSection(blocks.StructBlock):
 
 
 class JobRow(blocks.StructBlock):
-    job_title = blocks.CharBlock(max_length=200)
+    department = blocks.CharBlock(max_length=200, required=False)
+    job_title = blocks.CharBlock(max_length=200, required=False)
+    location = blocks.CharBlock(max_length=200, required=False)
     job_document = DocumentChooserBlock()
 
     class Meta:

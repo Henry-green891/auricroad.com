@@ -15,3 +15,11 @@ body {
     @include xy-grid-container();
   }
 }
+
+table {
+    thead {
+        th {
+            text-align: center;
+        }
+    }
+}

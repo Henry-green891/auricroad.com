@@ -42,10 +42,12 @@
             {% if value.accent_image %}
                 <img class="accent-image" src="{{ value.accent_image.file.url }}">
             {% endif %}
-            {% if value.button_text %}
-                <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
-            {% else %}
-                <button class="button black rounded font-c size-2">See Hotel</button>
+            {% if value.button_link %}
+                {% if value.button_text %}
+                    <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+                {% else %}
+                    <button class="button black rounded font-c size-2">See Hotel</button>
+                {% endif %}
             {% endif %}
         </div>
     </div>

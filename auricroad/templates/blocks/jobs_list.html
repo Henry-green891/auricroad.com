@@ -1,6 +1,19 @@
 <div class="jobs-list">
     <div class="jobs-list-inner">
         <div class="list-info">{{ value.info_text|richtext }}</div>
-        {{ value.jobs }}
+        <table>
+            <thead>
+                <th>Department</th>
+                <th>Job Title</th>
+                <th>Location</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {% for job in value.jobs %}
+                    {{ job | safe }}
+                {% endfor %}
+            </tbody>
+        </table>
+        
     </div>
 </div>
