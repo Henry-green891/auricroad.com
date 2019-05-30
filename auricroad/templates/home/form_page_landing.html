@@ -8,5 +8,9 @@
 
 {% block content %}
     {{ page.body }}
-    Success
+    <div class="form-section-wrapper">
+        <div class="form-body thank-you-wrapper font-a size-7">
+            {{ page.thank_you_text | richtext }}
+        </div>
+    </div>
 {% endblock content %}

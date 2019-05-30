@@ -22,5 +22,12 @@
                 @include xy-cell(7);
             }
         }
+        &.thank-you-wrapper {
+            justify-content: center;
+            padding: 100px;
+            p {
+                margin-bottom: 0;
+            }
+        }
     }
 }
