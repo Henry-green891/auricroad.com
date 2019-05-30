@@ -43,6 +43,16 @@ header {
                 .accented-text-wrapper {
                     padding-bottom: 8px;
                 }
+                .link-text-wrapper:not(.accented-text-wrapper) {
+                    &:hover {
+                        @extend .accented-text-wrapper;
+                        .link-text-inner {
+                            @extend .accented-text;
+                            padding-left: 0 !important;
+                            padding-right: 0 !important;
+                        }
+                    }
+                }
             }
         }
     }
