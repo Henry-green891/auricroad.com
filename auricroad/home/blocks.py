@@ -54,7 +54,7 @@ class HeroCard(blocks.StructBlock):
 class Hero(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100)
     static_tagline = blocks.CharBlock(max_length=50)
-    static_body = blocks.RichTextBlock()
+    static_body = blocks.RichTextBlock(required=False)
     body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=True)
     body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
     background_image = ImageChooserBlock(required=False)
@@ -369,3 +369,25 @@ class ActionCardSection(blocks.StructBlock):
 
     class Meta:
         template = "blocks/action_card_section.html"
+
+
+class ContactCard(blocks.StructBlock):
+    detail_icon = ImageChooserBlock(required=False)
+    action_header = blocks.CharBlock(max_length=50)
+    action_text = blocks.CharBlock(max_length=250, required=False)
+    action_text_two = blocks.CharBlock(max_length=250, required=False)
+    facebook = blocks.CharBlock(max_length=50, required=False)
+    instagram = blocks.CharBlock(max_length=50, required=False)
+    twitter = blocks.CharBlock(max_length=50, required=False)
+
+    class Meta:
+        template = "blocks/contact_card.html"
+
+
+class ContactCardRow(blocks.StructBlock):
+    cards = blocks.StreamBlock(
+        [("card", ContactCard())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/contact_card_section.html"

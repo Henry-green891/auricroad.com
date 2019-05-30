@@ -1,0 +1,13 @@
+label {
+    @extend .font-e.size-2;
+}
+input, textarea {
+    border: 1px solid $text-charcoal;
+    @extend .font-d.size-2;
+}
+
+form {
+    p {
+        margin-bottom: 25px;
+    }
+}

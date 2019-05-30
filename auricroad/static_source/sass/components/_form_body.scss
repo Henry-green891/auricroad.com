@@ -1,0 +1,26 @@
+.form-section-wrapper {
+    margin-top: 20px;
+    @include xy-grid();
+    justify-content: center;
+    .form-body {
+        background-color: $pearl;
+        padding: 90px 100px 110px 100px;
+        @include xy-cell(10);
+        @include xy-grid('vertical');
+        @include breakpoint(large) {
+            @include xy-grid();
+        }
+        .form-left {
+            @include xy-cell(12);
+            @include breakpoint(large) {
+                @include xy-cell(5);
+            }
+        }
+        .form-right {
+            @include xy-cell(12);
+            @include breakpoint(large) {
+                @include xy-cell(7);
+            }
+        }
+    }
+}

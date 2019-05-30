@@ -15,7 +15,9 @@
             <div class="accented-text-wrapper">
                 <h2 class="accented-text header font-a size-2">{{ value.static_header }}</h2>
             </div>
-            <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">{{ value.static_body|richtext }}</div>
+            {% if value.static_body %}
+                <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">{{ value.static_body|richtext }}</div>
+            {% endif %}
         </div>
         {% if value.cards %}
             <div class="hero-cards">

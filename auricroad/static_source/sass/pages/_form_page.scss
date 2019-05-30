@@ -1,0 +1,16 @@
+body.form-page {
+    background-color: $satin;
+    .hero.extended-bottom-padding {
+        margin-bottom: -150px;
+        .hero-background-wrapper {
+            padding-bottom: 120px;
+        }
+    }
+    .contact-cards {
+        .block-card {
+            .action-card-bottom {
+                opacity: 1;
+            }
+        }
+    }   
+}

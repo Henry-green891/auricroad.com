@@ -1,0 +1,31 @@
+{% extends "base.jinja" %}
+
+{% block page_class %}form-page{% endblock page_class %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock title %}
+
+{% block content %}
+    {{ page.body }}
+    <div class="form-section-wrapper">
+        <div class="form-body">
+            <div class="form-left">
+                <h1 class="font-f size-1 page-tagline">{{ page.tagline }}</h1>
+                <div class="font-a size-7 intro">
+                    {{ page.intro | richtext }}
+                </div>
+                {% if page.form_intro_image %}
+                    <img class="form-intro-image" src="{{ page.form_intro_image.file.url }}">
+                {% endif %}
+            </div>
+            <div class="form-right">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p() }}
+                    <input class="button black rounded" type="submit" name="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

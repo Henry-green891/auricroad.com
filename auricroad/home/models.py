@@ -1,7 +1,10 @@
 from django.db import models  # NOQA
 
 from autoslug import AutoSlugField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
+                                         StreamFieldPanel)
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -15,6 +18,7 @@ from .blocks import (  # isort:skip
     ActivitySection,
     BlockQuote,
     BlockQuoteFooter,
+    ContactCardRow,
     EventsFooter,
     FadeInFooter,
     FloorPlanSection,
@@ -136,10 +140,41 @@ class CustomMedia(AbstractMedia):
     )
 
 
+class FormField(AbstractFormField):
+    page = ParentalKey("FormPage", on_delete=models.CASCADE, related_name="form_fields")
+
+
 class HomePage(Page):
     body = RichTextField()
 
     content_panels = Page.content_panels + [FieldPanel("body", classname="full")]
+
+
+class FormPage(AbstractEmailForm):
+    body = StreamField(
+        [("hero", Hero()), ("contact_row", ContactCardRow())], null=True, blank=True
+    )
+    tagline = models.CharField(max_length=50, blank=True)
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+    form_intro_image = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
+    content_panels = AbstractEmailForm.content_panels + [
+        StreamFieldPanel("body"),
+        FieldPanel("to_address"),
+        FieldPanel("from_address"),
+        FieldPanel("subject"),
+        FieldPanel("tagline"),
+        FieldPanel("intro"),
+        ImageChooserPanel("form_intro_image"),
+        InlinePanel("form_fields", label="Form Fields"),
+        FieldPanel("thank_you_text"),
+    ]
 
 
 class HotelsPage(Page):
