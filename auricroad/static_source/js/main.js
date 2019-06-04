@@ -45,12 +45,15 @@ $(document).ready(function($) {
 
 
 function setHeaderClass(scrollVal) {
-  if (scrollVal > 16) {
+  if ($('body').hasClass('lock-header')) {
     $('header').addClass('fixed');
-   }
-   else {
-    $('header').removeClass('fixed');
-   }
+  } else {
+    if (scrollVal > 16) {
+      $('header').addClass('fixed');
+    } else {
+      $('header').removeClass('fixed');
+    }
+  }
  }
 
 

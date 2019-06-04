@@ -24,6 +24,7 @@ from .blocks import (  # isort:skip
     FloorPlanSection,
     FullWidthImage,
     HeaderLinkBlock,
+    HeaderTextParagraph,
     Hero,
     HotelDetailSection,
     HotelIntro,
@@ -33,6 +34,7 @@ from .blocks import (  # isort:skip
     ImageLogoLinkCardSection,
     ImageSection,
     JobsList,
+    PageHeaderText,
     SplitImageTextCardSection,
     StaticTextSection,
 )
@@ -321,6 +323,18 @@ class ReservePage(Page):
 class CareersPage(Page):
     body = StreamField(
         [("hero", Hero()), ("intro", HotelIntro()), ("jobs_list", JobsList())],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
+class BasicInfoPage(Page):
+    body = StreamField(
+        [("header", PageHeaderText()), ("body_section", HeaderTextParagraph())],
         null=True,
         blank=True,
     )

@@ -1,0 +1,40 @@
+body.basic-info-page {
+    background-color: $satin;
+    .info-page-wrapper {
+        padding-top: 210px;
+        padding-bottom: 120px;
+        @include xy-grid();
+        justify-content: center;
+        .info-page-inner {
+            @include xy-cell(10);
+            background-color: $pearl;
+            padding-top: 90px;
+            padding-bottom: 120px;
+            .block-header, .block-body_section {
+                @include xy-grid('vertical');
+                align-items: center;
+            }
+            .page-header-text {
+                @include xy-cell(10);
+                padding-bottom: 44px;
+                color: $text-black;
+            }
+            .header-text-paragraph {
+                @include xy-cell(10);
+                padding-bottom: 44px;
+                .header, .body {
+                    color: $text-charcoal;
+                    opacity: 0.9;
+                }
+                .header {
+                    font-weight: bold;
+                    margin-bottom: 0;
+                }
+                .body {
+                    margin-top: 13px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

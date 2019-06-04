@@ -391,3 +391,18 @@ class ContactCardRow(blocks.StructBlock):
 
     class Meta:
         template = "blocks/contact_card_section.html"
+
+
+class PageHeaderText(blocks.StructBlock):
+    header = blocks.CharBlock(max_length=500)
+
+    class Meta:
+        template = "blocks/page_header_text.html"
+
+
+class HeaderTextParagraph(blocks.StructBlock):
+    header = blocks.CharBlock(max_length=500, required=False)
+    text = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = "blocks/header_text_paragraph.html"

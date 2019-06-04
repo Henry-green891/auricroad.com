@@ -12,7 +12,7 @@ header {
             color: $white;
         }
     }
-    &.fixed {
+    &.fixed, body.lock-header {
         background-color: $pearl;
         .on-load-image {
             display: none;

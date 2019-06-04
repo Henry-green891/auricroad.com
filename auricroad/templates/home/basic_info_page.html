@@ -1,0 +1,16 @@
+{% extends "base.jinja" %}
+
+{% block page_class %}basic-info-page lock-header{% endblock page_class %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock title %}
+
+{% block content %}
+    <div class="info-page-wrapper">
+        <div class="info-page-inner">
+            {{ page.body }}
+        </div>
+    </div>
+    
+{% endblock content %}
