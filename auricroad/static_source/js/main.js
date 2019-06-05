@@ -45,16 +45,12 @@ $(document).ready(function($) {
 
 
 function setHeaderClass(scrollVal) {
-  if ($('body').hasClass('lock-header')) {
+  if (scrollVal > 16) {
     $('header').addClass('fixed');
   } else {
-    if (scrollVal > 16) {
-      $('header').addClass('fixed');
-    } else {
-      $('header').removeClass('fixed');
-    }
+    $('header').removeClass('fixed');
   }
- }
+}
 
 
 function addToDict(dict, key, value) {

@@ -8,6 +8,8 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from auricroad.home import views as home_views  # NOQA
+
 urlpatterns = [
     path(
         r"favicon.ico",
@@ -21,6 +23,9 @@ urlpatterns = [
     path(r"", include("auricroad.home.urls")),
     path(r"", include(wagtail_urls)),
 ]
+
+handler404 = home_views.handler404
+handler500 = home_views.handler500
 
 if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns

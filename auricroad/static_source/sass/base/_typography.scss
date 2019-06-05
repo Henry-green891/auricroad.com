@@ -86,6 +86,11 @@ select {
       }
     }
   }
+  &.slim {
+    background: linear-gradient(to bottom, transparent 0%, transparent 70%,
+      $auric-gold-bg 70%, $auric-gold-bg 85%,
+      transparent 85%, transparent 100%);
+  }
 }
 
 .accent-quote-left {

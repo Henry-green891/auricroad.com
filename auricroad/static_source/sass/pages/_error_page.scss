@@ -1,0 +1,44 @@
+body.error-page {
+    .error-page-wrapper {
+        background-image: url('../img/error_page_background.jpg');
+        background-size: cover;
+        background-position: center center;
+        padding-top: 210px;
+        padding-bottom: 210px;
+        @include xy-grid();
+        justify-content: center;
+        .error-page-inner {
+            @include xy-cell(10);
+            @include xy-grid();
+            justify-content: center;
+            background-color: $pearl-bg;
+            padding-top: 50px;
+            padding-bottom: 110px;
+            .error-content {
+                @include xy-cell(10);
+                @include breakpoint(xlarge) {
+                    @include xy-cell(9);
+                }
+                @include breakpoint(xxlarge) {
+                    @include xy-cell(7);
+                }
+                @include breakpoint(xxxlarge) {
+                    @include xy-cell(6);
+                }
+                @include breakpoint(fourk) {
+                    @include xy-cell(4);
+                }
+                text-align: center;
+                .header, .subheader, .body {
+                    color: $text-charcoal;
+                }
+                .subheader {
+                    margin-bottom: 35px;
+                }
+                .body {
+                    margin-bottom: 35px;
+                }
+            }
+        }
+    }
+}

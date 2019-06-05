@@ -1,0 +1,30 @@
+{% extends "base.jinja" %}
+
+{% block page_class %}error-page page-not-found{% endblock page_class %}
+
+{% block title %}Page Not Found{% endblock title %}
+
+{% block content %}
+<div class="error-page-wrapper">
+    <div class="error-page-inner top-accent">
+        <div class="error-content">
+            <div class="accented-text-wrapper">
+                <h1 class="accented-text slim header font-a size-1">404</h1>
+            </div>
+            <h6 class="subheader font-a size-7">Looks like you've wandered off into the wilderness...</h6>
+            <h3 class="body font-d size-3">The page you’re looking for does not seem to exist. Follow one of these links to get back on track</h3>
+            <div class="button-row">
+                <a href="/">
+                    <button class="button black rounded font-c size-2">Homepage</button>
+                </a>
+                <a href="/hotels">
+                    <button class="button black rounded font-c size-2">Hotels</button>
+                </a>
+                <a href="/experiences">
+                    <button class="button black rounded font-c size-2">Experiences</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
