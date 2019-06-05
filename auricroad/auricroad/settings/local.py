@@ -4,7 +4,7 @@ from .base import *
 env.read_env(repo_root(".env"), SECRET_KEY="changeme")
 
 ALLOWED_HOSTS = [u"127.0.0.1", "localhost"]
-DEBUG = False
+DEBUG = True
 
 
 DATABASES = {"default": env.db()}
