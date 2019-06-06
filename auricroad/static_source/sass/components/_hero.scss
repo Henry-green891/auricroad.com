@@ -63,7 +63,7 @@
             }
             
             &.has-cards {
-                @include breakpoint(small down) {
+                @include breakpoint(medium down) {
                     background-size: 0%, auto 50%;
                 }
             }
