@@ -46,9 +46,9 @@ $(document).ready(function($) {
 
 function setHeaderClass(scrollVal) {
   if (scrollVal > 16) {
-    $('header').addClass('fixed');
+    $('header .desktop-nav').addClass('fixed');
   } else {
-    $('header').removeClass('fixed');
+    $('header .desktop-nav').removeClass('fixed');
   }
 }
 

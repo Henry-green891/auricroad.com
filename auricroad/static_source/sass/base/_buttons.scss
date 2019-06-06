@@ -1,8 +1,12 @@
 //buttons scss goes here
 .button {
-    min-width: 192px;
+    min-width: 152px;
     line-height: 12px !important;
-    padding: 14px 30px;
+    padding: 12px 22px;
+    @include breakpoint(tablet) {
+        min-width: 192px;
+        padding: 14px 30px;
+    }
     &.white, &[disabled].white {
         background-color: $white;
         color: $text-black;

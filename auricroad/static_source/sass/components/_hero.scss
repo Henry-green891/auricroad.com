@@ -20,7 +20,7 @@
     &.wider-desktop-layout {
         .static-section-header {
             @include xy-cell(10);
-            @include breakpoint(medium) {
+            @include breakpoint(tablet) {
                 @include xy-cell(10);
             }
             @include breakpoint(large) {
@@ -41,11 +41,19 @@
         @include xy-grid('vertical');
         width: 100%;
         align-items: center;
-        padding-bottom: 90px;
+        padding-bottom: 40px;
+        @include breakpoint(tablet) {
+            padding-bottom: 50px;
+        }
+        @include breakpoint(large) {
+            padding-bottom: 90px;
+        }
         background-size: cover;
         background-position-x: center;
         &.has-overlay {
             background-size: 0%, cover;
+            background-position-x: center, center;
+            background-repeat: no-repeat, no-repeat;
             @include breakpoint(large) {
                 background-size: auto 130%, cover;
                 background-position-y: 50%, top;
@@ -53,14 +61,37 @@
             @include breakpoint(xxlarge) {
                 background-size: 100% auto, cover;
             }
-            background-position-x: center, center;
-            background-repeat: no-repeat, no-repeat;
             
+            &.has-cards {
+                @include breakpoint(small down) {
+                    background-size: 0%, auto 50%;
+                }
+            }
         }
         .static-section-header {
-            margin-top: 270px;
+            @include xy-cell(10);
+            @include breakpoint(tablet) {
+                @include xy-cell(8);
+            }
+            @include breakpoint(large) {
+                @include xy-cell(7);
+            }
+            margin-top: 170px;
+            @include breakpoint(tablet) {
+                margin-top: 220px;
+            }
+            @include breakpoint(large) {
+                margin-top: 270px;
+            }
             .body {
-                margin-bottom: 150px;
+                margin-bottom: 90px;
+                @include breakpoint(tablet) {
+                    margin-bottom: 110px;
+                }
+                @include breakpoint(large) {
+                    margin-bottom: 150px;
+                }
+                
             }
             .center-vertical-line {
                 margin-bottom: 28px;

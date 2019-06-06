@@ -1,31 +1,49 @@
 .development-cards {
+    @include xy-grid();
     @include xy-cell(10);
-    @include xy-grid('vertical');
-    @include breakpoint(medium) {
-        @include xy-grid();
+    @include breakpoint(tablet) {
+        @include xy-cell(11);
     }
+    @include breakpoint(large) {
+        @include xy-cell(10);
+    }
+    
     .block-card {
-        width: 100%;
-        @include breakpoint(medium) {
-            width: calc(50% - 3px);
-            margin-left: 1.5px;
-            margin-right: 1.5px;
-        }
-        @include breakpoint(large) {
-            width: calc(33.333% - 3px);
-            margin-left: 1.5px;
-            margin-right: 1.5px;
+        @include xy-cell(6);
+        @include breakpoint(tablet) {
+            @include xy-cell(4);
         }
         margin-bottom: 3px;
         .development-card {
             background-size: cover;
             background-position: center center;
             max-height: 170px;
-            padding: 20px;
+            height: 100%;
+            padding: 9px 7px 9px 7px;
+            @include breakpoint(tablet) {
+                padding: 15px;
+            }
+            @include breakpoint(large) {
+                padding: 20px;
+            }
             color: white;
+            .text-dash {
+                display: none;
+                @include breakpoint(tablet) {
+                    display: flex;
+                }
+            }
             .environment {
-                margin-top: 20px;
-                margin-bottom: 80px;
+                margin-top: 0px;
+                margin-bottom: 42px;
+                @include breakpoint(tablet) {
+                    margin-top: 11px;
+                    margin-bottom: 43px;
+                }
+                @include breakpoint(large) {
+                    margin-top: 20px;
+                    margin-bottom: 80px;
+                }
             }
         }
     }

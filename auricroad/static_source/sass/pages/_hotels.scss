@@ -1,3 +1,10 @@
 body.hotels {
     background-color: $satin;
+    .image-card-list {
+        margin-top: 0;
+    }
+    .hero .hero-background-wrapper,
+    .hero .hero-background-wrapper.has-overlay {
+        background-size-y: 0%, 50%;
+    }
 }

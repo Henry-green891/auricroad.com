@@ -1,55 +1,58 @@
 //header scss goes here.
 header {
-    position: fixed;
     width: 100%;
-    padding: 25px 60px;
-    justify-content: space-between;
-    &:not(.fixed) {
-        .on-scroll-image {
-            display: none;
-        }
-        .header-link, .header-link a {
-            color: $white;
-        }
-    }
-    &.fixed {
-        background-color: $pearl;
-        .on-load-image {
-            display: none;
-        }
-        .header-link, .header-link a {
-            color: $text-charcoal;
-        }
-        z-index: map-get($z-index-map, z-index-nav-bar);
-    }
-    @include xy-grid();
-    .left-section {
-        .on-load-image {
-            width: 200px;
-        }
-        .on-scroll-image {
-            width: 90px;
-        }
-    }
-    .right-section {
+    .desktop-nav {
         @include xy-grid();
-        align-items: center;
-        .block-links {
-            margin-bottom: -8px;
-            .header-link {
-                padding-left: 19px;
-                padding-right: 19px;
-                padding-bottom: 0px;
-                .accented-text-wrapper {
-                    padding-bottom: 8px;
-                }
-                .link-text-wrapper:not(.accented-text-wrapper) {
-                    &:hover {
-                        @extend .accented-text-wrapper;
-                        .link-text-inner {
-                            @extend .accented-text;
-                            padding-left: 0 !important;
-                            padding-right: 0 !important;
+        position: fixed;
+        width: 100%;
+        padding: 25px 60px;
+        justify-content: space-between;
+        &:not(.fixed) {
+            .on-scroll-image {
+                display: none;
+            }
+            .header-link, .header-link a {
+                color: $white;
+            }
+        }
+        &.fixed {
+            background-color: $pearl;
+            .on-load-image {
+                display: none;
+            }
+            .header-link, .header-link a {
+                color: $text-charcoal;
+            }
+            z-index: map-get($z-index-map, z-index-nav-bar);
+        }
+        .left-section {
+            .on-load-image {
+                width: 200px;
+            }
+            .on-scroll-image {
+                width: 90px;
+            }
+        }
+        .right-section {
+            @include xy-grid();
+            align-items: center;
+            .block-links {
+                margin-bottom: -8px;
+                .header-link {
+                    padding-left: 19px;
+                    padding-right: 19px;
+                    padding-bottom: 0px;
+                    .accented-text-wrapper {
+                        padding-bottom: 8px;
+                    }
+                    .link-text-wrapper:not(.accented-text-wrapper) {
+                        &:hover {
+                            @extend .accented-text-wrapper;
+                            .link-text-inner {
+                                @extend .accented-text;
+                                padding-left: 0 !important;
+                                padding-right: 0 !important;
+                            }
                         }
                     }
                 }

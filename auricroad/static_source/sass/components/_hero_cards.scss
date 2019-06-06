@@ -1,21 +1,27 @@
 .hero-cards {
     @include xy-grid('vertical');
-    @include breakpoint(large) {
+    @include breakpoint(tablet) {
         @include xy-grid();
     }
-    @include xy-cell(10);
+    @include xy-cell(11);
+    @include breakpoint(tablet) {
+        @include xy-cell(10);
+    }
     .block-card {
         @include xy-cell(12);
-        margin-bottom: 25px;
-        @include breakpoint(large) {
+        margin-bottom: 6px;
+        @include breakpoint(tablet) {
             @include xy-cell(4);
-            margin-bottom: 0;
         }
+        
         .hero-card {
             background-color: $pearl;
             @include xy-grid('vertical');
             width: 100%;
-            padding: 40px 80px;
+            padding: 30px 50px;
+            @include breakpoint(tablet) {
+                padding: 30px 15px;
+            }
             @include breakpoint(large) {
                 padding: 40px 40px;
             }
@@ -30,10 +36,15 @@
             }
             .header {
                 color: $text-black;
-                margin-bottom: 15px;
+                margin-bottom: 11px;
+                @include breakpoint(large) {
+                    margin-bottom: 13px;
+                }
+                font-weight: bold;
             }
             .subheader {
                 color: $text-black;
+                margin-bottom: 15px;
             }
             .body {
                 margin-top: 20px;

@@ -1,31 +1,58 @@
 .hotels-destination {
     @include xy-grid();
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 60px;
+    @include breakpoint(tablet) {
+        margin-top: 70px;
+    }
+    @include breakpoint(large) {
+        margin-top: 100px;
+    }
     .static-section-header {
+        @include xy-cell(10);
+        @include breakpoint(large) {
+            @include xy-cell(7);
+        }
         color: $text-black;
         .tagline, .body {
             color: $text-charcoal;
         }
         .body {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            @include breakpoint(tablet) {
+                margin-bottom: 40px;
+            }
+            @include breakpoint(large) {
+                margin-bottom: 50px;
+            }
         }
         .center-vertical-line {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            @include breakpoint(tablet) {
+                margin-bottom: 50px;
+            }
+            @include breakpoint(large) {
+                margin-bottom: 40px;
+            }
         }
     }
     .destinations-image-section {
         margin-top: 10px;
-        min-height: 800px;
+        min-height: 400px;
         background-size: cover;
         @include xy-grid('vertical');
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        @include breakpoint(tablet) {
+            min-height: 500px;
+        }
         @include breakpoint(large) {
-            justify-content: unset;
+            min-height: 800px;
         }
         img {
             @include xy-cell(11);
+            position: relative;
+            top: -50px;
             @include breakpoint(large) {
                 @include xy-cell(9);
                 position: relative;
