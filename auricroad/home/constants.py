@@ -27,3 +27,10 @@ IMAGE_GROUP_LAYOUTS = (
         "Double Height Half Left, Two Quarters and Half Width Right (Pick 4 Images)",
     ),
 )
+
+SOCIAL_TYPES = (
+    ("instagram", "Instagram"),
+    ("facebook", "Facebook"),
+    ("twitter", "Twitter"),
+    ("linkedin", "Linkedin"),
+)

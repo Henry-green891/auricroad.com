@@ -1,24 +1,53 @@
 <header>
     {% if global_nav_exists %}
-        <div class="desktop-nav">
-            <div class="left-section">
-                <div class="on-load-image">
-                    <a href="/">
-                        <img src="{{ global_nav_obj.on_load_image.file.url }}">
-                    </a>
-                </div>
-                <div class="on-scroll-image">
-                    <a href="/">
-                        <img src="{{ global_nav_obj.on_scroll_image.file.url }}">
-                    </a>
-                </div>
+    <div class="desktop-nav-bar">
+        <div class="left-section">
+            <div class="on-load-image">
+                <a href="/">
+                    <img src="{{ global_nav_obj.on_load_image.file.url }}">
+                </a>
             </div>
-            <div class="right-section">
-                {{ global_nav_obj.links }}
+            <div class="on-scroll-image">
+                <a href="/">
+                    <img src="{{ global_nav_obj.on_scroll_image.file.url }}">
+                </a>
             </div>
         </div>
-    {% else %}
-        You need to create a Nav Bar called Global Nav Bar, in order for it to show up here
-    {% endif %}
+        <div class="right-section">
+            {{ global_nav_obj.desktop_links }}
+        </div>
+    </div>
+    <div class="mobile-nav-bar">
+        <div class="mobile-nav-top dropdown-expanded">
+            <div class="left">
+                <input class="menu-btn" type="checkbox" id="menu-btn" checked="" />
+                <label class="menu-icon"><span class="navicon"></span></label>
+            </div>
+            <div class="center">
+                <a href="/">
+                    <img class="on-load-image" src="{{ global_nav_obj.on_load_mobile_image.file.url }}">
+                </a>
+            </div>
+            <div class="right">
+                {{ global_nav_obj.mobile_top_nav_links }}
+            </div>
+        </div>
+        <div class="menu-dropdown expanded">
+          <div class="menu-dropdown-inner">
+              <div class="mobile-links">
+                {{ global_nav_obj.mobile_links }}
+              </div>
+              {% if global_nav_obj.social_icons %}
+                
+                <div class="social-icons-row">
+                  {{ global_nav_obj.social_icons }}
+                </div>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+  {% else %}
+  You need to create a Nav Bar called Global Nav Bar, in order for it to show up here
+  {% endif %}
 </header>
 

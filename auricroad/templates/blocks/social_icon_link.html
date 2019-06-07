@@ -1,0 +1,13 @@
+<div class="social-icon-link">
+    <a href="{{ value.link_url }}">
+        {% if value.social_type == 'linkedin' %}
+            <i class="fab fa-linkedin-in"></i>
+        {% elif value.social_type == 'instagram' %}
+            <i class="fab fa-instagram"></i>
+        {% elif value.social_type == 'facebook' %}
+            <i class="fab fa-facebook-f"></i>
+        {% elif value.social_type == 'twitter' %}
+            <i class="fab fa-twitter"></i>
+        {% endif %}
+    </a>
+</div>

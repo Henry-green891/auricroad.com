@@ -2,11 +2,11 @@
     <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
         {% if value.orange_accent_text %}
             <div class="link-text-wrapper accented-text-wrapper">
-                <h2 class="link-text-inner accented-text font-c size-2 bold">{{ value.text }}</h2>
+                <h2 class="link-text-inner accented-text">{{ value.text }}</h2>
             </div>
         {% else %}
             <div class="link-text-wrapper">
-                <h2 class="link-text-inner font-c size-2 bold">{{ value.text }}</h2>
+                <h2 class="link-text-inner">{{ value.text }}</h2>
             </div>
         {% endif %}
     </a>

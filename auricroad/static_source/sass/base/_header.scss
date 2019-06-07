@@ -1,12 +1,20 @@
 //header scss goes here.
 header {
     width: 100%;
-    .desktop-nav {
-        @include xy-grid();
+    .desktop-nav-bar {
+        display: none;
+        @include breakpoint(large) {
+            @include xy-grid();
+        }
         position: fixed;
         width: 100%;
         padding: 25px 60px;
         justify-content: space-between;
+        .header-link, .header-link a, .link-text-inner {
+            @extend .font-c;
+            @extend .font-c.size-2;
+            font-weight: bold;
+        }
         &:not(.fixed) {
             .on-scroll-image {
                 display: none;
@@ -55,6 +63,194 @@ header {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    .mobile-nav-bar {
+        @include xy-grid('vertical');
+        @include breakpoint(large) {
+            display: none;
+        }
+        width: 100%;
+        .header-link, .header-link a {
+            color: $text-black;
+        }
+        .mobile-nav-top {
+            background-color: $pearl;
+            position: fixed;
+            z-index: map-get($z-index-map, z-index-nav-bar);
+            width: 100%;
+            @include xy-grid();
+            @include breakpoint(large) {
+                display: none;
+            }
+            justify-content: space-between;
+            .left, .center, .right {
+                @include xy-grid('vertical');
+                justify-content: center;
+            }
+            .left {
+                padding-left: 30px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                width: 25%;
+                @include breakpoint(tablet) { 
+                    width: 33.33333%;
+                }
+                align-items: flex-start;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            .center {
+                padding-top: 30px;
+                padding-bottom: 30px;
+                width: 50%;
+                @include breakpoint(tablet) {
+                    width: 33.33333%;
+                }
+                align-items: center;
+                a {
+                    display: inline-grid;
+                }
+                .on-load-image {
+                    width: 150px;
+                    @include breakpoint(tablet) {
+                        width: 200px;
+                    }
+                }
+            }
+            .right {
+                padding-top: 30px;
+                padding-bottom: 30px;
+                padding-left: 15px;
+                padding-right: 15px;
+                width: 25%;
+                @include breakpoint(tablet) { 
+                    width: 33.33333%;
+                    padding-left: 0px;
+                    padding-right: 30px;
+                }
+                align-items: flex-end;
+                .header-link, .header-link a, .link-text-inner {
+                    @extend .font-c;
+                    @extend .font-c.size-2;
+                    font-weight: bold;
+                    .link-text-inner {
+                        margin-top: 8px;
+                    }
+                }
+            }
+            &.dropdown-expanded {
+                .left {
+                    background-color: $satin;
+                }
+                @include breakpoint(medium down) {
+                    .center {
+                        background-color: $satin;
+                        .on-load-image {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        // adapted from https://jsfiddle.net/ug6f918s/423/
+        .menu-icon {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            user-select: none;
+            margin: 0;
+            .navicon {
+                background: #333;
+                display: block;
+                height: 2px;
+                position: relative;
+                transition: background .2s ease-out;
+                width: 25px;
+                &:before, &:after {
+                    background: #333;
+                    content: '';
+                    display: block;
+                    height: 100%;
+                    position: absolute;
+                    transition: all .2s ease-out;
+                    width: 100%;
+                }
+                &:before {
+                    top: 5px;
+                }
+                &:after {
+                    top: -5px;
+                }
+            }
+        }
+
+        .menu-btn {
+            display: none;
+            &:checked ~ .menu-icon .navicon {
+                background: transparent;
+                &:before {
+                    top: 0px;
+                    transform: rotate(-45deg);
+                }
+                &:after {
+                    transform: rotate(45deg);
+                    top: 0px;
+                }
+            }
+        }
+
+        .menu-dropdown {
+            background-color: $satin;
+            max-height: 0;
+            display: none;
+            transition: max-height 2s ease-out;
+            padding: 22px 15px 30px 15px;
+            &.expanded {
+                position: fixed;
+                width: 100%;
+                height: calc(100vh - 82px);
+                top: 82px;
+                max-height: unset;
+                display: block;
+                overflow-y: auto;
+                z-index: map-get($z-index-map, z-index-nav-bar);
+                @include breakpoint(tablet) {
+                    width: 42%;
+                }
+            }
+            .menu-dropdown-inner {
+                position: relative;
+                height: 100%;
+                .mobile-links {
+                    .block-links {
+                        .link-text-wrapper {
+                            padding: 8px 10px;
+                            &:hover {
+                                background-color: $auric-gold-bg;
+                                .link-text-inner {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                        .header-link, .header-link a, .link-text-inner {
+                            @extend .font-c;
+                            @extend .font-c.size-2;
+                        }
+                        .link-text-inner {
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+                .social-icons-row {
+                    position: absolute;
+                    bottom: 0;
+                }
+                .social-icon-link, .social-icon-link a {
+                    color: $text-black;
                 }
             }
         }

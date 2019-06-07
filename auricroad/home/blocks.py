@@ -10,6 +10,7 @@ from .constants import (  # isort:skip
     FONT_SIZE_CHOICES,
     IMAGE_GROUP_LAYOUTS,
     LAYOUT_CHOICES,
+    SOCIAL_TYPES,
 )
 
 from wagtailmedia.blocks import AbstractMediaChooserBlock  # isort:skip
@@ -39,6 +40,14 @@ class HeaderLinkBlock(blocks.StructBlock):
 
     class Meta:
         template = "blocks/header_link_block.html"
+
+
+class SocialIconLink(blocks.StructBlock):
+    link_url = blocks.CharBlock(max_length=500, required=False)
+    social_type = blocks.ChoiceBlock(choices=SOCIAL_TYPES, required=True)
+
+    class Meta:
+        template = "blocks/social_icon_link.html"
 
 
 class HeroCard(blocks.StructBlock):

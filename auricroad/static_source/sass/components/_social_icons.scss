@@ -1,0 +1,8 @@
+.social-icons-row {
+    @include xy-grid();
+    font-size: 15px;
+    .social-icon-link {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

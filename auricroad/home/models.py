@@ -35,6 +35,7 @@ from .blocks import (  # isort:skip
     ImageSection,
     JobsList,
     PageHeaderText,
+    SocialIconLink,
     SplitImageTextCardSection,
     StaticTextSection,
 )
@@ -94,14 +95,30 @@ class NavBar(models.Model):
         null=True,
         blank=True,
     )
+    on_load_mobile_image = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
 
-    links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+    desktop_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+    mobile_top_nav_links = StreamField(
+        [("links", HeaderLinkBlock())], null=True, blank=True
+    )
+    mobile_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+    social_icons = StreamField([("icons", SocialIconLink())], null=True, blank=True)
 
     panels = [
         FieldPanel("name"),
         ImageChooserPanel("on_load_image"),
+        ImageChooserPanel("on_load_mobile_image"),
         ImageChooserPanel("on_scroll_image"),
-        StreamFieldPanel("links"),
+        StreamFieldPanel("desktop_links"),
+        StreamFieldPanel("mobile_top_nav_links"),
+        StreamFieldPanel("mobile_links"),
+        StreamFieldPanel("social_icons"),
     ]
 
     def __str__(self):
