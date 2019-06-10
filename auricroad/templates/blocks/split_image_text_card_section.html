@@ -15,7 +15,9 @@
         {% endif %}
         <div class="body font-d size-2">{{ value.body }}</div>
         {% if value.button_text %}
-            <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+            <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+                <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+            </a>
         {% endif %}
     </div>
     <div class="tie-bar" id="tie-bar-top"></div>
