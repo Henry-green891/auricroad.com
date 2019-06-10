@@ -5,7 +5,13 @@
     @include xy-grid();
     justify-content: center;
     .block-quote-inner {
-        @include xy-cell(6);
+        @include xy-cell(10);
+        @include breakpoint(tablet) {
+            @include xy-cell(9);
+        }
+        @include breakpoint(xxlarge) {
+            @include xy-cell(6);
+        }
         text-align: center;
         @include xy-grid('vertical');
         align-items: center;
@@ -24,10 +30,11 @@
     }
     .background-text {
         position: absolute;
+        top: -50px;
         @include breakpoint(tablet) {
             top: -270px;
         }
-        @include breakpoint(large) {
+        @include breakpoint(xxlarge) {
             top: -525px;
         }
     }

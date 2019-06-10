@@ -10,19 +10,37 @@
         padding-top: 30px;
         @include breakpoint(tablet) {
             padding-top: 70px;
-            padding-bottom: 20px;
+            padding-bottom: 70px;
         }
         .hotel-intro-inner-inner {
             @include xy-cell(11);
+            @include breakpoint(tablet) {
+                @include xy-cell(8);
+            }
+            @include breakpoint(xxlarge) {
+                @include xy-cell(7);
+            }
             .intro-show-desktop-mobile {
                 display: block;
                 @include breakpoint(tablet only) {
+                    display: none;
+                }
+                @include breakpoint(large only) {
+                    display: none;
+                }
+                @include breakpoint(xlarge only) {
                     display: none;
                 }
             }
             .intro-show-tablet {
                 display: none;
                 @include breakpoint(tablet only) {
+                    display: block;
+                }
+                @include breakpoint(large only) {
+                    display: block;
+                }
+                @include breakpoint(xlarge only) {
                     display: block;
                 }
             }
@@ -39,17 +57,18 @@
     .body,
     .subheader,
     .finer-points-header,
-    .finer-points-body {
+    .finer-points-body,
+    .tagline-no-margin {
         color: $text-charcoal;
     }
     .tagline {
         margin-bottom: 0px;
-        @include breakpoint(large) {
-            margin-bottom: 50px;
-        }
         @include breakpoint(tablet) {
           font-size: 15px;
           line-height: 25px;
+        }
+        @include breakpoint(xxlarge) {
+            margin-bottom: 50px;
         }
     }
     .body {

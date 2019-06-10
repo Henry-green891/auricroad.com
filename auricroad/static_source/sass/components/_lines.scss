@@ -30,7 +30,7 @@
         @include breakpoint(tablet) {
             height: 35px;
         }
-        @include breakpoint(large) {
+        @include breakpoint(xxlarge) {
             height: 50px;
         }
     }

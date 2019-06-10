@@ -12,13 +12,13 @@ body.hotel-detail {
         @include breakpoint(tablet) {
             padding-bottom: 200px;
         }
-        @include breakpoint(large) {
+        @include breakpoint(xxlarge) {
             padding-bottom: 130px;
         }
         .static-section-header .body {
             font-style: italic;
             font-weight: bold;
-            @include breakpoint(large) {
+            @include breakpoint(xxlarge) {
                 font-style: normal;
                 font-weight: unset;
             }
