@@ -24,6 +24,11 @@
     }
     .background-text {
         position: absolute;
-        top: -525px;
+        @include breakpoint(tablet) {
+            top: -270px;
+        }
+        @include breakpoint(large) {
+            top: -525px;
+        }
     }
 }

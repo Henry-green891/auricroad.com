@@ -6,6 +6,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from .constants import (  # isort:skip
     ACCENT_BAR_CHOICES,
+    CUSTOM_TEXT_FUNCTIONS,
     FONT_CHOICES,
     FONT_SIZE_CHOICES,
     IMAGE_GROUP_LAYOUTS,
@@ -274,6 +275,10 @@ class HotelDetailCard(blocks.StructBlock):
     action_header = blocks.CharBlock(max_length=50)
     action_text = blocks.CharBlock(max_length=250, required=False)
     action_text_two = blocks.CharBlock(max_length=250, required=False)
+    action_text_type = blocks.ChoiceBlock(choices=CUSTOM_TEXT_FUNCTIONS, required=False)
+    action_text_two_type = blocks.ChoiceBlock(
+        choices=CUSTOM_TEXT_FUNCTIONS, required=False
+    )
     facebook = blocks.CharBlock(max_length=50, required=False)
     instagram = blocks.CharBlock(max_length=50, required=False)
     twitter = blocks.CharBlock(max_length=50, required=False)

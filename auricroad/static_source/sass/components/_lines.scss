@@ -26,14 +26,23 @@
         border-left-color: $tide;
     }
     &.double-height {
-        height: 50px;
+        height: 30px;
+        @include breakpoint(tablet) {
+            height: 35px;
+        }
+        @include breakpoint(large) {
+            height: 50px;
+        }
     }
 }
 .partial-horizontal-line {
     border-top: 1px solid $black;
     width: 25px;
     &.double-width {
-        width: 50px;
+        width: 25px;
+        @include breakpoint(tablet) {
+            width: 50px;
+        }
     }
     &.white {
         border-top-color: $white;

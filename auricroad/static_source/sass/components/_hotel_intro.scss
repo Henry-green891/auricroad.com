@@ -7,10 +7,31 @@
         @include xy-grid('vertical');
         align-items: center;
         background-color: $gray-bg;
-        padding-top: 70px;
-        padding-bottom: 100px;
+        padding-top: 30px;
+        @include breakpoint(tablet) {
+            padding-top: 70px;
+            padding-bottom: 20px;
+        }
         .hotel-intro-inner-inner {
-            @include xy-cell(7);
+            @include xy-cell(11);
+            .intro-show-desktop-mobile {
+                display: block;
+                @include breakpoint(tablet only) {
+                    display: none;
+                }
+            }
+            .intro-show-tablet {
+                display: none;
+                @include breakpoint(tablet only) {
+                    display: block;
+                }
+            }
+            .center {
+                text-align: center;
+                .center-vertical-line {
+                    display: inline;
+                }
+            }
         }
     }
     color: $text-black;
@@ -21,8 +42,23 @@
     .finer-points-body {
         color: $text-charcoal;
     }
-    .tagline, .body {
+    .tagline {
+        margin-bottom: 0px;
+        @include breakpoint(large) {
+            margin-bottom: 50px;
+        }
+        @include breakpoint(tablet) {
+          font-size: 15px;
+          line-height: 25px;
+        }
+    }
+    .body {
         margin-bottom: 50px;
+    }
+    .header-wrapper {
+        @include breakpoint(tablet only) {
+            text-align: center;
+        }
     }
     .subheader {
         margin: 0;
@@ -48,6 +84,14 @@
         margin-bottom: 40px;
     }
     .center-vertical-line, .text-dash {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
+        @include breakpoint(tablet) {
+            margin-bottom: 40px;
+        }
+    }
+    .center.bottom-margin-tablet {
+        @include breakpoint(tablet only) {
+            margin-bottom: 40px;
+        }
     }
 }

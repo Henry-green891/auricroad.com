@@ -1,12 +1,29 @@
 .image-section {
     .image-row {
-        margin-top: 15px;
+        margin-top: 5px;
         .row-half {
-            @include xy-cell(6);
+            @include xy-cell(12);
+            &:first-of-type.full-half {
+                margin-bottom: 5px;
+            }
+            @include breakpoint(tablet) {
+                @include xy-cell(6);
+                &:first-of-type.full-half {
+                    margin-bottom: 0px;
+                }
+            }
             &.no-margin {
-                width: 50%;
+                width: 100%;
+                @include breakpoint(tablet) {
+                    width: 50%;
+                }
                 margin-left: 0;
                 margin-right: 0;
+            }
+        }
+        .bottom-margin {
+            @include breakpoint(medium down) {
+                margin-bottom: 5px;
             }
         }
         &.row-grid, .row-grid {
@@ -17,16 +34,16 @@
             &.only-inner-margins {
                 img:first-of-type {
                     margin-left: 0;
-                    width: calc(50% - 0.625rem)
+                    width: calc(50% - 0.15625rem)
                 }
                 img:last-of-type {
                     margin-right: 0;
-                    width: calc(50% - 0.625rem)
+                    width: calc(50% - 0.15625rem)
                 }
             }
         }
         .row-grid.only-inner-margins {
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
     }
 }

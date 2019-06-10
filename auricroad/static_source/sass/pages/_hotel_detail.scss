@@ -7,4 +7,21 @@ body.hotel-detail {
             @include xy-cell(10);
         }
     }
+    .hero .hero-background-wrapper {
+        padding-bottom: 170px;
+        @include breakpoint(tablet) {
+            padding-bottom: 200px;
+        }
+        @include breakpoint(large) {
+            padding-bottom: 130px;
+        }
+        .static-section-header .body {
+            font-style: italic;
+            font-weight: bold;
+            @include breakpoint(large) {
+                font-style: normal;
+                font-weight: unset;
+            }
+        }
+    }
 }

@@ -5,18 +5,19 @@
 .hotel-detail-cards, .contact-cards {
     @include xy-cell(10);
     @include xy-grid('vertical');
-    @include breakpoint(large) {
+    @include breakpoint(tablet) {
         @include xy-grid();
+    }
+    margin-bottom: 85px;
+    @include breakpoint(tablet) {
+        margin-bottom: 120px;
     }
     .block-card {
         @include xy-cell(12);
-        margin-bottom: 25px;
-        @include breakpoint(large) {
-            @include xy-cell(6);
-        }
-        @include breakpoint(xxlarge) {
+        margin-bottom: 10px;
+        @include breakpoint(tablet) {
             @include xy-cell(4);
-            margin-bottom: 0;
+            margin-bottom: 25px;
         }
         background-color: transparent;
         .hotel-detail-card {
@@ -28,45 +29,93 @@
                 flex-grow: 1;
             }
         }
-        .action-card-bottom {
-            height: 100%;
-        }
         .hotel-detail-card-top, .action-card-bottom {
             background-color: $pearl;
             @include xy-grid('vertical');
             width: 100%;
-            padding: 40px 80px;
-            @include breakpoint(large) {
-                padding: 40px 40px;
+            padding: 40px 20px;
+            @include breakpoint(tablet) {
+                padding: 45px 20px;
             }
-            @include breakpoint(xlarge) {
-                padding: 40px 80px;
+            @include breakpoint(large) {
+                padding: 40px 20px;
             }
             @include breakpoint(xxlarge) {
-                padding: 40px 40px;
-            }
-            @include breakpoint(xxxlarge) {
-                padding: 40px 80px;
+                padding: 40px 70px;
             }
             opacity: 0.9;
             align-items: center;
             text-align: center;
+            a {
+                color: $text-charcoal;
+                &:hover {
+                    font-weight: bold;
+                    & > * {
+                        font-weight: bold;
+                    }
+                }
+                svg {
+                    color: $text-black;
+                }
+            }
             .hero-card-icon {
                 margin-bottom: 20px;
             }
             .header {
                 color: $text-black;
-                margin-bottom: 15px;
+                @include breakpoint(large) {
+                    margin-bottom: 15px;
+                }
+                line-height: 1;
             }
             .subheader {
                 color: $text-black;
             }
             .body {
-                margin-top: 20px;
                 color: $text-charcoal;
+                margin-top: 15px;
+                @include breakpoint(large) {
+                    margin-top: 20px;
+                }
+                p {
+                    margin-bottom: unset;
+                }
             }
             .action-header {
                 color: $tide;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                font-style: italic;
+                @include breakpoint(large) {
+                    margin-top: 25px;
+                    margin-bottom: 25px;
+                    font-style: normal;
+                }
+            }
+            .action-text {
+                color: $text-charcoal;
+                word-break: break-word;
+                margin-bottom: 0;
+            }
+            .font-f.size-1 {
+                margin-bottom: 0;
+                font-size: 11px;
+                letter-spacing: .02em;
+                line-height: 16px;
+                @include breakpoint(large) {
+                  font-size: 13px;
+                  line-height: 23px;
+                }
+                @include breakpoint(xxlarge) {
+                  font-size: 15px;
+                  line-height: 25px;
+                }
+            }
+            .center-vertical-line {
+                margin-bottom: 15px;
+                @include breakpoint(large) {
+                    margin-bottom: 25px;
+                }
             }
         }
     }

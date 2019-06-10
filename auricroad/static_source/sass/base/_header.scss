@@ -166,10 +166,10 @@ header {
             .navicon {
                 background: #333;
                 display: block;
-                height: 2px;
+                height: 1px;
                 position: relative;
                 transition: background .2s ease-out;
-                width: 25px;
+                width: 40px;
                 &:before, &:after {
                     background: #333;
                     content: '';
@@ -177,13 +177,14 @@ header {
                     height: 100%;
                     position: absolute;
                     transition: all .2s ease-out;
-                    width: 100%;
                 }
                 &:before {
                     top: 5px;
+                    width: 70%;
                 }
                 &:after {
                     top: -5px;
+                    width: 100%;
                 }
             }
         }
@@ -192,9 +193,11 @@ header {
             display: none;
             &:checked ~ .menu-icon .navicon {
                 background: transparent;
+                width: 25px;
                 &:before {
                     top: 0px;
                     transform: rotate(-45deg);
+                    width: 100%;
                 }
                 &:after {
                     transform: rotate(45deg);

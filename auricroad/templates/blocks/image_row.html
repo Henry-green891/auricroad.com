@@ -1,29 +1,29 @@
 <div class="image-row row-grid {{ value.layout }} stretch-section">
     {% if value.layout == "half_width" %}
         {% for img in value.images %}
-            {{ image(img, "fill-1000x1000", class="row-half") }}
+            {{ image(img, "fill-1000x1000", class="row-half full-half") }}
         {% endfor %}
     {% elif value.layout == "half_two_quarter" %}
-        {{ image(value.images[0], "fill-1020x500", class="row-half") }}
+        {{ image(value.images[0], "fill-1020x500", class="row-half bottom-margin") }}
         <div class="row-half no-margin row-grid">
-            {{ image(value.images[1], "fill-500x500", class="row-half") }}
-            {{ image(value.images[2], "fill-500x500", class="row-half") }}
+            {{ image(value.images[1], "fill-500x500", class="row-half full-half") }}
+            {{ image(value.images[2], "fill-500x500", class="row-half full-half") }}
         </div>
     {% elif value.layout == "double_height_half_right" %}
         <div class="row-half column-grid">
             <div class="row-grid only-inner-margins">
-                {{ image(value.images[0], "fill-500x500", class="row-half") }}
-                {{ image(value.images[1], "fill-500x500", class="row-half") }}
+                {{ image(value.images[0], "fill-490x500", class="row-half") }}
+                {{ image(value.images[1], "fill-490x500", class="row-half") }}
             </div>
-            {{ image(value.images[2], "fill-1030x500") }}
+            {{ image(value.images[2], "fill-1030x500", class="bottom-margin") }}
         </div>
         {{ image(value.images[3], "fill-1000x1000", class="row-half") }}
     {% elif value.layout == "double_height_half_left" %}
-        {{ image(value.images[0], "fill-1000x1000", class="row-half") }}
+        {{ image(value.images[0], "fill-1000x1000", class="row-half bottom-margin") }}
         <div class="row-half column-grid">
             <div class="row-grid only-inner-margins">
-                {{ image(value.images[1], "fill-500x500", class="row-half") }}
-                {{ image(value.images[2], "fill-500x500", class="row-half") }}
+                {{ image(value.images[1], "fill-490x500", class="row-half") }}
+                {{ image(value.images[2], "fill-490x500", class="row-half") }}
             </div>
             {{ image(value.images[3], "fill-1030x500") }}
         </div>

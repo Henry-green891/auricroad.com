@@ -34,3 +34,5 @@ SOCIAL_TYPES = (
     ("twitter", "Twitter"),
     ("linkedin", "Linkedin"),
 )
+
+CUSTOM_TEXT_FUNCTIONS = (("phone", "Phone"), ("email", "Email"))
