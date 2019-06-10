@@ -8,6 +8,12 @@
   &.satin {
     border-top-color: $satin;
   }
+  &.shrinking {
+    @include breakpoint(medium down) {
+      border-width: 0;
+    }
+     
+  }
 }
 
 .arrow-up {

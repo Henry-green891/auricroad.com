@@ -60,7 +60,13 @@
 }
 
 .tie-bar {
-    width: 55px;
-    height: 6px;
+    @include breakpoint(tablet) {
+        width: 30px;
+        height: 3px;
+    }
+    @include breakpoint(xxlarge) {
+        width: 55px;
+        height: 6px;
+    }
     background-color: $auric-gold;
 }

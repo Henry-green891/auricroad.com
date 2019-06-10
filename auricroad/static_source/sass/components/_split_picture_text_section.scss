@@ -1,8 +1,16 @@
 .split-image-text-card-section {
     position: relative;
-    margin-top: 15px;
+    margin-top: 5px;
     @include xy-grid('vertical');
-    @include breakpoint(xlarge) {
+    &.reverse-order {
+        flex-direction: column-reverse;
+        @include breakpoint(medium down) {
+            .split-image-card {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    @include breakpoint(tablet) {
         @include xy-grid();
         &.reverse-order {
             flex-direction: row-reverse;
@@ -11,13 +19,21 @@
     .split-text-card,
     .split-image-card {
         @include xy-cell(12);
-        @include breakpoint(xlarge) {
-            @include xy-cell(6);
+        @include breakpoint(tablet) {
+            width: calc(50% - 0.3125rem);
+            margin-right: 0.15625rem;
+            margin-left: 0.15625rem;
         }
     }
     .split-text-card {
         position: relative;
-        padding: 80px 60px;
+        padding: 40px 20px;
+        @include breakpoint(tablet) {
+            padding: 40px 40px;
+        }
+        @include breakpoint(xxlarge) {
+            padding: 80px 60px;
+        }
         background-color: $pearl;
         @include xy-grid('vertical');
         align-items: flex-start;
@@ -25,8 +41,8 @@
             position: absolute;
             top: -1px;
         }
-        margin-bottom: 30px;
-        @include breakpoint(xlarge) {
+        margin-bottom: 5px;
+        @include breakpoint(tablet) {
             margin-bottom: 0;
         }
         .header {
@@ -41,22 +57,27 @@
         background-size: cover;
         background-position: center center;
         min-height: 50vw;
-        @include breakpoint(xlarge) {
+        @include breakpoint(tablet) {
             min-height: unset;
         }
     }
     .tie-bar {
         display: none;
-        @include breakpoint(xlarge) {
-            display: block;
-        }
+        
         position: absolute;
-        left: calc(50% - 27.5px);
+        
         &#tie-bar-top {
             top: 40px;
         }
         &#tie-bar-bottom {
             bottom: 40px;
+        }
+        @include breakpoint(tablet) {
+            display: block;
+            left: calc(50% - 15px);
+        }
+        @include breakpoint(xxlarge) {
+            left: calc(50% - 27.5px);
         }
     }
 }

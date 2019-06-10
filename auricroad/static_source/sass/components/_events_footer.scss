@@ -4,7 +4,11 @@
     background-size: cover;
     background-position: center center;
     .static-section-header {
-         margin-top: 100px;
-         margin-bottom: 220px;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        @include breakpoint(xxlarge) {
+            margin-top: 100px;
+            margin-bottom: 220px;
+        }
     }
 }

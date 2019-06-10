@@ -1,5 +1,10 @@
 body.events-list {
     background-color: $satin;
+    .hero-cards .block-card .hero-card {
+        .header {
+            margin-bottom: 0;
+        }
+    }
     .block-image_section,
     .block-split_image_text_card_section {
         @include xy-grid();
@@ -9,11 +14,19 @@ body.events-list {
             @include xy-cell(10);
         }
     }
+    .block-static_text_section {
+        .static-section-header {
+            margin-top: 100px;
+            @include breakpoint(medium down) {
+                margin-bottom: 30px;
+            }
+        }
+    }
     .block-static_text_section,
     .block-events_footer {
         .static-section-header {
-            margin-top: 100px;
             color: $text-black;
+            @include xy-cell(10);
             .body,
             .tagline {
                 color: $text-charcoal;

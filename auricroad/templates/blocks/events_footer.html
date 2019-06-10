@@ -11,6 +11,10 @@
             <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
         </div>
         <h2 class="body semi-bold font-d size-2">{{ value.body|richtext }}</h2>
-        <button class="button black rounded font-c size-2">Contact Us</button>
+        {% if value.button_text and (value.internal_page or value.external_link) %}
+            <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+                <button class="button black rounded font-c size-2">Contact Us</button>
+            </a>
+        {% endif %}
     </div>
 </div>

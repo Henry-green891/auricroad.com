@@ -26,7 +26,7 @@
                 padding: 40px 40px;
             }
             @include breakpoint(xxlarge) {
-                padding: 40px 80px;
+                padding: 40px 40px;
             }
             opacity: 0.9;
             align-items: center;
@@ -45,6 +45,7 @@
             .subheader {
                 color: $text-black;
                 margin-bottom: 15px;
+                margin-top: 0;
             }
             .body {
                 margin-top: 20px;

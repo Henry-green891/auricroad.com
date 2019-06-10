@@ -122,6 +122,7 @@ class ImageCard(blocks.StructBlock):
     body = blocks.RichTextBlock(required=False)
     background_image = ImageChooserBlock(required=False)
     arrow_color = blocks.CharBlock(max_length=50, required=False)
+    detail_link_text = blocks.CharBlock(max_length=50, required=False)
 
     class Meta:
         template = "blocks/image_card.html"
@@ -142,7 +143,9 @@ class BookNowImageCard(ImageCard):
 
 
 class EventImageCard(ImageCard):
-    pass
+    detail_link = blocks.PageChooserBlock(
+        target_model="home.BrochuresPage", required=False
+    )
 
 
 class ExperienceImageCard(ImageCard):
@@ -302,6 +305,8 @@ class SplitImageTextCardSection(blocks.StructBlock):
     header = blocks.RichTextBlock(required=False)
     body = blocks.RichTextBlock()
     button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
     arrow_color = blocks.CharBlock(max_length=50, required=False)
     text_accent_color = blocks.CharBlock(max_length=50, required=False)
 
@@ -314,6 +319,9 @@ class EventsFooter(blocks.StructBlock):
     header = blocks.CharBlock(max_length=50)
     body = blocks.RichTextBlock()
     background_image = ImageChooserBlock(required=False)
+    button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
 
     class Meta:
         template = "blocks/events_footer.html"
