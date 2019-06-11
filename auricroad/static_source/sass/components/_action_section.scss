@@ -1,7 +1,10 @@
 .action-card-section {
     @include xy-grid();
     justify-content: center;
-    margin-bottom: 300px;
+    margin-bottom: 150px;
+    @include breakpoint(large) {
+        margin-bottom: 300px;
+    }
     .action-card-list {
         @include xy-cell(10);
         @include xy-grid('vertical');
@@ -13,10 +16,13 @@
             @include breakpoint(large) {
                 @include xy-cell(6);
             }
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             .action-card {
                 background-color: $white;
-                padding: 20px 20px 40px 20px;
+                padding: 10px 10px 20px 10px;
+                @include breakpoint(large) {
+                    padding: 20px 20px 40px 20px;
+                }
                 .action-image {
                     width: 100%;
                 }
