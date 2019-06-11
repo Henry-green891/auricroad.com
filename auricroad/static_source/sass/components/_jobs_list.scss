@@ -15,6 +15,18 @@
             thead {
                 background-color: $tide;
                 color: white;
+                th {
+                    @include breakpoint(xlarge down) {
+                        &:nth-child(1) {
+                            display: none;
+                        }
+                    }
+                    @include breakpoint(medium down) {
+                        &:nth-child(3) {
+                            display: none;
+                        }
+                    }
+                }
             }
             tbody {
                 tr {
@@ -27,6 +39,28 @@
                             color: $text-charcoal;
                             &:hover {
                                 color: $auric-gold;
+                            }
+                        }
+                        @include breakpoint(xlarge down) {
+                            &:nth-child(1) {
+                                display: none;
+                            }
+                        }
+                        @include breakpoint(medium down) {
+                            &:nth-child(3) {
+                                display: none;
+                            }
+                        }
+                        .desktop-up {
+                            display: none;
+                            @include breakpoint(xxlarge) {
+                                display: inline-block;
+                            }
+                        }
+                        .tablet-down {
+                            display: inline-block;
+                            @include breakpoint(xxlarge) {
+                                display: none;
                             }
                         }
                     }
