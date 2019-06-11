@@ -222,6 +222,8 @@ class HotelIntro(blocks.StructBlock):
     finer_points_header = blocks.CharBlock(max_length=50, required=False)
     finer_points_body = blocks.RichTextBlock(required=False)
     button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
 
     class Meta:
         template = "blocks/hotel_intro.html"
