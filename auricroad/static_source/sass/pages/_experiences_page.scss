@@ -3,4 +3,9 @@ body.experiences-list {
     .image-card-list .block-experience_image_card:first-child .image-card .arrow-down {
         border-top-color: #C6CBCB;
     }
+    .hero .hero-background-wrapper .static-section-header {
+        @media screen and (min-width: 1024px) and (max-width: 1680px){
+            margin-top: 130px;
+        }
+    }
 }
