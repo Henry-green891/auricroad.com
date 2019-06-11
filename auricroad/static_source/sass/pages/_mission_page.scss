@@ -5,7 +5,18 @@ body.mission-page {
         justify-content: center;
         .image-section,
         .split-image-text-card-section {
-            @include xy-cell(10);
+            @include xy-cell(11);
+            @include breakpoint(large) {
+                @include xy-cell(10);
+            }
+        }
+    }
+    .hero .hero-background-wrapper {
+        .static-section-header {
+            margin-top: 170px;
+            .body {
+                margin-bottom: 150px;
+            }
         }
     }
 }

@@ -2,15 +2,11 @@
     @include xy-grid();
     justify-content: center;
     .full-width-image-wrapper-inner  {
-        @include xy-cell(10);
+        @include breakpoint(large) {
+            @include xy-cell(10);
+        }
         .full-width-image {
             margin-top: 15px;
-            padding-left: 10px;
-            padding-right: 10px;
-            @include breakpoint(xlarge) {
-                padding-left: 15px;
-                padding-right: 15px;
-            }   
         }
     }
 }
