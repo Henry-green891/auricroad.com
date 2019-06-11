@@ -5,7 +5,11 @@ body.reserve-page {
             .hero-background-wrapper {
                 .static-section-header{
                     .body {
-                        margin-bottom: 100px;
+                        margin-bottom: 230px;
+                        font-style: italic;
+                        @include breakpoint(xxlarge) {
+                            font-style: normal;
+                        }
                     }
                 }
             }
