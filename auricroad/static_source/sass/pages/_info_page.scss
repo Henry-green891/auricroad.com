@@ -1,27 +1,57 @@
 body.basic-info-page {
     background-color: $satin;
     .info-page-wrapper {
-        padding-top: 210px;
-        padding-bottom: 120px;
+        padding-top: 115px;
+        padding-bottom: 50px;
+        @include breakpoint(tablet) {
+            padding-top: 135px;
+            padding-bottom: 80px;
+        }
+        @include breakpoint(xxlarge) {
+            padding-top: 160px;
+            padding-bottom: 120px;
+        }
         @include xy-grid();
         justify-content: center;
         .info-page-inner {
+            @include xy-grid();
+            justify-content: center;
             @include xy-cell(10);
             background-color: $pearl;
-            padding-top: 90px;
-            padding-bottom: 120px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            @include breakpoint(tablet) {
+                padding-top: 60px;
+                padding-bottom: 44px;
+            }
+            @include breakpoint(xxlarge) {
+                padding-top: 90px;
+                padding-bottom: 80px;
+            }
+            
             .block-header, .block-body_section {
                 @include xy-grid('vertical');
                 align-items: center;
+                @include xy-cell(11);
+                @include breakpoint(xxlarge) {
+                    @include xy-cell(7);
+                }
             }
             .page-header-text {
                 @include xy-cell(10);
-                padding-bottom: 44px;
+                padding-bottom: 28px;
                 color: $text-black;
             }
             .header-text-paragraph {
                 @include xy-cell(10);
-                padding-bottom: 44px;
+                padding-bottom: 10px;
+                @include breakpoint(tablet) {
+                    padding-bottom: 20px;
+                }
+                @include breakpoint(xxlarge) {
+                    padding-bottom: 28px;
+                }
+                
                 .header, .body {
                     color: $text-charcoal;
                     opacity: 0.9;
