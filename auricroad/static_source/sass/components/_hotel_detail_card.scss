@@ -2,22 +2,28 @@
     @include xy-grid();
     justify-content: center;
 }
+.hotel-detail-cards {
+    margin-bottom: 85px;
+    @include breakpoint(tablet) {
+        margin-bottom: 120px;
+    }
+    .block-card {
+        margin-bottom: 10px;
+        @include breakpoint(tablet) {
+            margin-bottom: 25px;
+        }
+    }
+}
 .hotel-detail-cards, .contact-cards {
     @include xy-cell(10);
     @include xy-grid('vertical');
     @include breakpoint(tablet) {
         @include xy-grid();
     }
-    margin-bottom: 85px;
-    @include breakpoint(tablet) {
-        margin-bottom: 120px;
-    }
     .block-card {
         @include xy-cell(12);
-        margin-bottom: 10px;
         @include breakpoint(tablet) {
             @include xy-cell(4);
-            margin-bottom: 25px;
         }
         background-color: transparent;
         .hotel-detail-card {
@@ -116,6 +122,12 @@
                 @include breakpoint(large) {
                     margin-bottom: 25px;
                 }
+            }
+        }
+        .action-card-bottom {
+            height: 100%;
+            @include breakpoint(medium down) {
+                margin-bottom: 5px;
             }
         }
     }

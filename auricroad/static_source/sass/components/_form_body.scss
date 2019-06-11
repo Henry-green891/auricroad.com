@@ -1,25 +1,70 @@
 .form-section-wrapper {
     margin-top: 20px;
+    margin-bottom: 60px;
+    @include breakpoint(tablet) {
+        margin-bottom: 80px;
+    }
+    @include breakpoint(xxlarge) {
+        margin-bottom: 120px;
+    }
     @include xy-grid();
     justify-content: center;
     .form-body {
         background-color: $pearl;
-        padding: 90px 100px 110px 100px;
+        padding: 40px 20px 80px 20px;
+        @include breakpoint(tablet) {
+            padding: 40px 50px 70px 50px;
+        }
+        @include breakpoint(xxlarge) {
+            padding: 90px 100px 110px 100px;
+        }
         @include xy-cell(10);
         @include xy-grid('vertical');
-        @include breakpoint(large) {
+        @include breakpoint(xxlarge) {
             @include xy-grid();
         }
         .form-left {
+            .text-dash {
+                margin-bottom: 30px;
+            }
+            margin-bottom: 30px;
             @include xy-cell(12);
-            @include breakpoint(large) {
+            @include xy-grid('vertical');
+            @include breakpoint(tablet) {
+                @include xy-grid();
+                align-items: center;
+                .form-left-left.tablet-half {
+                    @include xy-cell(6);
+                }
+                .form-intro-image {
+                    @include xy-cell(6);
+                }
+                margin-bottom: 60px;
+            }
+            @include breakpoint(xxlarge) {
+                @include xy-grid('vertical');
                 @include xy-cell(5);
+                margin-bottom: 0px;
+                .form-left-left.tablet-half,
+                .form-intro-image {
+                    @include xy-cell(12);
+                }
+                margin-bottom: 0;
             }
         }
         .form-right {
             @include xy-cell(12);
-            @include breakpoint(large) {
+            label {
+                font-weight: bold;
+            }
+            @include breakpoint(xxlarge) {
                 @include xy-cell(7);
+                padding-left: 30px;
+            }
+            .center {
+                @include breakpoint(medium down) {
+                    text-align: center;
+                }
             }
         }
         &.thank-you-wrapper {

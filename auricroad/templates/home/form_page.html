@@ -11,9 +11,15 @@
     <div class="form-section-wrapper">
         <div class="form-body">
             <div class="form-left">
-                <h1 class="font-f size-1 page-tagline">{{ page.tagline }}</h1>
-                <div class="font-a size-7 intro">
-                    {{ page.intro | richtext }}
+                <div class="form-left-left {% if page.form_intro_image %}tablet-half{% endif %}">
+                    <span class="text-dash">
+                        <h3 class="page-tagline font-f size-1">{{ page.tagline }}</h3>
+                        &nbsp;&nbsp;
+                        <div class="partial-horizontal-line double-width charcoal"></div>
+                    </span>
+                    <div class="font-a size-7 intro">
+                        {{ page.intro | richtext }}
+                    </div>
                 </div>
                 {% if page.form_intro_image %}
                     <img class="form-intro-image" src="{{ page.form_intro_image.file.url }}">
@@ -23,7 +29,9 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ form.as_p() }}
-                    <input class="button black rounded" type="submit" name="Submit">
+                    <div class="center">
+                        <input class="button black rounded" type="submit" name="Submit">
+                    </div>
                 </form>
             </div>
         </div>
