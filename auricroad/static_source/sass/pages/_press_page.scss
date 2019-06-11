@@ -2,5 +2,13 @@ body.press-page {
     background-color: $satin;
     .hero {
         margin-bottom: -110px;
+        .hero-background-wrapper {
+            .static-section-header {
+                margin-top: 170px;
+                .body {
+                    margin-bottom: 150px;
+                }
+            }
+        }
     }
 }

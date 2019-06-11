@@ -1,33 +1,38 @@
 .image-logo-link-cards {
     @include xy-cell(10);
     @include xy-grid('vertical');
-    @include breakpoint(medium) {
+    @include breakpoint(tablet) {
         @include xy-grid();
     }
     .block-card {
         @include xy-cell(12);
         background-color: $pearl;
-        margin-bottom: 30px;
-        @include breakpoint(medium) {
-            @include xy-cell(6);
-        }
-        @include breakpoint(xlarge) {
+        margin-bottom: 5px;
+        @include breakpoint(tablet) {
             @include xy-cell(4);
         }
         @include breakpoint(xxxlarge) {
             @include xy-cell(3);
+            margin-bottom: 10px;
         }
         .image-logo-link-card {
             color: $text-charcoal;
             @include xy-grid('vertical');
-            padding: 20px 20px 40px 20px;
+            padding: 10px;
+            @include breakpoint(xxlarge) {
+                padding: 20px 20px 40px 20px;
+            }
             &:hover {
-                padding: 17px 17px 30px 17px;
+                padding: 8px;
+                @include breakpoint(xxlarge) {
+                    padding: 17px 17px 30px 17px;
+                }
                 color: $link-blue;
             }
             .main-image-wrapper {
                 position: relative;
                 margin-bottom: 20px;
+                overflow-y: hidden;
                 .main-image {
                     width: 100%;
                 }
@@ -37,7 +42,9 @@
                     left: 20px;
                 }
             }
-            
+            .tagline {
+                font-weight: bold;
+            }
             .logo-image {
                 width: 33%;
                 margin-bottom: 20px;
