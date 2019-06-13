@@ -48,6 +48,12 @@ import 'foundation-sites/dist/js/foundation.min.js';
       }
     });
 
+    // tabbed viewer code
+
+    $('.slide-selector-tab').click(function(tab) {
+      handleSlideSelectorTab(tab);
+    });
+
   }
 
   $(init);
@@ -75,6 +81,20 @@ function setMobileDropdownState() {
   }
 }
 
+function handleSlideSelectorTab(tab) {
+  const itemId = tab.currentTarget.id;
+  const itemIdNumber = filterNumberFromId(itemId, 'slide-selector-')
+  $('.slide-selector-tab').removeClass('active-floorplan-tab-selector');
+  $('#'+itemId).addClass('active-floorplan-tab-selector');
+  $('.floor-plan-slide-wrapper').removeClass('active-floorplan-tab');
+  $('#floor-plan-slide-wrapper-'+itemIdNumber+'').addClass('active-floorplan-tab');
+}
+
+
+function filterNumberFromId(text, toRemove) {
+  return text.replace(toRemove, '')
+
+}
 
 function addToDict(dict, key, value) {
   key = encodeURIComponent(decodeURIComponent(key));

@@ -13,9 +13,139 @@
         }
         .body {
             margin-bottom: 40px;
+            @include breakpoint(xxlarge) {
+                @include xy-cell(6);
+            }
         }
         .center-vertical-line {
             margin-bottom: 40px;
+        }
+    }
+    .floor-plan-slides {
+        @include xy-grid();
+        @include xy-cell(10);
+        justify-content: center;
+        .floor-plan-slide-selector {
+            @include xy-cell(12);
+            @include xy-grid();
+            border: 1px solid $gray-border;
+            .slide-selector-tab {
+                @include xy-cell(6);
+                padding: 18px 20px 18px 20px;
+                @include breakpoint(tablet) {
+                    @include xy-cell(4);
+                }
+                @include breakpoint(large) {
+                    @include xy-cell(2);
+                }
+                @include breakpoint(xxxlarge) {
+                    padding: 18px 40px 18px 40px;
+                }
+                color: $text-charcoal;
+                text-align: center;
+                
+                text-transform: uppercase;
+                @extend .font-d;
+                @extend .font-d.size-5;
+                &.active-floorplan-tab-selector {
+                    font-weight: bold;
+                    @extend .bottom-accent;
+                    @extend .font-e;
+                    @extend .font-e.size-3;
+                }
+                &:hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+            }
+        }
+        .floor-plan-slide-container {
+            @include xy-cell(12);
+            @include xy-grid();
+            justify-content: center;
+            padding-top: 50px;
+            .floor-plan-slide-wrapper {
+                @include xy-cell(10);
+                @include xy-grid();
+                &:not(.active-floorplan-tab) {
+                    display: none;
+                }
+                .floor-plan-slide {
+                    @include xy-grid('vertical');
+                    flex-direction: column-reverse;
+                    align-items: center;
+                    @include breakpoint(xxlarge) {
+                        align-items: unset;
+                        @include xy-grid();
+                    }
+                    
+                    .slide-left {
+                        @include xy-cell(12);
+                        @include breakpoint(large) {
+                            @include xy-cell(8);
+                        }
+                        @include breakpoint(xxlarge) {
+                            @include xy-cell(5);
+                            padding-right: 25px;
+                        }
+                        color: $text-charcoal;
+                        .block-detail {
+                            @include xy-grid()
+                            .floorplan-detail-row {
+                                @include xy-grid();
+                                justify-content: space-between;
+                                width: 100%;
+                                @include breakpoint(tablet) {
+                                    width: 50%;
+                                }
+                                margin-bottom: 25px;
+                                &.remove-bottom-padding {
+                                    margin-bottom: 5px;
+                                }
+                            }
+                        }
+                        .floorplan-detail-group .block-detail:not(:last-child) .floorplan-detail-row {
+                            margin-bottom: 5px;
+                        }
+                    }
+                    .slide-right {
+                        @include xy-cell(12);
+                        margin-bottom: 20px;
+                        @include breakpoint(large) {
+                            @include xy-cell(8);
+                        }
+                        @include breakpoint(xxlarge) {
+                            margin-bottom: 0px;
+                            @include xy-cell(7);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .additional-info {
+        @include xy-cell(10);
+        @include xy-grid();
+        justify-content: center;
+        hr {
+            @include xy-cell(12);
+            max-width: unset;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid $gray-border;
+            opacity: 0.9;
+        }
+        .floor-plan-section-additional-info {
+            @include xy-cell(12);
+            @include breakpoint(xxlarge) {
+                @include xy-cell(7);
+            }
+            .more-info {
+                text-align: center;
+                p {
+                    margin-bottom: 20px;
+                }
+            }
         }
     }
 }

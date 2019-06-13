@@ -297,6 +297,10 @@ select {
       line-height: 21px;
     }
   }
+  &.size-5 {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
 }
 
 .font-e {
@@ -322,6 +326,10 @@ select {
       font-size: 17px;
       line-height: 25px;
     }
+  }
+  &.size-3 {
+    font-size: 11px;
+    letter-spacing: 0.1em;
   }
 }
 

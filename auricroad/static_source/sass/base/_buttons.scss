@@ -23,6 +23,15 @@
             color: $white;
         }
     }
+    &.transparant {
+        background-color: transparent;
+        border: 1px solid $text-charcoal;
+        color: $text-charcoal;
+        &:hover {
+            color: $text-black;
+            border-color: $text-black;
+        }
+    }
     &.rounded {
         border-radius: 50px;
     }
@@ -39,5 +48,16 @@
     }
     .button {
         @include xy-cell(4);
+    }
+    &.center-buttons {
+        align-items: center;
+        @include breakpoint(large) {
+            justify-content: center;
+        }
+        .button {
+            width: unset;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
     }
 }

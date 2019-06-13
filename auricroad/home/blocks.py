@@ -263,10 +263,56 @@ class ActivitySection(blocks.StructBlock):
         template = "blocks/activity_section.html"
 
 
+class DetailRow(blocks.StructBlock):
+    key = blocks.CharBlock(max_length=250)
+    value = blocks.CharBlock(max_length=250)
+    remove_row_bottom_padding = blocks.BooleanBlock(
+        required=False, help_text="(will be applied by default within detail groups)"
+    )
+
+    class Meta:
+        template = "blocks/detail_row.html"
+
+
+class DetailGroup(blocks.StructBlock):
+    section_header = blocks.CharBlock(max_length=250)
+    detail_rows = blocks.StreamBlock(
+        [("detail", DetailRow())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/detail_group.html"
+
+
+class FloorPlanSlide(blocks.StructBlock):
+    room_name = blocks.CharBlock(max_length=50)
+    room_description = blocks.RichTextBlock(required=False)
+    details = blocks.StreamBlock(
+        [("detail", DetailRow()), ("detail_group", DetailGroup())],
+        null=True,
+        blank=True,
+        required=False,
+    )
+    floor_plan_document_text = blocks.CharBlock(max_length=50)
+    floor_plan_document = DocumentChooserBlock(required=False)
+    floor_plan_image = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "blocks/floor_plan_slide.html"
+
+
 class FloorPlanSection(blocks.StructBlock):
     tagline = blocks.CharBlock(max_length=50)
     header = blocks.CharBlock(max_length=50)
     body = blocks.RichTextBlock()
+    rooms = blocks.StreamBlock(
+        [("card", FloorPlanSlide())], null=True, blank=True, required=False
+    )
+    more_info = blocks.RichTextBlock(required=False)
+    additional_document_text = blocks.CharBlock(max_length=50, required=False)
+    additional_document = DocumentChooserBlock(required=False)
+    additional_document_two_text = blocks.CharBlock(max_length=50, required=False)
+    additional_document_two = DocumentChooserBlock(required=False)
 
     class Meta:
         template = "blocks/floor_plan_section.html"
