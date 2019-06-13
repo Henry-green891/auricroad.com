@@ -1,6 +1,9 @@
 .contact-card-section {
     @include xy-grid();
     justify-content: center;
+    .action-card-bottom {
+        height: 100%;
+    }
 }
 .hotel-detail-cards {
     margin-bottom: 85px;
@@ -125,7 +128,6 @@
             }
         }
         .action-card-bottom {
-            height: 100%;
             @include breakpoint(medium down) {
                 margin-bottom: 5px;
             }
