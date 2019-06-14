@@ -210,25 +210,6 @@ class HotelsDestinations(blocks.StructBlock):
         template = "blocks/hotels_destinations.html"
 
 
-class HotelIntro(blocks.StructBlock):
-    tagline = blocks.CharBlock(max_length=50)
-    tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
-    header = blocks.CharBlock(max_length=250)
-    subheader = blocks.CharBlock(max_length=50, required=False)
-    subheader_2 = blocks.CharBlock(max_length=50, required=False)
-    body = blocks.RichTextBlock()
-    accent_image = ImageChooserBlock(required=False)
-    intro_video = MediaBlock(icon="media", required=False)
-    finer_points_header = blocks.CharBlock(max_length=50, required=False)
-    finer_points_body = blocks.RichTextBlock(required=False)
-    button_text = blocks.CharBlock(max_length=50, required=False)
-    internal_page = blocks.PageChooserBlock(required=False)
-    external_link = blocks.CharBlock(max_length=250, required=False)
-
-    class Meta:
-        template = "blocks/hotel_intro.html"
-
-
 class ImageRow(blocks.StructBlock):
     layout = blocks.ChoiceBlock(choices=IMAGE_GROUP_LAYOUTS, required=True)
     images = blocks.ListBlock(ImageChooserBlock())
@@ -242,6 +223,31 @@ class ImageSection(blocks.StructBlock):
 
     class Meta:
         template = "blocks/image_section.html"
+
+
+class HotelIntro(blocks.StructBlock):
+    tagline = blocks.CharBlock(max_length=50)
+    tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
+    header = blocks.CharBlock(max_length=250)
+    subheader = blocks.CharBlock(max_length=50, required=False)
+    subheader_2 = blocks.CharBlock(max_length=50, required=False)
+    body = blocks.RichTextBlock()
+    accent_image = ImageChooserBlock(required=False)
+    intro_video = MediaBlock(icon="media", required=False)
+    images = blocks.StreamBlock(
+        [("image_row", ImageSection()), ("full_image", FullWidthImage())],
+        null=True,
+        blank=True,
+        required=False,
+    )
+    finer_points_header = blocks.CharBlock(max_length=50, required=False)
+    finer_points_body = blocks.RichTextBlock(required=False)
+    button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
+
+    class Meta:
+        template = "blocks/hotel_intro.html"
 
 
 class HotelActivityCard(blocks.StructBlock):
