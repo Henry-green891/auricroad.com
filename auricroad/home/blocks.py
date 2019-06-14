@@ -370,6 +370,9 @@ class EventsFooter(blocks.StructBlock):
     button_text = blocks.CharBlock(max_length=50, required=False)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
+    button_text_two = blocks.CharBlock(max_length=50, required=False)
+    internal_page_two = blocks.PageChooserBlock(required=False)
+    external_link_two = blocks.CharBlock(max_length=250, required=False)
 
     class Meta:
         template = "blocks/events_footer.html"
