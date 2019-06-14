@@ -188,6 +188,7 @@ CONTEXT_PROCESSORS = [
     "auricroad.home.context_processors.settings",
     "social_django.context_processors.backends",
     "social_django.context_processors.login_redirect",
+    "auricroad.home.context_processors.global_header",
 ]
 
 
