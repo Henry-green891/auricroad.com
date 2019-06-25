@@ -38,6 +38,7 @@ from .blocks import (  # isort:skip
     SocialIconLink,
     SplitImageTextCardSection,
     StaticTextSection,
+    SectionHeader,
 )
 
 from wagtailmedia.models import AbstractMedia  # isort:skip
@@ -219,6 +220,7 @@ class HotelDetailPage(Page):
             ("hero", Hero()),
             ("intro", HotelIntro()),
             ("image_section", ImageSection()),
+            ("section_header", SectionHeader()),
             ("block_quote", BlockQuote()),
             ("activity_section", ActivitySection()),
             ("floor_plan_section", FloorPlanSection()),

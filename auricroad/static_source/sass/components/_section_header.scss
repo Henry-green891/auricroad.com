@@ -1,0 +1,19 @@
+.section-header-wrapper {
+    @include xy-grid('vertical');
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 50px;
+    @include breakpoint(tablet) {
+      margin-top: 50px;
+      margin-bottom: 70px
+    }
+    @include breakpoint(xxlarge) {
+      margin-top: 65px;
+      margin-bottom: 100px;
+    }
+    .section-header {
+        @include xy-cell(10);
+        margin-bottom: 0;
+        text-align: center;
+    }
+}

@@ -483,6 +483,13 @@ class PageHeaderText(blocks.StructBlock):
         template = "blocks/page_header_text.html"
 
 
+class SectionHeader(blocks.StructBlock):
+    header = blocks.CharBlock(max_length=500)
+
+    class Meta:
+        template = "blocks/section_header.html"
+
+
 class HeaderTextParagraph(blocks.StructBlock):
     header = blocks.CharBlock(max_length=500, required=False)
     text = blocks.RichTextBlock(required=False)
