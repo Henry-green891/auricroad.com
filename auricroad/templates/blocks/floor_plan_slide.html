@@ -3,9 +3,11 @@
         <h5 class="font-a size-5">{{value.room_name}}</h5>
         <div class="font-d size-4">{{value.room_description}}</div>
         {{value.details}}
-        <a href="{{value.floor_plan_document.url}}" class="button transparant rounded">
-            {{value.floor_plan_document_text}}
-        </a>
+        {% if floor_plan_document and floor_plan_document_text %}
+            <a href="{{value.floor_plan_document.url}}" class="button transparant rounded">
+                {{value.floor_plan_document_text}}
+            </a>
+        {% endif %}
     </div>
     <div class="slide-right">
         <img src="{{ value.floor_plan_image.file.url }}" class="floor-plan-image">

@@ -299,7 +299,7 @@ class FloorPlanSlide(blocks.StructBlock):
         blank=True,
         required=False,
     )
-    floor_plan_document_text = blocks.CharBlock(max_length=50)
+    floor_plan_document_text = blocks.CharBlock(max_length=50, required=False)
     floor_plan_document = DocumentChooserBlock(required=False)
     floor_plan_image = ImageChooserBlock(required=False)
 
