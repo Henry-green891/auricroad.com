@@ -66,7 +66,7 @@ $(document).ready(function($) {
 
 
 function setHeaderClass(scrollVal) {
-  if (scrollVal > 16) {
+  if (scrollVal > 16 || $('body').hasClass('only-scrolled-header')) {
     $('header .desktop-nav-bar').addClass('fixed');
   } else {
     $('header .desktop-nav-bar').removeClass('fixed');
