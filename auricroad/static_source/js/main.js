@@ -54,6 +54,12 @@ import 'foundation-sites/dist/js/foundation.min.js';
       handleSlideSelectorTab(tab);
     });
 
+    // table clickable rows
+
+    $('.clickable-row').click(function() {
+        window.location = $(this).data('href');
+    });
+
   }
 
   $(init);
