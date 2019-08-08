@@ -60,7 +60,14 @@
 }
 
 .accent-image {
-  width: 115px;
+  width: 56px;
+  @include breakpoint(tablet) {
+    width: 86px;
+  }
+  @include breakpoint(large) {
+    width: 115px;
+  }
+  
 }
 
 .download-icon {

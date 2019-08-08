@@ -45,5 +45,26 @@
         .row-grid.only-inner-margins {
             margin-bottom: 5px;
         }
+        .thirds-wrapper {
+            @include xy-grid();
+            > * {
+                align-self: center;
+            }
+            @include breakpoint(medium down) {
+                > * {
+                &:first-child {
+                    margin-bottom: 5px;
+                }
+            }
+            }
+            @include breakpoint(tablet) {
+                .one-third {
+                    @include xy-cell(4);
+                }
+                .two-thirds {
+                    @include xy-cell(8);
+                }
+            }
+        }
     }
 }

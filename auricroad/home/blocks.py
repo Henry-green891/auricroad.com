@@ -62,11 +62,11 @@ class HeroCard(blocks.StructBlock):
 
 
 class Hero(blocks.StructBlock):
-    static_header = blocks.CharBlock(max_length=100)
-    static_tagline = blocks.CharBlock(max_length=50)
+    static_header = blocks.CharBlock(max_length=100, required=False)
+    static_tagline = blocks.CharBlock(max_length=50, required=False)
     static_body = blocks.RichTextBlock(required=False)
-    body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=True)
-    body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
+    body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, default="e")
+    body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, default=2)
     background_image = ImageChooserBlock(required=False)
     show_diamond_overlay = blocks.BooleanBlock(required=False)
     reduced_padding = blocks.BooleanBlock(required=False)
@@ -76,9 +76,24 @@ class Hero(blocks.StructBlock):
         [("card", HeroCard())], null=True, blank=True, required=False
     )
     hero_video = MediaBlock(icon="media", required=False)
+    video_only_hero = blocks.BooleanBlock(required=False)
 
     class Meta:
         template = "blocks/hero_block.html"
+
+
+class FullWidthImageCardSection(blocks.StructBlock):
+    background_image = ImageChooserBlock(required=False)
+    header = blocks.RichTextBlock(required=False)
+    text_accent_color = blocks.CharBlock(max_length=50, required=False)
+    body = blocks.RichTextBlock(required=False)
+    accent_image = ImageChooserBlock()
+    button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
+
+    class Meta:
+        template = "blocks/full_width_image_card_section.html"
 
 
 class BlockQuote(blocks.StructBlock):
@@ -229,7 +244,10 @@ class ImageSection(blocks.StructBlock):
 class HotelIntro(blocks.StructBlock):
     tagline = blocks.CharBlock(max_length=50)
     tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
+    tagline_maintain_horizontal = blocks.BooleanBlock(required=False)
     header = blocks.CharBlock(max_length=250)
+    header_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=False)
+    text_accent_color = blocks.CharBlock(max_length=50, required=False)
     subheader = blocks.CharBlock(max_length=50, required=False)
     subheader_2 = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock()
@@ -387,6 +405,7 @@ class EventsFooter(blocks.StructBlock):
 
 class FadeInFooter(blocks.StructBlock):
     background_image = ImageChooserBlock(required=False)
+    background_text = blocks.CharBlock(max_length=10, required=False)
 
     class Meta:
         template = "blocks/fade_out_footer.html"

@@ -5,6 +5,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
                                          StreamFieldPanel)
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -23,6 +24,7 @@ from .blocks import (  # isort:skip
     FadeInFooter,
     FloorPlanSection,
     FullWidthImage,
+    FullWidthImageCardSection,
     HeaderLinkBlock,
     HeaderTextParagraph,
     Hero,
@@ -165,9 +167,21 @@ class FormField(AbstractFormField):
 
 
 class HomePage(Page):
-    body = RichTextField()
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("intro", HotelIntro()),
+            ("image_section", ImageSection()),
+            ("split_image_text_card_section", SplitImageTextCardSection()),
+            ("full_width_image_card_section", FullWidthImageCardSection()),
+            ("home_page_footer", FadeInFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
 
-    content_panels = Page.content_panels + [FieldPanel("body", classname="full")]
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
 class FormPage(AbstractEmailForm):

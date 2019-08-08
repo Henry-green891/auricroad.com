@@ -32,6 +32,13 @@ import 'foundation-sites/dist/js/foundation.min.js';
     setMobileDropdownState();
     $(window).scroll(function(){
       setHeaderClass($(window).scrollTop());
+      if ($('.hero.video-only-hero video').length > 0
+        && $('.hero.video-only-hero video')[0].paused === false
+        && $(document).scrollTop() !== 0) {
+        $('.hero.video-only-hero video')[0].pause();
+        $('.hero.video-only-hero .hero-video').removeClass('is-playing');
+        $('#play-button-wrapper').removeClass('hidden');
+      }
     });
     $(window).resize(function(){
       setMobileDropdownState();
@@ -60,6 +67,27 @@ import 'foundation-sites/dist/js/foundation.min.js';
         window.location = $(this).data('href');
     });
 
+    $('.hero.video-only-hero video').each(function() {
+      this.controls = false;
+    });
+
+    $('#play-button-wrapper').click(function(e) {
+      if ($('.hero.video-only-hero video').length > 0) {
+        $(window).scrollTop(0);
+        $('.hero.video-only-hero video')[0].play()
+        $('.hero.video-only-hero .hero-video').addClass('is-playing');
+        $('#play-button-wrapper').addClass('hidden');
+      }
+      e.stopPropagation();
+    });
+
+    $('.hero').click(function() {
+      if ($('.hero.video-only-hero video').length > 0 && !$('.hero.video-only-hero video').paused) {
+        $('.hero.video-only-hero video')[0].pause();
+        $('.hero.video-only-hero .hero-video').removeClass('is-playing');
+        $('#play-button-wrapper').removeClass('hidden');
+      }
+    });
   }
 
   $(init);

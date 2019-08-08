@@ -2,4 +2,7 @@
     {% if value.background_image %}
         <img src="{{ value.background_image.file.url }}">
     {% endif %}
+    {% if value.background_text %}
+        <h1 class="background-text">{{ value.background_text }}</h1>
+    {% endif %}
 </div>

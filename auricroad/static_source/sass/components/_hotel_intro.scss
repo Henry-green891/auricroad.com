@@ -2,7 +2,10 @@
     @include xy-grid();
     justify-content: center;
     .hotel-intro-inner {
-        margin-top: -150px;
+        margin-top: -80px;
+        @include breakpoint(large) {
+            margin-top: -150px;
+        }
         @include xy-cell(10);
         @include xy-grid('vertical');
         align-items: center;
@@ -21,26 +24,13 @@
                 @include xy-cell(7);
             }
             .intro-show-desktop-mobile {
-                display: block;
-                @include breakpoint(tablet only) {
-                    display: none;
-                }
-                @include breakpoint(large only) {
-                    display: none;
-                }
-                @include breakpoint(xlarge only) {
+                @media screen and (min-width: 767px) and (max-width: 1023px) {
                     display: none;
                 }
             }
             .intro-show-tablet {
                 display: none;
                 @include breakpoint(tablet only) {
-                    display: block;
-                }
-                @include breakpoint(large only) {
-                    display: block;
-                }
-                @include breakpoint(xlarge only) {
                     display: block;
                 }
             }

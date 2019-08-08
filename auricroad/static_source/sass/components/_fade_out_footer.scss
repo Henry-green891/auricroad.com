@@ -1,6 +1,19 @@
 .fade-out-footer {
+    position: relative;
     margin-top: -25%;
+    @include xy-grid();
+    justify-content: center;
+    z-index: -1;
     img {
         width: 100%;
+    }
+    .background-text {
+        position: absolute;
+        top: 0;
+        display: none;
+        @include breakpoint(tablet) {
+            display: block;
+            top: -200px;
+        }
     }
 }

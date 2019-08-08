@@ -26,6 +26,8 @@ IMAGE_GROUP_LAYOUTS = (
         "double_height_half_left",
         "Double Height Half Left, Two Quarters and Half Width Right (Pick 4 Images)",
     ),
+    ("one_third_two_thirds", "One 1/3 Image on left, One 2/3 Image (Pick 2 Images)"),
+    ("two_thirds_one_third", "One 2/3 Image on left, One 1/3 Image (Pick 2 Images)"),
 )
 
 SOCIAL_TYPES = (

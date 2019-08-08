@@ -1,0 +1,64 @@
+.full-width-image-card {
+    background-color: $swirl;
+    @include xy-grid();
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    @include breakpoint (tablet) {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+    @include breakpoint(large) {
+        background-color: none;
+        height: calc(120vh - 140px);
+        min-height: 1200px;
+        
+        margin-top: 90px;
+        margin-bottom: 90px;
+        position: relative;
+    }
+    .background-image {
+        @include breakpoint(large) {
+            height: 100%;
+            max-width: none;
+
+        }
+    }
+    .text-card {
+        @include xy-cell(10);
+        margin-bottom: 40px;
+        @include breakpoint(tablet) {
+            margin-bottom: 110px;
+        }
+        @include breakpoint(large) {
+            position: absolute;
+            @include xy-cell(8, false, 0px);
+            top: 50%;
+            right: 8%;
+            background-color: $pearl-bg-strong;
+            padding: 40px 50px 50px;
+        }
+        @include breakpoint(xlarge) {
+            @include xy-cell(7, false, 0px);
+        }
+        @include breakpoint(xxlarge) {
+            @include xy-cell(6, false, 0px);
+        }
+        @include breakpoint(xxxlarge) {
+            @include xy-cell(5, false, 0px);
+        }
+        @include breakpoint(fourk) {
+            @include xy-cell(4, false, 0px);
+        }
+        
+        .header, .accented-text-wrapper {
+            margin-bottom: 26px;
+        }
+        .accent-image {
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+    }
+    
+}

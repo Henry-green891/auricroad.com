@@ -27,5 +27,15 @@
             </div>
             {{ image(value.images[3], "fill-1030x500") }}
         </div>
+    {% elif value.layout == "one_third_two_thirds" %}
+        <div class="thirds-wrapper">
+            {{ image(value.images[0], "fill-1000x1342", class="one-third") }}
+            {{ image(value.images[1], "fill-1500x1000", class="two-thirds") }}
+        </div>
+    {% elif value.layout == "two_thirds_one_third" %}
+        <div class="thirds-wrapper">
+            {{ image(value.images[0], "fill-1500x1000", class="two-thirds") }}
+            {{ image(value.images[1], "fill-1000x1342", class="one-third") }}
+        </div>
     {% endif %}
 </div>

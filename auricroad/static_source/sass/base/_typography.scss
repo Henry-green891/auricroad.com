@@ -162,6 +162,12 @@ select {
   &.size-4 {
     font-size: 25px;
     line-height: 32px;
+    &.skip-tablet {
+      @include breakpoint(tablet) {
+        font-size: 50px;
+        line-height: 60px;
+      }
+    }
     @include breakpoint(tablet) {
       font-size: 35px;
       line-height: 42px;
@@ -252,7 +258,7 @@ select {
 }
 
 .font-d {
-  font-family: "HelveticaNeueRegular", sans-serif;
+  font-family: "HelveticaNeueRegular";
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -304,7 +310,7 @@ select {
 }
 
 .font-e {
-  font-family: "HelveticaNeueMedium", sans-serif;
+  font-family: "HelveticaNeueMedium";
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -334,7 +340,7 @@ select {
 }
 
 .font-f {
-  font-family: "EngraversGothic", sans-serif;
+  font-family: "EngraversGothic";
   &.size-1 {
     font-size: 11px;
     letter-spacing: .02em;

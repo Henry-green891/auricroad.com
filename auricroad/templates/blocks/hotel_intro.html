@@ -19,9 +19,17 @@
                 <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
                 <div class="center-vertical-line gray"></div>
             {% endif %}
-            <div class="accented-text-wrapper header-wrapper">
-                <h3 class="accented-text header font-a size-3">{{ value.header }}</h3>
-            </div>
+            {% if value.text_accent_color %}
+                <div class="accented-text-wrapper header-wrapper">
+                    <h3 class="accented-text header font-a
+                        size-{% if value.header_size %}{{value.header_size}}{% else %}3{% endif %}
+                    ">{{ value.header }}</h3>
+                </div>
+            {% else %}
+                <h1 class="header font-a
+                    size-{% if value.header_size %}{{value.header_size}}{% else %}3{% endif %}
+                ">{{ value.header }}</h1>
+            {% endif %}
             {% if value.subheader %}
                 <h1 class="subheader bold font-e size-1">{{ value.subheader }}</h1>
             {% endif %}
@@ -48,7 +56,7 @@
                     {{ value.finer_points_body }}
                 </div>
             {% endif %}
-            {% if value.accent_image %}
+            {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
                 <img class="accent-image" src="{{ value.accent_image.file.url }}">
             {% endif %}
             {% if value.button_text %}

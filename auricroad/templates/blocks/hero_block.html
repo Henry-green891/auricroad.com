@@ -1,36 +1,52 @@
-<div class="hero{% if value.extended_bottom_padding %} extended-bottom-padding{% endif %}{% if value.reduced_padding %} reduced-padding{% endif %}{% if value.wider_desktop_layout %} wider-desktop-layout{% endif %}">
-    <div
-        class="hero-background-wrapper {% if value.show_diamond_overlay %}has-overlay{% endif %} {% if value.cards %}has-cards{% endif %}"
-        {% if value.background_image %}
-            {% if value.show_diamond_overlay %}
-                style="background-image: url('/static/img/auric-diamondstroke.svg'), url('{{ value.background_image.file.url }}');"
-            {% else %}
-                style="background-image: url('{{ value.background_image.file.url }}');"
+<div class="hero
+{% if not value.video_only_hero %}
+    {% if value.extended_bottom_padding %} extended-bottom-padding{% endif %}{% if value.reduced_padding %} reduced-padding{% endif %}{% if value.wider_desktop_layout %} wider-desktop-layout{% endif %}
+{% else %}
+    video-only-hero
+{% endif %}
+">
+    {% if not value.video_only_hero %}
+        <div
+            class="hero-background-wrapper {% if value.show_diamond_overlay %}has-overlay{% endif %} {% if value.cards %}has-cards{% endif %}"
+            {% if value.background_image %}
+                {% if value.show_diamond_overlay %}
+                    style="background-image: url('/static/img/auric-diamondstroke.svg'), url('{{ value.background_image.file.url }}');"
+                {% else %}
+                    style="background-image: url('{{ value.background_image.file.url }}');"
+                {% endif %}
             {% endif %}
-        {% endif %}
-    >
-        <div class="static-section-header">
-            <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
-            <div class="center-vertical-line white"></div>
-            <div class="accented-text-wrapper">
-                <h2 class="accented-text header font-a size-2">{{ value.static_header }}</h2>
+        >
+            <div class="static-section-header">
+                <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
+                <div class="center-vertical-line white"></div>
+                <div class="accented-text-wrapper">
+                    <h2 class="accented-text header font-a size-2">{{ value.static_header }}</h2>
+                </div>
+                {% if value.static_body %}
+                    <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">{{ value.static_body|richtext }}</div>
+                {% endif %}
             </div>
-            {% if value.static_body %}
-                <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">{{ value.static_body|richtext }}</div>
+            {% if value.cards %}
+                <div class="hero-cards">
+                    {{ value.cards }}
+                </div>
             {% endif %}
         </div>
-        {% if value.cards %}
-            <div class="hero-cards">
-                {{ value.cards }}
-            </div>
-        {% endif %}
-    </div>
+    {% endif %}
     {% if value.hero_video %}
         <div class="hero-video">
+            {% if value.show_diamond_overlay and value.video_only_hero %}
+                <img class="video-diamond-overlay" src="/static/img/auric-diamondstroke.svg">
+            {% endif %}
             <video poster="{{ value.hero_video.thumbnail.url }}" controls>
                 <source src="{{ value.hero_video.file.url }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+        </div>
+    {% endif %}
+    {% if value.video_only_hero %}
+        <div id="play-button-wrapper">
+            <i class="far fa-play-circle" id="video-play-button"></i>
         </div>
     {% endif %}
 </div>

@@ -1,0 +1,17 @@
+body.homepage {
+    background-color: $satin;
+    .block-image_section,
+    .block-split_image_text_card_section {
+        @include xy-grid();
+        justify-content: center;
+        .image-section,
+        .split-image-text-card-section  {
+            @include xy-cell(10);
+        }
+    }
+    .hotel-intro .hotel-intro-inner .hotel-intro-inner-inner {
+        @include breakpoint(tablet) {
+            @include xy-cell(10);
+        }
+    }
+}
