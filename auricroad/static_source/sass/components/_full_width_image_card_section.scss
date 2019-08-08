@@ -50,6 +50,10 @@
         @include breakpoint(fourk) {
             @include xy-cell(4, false, 0px);
         }
+
+        .header {
+            color: $text-black;
+        }
         
         .header, .accented-text-wrapper {
             margin-bottom: 26px;

@@ -30,6 +30,9 @@
             @include xy-grid();
             border: 1px solid $gray-border;
             .slide-selector-tab {
+                @include xy-grid();
+                align-items: center;
+                justify-content: center;
                 @include xy-cell(6);
                 padding: 18px 20px 18px 20px;
                 @include breakpoint(tablet) {
