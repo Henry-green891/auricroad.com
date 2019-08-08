@@ -48,6 +48,7 @@
         }
         @include breakpoint(large) {
             min-height: 800px;
+            width: 100%;
         }
         img {
             @include xy-cell(11);

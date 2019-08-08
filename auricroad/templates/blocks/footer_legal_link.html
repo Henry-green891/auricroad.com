@@ -1,0 +1,1 @@
+<a class="font-f size-3" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">{{ value.text }}</a>

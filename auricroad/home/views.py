@@ -1,13 +1,16 @@
 # Create your views here.
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render_to_response
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, ModelFormMixin
 
 # from django.views.generic.list import ListView
 # from django.views.generic.detail import DetailView
 from .forms import UserForm
+from .models import Contact
+from .utils import form_send_mail
+from .wagtail_hooks import ContactFormSettings
 
 
 @method_decorator(login_required, name="dispatch")
@@ -36,3 +39,26 @@ def handler500(request, template_name="500.html"):
     response = render_to_response(template_name)
     response.status_code = 500
     return response
+
+
+class ContactFormView(FormView, ModelFormMixin):
+    model = Contact
+    fields = ["first_name", "last_name", "email"]
+    http_method_names = ["post"]
+
+    def form_valid(self, form):
+        form.save()
+        contact_form_settings = ContactFormSettings.for_site(self.request.site)
+        if contact_form_settings.to_address:
+            form_send_mail(
+                form,
+                contact_form_settings.to_address,
+                contact_form_settings.from_address,
+                contact_form_settings.subject,
+            )
+        return_url = self.request.POST.get("return_url", "/")
+        return redirect(return_url)
+
+    def form_invalid(self, form):
+        return_url = self.request.POST.get("return_url", "/")
+        return redirect(return_url)

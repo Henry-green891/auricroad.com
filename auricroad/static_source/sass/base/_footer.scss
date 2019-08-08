@@ -1,1 +1,146 @@
-//footer scss goes here.
+footer {
+    @include xy-grid();
+    justify-content: center;
+    .footer-inner {
+        @include xy-cell(12, false, 0px);
+        @include xy-grid();
+        justify-content: center;
+        &.bottom {
+            background-color: $swirl;
+            padding: 20px 0px;
+        }
+        .footer-inner-inner {
+            @include xy-cell(10);
+            @include xy-grid();
+            justify-content: center;
+            &.top {
+                padding-top: 50px;
+                padding-bottom: 50px;
+                .center-vertical-line {
+                    margin-bottom: 8px;
+                }
+                .half-width {
+                    @include xy-cell(12);
+                    @include breakpoint(large) {
+                        @include xy-cell(5);
+                        &:not(.form-section) {
+                            @include xy-cell(6);
+                            @include xy-cell-offset(1);
+                        }
+                    }
+                    &:not(.form-section) {
+                        @include xy-grid();
+                    }
+                    .block-link_column {
+                        @include xy-cell(4)
+                        a {
+                            line-height: 2;
+                        }
+
+                    }
+                    &.tablet-up {
+                        @include breakpoint(medium down) {
+                            display: none;
+                        }
+                    }
+                    
+                }
+                hr.tablet-only {
+                    display: none;
+                    @include breakpoint(tablet only) {
+                        display: block;
+                        width: 100%;
+                        max-width: none;
+                    }
+                }
+                form {
+                    @include xy-grid();
+                    .full-width-input {
+                        @include breakpoint(tablet only) {
+                            width: calc(33.33% - 10px);
+                            margin-left: 10px;
+                        }
+                    }
+                    .half-width-input {
+                        @include breakpoint(tablet) {
+                            width: 33.33%;
+                            &:first-child {
+                                width: calc(33.33% - 10px);
+                                margin-right: 10px;
+                            }
+                        }
+                        @include breakpoint(large) {
+                            width: 50%;
+                            &:first-child {
+                                width: calc(50% - 10px);
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+
+            }
+            &.bottom {
+                .block-legal_bar {
+                    width: 100%;
+                    .legal-items-wrapper {
+                        @include xy-grid();
+                        align-items: center;
+                        > * {
+                            @include xy-cell(12);
+                            @include breakpoint(large) {
+                                @include xy-cell(6);
+                            }
+                            
+                        }
+                        .copyright-text {
+                            text-align: center;
+                            @include breakpoint(tablet) {
+                                text-align: left;
+                            }
+                            @include breakpoint(large) {
+                                margin-bottom: 0;
+                            }
+                        }
+                        .legal-links-wrapper {
+                            @include xy-grid();
+                            @include breakpoint(tablet only) {
+                                justify-content: flex-start;
+                            }
+                            @include breakpoint(large) {
+                                justify-content: flex-end;
+                            }
+                            .block-link {
+                                @include xy-cell(12);
+                                text-align: center;
+                                margin-bottom: 8px;
+                                @include breakpoint(tablet) {
+                                    width: auto;
+                                    margin-bottom: 0;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                }
+                                @include breakpoint(tablet only) {
+                                    padding-right: 40px;
+                                }
+                                @include breakpoint(large) {
+                                    padding-left: 15px;
+                                }
+                                @include breakpoint(xlarge) {
+                                    padding-left: 40px;
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        a {
+            color: $text-charcoal;
+            &:hover {
+                color: $text-black;
+            }
+        }
+    }
+}

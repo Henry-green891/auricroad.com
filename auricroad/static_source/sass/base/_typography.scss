@@ -124,6 +124,10 @@ select {
   font-weight: 700;
 }
 
+.gray-text {
+  color: $text-light-gray;
+}
+
 .font-a {
   font-family: "ChronicleDisplayRoman";
   &.size-1 {

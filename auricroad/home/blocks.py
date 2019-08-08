@@ -33,14 +33,47 @@ class MediaBlock(AbstractMediaChooserBlock):
         return format_html(player_code, value.file.url)
 
 
-class HeaderLinkBlock(blocks.StructBlock):
+class LinkBlock(blocks.StructBlock):
     text = blocks.CharBlock(max_length=50)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
+
+
+class HeaderLinkBlock(LinkBlock):
     orange_accent_text = blocks.BooleanBlock(required=False)
 
     class Meta:
         template = "blocks/header_link_block.html"
+
+
+class FooterLinkBlock(LinkBlock):
+    social_type = blocks.ChoiceBlock(choices=SOCIAL_TYPES, required=False)
+
+    class Meta:
+        template = "blocks/footer_link_block.html"
+
+
+class FooterLinkColumn(blocks.StructBlock):
+    column_header = blocks.CharBlock(max_length=50)
+    links = blocks.StreamBlock(
+        [("link", FooterLinkBlock())], null=True, blank=True, required=False
+    )
+
+    class Meta:
+        template = "blocks/footer_link_column.html"
+
+
+class FooterLegalBar(blocks.StructBlock):
+    copyright_text = blocks.CharBlock(max_length=255)
+    links = blocks.StreamBlock(
+        [("link", LinkBlock(template="blocks/footer_legal_link.html"))],
+        null=True,
+        blank=True,
+        required=False,
+    )
+
+    class Meta:
+        template = "blocks/footer_legal_bar.html"
 
 
 class SocialIconLink(blocks.StructBlock):

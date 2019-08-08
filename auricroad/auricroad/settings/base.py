@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.messages",
+    "wagtail.contrib.settings",
     "django.contrib.staticfiles",
     "django.contrib.admin",
     "localflavor",

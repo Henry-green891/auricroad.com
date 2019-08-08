@@ -1,4 +1,5 @@
 from django.db import models  # NOQA
+from django.utils.translation import ugettext_lazy as _
 
 from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
@@ -23,6 +24,8 @@ from .blocks import (  # isort:skip
     EventsFooter,
     FadeInFooter,
     FloorPlanSection,
+    FooterLegalBar,
+    FooterLinkColumn,
     FullWidthImage,
     FullWidthImageCardSection,
     HeaderLinkBlock,
@@ -128,6 +131,34 @@ class NavBar(models.Model):
         return self.name
 
 
+@register_model_chooser
+class Footer(models.Model):
+    name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+
+    form_section_name = models.CharField(max_length=50)
+    form_section_caption = models.CharField(max_length=250)
+
+    link_columns = StreamField(
+        [("link_column", FooterLinkColumn())], null=True, blank=True
+    )
+
+    legal_bar_links = StreamField(
+        [("legal_bar", FooterLegalBar())], null=True, blank=True
+    )
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("form_section_name"),
+        FieldPanel("form_section_caption"),
+        StreamFieldPanel("link_columns"),
+        StreamFieldPanel("legal_bar_links"),
+    ]
+
+    def __str__(self):
+        return self.name
+
+
 class CustomImage(AbstractImage):
     # Add any extra fields to image here
 
@@ -209,6 +240,15 @@ class FormPage(AbstractEmailForm):
         InlinePanel("form_fields", label="Form Fields"),
         FieldPanel("thank_you_text"),
     ]
+
+
+class Contact(models.Model):
+    first_name = models.CharField(_("first name"), max_length=30)
+    last_name = models.CharField(_("last name"), max_length=30)
+    email = models.EmailField(_("email address"))
+
+    def __str__(self):
+        return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
 
 class HotelsPage(Page):

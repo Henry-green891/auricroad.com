@@ -1,0 +1,8 @@
+<a class="font-c size-2" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+    {% if value.social_type == "instagram" %}
+        <i class="fab fa-instagram"></i>
+    {% elif value.social_type == "facebook" %}
+        <i class="fab fa-facebook-f"></i>
+    {% endif %}
+    {{ value.text }}
+</a>

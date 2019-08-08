@@ -1,4 +1,33 @@
 <footer>
-  <p>&copy; Company</p>
+    {% if global_footer_obj %}
+        <div class="footer-inner top">
+            <div class="footer-inner-inner top">
+                <div class="half-width form-section">
+                    <h3 class="font-b size-3 gray-text">{{ global_footer_obj.form_section_name }}</h3>
+                    <div class="center-vertical-line tide"></div>
+                    <h2 class="font-c size-2">{{ global_footer_obj.form_section_caption }}</h2>
+                    <form action="{{ url('contact_form') }}" method="POST" >
+                        <input class="half-width-input" type="text" name="first_name" required="" placeholder="First Name">
+                        <input class="half-width-input" type="text" name="last_name" required="" placeholder="Last Name">
+                        <input class="full-width-input" type="text" name="email" required="" placeholder="Email">
+                        <input type="hidden" name="return_url" value="{{ request.path }}">
+                        {% csrf_token %}
+                        <input class="button black" type="submit" value="Sign Up">
+                    </form>
+                </div>
+                <hr class="tablet-only">
+                <div class="half-width tablet-up">
+                    {{ global_footer_obj.link_columns }}
+                </div>
+            </div>
+        </div>
+        <div class="footer-inner bottom">
+            <div class="footer-inner-inner bottom">
+                {{ global_footer_obj.legal_bar_links }}
+            </div>
+        </div>
+    {% else %}
+        You need to create a Footer called Global Footer Bar, in order for it to show up here
+    {% endif %}
 </footer>
 
