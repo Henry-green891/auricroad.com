@@ -9,9 +9,18 @@ body.homepage {
             @include xy-cell(10);
         }
     }
-    .hotel-intro .hotel-intro-inner .hotel-intro-inner-inner {
-        @include breakpoint(tablet) {
-            @include xy-cell(10);
+    .hotel-intro .hotel-intro-inner {
+        background-color: $satin;
+        .hotel-intro-inner-inner {
+            @include breakpoint(tablet) {
+                @include xy-cell(10);
+            }
+            @include breakpoint(large) {
+                @include xy-cell(8);
+            }
+            @include breakpoint(xxlarge) {
+                @include xy-cell(7);
+            }
         }
     }
     .desktop-nav-bar:not(.fixed):not(.video-playing) {
