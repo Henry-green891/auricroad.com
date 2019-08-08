@@ -7,6 +7,7 @@ from django.views.generic.edit import FormView, ModelFormMixin
 
 # from django.views.generic.list import ListView
 # from django.views.generic.detail import DetailView
+from .context_processors import global_header
 from .forms import UserForm
 from .models import Contact
 from .utils import form_send_mail
@@ -30,13 +31,17 @@ def error(request):
 
 
 def handler404(request, exception, template_name="404.html"):
-    response = render_to_response(template_name)
+    context = {"request": request}
+    context.update(global_header(request))
+    response = render_to_response(template_name, context=context)
     response.status_code = 404
     return response
 
 
 def handler500(request, template_name="500.html"):
-    response = render_to_response(template_name)
+    context = {"request": request}
+    context.update(global_header(request))
+    response = render_to_response(template_name, context=context)
     response.status_code = 500
     return response
 
