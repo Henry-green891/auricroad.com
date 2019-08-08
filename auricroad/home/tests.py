@@ -50,7 +50,7 @@ class ContactFormTest(TestCase):
         self.assertEqual(Contact.objects.first().email, self.form_data["email"][0])
 
     def test_bad_form_submission(self):
-        del self.form_data["last_name"]
+        del self.form_data["email"]
         url = reverse("contact_form")
         response = self.client.post(url, self.form_data)
         self.assertEqual(response.url, "/hotels/")

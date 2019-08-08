@@ -138,6 +138,9 @@ class Footer(models.Model):
 
     form_section_name = models.CharField(max_length=50)
     form_section_caption = models.CharField(max_length=250)
+    form_section_social_link = StreamField(
+        [("icons", SocialIconLink())], null=True, blank=True
+    )
 
     link_columns = StreamField(
         [("link_column", FooterLinkColumn())], null=True, blank=True
@@ -151,6 +154,7 @@ class Footer(models.Model):
         FieldPanel("name"),
         FieldPanel("form_section_name"),
         FieldPanel("form_section_caption"),
+        StreamFieldPanel("form_section_social_link"),
         StreamFieldPanel("link_columns"),
         StreamFieldPanel("legal_bar_links"),
     ]
@@ -243,8 +247,8 @@ class FormPage(AbstractEmailForm):
 
 
 class Contact(models.Model):
-    first_name = models.CharField(_("first name"), max_length=30)
-    last_name = models.CharField(_("last name"), max_length=30)
+    first_name = models.CharField(_("first name"), max_length=30, blank=True)
+    last_name = models.CharField(_("last name"), max_length=30, blank=True)
     email = models.EmailField(_("email address"))
 
     def __str__(self):

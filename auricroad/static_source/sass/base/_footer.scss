@@ -56,12 +56,18 @@ footer {
                 form {
                     @include xy-grid();
                     .full-width-input {
-                        @include breakpoint(tablet only) {
+                        margin-bottom: 8px;
+                        @include breakpoint(tablet) {
+                            @include xy-cell(9, false, 0);
+                            margin: 0;
+                            height: 42px;
+                        }
+                        /*@include breakpoint(tablet only) {
                             width: calc(33.33% - 10px);
                             margin-left: 10px;
-                        }
+                        }*/
                     }
-                    .half-width-input {
+                    /*.half-width-input {
                         @include breakpoint(tablet) {
                             width: 33.33%;
                             &:first-child {
@@ -75,6 +81,14 @@ footer {
                                 width: calc(50% - 10px);
                                 margin-right: 10px;
                             }
+                        }
+                    }*/
+                    .row-ender-button {
+                        width: 100%;
+                        @include breakpoint(tablet) {
+                            @include xy-cell(3, false, 0);
+                            margin: 0;
+                            min-width: unset;
                         }
                     }
                 }

@@ -1,8 +1,18 @@
 .social-icons-row {
     @include xy-grid();
     font-size: 15px;
+    &.large {
+        font-size: 24px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
     .social-icon-link {
         padding-left: 10px;
         padding-right: 10px;
+    }
+    &.hug-left {
+        .block-icons:first-child .social-icon-link {
+            padding-left: 0;
+        }
     }
 }
