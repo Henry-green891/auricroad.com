@@ -25,13 +25,11 @@
         <div class="body font-d size-3{% if value.tagline_2 %}{% if value.header|length > 50 %} extra-reduced-margin{% else %} reduced-margin{% endif %}{% endif %}">{{ value.body | richtext }}</div>
     {% endif %}
     <div class="image-card-link-row">
-        {% if value.detail_link %}
-            <a href="{{ value.detail_link.url }}"><button class="button white rounded font-c size-2">{{ value.detail_link_text }}</button></a>
-        {% elif value.detail_link_external_url %}
-            <a href="{{ value.detail_link_external_url }}"><button class="button white rounded font-c size-2">{{ value.detail_link_text }}</button></a>
+        {% if value.detail_link or value.detail_link_external_url %}
+            <a href="{{ value.detail_link.url or value.detail_link_external_url }}"><button class="button white rounded font-c size-2">{{ value.detail_link_text }}</button></a>
         {% endif %}
-        {% if value.additional_link_text %}
-            <a href="{{ value.additional_link_url }}"><button class="button white rounded font-c size-2" {% if not value.additional_link_url %}disabled="disabled"{% endif %}>{{ value.additional_link_text }}</button></a>
+        {% if value.additional_detail_link or value.additional_link_url %}
+            <a href="{{ value.additional_detail_link.url or value.additional_link_url }}"><button class="button white rounded font-c size-2" {% if not value.additional_link_url %}disabled="disabled"{% endif %}>{{ value.additional_link_text }}</button></a>
         {% endif %}
     </div>
     

@@ -188,6 +188,9 @@ class BookNowImageCard(ImageCard):
     )
     detail_link_external_url = blocks.CharBlock(max_length=500, required=False)
     additional_link_text = blocks.CharBlock(max_length=50, required=False)
+    additional_detail_link = blocks.PageChooserBlock(
+        target_model="home.HotelDetailPage", required=False
+    )
     additional_link_url = blocks.CharBlock(max_length=500, required=False)
 
 
