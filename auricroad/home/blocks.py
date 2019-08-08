@@ -275,8 +275,8 @@ class ImageSection(blocks.StructBlock):
 
 
 class HotelIntro(blocks.StructBlock):
-    tagline = blocks.CharBlock(max_length=50)
-    tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=True)
+    tagline = blocks.CharBlock(max_length=50, required=False)
+    tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=False)
     tagline_maintain_horizontal = blocks.BooleanBlock(required=False)
     header = blocks.CharBlock(max_length=250)
     header_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=False)
