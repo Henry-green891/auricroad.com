@@ -68,8 +68,8 @@ $hero-play-button-width: 115px;
         }
         #play-button-wrapper {
             position: absolute;
-            top: calc(50% - ($hero-play-button-width / 2));
-            left: calc(50% - ($hero-play-button-width / 2));
+            top: calc(50% - (#{$hero-play-button-width} / 2));
+            left: calc(50% - (#{$hero-play-button-width} / 2));
             height: $hero-play-button-width;
             width: $hero-play-button-width;
             &.hidden {
