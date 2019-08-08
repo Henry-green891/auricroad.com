@@ -14,4 +14,7 @@ body.homepage {
             @include xy-cell(10);
         }
     }
+    .desktop-nav-bar:not(.fixed):not(.video-playing) {
+        z-index: 1;
+    }
 }

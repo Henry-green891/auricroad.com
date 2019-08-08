@@ -38,6 +38,7 @@ import 'foundation-sites/dist/js/foundation.min.js';
         $('.hero.video-only-hero video')[0].pause();
         $('.hero.video-only-hero .hero-video').removeClass('is-playing');
         $('#play-button-wrapper').removeClass('hidden');
+        $('.desktop-nav-bar').removeClass('video-playing');
       }
     });
     $(window).resize(function(){
@@ -77,6 +78,7 @@ import 'foundation-sites/dist/js/foundation.min.js';
         $('.hero.video-only-hero video')[0].play()
         $('.hero.video-only-hero .hero-video').addClass('is-playing');
         $('#play-button-wrapper').addClass('hidden');
+        $('.desktop-nav-bar').addClass('video-playing');
       }
       e.stopPropagation();
     });
@@ -86,6 +88,7 @@ import 'foundation-sites/dist/js/foundation.min.js';
         $('.hero.video-only-hero video')[0].pause();
         $('.hero.video-only-hero .hero-video').removeClass('is-playing');
         $('#play-button-wrapper').removeClass('hidden');
+        $('.desktop-nav-bar').removeClass('video-playing');
       }
     });
   }
