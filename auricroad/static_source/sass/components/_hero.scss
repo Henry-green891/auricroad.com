@@ -60,8 +60,8 @@ $hero-play-button-width: 115px;
             }
             .video-diamond-overlay {
                 position: absolute;
-                top: -30%;
-                height: 160%;
+                top: -20vh;
+                height: 140vh;
                 max-width: none;
                 display: none;
             }
@@ -111,13 +111,9 @@ $hero-play-button-width: 115px;
             background-position-x: center, center;
             background-repeat: no-repeat, no-repeat;
             @include breakpoint(large) {
-                background-size: auto 130%, cover;
-                background-position-y: 50%, top;
+                background-size: auto 140vh, cover;
+                background-position-y: -20vh, top;
             }
-            @include breakpoint(xxlarge) {
-                background-size: 100% auto, cover;
-            }
-            
             &.has-cards {
                 @include breakpoint(medium down) {
                     background-size: 0%, auto 50%;
