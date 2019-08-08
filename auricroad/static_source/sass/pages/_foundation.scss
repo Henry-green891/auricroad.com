@@ -1,0 +1,31 @@
+body.foundation {
+    background-color: $satin;
+    .block-image_section {
+        @include xy-grid();
+        justify-content: center;
+        .image-section {
+            @include xy-cell(10);
+        }
+    }
+    .block-events_footer {
+        .static-section-header {
+            margin-top: 80px;
+            color: $text-black;
+            @include xy-cell(10);
+            .body,
+            .tagline {
+                color: $text-charcoal;
+            }
+            .body {
+                p {
+                    @extend .font-d;
+                    @extend .size-2;
+                    font-weight: normal;
+                }
+            }
+            .center-vertical-line {
+                border-left-color: $gray-bar;
+            }
+        }
+    }
+}

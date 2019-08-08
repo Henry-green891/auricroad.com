@@ -251,6 +251,7 @@ class HotelIntro(blocks.StructBlock):
     subheader = blocks.CharBlock(max_length=50, required=False)
     subheader_2 = blocks.CharBlock(max_length=50, required=False)
     body = blocks.RichTextBlock()
+    second_body = blocks.RichTextBlock(required=False)
     accent_image = ImageChooserBlock(required=False)
     intro_video = MediaBlock(icon="media", required=False)
     images = blocks.StreamBlock(

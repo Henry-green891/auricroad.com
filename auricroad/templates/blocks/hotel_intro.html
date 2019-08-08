@@ -56,6 +56,9 @@
                     {{ value.finer_points_body }}
                 </div>
             {% endif %}
+            {% if value.second_body %}
+                <h2 class="body semi-bold font-d size-1">{{ value.second_body|richtext }}</h2>
+            {% endif %}
             {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
                 <img class="accent-image" src="{{ value.accent_image.file.url }}">
             {% endif %}

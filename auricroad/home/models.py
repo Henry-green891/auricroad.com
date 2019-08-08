@@ -365,6 +365,23 @@ class CareersPage(Page):
     parent_page_types = [HomePage]
 
 
+class FoundationPage(Page):
+    body = StreamField(
+        [
+            ("hero", Hero()),
+            ("intro", HotelIntro()),
+            ("image_section", ImageSection()),
+            ("events_footer", EventsFooter()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+    parent_page_types = [HomePage]
+
+
 class BasicInfoPage(Page):
     body = StreamField(
         [("header", PageHeaderText()), ("body_section", HeaderTextParagraph())],
