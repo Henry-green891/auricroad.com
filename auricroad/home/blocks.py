@@ -12,6 +12,8 @@ from .constants import (  # isort:skip
     IMAGE_GROUP_LAYOUTS,
     LAYOUT_CHOICES,
     SOCIAL_TYPES,
+    X_POSITIONS,
+    Y_POSITIONS,
 )
 
 from wagtailmedia.blocks import AbstractMediaChooserBlock  # isort:skip
@@ -101,6 +103,10 @@ class Hero(blocks.StructBlock):
     body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, default="e")
     body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, default=2)
     background_image = ImageChooserBlock(required=False)
+    background_image_x_position = blocks.ChoiceBlock(
+        choices=X_POSITIONS, default="center"
+    )
+    background_image_y_position = blocks.ChoiceBlock(choices=Y_POSITIONS, default="top")
     show_diamond_overlay = blocks.BooleanBlock(required=False)
     reduced_padding = blocks.BooleanBlock(required=False)
     extended_bottom_padding = blocks.BooleanBlock(required=False)

@@ -7,7 +7,13 @@
 ">
     {% if not value.video_only_hero %}
         <div
-            class="hero-background-wrapper {% if value.show_diamond_overlay %}has-overlay{% endif %} {% if value.cards %}has-cards{% endif %}"
+            class="
+                hero-background-wrapper
+                {% if value.show_diamond_overlay %}has-overlay{% endif %}
+                {% if value.cards %}has-cards{% endif %}
+                {% if value.background_image_x_position %}x-{{value.background_image_x_position}}{% endif %}
+                {% if value.background_image_y_position %}y-{{value.background_image_y_position}}{% endif %}
+            "
             {% if value.background_image %}
                 {% if value.show_diamond_overlay %}
                     style="background-image: url('/static/img/auric-diamondstroke.svg'), url('{{ value.background_image.file.url }}');"

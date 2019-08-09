@@ -116,17 +116,41 @@ $hero-play-button-width: 115px;
         }
         background-size: cover;
         background-position-x: center;
+        &.x-left {
+            background-position-x: left;
+        }
+        &.x-right {
+            background-position-x: right;
+        }
         &.has-overlay {
             background-size: 0%, cover;
             background-position-x: center, center;
+            &.x-left {
+                background-position-x: center, left;
+            }
+            &.x-right {
+                background-position-x: center, right;
+            }
             background-repeat: no-repeat, no-repeat;
             @include breakpoint(large) {
                 background-size: auto 130vh, cover;
                 background-position-y: -15vh, top;
+                &.y-center {
+                    background-position-y: -15vh, center;
+                }
+                &.y-bottom {
+                    background-position-y: -15vh, bottom;
+                }
             }
             @include breakpoint(xxlarge) {
                 background-size: auto 160vh, cover;
                 background-position-y: -30vh, top;
+                &.y-center {
+                    background-position-y: -30vh, center;
+                }
+                &.y-bottom {
+                    background-position-y: -30vh, bottom;
+                }
             }
             &.has-cards {
                 @include breakpoint(medium down) {

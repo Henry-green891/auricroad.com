@@ -15,6 +15,9 @@ ACCENT_BAR_CHOICES = (("vertical", "vertical"), ("horizontal", "horizontal"))
 
 LAYOUT_CHOICES = (("image_first", "Image First"), ("image_second", "Image Second"))
 
+X_POSITIONS = (("center", "center"), ("left", "left"), ("right", "right"))
+Y_POSITIONS = (("top", "top"), ("center", "center"), ("bottom", "bottom"))
+
 IMAGE_GROUP_LAYOUTS = (
     ("half_width", "Half Width (Pick 2 Images)"),
     ("half_two_quarter", "One Half Width, Two Quarter Width (Pick 3 Images)"),
