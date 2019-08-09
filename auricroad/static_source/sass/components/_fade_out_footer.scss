@@ -1,9 +1,11 @@
 .fade-out-footer {
     position: relative;
-    margin-top: -25%;
+    &:not(.no-bg) {
+        margin-top: -25%;
+    }
     @include xy-grid();
     justify-content: center;
-    z-index: -1;
+    
     img {
         width: 100%;
     }
@@ -14,6 +16,13 @@
         @include breakpoint(tablet) {
             display: block;
             top: -200px;
+        }
+    }
+    .button-wrapper {
+        margin-bottom: 120px;
+        z-index: 1;
+        .button {
+            margin-bottom: 0;
         }
     }
 }

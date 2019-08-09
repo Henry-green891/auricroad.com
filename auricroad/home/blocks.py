@@ -443,6 +443,9 @@ class EventsFooter(blocks.StructBlock):
 class FadeInFooter(blocks.StructBlock):
     background_image = ImageChooserBlock(required=False)
     background_text = blocks.CharBlock(max_length=10, required=False)
+    button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
 
     class Meta:
         template = "blocks/fade_out_footer.html"

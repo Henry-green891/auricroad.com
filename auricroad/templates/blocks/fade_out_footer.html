@@ -1,8 +1,13 @@
-<div class="fade-out-footer">
+<div class="fade-out-footer{% if not value.background_image %} no-bg{% endif %}">
     {% if value.background_image %}
         <img src="{{ value.background_image.file.url }}">
     {% endif %}
     {% if value.background_text %}
         <h1 class="background-text">{{ value.background_text }}</h1>
+    {% endif %}
+    {% if value.button_text %}
+        <a class="button-wrapper" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+            <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+        </a>
     {% endif %}
 </div>

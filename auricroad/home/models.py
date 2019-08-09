@@ -3,8 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -283,6 +282,7 @@ class HotelDetailPage(Page):
             ("activity_section", ActivitySection()),
             ("floor_plan_section", FloorPlanSection()),
             ("detail_section", HotelDetailSection()),
+            ("fade_in_footer", FadeInFooter()),
         ],
         null=True,
         blank=True,
