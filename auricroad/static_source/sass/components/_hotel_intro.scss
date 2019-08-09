@@ -113,7 +113,10 @@
         }
         .bottom-right-image {
             align-self: center;
-            width: 200px;
+            width: 100px;
+            @include breakpoint(tablet) {
+                width: 200px;
+            }
         }
     }
 }
