@@ -457,6 +457,7 @@ class ImageLogoLinkCard(blocks.StructBlock):
     logo_image = ImageChooserBlock(required=False)
     header = blocks.CharBlock(max_length=200)
     tagline = blocks.CharBlock(max_length=50)
+    tagline_2 = blocks.CharBlock(max_length=50, required=False)
     link_url = blocks.CharBlock(max_length=500)
 
     class Meta:
