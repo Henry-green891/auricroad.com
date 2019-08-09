@@ -289,6 +289,7 @@ class HotelIntro(blocks.StructBlock):
     body = blocks.RichTextBlock()
     second_body = blocks.RichTextBlock(required=False)
     accent_image = ImageChooserBlock(required=False)
+    bottom_right_image = ImageChooserBlock(required=False)
     intro_video = MediaBlock(icon="media", required=False)
     images = blocks.StreamBlock(
         [("image_row", ImageSection()), ("full_image", FullWidthImage())],

@@ -49,7 +49,7 @@
                 </div>
             {% endif %}
             {{ value.images }}
-            {% if value.accent_image %}
+            {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
                 <img class="accent-image" src="{{ value.accent_image.file.url }}">
             {% endif %}
             {% if value.finer_points_header and value.finer_points_body %}
@@ -61,13 +61,22 @@
             {% if value.second_body %}
                 <h2 class="body semi-bold font-d size-1">{{ value.second_body|richtext }}</h2>
             {% endif %}
-            {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
-                <img class="accent-image" src="{{ value.accent_image.file.url }}">
+            {% if value.bottom_right_image %}
+                <div class="bottom-right-image-wrapper{% if value.button_text %} has-button{% endif %}">
+                    <div class="left-section">
+            {% endif %}
+            {% if value.accent_image %}
+                        <img class="accent-image" src="{{ value.accent_image.file.url }}">
             {% endif %}
             {% if value.button_text %}
-                <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
-                    <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
-                </a>
+                        <a class="button-wrapper" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+                            <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+                        </a>
+            {% endif %}
+            {% if value.bottom_right_image %}
+                    </div>
+                    <img class="bottom-right-image" src="{{ value.bottom_right_image.file.url }}">
+                </div>
             {% endif %}
         </div>
     </div>

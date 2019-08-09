@@ -103,4 +103,17 @@
             margin-bottom: 40px;
         }
     }
+    .bottom-right-image-wrapper {
+        @include xy-grid();
+        justify-content: space-between;
+        .left-section {
+            @include xy-grid('vertical');
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+        .bottom-right-image {
+            align-self: center;
+            width: 200px;
+        }
+    }
 }
