@@ -48,7 +48,19 @@ $hero-play-button-width: 115px;
             &:not(.is-playing) {
                 z-index: -1;
                 .video-diamond-overlay {
-                    display: inline-block;
+                    @include breakpoint(tablet) {
+                        display: inline-block;
+                        top: -10vh;
+                        height: 120vh;
+                    }
+                    @include breakpoint(large) {
+                        top: -15vh;
+                        height: 130vh;
+                    }
+                    @include breakpoint(xxlarge) {
+                        top: -30vh;
+                        height: 160vh;
+                    }
                 }
             }
             video {
@@ -60,8 +72,6 @@ $hero-play-button-width: 115px;
             }
             .video-diamond-overlay {
                 position: absolute;
-                top: -20vh;
-                height: 140vh;
                 max-width: none;
                 display: none;
             }
@@ -111,8 +121,12 @@ $hero-play-button-width: 115px;
             background-position-x: center, center;
             background-repeat: no-repeat, no-repeat;
             @include breakpoint(large) {
-                background-size: auto 140vh, cover;
-                background-position-y: -20vh, top;
+                background-size: auto 130vh, cover;
+                background-position-y: -15vh, top;
+            }
+            @include breakpoint(xxlarge) {
+                background-size: auto 160vh, cover;
+                background-position-y: -30vh, top;
             }
             &.has-cards {
                 @include breakpoint(medium down) {
