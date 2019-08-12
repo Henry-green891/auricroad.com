@@ -77,7 +77,7 @@
                     @include xy-grid('vertical');
                     flex-direction: column-reverse;
                     align-items: center;
-                    @include breakpoint(xxlarge) {
+                    @include breakpoint(large) {
                         align-items: unset;
                         @include xy-grid();
                     }
@@ -85,9 +85,6 @@
                     .slide-left {
                         @include xy-cell(12);
                         @include breakpoint(large) {
-                            @include xy-cell(8);
-                        }
-                        @include breakpoint(xxlarge) {
                             @include xy-cell(5);
                             padding-right: 25px;
                         }
@@ -115,9 +112,6 @@
                         @include xy-cell(12);
                         margin-bottom: 20px;
                         @include breakpoint(large) {
-                            @include xy-cell(8);
-                        }
-                        @include breakpoint(xxlarge) {
                             margin-bottom: 0px;
                             @include xy-cell(7);
                         }
