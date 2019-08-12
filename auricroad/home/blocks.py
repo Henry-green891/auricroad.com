@@ -115,6 +115,7 @@ class Hero(blocks.StructBlock):
         [("card", HeroCard())], null=True, blank=True, required=False
     )
     hero_video = MediaBlock(icon="media", required=False)
+    hero_video_play_icon = ImageChooserBlock(required=False)
     video_only_hero = blocks.BooleanBlock(required=False)
 
     class Meta:

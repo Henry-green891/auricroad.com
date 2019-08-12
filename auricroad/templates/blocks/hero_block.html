@@ -52,7 +52,11 @@
     {% endif %}
     {% if value.video_only_hero %}
         <div id="play-button-wrapper">
-            <i class="far fa-play-circle" id="video-play-button"></i>
+            {% if value.hero_video_play_icon %}
+                {{ image(value.hero_video_play_icon, "fill-200x200", id="video-play-button") }}
+            {% else %}
+                <i class="far fa-play-circle" id="video-play-button" ></i>
+            {% endif %}
         </div>
     {% endif %}
 </div>
