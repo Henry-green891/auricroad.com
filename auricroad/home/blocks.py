@@ -8,6 +8,7 @@ from .constants import (  # isort:skip
     ACCENT_BAR_CHOICES,
     CUSTOM_TEXT_FUNCTIONS,
     FONT_CHOICES,
+    FONT_STYLE_CHOICES,
     FONT_SIZE_CHOICES,
     IMAGE_GROUP_LAYOUTS,
     LAYOUT_CHOICES,
@@ -139,6 +140,7 @@ class FullWidthImageCardSection(blocks.StructBlock):
 class BlockQuote(blocks.StructBlock):
     body = blocks.RichTextBlock()
     name = blocks.CharBlock(max_length=100, required=False)
+    name_font_style = blocks.ChoiceBlock(choices=FONT_STYLE_CHOICES, required=False)
     title = blocks.CharBlock(max_length=100, required=False)
     background_text = blocks.CharBlock(max_length=10, required=False)
     accent_image = ImageChooserBlock()

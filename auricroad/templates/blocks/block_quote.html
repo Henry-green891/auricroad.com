@@ -7,7 +7,13 @@
         <img src="{{ value.accent_image.file.url }}">
         <h5 class="body font-a size-5">{{ value.body }}</h5>
         <div class="partial-horizontal-line charcoal double-width"></div>
-        <h3 class="name bold font-b size-3">{{ value.name }}</h3>
+        <h3 class="name bold font-b size-3"
+            {% if value.name_font_style %}
+                style="font-style: {{value.name_font_style}};"
+            {% endif %}
+        >
+            {{ value.name }}
+        </h3>
         <h1 class="title font-f size-1">{{ value.title }}</h1>
     </div>
 </div>

@@ -9,6 +9,12 @@ ENVIRONMENT_CHOICES = (
 
 FONT_CHOICES = (("a", "a"), ("b", "b"), ("c", "c"), ("d", "d"), ("e", "e"), ("f", "f"))
 
+FONT_STYLE_CHOICES = (
+    ("normal", "normal"),
+    ("italic", "italic"),
+    ("oblique", "oblique"),
+)
+
 FONT_SIZE_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7))
 
 ACCENT_BAR_CHOICES = (("vertical", "vertical"), ("horizontal", "horizontal"))
