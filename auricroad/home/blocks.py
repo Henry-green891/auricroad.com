@@ -205,7 +205,7 @@ class BookNowImageCard(ImageCard):
 
 class EventImageCard(ImageCard):
     detail_link = blocks.PageChooserBlock(
-        target_model="home.BrochuresPage", required=False
+        target_model=("home.BrochuresPage", "home.HotelDetailPage"), required=False
     )
 
 
