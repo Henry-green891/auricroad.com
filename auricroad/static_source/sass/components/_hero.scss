@@ -74,6 +74,9 @@ $hero-play-button-width: 115px;
             #hero-video-iframe {
                 width: 100vw;
                 height: 100vh;
+                &.hide-on-load {
+                    display: none;
+                }
             }
             .video-diamond-overlay {
                 position: absolute;
