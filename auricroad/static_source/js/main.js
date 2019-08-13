@@ -93,8 +93,12 @@ window.videoPlayer = null;
       }
     });
 
+    var options = {
+      playsinline: false,
+    }
+
     var iframe = $('#hero-video-iframe');
-    const player = new Player(iframe);
+    const player = new Player(iframe, options);
     window.videoPlayer = player;
     if(iframe.hasClass('hide-on-load')) {
       iframe.hide();
