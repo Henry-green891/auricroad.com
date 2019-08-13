@@ -262,7 +262,7 @@ select {
 }
 
 .font-d {
-  font-family: "HelveticaNeueRegular";
+  font-family: "HelveticaNeueRegular", sans-serif;
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -314,7 +314,7 @@ select {
 }
 
 .font-e {
-  font-family: "HelveticaNeueMedium";
+  font-family: "HelveticaNeueMedium", sans-serif;
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
@@ -344,10 +344,10 @@ select {
 }
 
 .font-f {
-  font-family: "EngraversGothic";
+  font-family: "EngraversGothic", sans-serif;
   &.size-1 {
     font-size: 11px;
-    letter-spacing: .02em;
+    letter-spacing: 0.2em;
     line-height: 16px;
     @include breakpoint(tablet) {
       font-size: 13px;
