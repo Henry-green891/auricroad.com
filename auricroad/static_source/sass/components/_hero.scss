@@ -39,15 +39,18 @@ $hero-play-button-width: 115px;
     &.video-only-hero {
         position: relative;
         .hero-video {
-            width: 100%;
             margin-left: 0;
             margin-right: 0;
             text-align: center;
             display: flex;
             justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
             &:not(.is-playing) {
                 z-index: -1;
                 .video-diamond-overlay {
+                    z-index: 1;
                     @include breakpoint(tablet) {
                         display: inline-block;
                         top: -10vh;
@@ -63,12 +66,14 @@ $hero-play-button-width: 115px;
                     }
                 }
             }
-            video {
+            &.is-playing {
+                #hero-video-iframe {
+                    background-color: $black;
+                }
+            }
+            #hero-video-iframe {
+                width: 100vw;
                 height: 100vh;
-                width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-                object-fit: cover;
             }
             .video-diamond-overlay {
                 position: absolute;

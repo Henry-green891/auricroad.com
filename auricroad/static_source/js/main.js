@@ -1,5 +1,8 @@
 var $ = require('jquery');
 import 'foundation-sites/dist/js/foundation.min.js';
+import Player from '@vimeo/player';
+
+window.videoPlayer = null;
 (function() {
   function _makeExternal() {
     this.target = '_blank';
@@ -32,13 +35,18 @@ import 'foundation-sites/dist/js/foundation.min.js';
     setMobileDropdownState();
     $(window).scroll(function(){
       setHeaderClass($(window).scrollTop());
-      if ($('.hero.video-only-hero video').length > 0
-        && $('.hero.video-only-hero video')[0].paused === false
-        && $(document).scrollTop() !== 0) {
-        $('.hero.video-only-hero video')[0].pause();
-        $('.hero.video-only-hero .hero-video').removeClass('is-playing');
-        $('#play-button-wrapper').removeClass('hidden');
-        $('.desktop-nav-bar').removeClass('video-playing');
+      if (window.videoPlayer !== null && $(document).scrollTop() !== 0) {
+        window.videoPlayer.getPaused().then(function(paused) {
+          if (paused === false) {
+            if($('#hero-video-iframe').hasClass('hide-on-load')) {
+              $('#hero-video-iframe').hide();
+            }
+            window.videoPlayer.pause();
+            $('.hero.video-only-hero .hero-video').removeClass('is-playing');
+            $('#play-button-wrapper').removeClass('hidden');
+            $('.desktop-nav-bar').removeClass('video-playing');
+          }
+        });
       }
     });
     $(window).resize(function(){
@@ -72,24 +80,33 @@ import 'foundation-sites/dist/js/foundation.min.js';
       this.controls = false;
     });
 
-    $('#play-button-wrapper').click(function(e) {
-      if ($('.hero.video-only-hero video').length > 0) {
+    $('#play-button-wrapper').click(function() {
+      if (window.videoPlayer !== null) {
+        if($('#hero-video-iframe').hasClass('hide-on-load')) {
+          $('#hero-video-iframe').show();
+        }
         $(window).scrollTop(0);
-        $('.hero.video-only-hero video')[0].play()
+        window.videoPlayer.play()
         $('.hero.video-only-hero .hero-video').addClass('is-playing');
         $('#play-button-wrapper').addClass('hidden');
         $('.desktop-nav-bar').addClass('video-playing');
       }
-      e.stopPropagation();
     });
 
-    $('.hero').click(function() {
-      if ($('.hero.video-only-hero video').length > 0 && !$('.hero.video-only-hero video').paused) {
-        $('.hero.video-only-hero video')[0].pause();
-        $('.hero.video-only-hero .hero-video').removeClass('is-playing');
-        $('#play-button-wrapper').removeClass('hidden');
-        $('.desktop-nav-bar').removeClass('video-playing');
+    var iframe = $('#hero-video-iframe');
+    const player = new Player(iframe);
+    window.videoPlayer = player;
+    if(iframe.hasClass('hide-on-load')) {
+      iframe.hide();
+    }
+
+    player.on('pause', function() {
+      if($('#hero-video-iframe').hasClass('hide-on-load')) {
+        $('#hero-video-iframe').hide();
       }
+      $('.hero.video-only-hero .hero-video').removeClass('is-playing');
+      $('#play-button-wrapper').removeClass('hidden');
+      $('.desktop-nav-bar').removeClass('video-playing');
     });
   }
 

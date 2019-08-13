@@ -39,15 +39,24 @@
             {% endif %}
         </div>
     {% endif %}
-    {% if value.hero_video %}
-        <div class="hero-video">
+    {% if value.hero_video_url %}
+        <div class="hero-video"
+            {% if value.replacement_video_load_background %}
+                style="background-image: url({{value.replacement_video_load_background.file.url}});"
+            {% endif %}
+        >
             {% if value.show_diamond_overlay and value.video_only_hero %}
                 <img class="video-diamond-overlay" src="/static/img/auric-diamondstroke.svg">
             {% endif %}
-            <video poster="{{ value.hero_video.thumbnail.url }}" controls>
-                <source src="{{ value.hero_video.file.url }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe id="hero-video-iframe"
+                src="{{ value.hero_video_url }}"
+                frameborder="0"
+                allowfullscreen
+                allow="autoplay; encrypted-media"
+                {% if value.replacement_video_load_background %}
+                    class="hide-on-load"
+                {% endif %}
+            ></iframe>
         </div>
     {% endif %}
     {% if value.video_only_hero %}

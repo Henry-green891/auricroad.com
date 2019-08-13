@@ -115,7 +115,8 @@ class Hero(blocks.StructBlock):
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
-    hero_video = MediaBlock(icon="media", required=False)
+    hero_video_url = blocks.CharBlock(max_length=500, required=False)
+    replacement_video_load_background = ImageChooserBlock(required=False)
     hero_video_play_icon = ImageChooserBlock(required=False)
     video_only_hero = blocks.BooleanBlock(required=False)
 
