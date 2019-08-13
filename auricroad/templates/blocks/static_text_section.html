@@ -3,8 +3,10 @@
         style="background-color: {{value.background_color}};"
     {% endif %}
 >
-    <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
-    <div class="center-vertical-line {% if value.should_have_top_accent %}gray{% else %}white{% endif %}"></div>
+    {% if value.static_tagline %}
+        <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
+        <div class="center-vertical-line {% if value.should_have_top_accent %}gray{% else %}white{% endif %}"></div>
+    {% endif %}
     <div class="accented-text-wrapper">
         <h2 class="accented-text header font-a size-2">{{ value.static_header }}</h2>
     </div>
