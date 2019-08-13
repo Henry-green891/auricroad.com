@@ -9,7 +9,7 @@
         @include xy-cell(10);
         @include xy-grid('vertical');
         align-items: center;
-        background-color: $gray-bg;
+        background-color: $pearl;
         padding-top: 30px;
         @include breakpoint(tablet) {
             padding-top: 70px;

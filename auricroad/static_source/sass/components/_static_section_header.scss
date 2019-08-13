@@ -7,6 +7,19 @@
     @include xy-grid('vertical');
     text-align: center;
     align-items: center;
+    &.top-accent {
+        @include xy-cell(10);
+        margin-top: 8px;
+        padding-top: 70px;
+        padding-bottom: 70px;
+        color: $text-black;
+        .tagline {
+            color: $text-charcoal;
+        }
+        .center-vertical-line {
+            margin-bottom: 30px;
+        }
+    }
     .tagline {
         margin-bottom: 11px;
     }

@@ -158,11 +158,13 @@ class BlockQuoteFooter(blocks.StructBlock):
 
 
 class StaticTextSection(blocks.StructBlock):
-    static_header = blocks.CharBlock(max_length=100)
-    static_tagline = blocks.CharBlock(max_length=50)
-    static_body = blocks.RichTextBlock()
-    body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=True)
-    body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=True)
+    static_header = blocks.CharBlock(max_length=100, required=False)
+    static_tagline = blocks.CharBlock(max_length=50, required=False)
+    static_body = blocks.RichTextBlock(required=False)
+    body_font = blocks.ChoiceBlock(choices=FONT_CHOICES, required=False)
+    body_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=False)
+    background_color = blocks.CharBlock(max_length=50, required=False)
+    should_have_top_accent = blocks.BooleanBlock(required=False)
 
     class Meta:
         template = "blocks/static_text_section.html"

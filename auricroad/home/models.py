@@ -278,6 +278,7 @@ class HotelDetailPage(Page):
             ("hero", Hero()),
             ("intro", HotelIntro()),
             ("image_section", ImageSection()),
+            ("static_text_section", StaticTextSection()),
             ("section_header", SectionHeader()),
             ("block_quote", BlockQuote()),
             ("activity_section", ActivitySection()),
