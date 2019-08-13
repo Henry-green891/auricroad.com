@@ -26,4 +26,7 @@ body.homepage {
     .desktop-nav-bar:not(.fixed):not(.video-playing) {
         z-index: 1;
     }
+    footer {
+        border-top-color: $tide;
+    }
 }

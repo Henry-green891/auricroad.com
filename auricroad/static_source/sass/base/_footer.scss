@@ -1,4 +1,5 @@
 footer {
+    border-top: 10px solid $text-black;
     @include xy-grid();
     justify-content: center;
     .footer-inner {
