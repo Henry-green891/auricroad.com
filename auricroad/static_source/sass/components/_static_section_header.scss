@@ -20,6 +20,11 @@
             margin-bottom: 30px;
         }
     }
+    &.no-tagline {
+        .accented-text-wrapper {
+            margin-bottom: 0;
+        }
+    }
     .tagline {
         margin-bottom: 11px;
     }

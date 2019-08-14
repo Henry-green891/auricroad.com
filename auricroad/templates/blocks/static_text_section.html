@@ -1,4 +1,6 @@
-<div class="static-section-header{% if value.should_have_top_accent %} top-accent{% endif %}"
+<div class="static-section-header
+    {% if value.should_have_top_accent %}top-accent{% endif %}
+    {% if not value.static_tagline %}no-tagline{% endif %}"
     {% if value.background_color %}
         style="background-color: {{value.background_color}};"
     {% endif %}
