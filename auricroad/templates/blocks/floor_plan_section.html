@@ -1,4 +1,6 @@
-<div class="floor-plan-section top-accent">
+<div class="floor-plan-section top-accent
+    {% if not value.more_info.source != '<p></p>' and not value.additional_document and not value.additional_document_two %}reduced-bottom-padding{% endif %}"
+>
     <div class="static-section-header">
         <h1 class="tagline font-f size-1">{{ value.tagline|upper }}</h1>
         <div class="center-vertical-line gray"></div>
@@ -19,7 +21,7 @@
             {% endfor %}
         </div>
     </div>
-    {% if value.more_info or value.additional_document or value.additional_document_two %}
+    {% if value.more_info.source != '<p></p>' or value.additional_document or value.additional_document_two %}
         <div class="additional-info">
             <hr class="floor-plan-divider" />
             <div class="floor-plan-section-additional-info">

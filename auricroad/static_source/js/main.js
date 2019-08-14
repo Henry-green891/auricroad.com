@@ -98,20 +98,22 @@ window.videoPlayer = null;
     }
 
     var iframe = $('#hero-video-iframe');
-    const player = new Player(iframe, options);
-    window.videoPlayer = player;
-    if(iframe.hasClass('hide-on-load')) {
-      iframe.hide();
-    }
-
-    player.on('pause', function() {
-      if($('#hero-video-iframe').hasClass('hide-on-load')) {
-        $('#hero-video-iframe').hide();
+    if($('#hero-video-iframe').length > 0) {
+      const player = new Player(iframe, options);
+      window.videoPlayer = player;
+      if(iframe.hasClass('hide-on-load')) {
+        iframe.hide();
       }
-      $('.hero.video-only-hero .hero-video').removeClass('is-playing');
-      $('#play-button-wrapper').removeClass('hidden');
-      $('.desktop-nav-bar').removeClass('video-playing');
-    });
+
+      player.on('pause', function() {
+        if($('#hero-video-iframe').hasClass('hide-on-load')) {
+          $('#hero-video-iframe').hide();
+        }
+        $('.hero.video-only-hero .hero-video').removeClass('is-playing');
+        $('#play-button-wrapper').removeClass('hidden');
+        $('.desktop-nav-bar').removeClass('video-playing');
+      });
+    }
   }
 
   $(init);

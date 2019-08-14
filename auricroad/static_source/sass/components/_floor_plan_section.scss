@@ -5,6 +5,9 @@
     margin-top: 70px;
     padding-top: 70px;
     padding-bottom: 100px;
+    &.reduced-bottom-padding {
+        padding-bottom: 50px;
+    }
     .static-section-header {
         @include xy-cell(10);
         color: $text-black;
