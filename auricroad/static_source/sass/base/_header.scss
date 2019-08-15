@@ -8,7 +8,7 @@ header {
         }
         position: fixed;
         width: 100%;
-        padding: 0px 60px 25px 60px;
+        padding: 0px 60px;
         justify-content: space-between;
         .header-link, .header-link a, .link-text-inner {
             @extend .font-c;
@@ -35,6 +35,7 @@ header {
         }
         .left-section {
             padding-top: 25px;
+            padding-bottom: 25px;
             .on-load-image {
                 width: 200px;
             }
@@ -46,11 +47,15 @@ header {
             @include xy-grid();
             align-items: center;
             .block-links {
+                height: 100%;
                 .header-link {
+                    @include xy-grid();
+                    align-items: center;
+                    height: 100%;
                     padding-top: 25px;
                     padding-left: 19px;
                     padding-right: 19px;
-                    padding-bottom: 0px;
+                    padding-bottom: 25px;
                     &.always-accented {
                         background-color: $auric-gold-bg;
                         padding: 0;
@@ -58,18 +63,19 @@ header {
                             padding-top: 25px;
                             padding-left: 19px;
                             padding-right: 19px;
+                            padding-bottom: 25px;
                         }
                     }
-                    .accented-text-wrapper {
-                        padding-bottom: 8px;
-                    }
-                    .link-text-wrapper:not(.accented-text-wrapper) {
-                        &:hover {
-                            @extend .accented-text-wrapper;
-                            .link-text-inner {
-                                @extend .accented-text;
-                                padding-left: 0 !important;
-                                padding-right: 0 !important;
+                    &:not(.always-accented) {
+                        .link-text-wrapper {
+                            &:hover {
+                                margin-top: -8px;
+                                @extend .accented-text-wrapper;
+                                .link-text-inner {
+                                    @extend .accented-text;
+                                    padding-left: 0 !important;
+                                    padding-right: 0 !important;
+                                }
                             }
                         }
                     }
