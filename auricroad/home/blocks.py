@@ -290,6 +290,7 @@ class ImageSection(blocks.StructBlock):
 
 
 class HotelIntro(blocks.StructBlock):
+    dont_shift_up_into_hero = blocks.BooleanBlock(required=False)
     tagline = blocks.CharBlock(max_length=50, required=False)
     tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=False)
     tagline_maintain_horizontal = blocks.BooleanBlock(required=False)

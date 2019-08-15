@@ -2,9 +2,11 @@
     @include xy-grid();
     justify-content: center;
     .hotel-intro-inner {
-        margin-top: -80px;
-        @include breakpoint(large) {
-            margin-top: -150px;
+        &:not(.no-margin-top) {
+            margin-top: -80px;
+            @include breakpoint(large) {
+                margin-top: -150px;
+            }
         }
         @include xy-cell(10);
         @include xy-grid('vertical');
