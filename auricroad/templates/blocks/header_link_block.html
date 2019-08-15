@@ -1,4 +1,4 @@
-<div class="header-link">
+<div class="header-link {% if value.orange_accent_text %}always-accented{% endif %}">
     <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
         {% if value.orange_accent_text %}
             <div class="link-text-wrapper accented-text-wrapper">

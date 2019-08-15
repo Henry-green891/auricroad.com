@@ -8,7 +8,7 @@ header {
         }
         position: fixed;
         width: 100%;
-        padding: 25px 60px;
+        padding: 0px 60px 25px 60px;
         justify-content: space-between;
         .header-link, .header-link a, .link-text-inner {
             @extend .font-c;
@@ -34,6 +34,7 @@ header {
             z-index: map-get($z-index-map, z-index-nav-bar);
         }
         .left-section {
+            padding-top: 25px;
             .on-load-image {
                 width: 200px;
             }
@@ -45,11 +46,20 @@ header {
             @include xy-grid();
             align-items: center;
             .block-links {
-                margin-bottom: -8px;
                 .header-link {
+                    padding-top: 25px;
                     padding-left: 19px;
                     padding-right: 19px;
                     padding-bottom: 0px;
+                    &.always-accented {
+                        background-color: $auric-gold-bg;
+                        padding: 0;
+                        .link-text-wrapper {
+                            padding-top: 25px;
+                            padding-left: 19px;
+                            padding-right: 19px;
+                        }
+                    }
                     .accented-text-wrapper {
                         padding-bottom: 8px;
                     }
