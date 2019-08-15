@@ -4,12 +4,9 @@
         style="background-image: url({{ value.background_image.file.url }});"
     {% endif %}
 >
-    <div
-        {% if value.arrow_color %}
-            style="border-top-color: {{ value.arrow_color }};"
-        {% endif %}
-        class="arrow-down satin"
-    ></div>
+    {% if value.arrow_color %}
+        <div style="border-top-color: {{ value.arrow_color }};" class="arrow-down satin"></div>
+    {% endif %}
     <span class="text-dash">
         <h1 class="font-f size-1">{{ value.tagline }}</h1>
         &nbsp;&nbsp;

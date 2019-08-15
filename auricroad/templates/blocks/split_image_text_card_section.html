@@ -1,11 +1,8 @@
 <div class="split-image-text-card-section {% if value.layout_style == 'image_first'%}reverse-order{% endif %}">
     <div class="split-text-card">
-        <div
-            {% if value.arrow_color %}
-                style="border-top-color: {{ value.arrow_color }};"
-            {% endif %}
-            class="arrow-down satin shrinking"
-        ></div>
+        {% if value.arrow_color %}
+            <div style="border-top-color: {{ value.arrow_color }};" class="arrow-down satin shrinking"></div>
+        {% endif %}
         {% if value.text_accent_color %}
             <div class="accented-text-wrapper">
                 <h1 class="accented-text gray header font-a size-4">{{ value.header }}</h1>
