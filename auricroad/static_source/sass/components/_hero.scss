@@ -44,6 +44,7 @@ $hero-play-button-width: 115px;
             text-align: center;
             display: flex;
             justify-content: center;
+            align-items: center;
             width: 100vw;
             height: 100vh;
             background-size: cover;
@@ -63,6 +64,13 @@ $hero-play-button-width: 115px;
                     @include breakpoint(xxlarge) {
                         top: -30vh;
                         height: 160vh;
+                    }
+                    @media screen and (min-aspect-ratio: 3/2) {
+                        @include breakpoint(tablet) {
+                            top: unset;
+                            height: auto;
+                            width: 95vw;
+                        }
                     }
                 }
             }
@@ -158,6 +166,18 @@ $hero-play-button-width: 115px;
                 }
                 &.y-bottom {
                     background-position-y: -30vh, bottom;
+                }
+            }
+            @media screen and (min-aspect-ratio: 3/2) {
+                @include breakpoint(large) {
+                    background-size: 95vw auto, cover;
+                    background-position-y: calc(50vh - 47.6vw), top;
+                    &.y-center {
+                        background-position-y: calc(50vh - 47.5vw), center;
+                    }
+                    &.y-bottom {
+                        background-position-y: calc(50vh - 47.5vw), bottom;
+                    }
                 }
             }
             &.has-cards {
