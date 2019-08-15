@@ -1,4 +1,6 @@
 <div class="activity-card">
-    <img src="{{value.activity_image.file.url}}">
+    {% if value.activity_image %}
+        <img src="{{value.activity_image.file.url}}">
+    {% endif %}
     <h6 class="activity font-a size-7">{{ value.title }}</h6>
 </div>

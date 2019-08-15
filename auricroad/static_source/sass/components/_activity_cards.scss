@@ -19,7 +19,10 @@
         }
         margin-bottom: 3px;
         .activity-card {
-            max-height: 170px;
+            height: 100%;
+            @include xy-grid();
+            justify-content: center;
+            align-items: flex-end;
             padding: 20px;
             color: $text-charcoal;
             text-align: center;
