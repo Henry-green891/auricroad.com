@@ -269,8 +269,6 @@ class HotelsPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class HotelDetailPage(Page):
     body = StreamField(
@@ -311,8 +309,6 @@ class EventsPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class BrochuresPage(Page):
     body = StreamField(
@@ -320,8 +316,6 @@ class BrochuresPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
-    parent_page_types = [HomePage]
 
 
 class ExperiencesPage(Page):
@@ -336,8 +330,6 @@ class ExperiencesPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
-    parent_page_types = [HomePage]
 
 
 class ExperiencePage(Page):
@@ -363,8 +355,6 @@ class PressPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class MissionPage(Page):
     body = StreamField(
@@ -380,8 +370,6 @@ class MissionPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class ReservePage(Page):
     body = StreamField(
@@ -396,8 +384,6 @@ class ReservePage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class CareersPage(Page):
     body = StreamField(
@@ -407,8 +393,6 @@ class CareersPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
-    parent_page_types = [HomePage]
 
 
 class FoundationPage(Page):
@@ -425,8 +409,6 @@ class FoundationPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-    parent_page_types = [HomePage]
-
 
 class BasicInfoPage(Page):
     body = StreamField(
@@ -436,5 +418,3 @@ class BasicInfoPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
-    parent_page_types = [HomePage]
