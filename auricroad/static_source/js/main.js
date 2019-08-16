@@ -52,6 +52,10 @@ window.videoPlayer = null;
     });
     $(window).resize(function(){
       setMobileDropdownState();
+      clearTimeout(resizeTimer);
+      var resizeTimer = setTimeout(function() {
+        setVideoWidths();
+      }, 250);
     });
     $('.mobile-nav-top .left').click(function() {
       if($('.menu-btn').prop('checked')) {
@@ -163,6 +167,14 @@ function setUpVideoSection() {
   });
 }
 
+function setVideoWidths() {
+  var width = Math.round(((5 * $(window).width()) / 6) - 5);
+  var height = Math.round((9 * width) / 16);
+  $('#vimeo-video-wrapper iframe').each(function() {
+    this.height = height;
+    this.width = width;
+  });
+}
 
 function filterNumberFromId(text, toRemove) {
   return text.replace(toRemove, '')
