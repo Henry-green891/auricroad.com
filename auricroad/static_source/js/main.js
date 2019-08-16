@@ -156,8 +156,10 @@ function setUpVideoSection() {
   var height = Math.round((9 * width) / 16);
   $('#vimeo-video-wrapper').each(function() {
     var vimeoPlayer = new Player($(this));
-    vimeoPlayer.element.height = height;
-    vimeoPlayer.element.width = width;
+    vimeoPlayer.on('loaded', function() {
+      vimeoPlayer.element.height = height;
+      vimeoPlayer.element.width = width;
+    });
   });
 }
 
