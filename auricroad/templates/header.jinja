@@ -9,7 +9,10 @@
             </div>
             <div class="on-scroll-image">
                 <a href="/">
-                    <img src="{{ global_nav_obj.on_scroll_image.file.url }}">
+                    <img class="scroll-image-1" src="{{ global_nav_obj.on_scroll_image.file.url }}">
+                    {% if global_nav_obj.on_scroll_image_2 %}
+                      <img class="scroll-image-2" src="{{ global_nav_obj.on_scroll_image_2.file.url }}">
+                    {% endif %}
                 </a>
             </div>
         </div>
@@ -23,9 +26,12 @@
                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                 <label class="menu-icon"><span class="navicon"></span></label>
             </div>
-            <div class="center">
+            <div class="center on-load-image">
                 <a href="/">
-                    <img class="on-load-image" src="{{ global_nav_obj.on_load_mobile_image.file.url }}">
+                    <img class="on-load-image-1" src="{{ global_nav_obj.on_load_mobile_image.file.url }}">
+                    {% if global_nav_obj.on_load_mobile_image_2 %}
+                      <img class="on-load-image-2" src="{{ global_nav_obj.on_load_mobile_image_2.file.url }}">
+                    {% endif %}
                 </a>
             </div>
             <div class="right">

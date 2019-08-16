@@ -3,8 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -102,6 +101,13 @@ class NavBar(models.Model):
         null=True,
         blank=True,
     )
+    on_scroll_image_2 = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
     on_load_mobile_image = models.ForeignKey(
         "home.CustomImage",
         on_delete=models.SET_NULL,
@@ -109,7 +115,13 @@ class NavBar(models.Model):
         null=True,
         blank=True,
     )
-
+    on_load_mobile_image_2 = models.ForeignKey(
+        "home.CustomImage",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=True,
+    )
     desktop_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
     mobile_top_nav_links = StreamField(
         [("links", HeaderLinkBlock())], null=True, blank=True
@@ -121,7 +133,9 @@ class NavBar(models.Model):
         FieldPanel("name"),
         ImageChooserPanel("on_load_image"),
         ImageChooserPanel("on_load_mobile_image"),
+        ImageChooserPanel("on_load_mobile_image_2"),
         ImageChooserPanel("on_scroll_image"),
+        ImageChooserPanel("on_scroll_image_2"),
         StreamFieldPanel("desktop_links"),
         StreamFieldPanel("mobile_top_nav_links"),
         StreamFieldPanel("mobile_links"),
