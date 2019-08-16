@@ -13,6 +13,7 @@ from .constants import (  # isort:skip
     IMAGE_GROUP_LAYOUTS,
     LAYOUT_CHOICES,
     SOCIAL_TYPES,
+    VIDEO_SOURCES,
     X_POSITIONS,
     Y_POSITIONS,
 )
@@ -571,3 +572,11 @@ class HeaderTextParagraph(blocks.StructBlock):
 
     class Meta:
         template = "blocks/header_text_paragraph.html"
+
+
+class EmbedVideoBlock(blocks.StructBlock):
+    video_url = blocks.CharBlock(max_length=500)
+    embed_source = blocks.ChoiceBlock(choices=VIDEO_SOURCES, default="vimeo")
+
+    class Meta:
+        template = "blocks/embed_video_block.html"

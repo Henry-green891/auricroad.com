@@ -33,6 +33,7 @@ window.videoPlayer = null;
 
     setHeaderClass($(window).scrollTop());
     setMobileDropdownState();
+    setUpVideoSection();
     $(window).scroll(function(){
       setHeaderClass($(window).scrollTop());
       if (window.videoPlayer !== null && $(document).scrollTop() !== 0) {
@@ -148,6 +149,16 @@ function handleSlideSelectorTab(tab) {
   $('#'+itemId).addClass('active-floorplan-tab-selector');
   $('.floor-plan-slide-wrapper').removeClass('active-floorplan-tab');
   $('#floor-plan-slide-wrapper-'+itemIdNumber+'').addClass('active-floorplan-tab');
+}
+
+function setUpVideoSection() {
+  var width = Math.round(((5 * $(window).width()) / 6) - 5);
+  var height = Math.round((9 * width) / 16);
+  $('#vimeo-video-wrapper').each(function() {
+    var vimeoPlayer = new Player($(this));
+    vimeoPlayer.element.height = height;
+    vimeoPlayer.element.width = width;
+  });
 }
 
 

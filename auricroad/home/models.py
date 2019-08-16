@@ -21,6 +21,7 @@ from .blocks import (  # isort:skip
     BlockQuote,
     BlockQuoteFooter,
     ContactCardRow,
+    EmbedVideoBlock,
     EventsFooter,
     FadeInFooter,
     FloorPlanSection,
@@ -211,6 +212,7 @@ class HomePage(Page):
             ("full_width_image_card_section", FullWidthImageCardSection()),
             ("home_page_footer", FadeInFooter()),
             ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -221,7 +223,14 @@ class HomePage(Page):
 
 class FormPage(AbstractEmailForm):
     body = StreamField(
-        [("hero", Hero()), ("contact_row", ContactCardRow())], null=True, blank=True
+        [
+            ("hero", Hero()),
+            ("contact_row", ContactCardRow()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
     )
     tagline = models.CharField(max_length=50, blank=True)
     intro = RichTextField(blank=True)
@@ -262,6 +271,8 @@ class HotelsPage(Page):
             ("hotels", ImageCardList()),
             ("development", HotelsDevelopment()),
             ("destinations", HotelsDestinations()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -283,6 +294,8 @@ class HotelDetailPage(Page):
             ("floor_plan_section", FloorPlanSection()),
             ("detail_section", HotelDetailSection()),
             ("fade_in_footer", FadeInFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -302,6 +315,8 @@ class EventsPage(Page):
             ("static_text_section", StaticTextSection()),
             ("events_list", ImageCardList()),
             ("events_footer", EventsFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -312,7 +327,14 @@ class EventsPage(Page):
 
 class BrochuresPage(Page):
     body = StreamField(
-        [("hero", Hero()), ("action_cards", ActionCardSection())], null=True, blank=True
+        [
+            ("hero", Hero()),
+            ("action_cards", ActionCardSection()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
@@ -324,6 +346,8 @@ class ExperiencesPage(Page):
             ("hero", Hero()),
             ("experiences_list", ImageCardList()),
             ("experiences_footer", FadeInFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -334,7 +358,14 @@ class ExperiencesPage(Page):
 
 class ExperiencePage(Page):
     body = StreamField(
-        [("hero", Hero()), ("intro", HotelIntro())], null=True, blank=True
+        [
+            ("hero", Hero()),
+            ("intro", HotelIntro()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
@@ -348,6 +379,8 @@ class PressPage(Page):
             ("hero", Hero()),
             ("image_logo_link_card_section", ImageLogoLinkCardSection()),
             ("block_quote", BlockQuote()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -363,6 +396,8 @@ class MissionPage(Page):
             ("split_image_text_card_section", SplitImageTextCardSection()),
             ("full_width_image", FullWidthImage()),
             ("mission_footer", BlockQuoteFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -377,6 +412,8 @@ class ReservePage(Page):
             ("hero", Hero()),
             ("hotels", ImageCardList()),
             ("footer", HotelsDestinations()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -387,7 +424,13 @@ class ReservePage(Page):
 
 class CareersPage(Page):
     body = StreamField(
-        [("hero", Hero()), ("intro", HotelIntro()), ("jobs_list", JobsList())],
+        [
+            ("hero", Hero()),
+            ("intro", HotelIntro()),
+            ("jobs_list", JobsList()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
         null=True,
         blank=True,
     )
@@ -402,6 +445,8 @@ class FoundationPage(Page):
             ("intro", HotelIntro()),
             ("image_section", ImageSection()),
             ("events_footer", EventsFooter()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
         ],
         null=True,
         blank=True,
@@ -412,7 +457,12 @@ class FoundationPage(Page):
 
 class BasicInfoPage(Page):
     body = StreamField(
-        [("header", PageHeaderText()), ("body_section", HeaderTextParagraph())],
+        [
+            ("header", PageHeaderText()),
+            ("body_section", HeaderTextParagraph()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
         null=True,
         blank=True,
     )

@@ -1,0 +1,9 @@
+.block-video_section {
+    @include xy-grid();
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .embed-video-section {
+        @include xy-cell(10);
+    }
+}

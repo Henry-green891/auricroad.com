@@ -47,3 +47,5 @@ SOCIAL_TYPES = (
 )
 
 CUSTOM_TEXT_FUNCTIONS = (("phone", "Phone"), ("email", "Email"))
+
+VIDEO_SOURCES = (("vimeo", "Vimeo"),)
