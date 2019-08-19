@@ -10,6 +10,8 @@
         {% endif %}
     </div>
     <div class="slide-right">
-        <img src="{{ value.floor_plan_image.file.url }}" class="floor-plan-image">
+        {% if value.floor_plan_image %}
+            <img src="{{ value.floor_plan_image.file.url }}" class="floor-plan-image">
+        {% endif %}
     </div>
 </div>
