@@ -1,5 +1,8 @@
 from urllib.parse import urlparse
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from .base import *
 
 SESSION_COOKIE_SECURE = True
@@ -57,6 +60,8 @@ AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default="")
 AWS_IS_GZIPPED = True
 AWS_S3_REGION_NAME = "us-east-1"
 AWS_S3_FILE_OVERWRITE = False
+
+sentry_sdk.init(dsn=env("SENTRY_DSN", default=""), integrations=[DjangoIntegration()])
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
