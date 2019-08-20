@@ -4,15 +4,15 @@
         <div class="left-section">
             <div class="on-load-image">
                 <a href="/">
-                    <img src="{{ global_nav_obj.on_load_image.file.url }}">
+                    {{ image(global_nav_obj.on_load_image, "fill-500x60")}}
                 </a>
             </div>
             <div class="on-scroll-image">
                 <a href="/">
-                    <img class="scroll-image-1" src="{{ global_nav_obj.on_scroll_image.file.url }}">
-                    {% if global_nav_obj.on_scroll_image_2 %}
-                      <img class="scroll-image-2" src="{{ global_nav_obj.on_scroll_image_2.file.url }}">
-                    {% endif %}
+                  {{ image(global_nav_obj.on_scroll_image, "fill-150x150", class="scroll-image-1")}}
+                  {% if global_nav_obj.on_scroll_image_2 %}
+                    {{ image(global_nav_obj.on_scroll_image_2, "fill-300x36", class="scroll-image-2")}}
+                  {% endif %}
                 </a>
             </div>
         </div>
@@ -28,10 +28,10 @@
             </div>
             <div class="center on-load-image">
                 <a href="/">
-                    <img class="on-load-image-1" src="{{ global_nav_obj.on_load_mobile_image.file.url }}">
-                    {% if global_nav_obj.on_load_mobile_image_2 %}
-                      <img class="on-load-image-2" src="{{ global_nav_obj.on_load_mobile_image_2.file.url }}">
-                    {% endif %}
+                  {{ image(global_nav_obj.on_load_mobile_image, "fill-150x150", class="on-load-image-1")}}
+                  {% if global_nav_obj.on_load_mobile_image_2 %}
+                    {{ image(global_nav_obj.on_load_mobile_image_2, "fill-300x36", class="on-load-image-2")}}
+                  {% endif %}
                 </a>
             </div>
             <div class="right">

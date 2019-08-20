@@ -50,7 +50,7 @@
             {% endif %}
             {{ value.images }}
             {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
-                <img class="accent-image" src="{{ value.accent_image.file.url }}">
+                {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
             {% endif %}
             {% if value.finer_points_header and value.finer_points_body %}
                 <h1 class="finer-points-header semi-bold font-e size-1">{{ value.finer_points_header }}</h1>
@@ -66,7 +66,7 @@
                     <div class="left-section">
             {% endif %}
             {% if value.accent_image %}
-                        <img class="accent-image" src="{{ value.accent_image.file.url }}">
+                        {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
             {% endif %}
             {% if value.button_text %}
                         <a class="button-wrapper" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
@@ -75,7 +75,7 @@
             {% endif %}
             {% if value.bottom_right_image %}
                     </div>
-                    <img class="bottom-right-image" src="{{ value.bottom_right_image.file.url }}">
+                    {{ image(value.bottom_right_image, "fill-400x300", class="bottom-right-image")}}
                 </div>
             {% endif %}
         </div>

@@ -8,7 +8,7 @@
             
         {% endif %}
         {% if value.logo_image %}
-            <img class="logo-image" src="{{ value.logo_image.file.url }}">
+            {{ image(value.logo_image, "fill-250x65", class="logo-image") }}
         {% endif %}
         <h6 class="header font-a size-7">{{ value.header }}</h6>
         <h1 class="tagline font-f size-3">{{ value.tagline }}</h1>

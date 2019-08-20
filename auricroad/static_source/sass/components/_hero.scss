@@ -130,6 +130,16 @@ $hero-play-button-width: 115px;
         @include breakpoint(large) {
             padding-bottom: 90px;
         }
+        position: relative;
+        z-index: -1;
+        .hero-background-gradient {
+            position: absolute;
+            width: 100%;
+            top: 70%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
         background-size: cover;
         background-position-x: center;
         &.x-left {

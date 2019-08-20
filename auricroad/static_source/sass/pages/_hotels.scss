@@ -6,4 +6,7 @@ body.hotels {
     .image-card-list {
         top: -20px;
     }
+    .hero-background-gradient {
+        background-image: linear-gradient(to bottom, rgba(255,0,0,0), $satin);
+    }
 }

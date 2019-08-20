@@ -10,11 +10,12 @@
     <div
         class="destinations-image-section"
         {% if value.background_image %}
-            style="background-image: url('{{ value.background_image.file.url }}');"
+            {% set background_image=image(value.background_image, "fill-2880x1350") %}
+            style="background-image: url('{{ background_image.url }}');"
         {% endif %}
     >
         {% if value.foreground_image %}
-            <img src="{{ value.foreground_image.file.url }}" alt="destination" />
+            {{ image(value.foreground_image, "fill-2880x1350", class="accent-image", alt="destination")}}
         {% endif %}
     </div>
 </div>

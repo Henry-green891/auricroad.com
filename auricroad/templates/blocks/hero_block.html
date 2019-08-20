@@ -15,13 +15,17 @@
                 {% if value.background_image_y_position %}y-{{value.background_image_y_position}}{% endif %}
             "
             {% if value.background_image %}
+                {% set background_image=image(value.background_image, "fill-2880x1577") %}
                 {% if value.show_diamond_overlay %}
-                    style="background-image: url('/static/img/auric-diamondstroke.svg'), url('{{ value.background_image.file.url }}');"
+                    style="background-image: url({{ static('img/auric-diamondstroke.svg')}}), url({{ background_image.url }});"
                 {% else %}
-                    style="background-image: url('{{ value.background_image.file.url }}');"
+                    style="background-image: url('{{ background_image.url }}');"
                 {% endif %}
             {% endif %}
         >
+            {% if value.background_gradient_fade_out %}
+                <div class="hero-background-gradient"></div>
+            {% endif %}
             <div class="static-section-header">
                 <h1 class="tagline font-f size-1">{{ value.static_tagline }}</h1>
                 <div class="center-vertical-line white"></div>
@@ -42,11 +46,12 @@
     {% if value.hero_video_url %}
         <div class="hero-video"
             {% if value.replacement_video_load_background %}
-                style="background-image: url({{value.replacement_video_load_background.file.url}});"
+                {% set replacement_video_load_background=image(value.replacement_video_load_background, "fill-2880x1577") %}
+                style="background-image: url({{replacement_video_load_background.url}});"
             {% endif %}
         >
             {% if value.show_diamond_overlay and value.video_only_hero %}
-                <img class="video-diamond-overlay" src="/static/img/auric-diamondstroke.svg">
+                <img class="video-diamond-overlay" src="{{ static('img/auric-diamondstroke.svg') }}">
             {% endif %}
             <iframe id="hero-video-iframe"
                 src="{{ value.hero_video_url }}"

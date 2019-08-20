@@ -4,7 +4,7 @@
     {% endif %}
     <div class="block-quote-inner">
         <span class="accent-quote-left">“</span>
-        <img src="{{ value.accent_image.file.url }}">
+        {{ image(value.accent_image, "fill-115x13")}}
         <h5 class="body font-a size-5">{{ value.body }}</h5>
         <div class="partial-horizontal-line charcoal double-width"></div>
         <h3 class="name bold font-b size-3"

@@ -1,5 +1,5 @@
 <div class="action-card-bottom top-accent">
-    <img src="{{ value.detail_icon.file.url }}">
+    {{ image(value.detail_icon, "fill-150x150")}}
     <h3 class="action-header font-b size-3">{{ value.action_header }}</h3>
     <div class="center-vertical-line double-height tide"></div>
     {% if value.action_text %}

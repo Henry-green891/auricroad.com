@@ -11,7 +11,7 @@
     </div>
     <div class="slide-right">
         {% if value.floor_plan_image %}
-            <img src="{{ value.floor_plan_image.file.url }}" class="floor-plan-image">
+            {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
         {% endif %}
     </div>
 </div>

@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 {% if page.form_intro_image %}
-                    <img class="form-intro-image" src="{{ page.form_intro_image.file.url }}">
+                    {{ image(page.form_intro_image, "fill-800x800", class="form-intro-image")}}
                 {% endif %}
             </div>
             <div class="form-right">

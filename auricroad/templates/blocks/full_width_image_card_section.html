@@ -1,5 +1,5 @@
 <div class="full-width-image-card">
-    <img class="background-image" src="{{ value.background_image.file.url }}">
+    {{ image(value.background_image, "fill-2880x1350", class="background-image")}}
     <div class="text-card">
         {% if value.text_accent_color %}
             <div class="accented-text-wrapper">
@@ -10,7 +10,7 @@
         {% endif %}
         <div class="body font-d size-2">{{ value.body }}</div>
         {% if value.accent_image %}
-            <img class="accent-image" src="{{ value.accent_image.file.url }}">
+            {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
         {% endif %}
         {% if value.button_text %}
             <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">

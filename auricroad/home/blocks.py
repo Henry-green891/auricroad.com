@@ -109,6 +109,7 @@ class Hero(blocks.StructBlock):
         choices=X_POSITIONS, default="center"
     )
     background_image_y_position = blocks.ChoiceBlock(choices=Y_POSITIONS, default="top")
+    background_gradient_fade_out = blocks.BooleanBlock(required=False)
     show_diamond_overlay = blocks.BooleanBlock(required=False)
     reduced_padding = blocks.BooleanBlock(required=False)
     extended_bottom_padding = blocks.BooleanBlock(required=False)
