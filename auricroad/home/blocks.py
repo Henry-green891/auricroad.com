@@ -342,7 +342,7 @@ class ActivitySection(blocks.StructBlock):
 
 class DetailRow(blocks.StructBlock):
     key = blocks.CharBlock(max_length=250)
-    value = blocks.CharBlock(max_length=250)
+    value = blocks.CharBlock(max_length=250, required=False)
     remove_row_bottom_padding = blocks.BooleanBlock(
         required=False, help_text="(will be applied by default within detail groups)"
     )
