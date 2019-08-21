@@ -42,23 +42,24 @@
         background-size: cover;
         @include xy-grid('vertical');
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
+        width: 100%;
         @include breakpoint(tablet) {
             min-height: 500px;
         }
         @include breakpoint(large) {
             min-height: 800px;
-            width: 100%;
         }
         img {
             @include xy-cell(11);
             position: relative;
-            top: -50px;
+            bottom: 0;
             @include breakpoint(large) {
                 @include xy-cell(9);
                 position: relative;
-                top: -100px;
             }
+            max-width: 100vh;
+            max-height: 100vh;
         }
     }
 }
