@@ -19,5 +19,10 @@
     </div>
     <div class="tie-bar" id="tie-bar-top"></div>
     <div class="tie-bar" id="tie-bar-bottom"></div>
-    <div class="split-image-card" style="background-image: url({{ value.image.file.url }});"></div>
+    <div 
+        class="split-image-card
+            {% if value.background_image_x_position %}x-{{value.background_image_x_position}}{% endif %}
+            {% if value.background_image_y_position %}y-{{value.background_image_y_position}}{% endif %}"
+        style="background-image: url({{ value.image.file.url }});"
+    ></div>
 </div>

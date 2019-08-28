@@ -5,5 +5,10 @@
     margin-bottom: 10px;
     .embed-video-section {
         @include xy-cell(10);
+        .vimeo-video-wrapper {
+            @include xy-grid();
+            align-items: center;
+            justify-content: center;
+        }
     }
 }

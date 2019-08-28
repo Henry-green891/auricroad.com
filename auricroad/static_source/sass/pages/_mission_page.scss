@@ -22,4 +22,10 @@ body.mission-page {
             }
         }
     }
+    .block-video_section .embed-video-section {
+        @include xy-cell(11);
+        @include breakpoint(large) {
+            @include xy-cell(10);
+        }
+    }
 }

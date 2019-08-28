@@ -435,6 +435,12 @@ class SplitImageTextCardSection(blocks.StructBlock):
     external_link = blocks.CharBlock(max_length=250, required=False)
     arrow_color = blocks.CharBlock(max_length=50, required=False)
     text_accent_color = blocks.CharBlock(max_length=50, required=False)
+    background_image_x_position = blocks.ChoiceBlock(
+        choices=X_POSITIONS, default="center"
+    )
+    background_image_y_position = blocks.ChoiceBlock(
+        choices=Y_POSITIONS, default="center"
+    )
 
     class Meta:
         template = "blocks/split_image_text_card_section.html"

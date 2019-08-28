@@ -14,15 +14,32 @@
         @include xy-grid();
         &.reverse-order {
             flex-direction: row-reverse;
+            .split-text-card {
+                margin-left: 0.15625rem;
+                margin-right: 0;
+            }
+            .split-image-card {
+                margin-left: 0;
+                margin-right: 0.15625rem;
+            }
         }
     }
-    .split-text-card,
+
+    .split-text-card {
+        @include xy-cell(12);
+        @include breakpoint(tablet) {
+            width: calc(50% - 0.15625rem);
+            margin-left: 0;
+            margin-right: 0.15625rem;
+        }
+    }
     .split-image-card {
         @include xy-cell(12);
         @include breakpoint(tablet) {
-            width: calc(50% - 0.3125rem);
-            margin-right: 0.15625rem;
+            width: calc(50% - 0.15625rem);
             margin-left: 0.15625rem;
+            margin-right: 0;
+            
         }
     }
     .split-text-card {
@@ -59,6 +76,18 @@
         min-height: 50vw;
         @include breakpoint(tablet) {
             min-height: unset;
+        }
+        &.x-left {
+            background-position-x: left;
+        }
+        &.x-right {
+            background-position-x: right;
+        }
+        &.y-top {
+            background-position-y: top;
+        }
+        &.y-bottom {
+            background-position-y: bottom;
         }
     }
     .tie-bar {

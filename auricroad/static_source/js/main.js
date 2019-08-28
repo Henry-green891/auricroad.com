@@ -155,24 +155,35 @@ function handleSlideSelectorTab(tab) {
   $('#floor-plan-slide-wrapper-'+itemIdNumber+'').addClass('active-floorplan-tab');
 }
 
-function setUpVideoSection() {
-  var width = Math.round(((5 * $(window).width()) / 6) - 5);
+function generateVideoSize() {
+  var width;
+  if ($('body').hasClass('reduced-mobile-margins') && $(window).width() < 1024) {
+   width = Math.round(((11 * $(window).width()) / 12) - 10);
+  } else {
+    width = Math.round(((5 * $(window).width()) / 6) - 10);
+  }
   var height = Math.round((9 * width) / 16);
+  return {
+    width, height
+  }
+}
+
+function setUpVideoSection() {
+  var dimensions = generateVideoSize();
   $('.vimeo-video-wrapper').each(function() {
     var vimeoPlayer = new Player($(this));
     vimeoPlayer.on('loaded', function() {
-      vimeoPlayer.element.height = height;
-      vimeoPlayer.element.width = width;
+      vimeoPlayer.element.height = dimensions.height;
+      vimeoPlayer.element.width = dimensions.width;
     });
   });
 }
 
 function setVideoWidths() {
-  var width = Math.round(((5 * $(window).width()) / 6) - 5);
-  var height = Math.round((9 * width) / 16);
+  var dimensions = generateVideoSize();
   $('.vimeo-video-wrapper iframe').each(function() {
-    this.height = height;
-    this.width = width;
+    this.height = dimensions.height;
+    this.width = dimensions.width;
   });
 }
 
