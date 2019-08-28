@@ -77,6 +77,11 @@
                 @include xy-grid();
                 a {
                     margin-right: 30px;
+                    @include breakpoint(mediumsmall down) {
+                        button {
+                            min-width: 170px;
+                        }
+                    }
                 }
             }
         }
