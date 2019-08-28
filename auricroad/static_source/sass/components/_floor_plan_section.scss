@@ -110,6 +110,9 @@
                         .floorplan-detail-group .block-detail:not(:last-child) .floorplan-detail-row {
                             margin-bottom: 5px;
                         }
+                        .button {
+                            margin-top: 20px;
+                        }
                     }
                     .slide-right {
                         @include xy-cell(12);
