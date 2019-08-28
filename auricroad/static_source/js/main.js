@@ -158,7 +158,7 @@ function handleSlideSelectorTab(tab) {
 function setUpVideoSection() {
   var width = Math.round(((5 * $(window).width()) / 6) - 5);
   var height = Math.round((9 * width) / 16);
-  $('#vimeo-video-wrapper').each(function() {
+  $('.vimeo-video-wrapper').each(function() {
     var vimeoPlayer = new Player($(this));
     vimeoPlayer.on('loaded', function() {
       vimeoPlayer.element.height = height;
@@ -170,7 +170,7 @@ function setUpVideoSection() {
 function setVideoWidths() {
   var width = Math.round(((5 * $(window).width()) / 6) - 5);
   var height = Math.round((9 * width) / 16);
-  $('#vimeo-video-wrapper iframe').each(function() {
+  $('.vimeo-video-wrapper iframe').each(function() {
     this.height = height;
     this.width = width;
   });
