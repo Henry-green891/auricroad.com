@@ -18,13 +18,7 @@
             color: $text-charcoal;
         }
         .body {
-            margin-bottom: 30px;
-            @include breakpoint(tablet) {
-                margin-bottom: 40px;
-            }
-            @include breakpoint(large) {
-                margin-bottom: 50px;
-            }
+            margin-bottom: 0;
         }
         .center-vertical-line {
             margin-bottom: 20px;
