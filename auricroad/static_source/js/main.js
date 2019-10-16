@@ -75,6 +75,10 @@ window.videoPlayer = null;
       handleSlideSelectorTab(tab);
     });
 
+    $('.room-thumbnail').click(function(image) {
+      handleThumbnailSelector(image);
+    });
+
     // table clickable rows
 
     $('.clickable-row').click(function() {
@@ -153,6 +157,22 @@ function handleSlideSelectorTab(tab) {
   $('#'+itemId).addClass('active-floorplan-tab-selector');
   $('.floor-plan-slide-wrapper').removeClass('active-floorplan-tab');
   $('#floor-plan-slide-wrapper-'+itemIdNumber+'').addClass('active-floorplan-tab');
+  // reset gallery
+  const curActive = $('#floor-plan-slide-wrapper-'+itemIdNumber+'').find('#room-image-0');
+  $('.room-image').removeClass('active-room-image');
+  curActive.addClass('active-room-image');
+}
+
+function handleThumbnailSelector(image) {
+  const imgId = image.currentTarget.id;
+  const imgIdNumber = filterNumberFromId(imgId, 'room-thumbnail-');
+  const nextActive = $('.active-floorplan-tab').find('#room-image-'+imgIdNumber);
+  const nextActiveThumb = $('.active-floorplan-tab').find('#room-thumbnail-'+imgIdNumber);
+
+  $('.room-thumbnail').removeClass('active-room-thumbnail');
+  nextActiveThumb.addClass('active-room-thumbnail');
+  $('.room-image').removeClass('active-room-image');
+  nextActive.addClass('active-room-image');
 }
 
 function generateVideoSize() {

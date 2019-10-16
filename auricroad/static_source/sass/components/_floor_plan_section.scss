@@ -49,7 +49,7 @@
                 }
                 color: $text-charcoal;
                 text-align: center;
-                
+
                 text-transform: uppercase;
                 @extend .font-d;
                 @extend .font-d.size-5;
@@ -84,7 +84,7 @@
                         align-items: unset;
                         @include xy-grid();
                     }
-                    
+
                     .slide-left {
                         @include xy-cell(12);
                         @include breakpoint(large) {
@@ -120,6 +120,20 @@
                         @include breakpoint(large) {
                             margin-bottom: 0px;
                             @include xy-cell(7);
+                        }
+                        .room-image {
+                            display: none;
+                            &.active-room-image {
+                                display: block;
+                            }
+                        }
+                        .thumbnail-picker {
+                            display: flex;
+                            justify-content: center;
+                            margin-top: 30px;
+                            .room-thumbnail {
+                                padding: 5px;
+                            }
                         }
                     }
                 }

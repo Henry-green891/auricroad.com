@@ -374,6 +374,7 @@ class FloorPlanSlide(blocks.StructBlock):
     floor_plan_document_text = blocks.CharBlock(max_length=50, required=False)
     floor_plan_document = DocumentChooserBlock(required=False)
     floor_plan_image = ImageChooserBlock(required=False)
+    other_images = blocks.ListBlock(ImageChooserBlock(required=False), required=False)
 
     class Meta:
         template = "blocks/floor_plan_slide.html"
