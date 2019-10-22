@@ -58,7 +58,7 @@ AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default="")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default="")
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default="")
 AWS_IS_GZIPPED = True
-AWS_S3_REGION_NAME = "us-east-1"
+AWS_S3_REGION_NAME = "us-west-1"
 AWS_S3_FILE_OVERWRITE = False
 
 sentry_sdk.init(dsn=env("SENTRY_DSN", default=""), integrations=[DjangoIntegration()])
