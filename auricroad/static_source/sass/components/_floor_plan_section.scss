@@ -80,6 +80,7 @@
                     @include xy-grid('vertical');
                     flex-direction: column-reverse;
                     align-items: center;
+                    width: 100%;
                     @include breakpoint(large) {
                         align-items: unset;
                         @include xy-grid();
@@ -121,20 +122,27 @@
                             margin-bottom: 0px;
                             @include xy-cell(7);
                         }
-                        .room-image {
-                            display: none;
-                            &.active-room-image {
-                                display: block;
+                        .slick-arrow {
+                            background-color: $auric-gold;
+                            width: 30px;
+                            height: 30px;
+                            &:before {
+                              color: $text-charcoal;
+                              font-size: 20px;
                             }
                         }
-                        .thumbnail-picker {
-                            display: flex;
-                            justify-content: center;
-                            margin-top: 30px;
-                            .room-thumbnail {
-                                padding: 5px;
-                            }
-                        }
+                        .slick-prev {
+                          left: -35px;
+                          &:before {
+                              content: url('/static/svg/chevron-left.svg');
+                          }
+                      }
+                      .slick-next {
+                          right: -35px;
+                          &:before {
+                              content: url('/static/svg/chevron-right.svg');
+                          }
+                      }
                     }
                 }
             }

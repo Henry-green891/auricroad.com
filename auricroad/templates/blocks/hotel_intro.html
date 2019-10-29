@@ -48,7 +48,11 @@
                     </video>
                 </div>
             {% endif %}
+
             {{ value.images }}
+            {% if value.intro_video_embed %}
+            {{ value.intro_video_embed }}
+            {% endif %}
             {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
                 {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
             {% endif %}

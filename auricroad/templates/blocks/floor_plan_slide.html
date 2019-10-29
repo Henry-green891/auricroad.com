@@ -10,26 +10,19 @@
         {% endif %}
     </div>
     <div class="slide-right">
-        {% if value.floor_plan_image %}
-        <div id="room-image-0" class="room-image active-room-image">
-        {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
-        </div>
-        {% endif %}
-        {% for item in value.other_images %}
-        <div id="room-image-{{loop.index}}" class="room-image">
-            {{ image(item, "fill-1500x1200")}}
-        </div>
-        {% endfor %}
-
-        <div class="thumbnail-picker">
-            <div id="room-thumbnail-0" class="room-thumbnail">
-                {{ image(value.floor_plan_image, "fill-30x30", class="room-thumbnail") }}
+        <div class="slider">
+            {% if value.floor_plan_image %}
+            <div class="room-image">
+                {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
             </div>
+            {% endif %}
+            {% if value.other_images %}
             {% for item in value.other_images %}
-            <div id="room-thumbnail-{{loop.index}}" class="room-thumbnail">
-                {{ image(item, "fill-30x30") }}
+            <div class="room-image">
+                {{ image(item, "fill-1500x1200")}}
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

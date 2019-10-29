@@ -88,6 +88,14 @@ class SocialIconLink(blocks.StructBlock):
         template = "blocks/social_icon_link.html"
 
 
+class EmbedVideoBlock(blocks.StructBlock):
+    video_url = blocks.CharBlock(max_length=500, required=False)
+    embed_source = blocks.ChoiceBlock(choices=VIDEO_SOURCES, default="vimeo")
+
+    class Meta:
+        template = "blocks/embed_video_block.html"
+
+
 class HeroCard(blocks.StructBlock):
     icon = ImageChooserBlock()
     header = blocks.CharBlock(max_length=50)
@@ -306,6 +314,7 @@ class HotelIntro(blocks.StructBlock):
     accent_image = ImageChooserBlock(required=False)
     bottom_right_image = ImageChooserBlock(required=False)
     intro_video = MediaBlock(icon="media", required=False)
+    intro_video_embed = EmbedVideoBlock(required=False)
     images = blocks.StreamBlock(
         [("image_row", ImageSection()), ("full_image", FullWidthImage())],
         null=True,
@@ -580,11 +589,3 @@ class HeaderTextParagraph(blocks.StructBlock):
 
     class Meta:
         template = "blocks/header_text_paragraph.html"
-
-
-class EmbedVideoBlock(blocks.StructBlock):
-    video_url = blocks.CharBlock(max_length=500)
-    embed_source = blocks.ChoiceBlock(choices=VIDEO_SOURCES, default="vimeo")
-
-    class Meta:
-        template = "blocks/embed_video_block.html"
