@@ -1,6 +1,7 @@
 var $ = require('jquery');
 import 'foundation-sites/dist/js/foundation.min.js';
 import Player from '@vimeo/player';
+import 'slick-carousel/slick/slick.min.js';
 
 window.videoPlayer = null;
 (function() {
@@ -74,6 +75,8 @@ window.videoPlayer = null;
     $('.slide-selector-tab').click(function(tab) {
       handleSlideSelectorTab(tab);
     });
+
+    $('.slider').slick();
 
     // table clickable rows
 
@@ -153,6 +156,9 @@ function handleSlideSelectorTab(tab) {
   $('#'+itemId).addClass('active-floorplan-tab-selector');
   $('.floor-plan-slide-wrapper').removeClass('active-floorplan-tab');
   $('#floor-plan-slide-wrapper-'+itemIdNumber+'').addClass('active-floorplan-tab');
+  // reset gallery
+  const slider = $('#floor-plan-slide-wrapper-'+itemIdNumber+'').find('.slider');
+  slider[0].slick.refresh()
 }
 
 function generateVideoSize() {

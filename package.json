@@ -63,6 +63,7 @@
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^6.0.7",
     "select2": "^4.0.6-rc.1",
+    "slick-carousel": "^1.8.1",
     "style-loader": "^0.20.3",
     "true-case-path": "^2.0.0",
     "uglifyjs-webpack-plugin": "^1.2.6",

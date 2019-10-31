@@ -26,12 +26,17 @@
                 position: absolute;
                 top: -1px;
             }
+            .gradient {
+               background-image: linear-gradient(to bottom right, rgba(0,0,0,.4), rgba(0,0,0,.4));
             padding: 40px 20px 40px 20px;
             @include breakpoint(tablet) {
                 padding: 50px 30px 50px 30px;
             }
             @include breakpoint(large) {
                 padding: 50px 70px 60px 70px;
+                background-image: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,0));
+            }
+
             }
             color: $white;
             h3 {

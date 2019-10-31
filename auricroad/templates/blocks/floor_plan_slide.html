@@ -4,14 +4,25 @@
         <div class="font-d size-4">{{value.room_description}}</div>
         {{value.details}}
         {% if value.floor_plan_document and value.floor_plan_document_text %}
-            <a href="{{value.floor_plan_document.url}}" class="button transparant rounded">
-                {{value.floor_plan_document_text}}
-            </a>
+        <a href="{{value.floor_plan_document.url}}" class="button transparant rounded">
+            {{value.floor_plan_document_text}}
+        </a>
         {% endif %}
     </div>
     <div class="slide-right">
-        {% if value.floor_plan_image %}
-            {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
-        {% endif %}
+        <div class="slider">
+            {% if value.floor_plan_image %}
+            <div class="room-image">
+                {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
+            </div>
+            {% endif %}
+            {% if value.other_images %}
+            {% for item in value.other_images %}
+            <div class="room-image">
+                {{ image(item, "fill-1500x1200")}}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
 </div>
