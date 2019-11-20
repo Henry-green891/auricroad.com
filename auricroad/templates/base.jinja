@@ -18,11 +18,14 @@
       </div> <!-- /container -->
 
       {% include "footer.html" %}
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153052199-1"></script>
       <script>
-          var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-              g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-              s.parentNode.insertBefore(g,s)}(document,'script'));
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-153052199-1');
       </script>
     {{ render_bundle('vendor_common') }}
     {{ render_bundle('js') }}
