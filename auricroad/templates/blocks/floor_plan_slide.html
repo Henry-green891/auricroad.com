@@ -13,13 +13,13 @@
         <div class="slider">
             {% if value.floor_plan_image %}
             <div class="room-image">
-                {{ image(value.floor_plan_image, "fill-1500x1200", class="floor-plan-image")}}
+                {{ image(value.floor_plan_image, "original", class="floor-plan-image")}}
             </div>
             {% endif %}
             {% if value.other_images %}
             {% for item in value.other_images %}
             <div class="room-image">
-                {{ image(item, "fill-1500x1200")}}
+                {{ image(item, "original")}}
             </div>
             {% endfor %}
             {% endif %}
