@@ -122,6 +122,17 @@
                             margin-bottom: 0px;
                             @include xy-cell(7);
                         }
+
+                        .slider, .slick-list, .slick-track {
+                          height: 100%;
+                        }
+
+                        .slick-slide {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          height: 100%;
+                        }
                         .slick-arrow {
                             background-color: $auric-gold;
                             width: 30px;
