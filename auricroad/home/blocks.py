@@ -483,6 +483,15 @@ class FadeInFooter(blocks.StructBlock):
         template = "blocks/fade_out_footer.html"
 
 
+class ButtonBlock(blocks.StructBlock):
+    button_text = blocks.CharBlock(max_length=50, required=False)
+    internal_page = blocks.PageChooserBlock(required=False)
+    external_link = blocks.CharBlock(max_length=250, required=False)
+
+    class Meta:
+        template = "blocks/button_block.html"
+
+
 class ImageLogoLinkCard(blocks.StructBlock):
     main_image = ImageChooserBlock(required=False)
     logo_image = ImageChooserBlock(required=False)
