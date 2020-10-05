@@ -106,6 +106,7 @@ class HeroCard(blocks.StructBlock):
     class Meta:
         template = "blocks/hero_card_block.html"
 
+
 class SiteLogoCard(blocks.StructBlock):
     logo = ImageChooserBlock()
     header = blocks.CharBlock(max_length=50, required=False)
@@ -114,6 +115,7 @@ class SiteLogoCard(blocks.StructBlock):
 
     class Meta:
         template = "blocks/site_logo_card_block.html"
+
 
 class SiteLogoCard(blocks.StructBlock):
     logo = ImageChooserBlock()
