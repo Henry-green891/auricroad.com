@@ -513,6 +513,15 @@ class HotelEventsPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
+class HotelEventsPage(Page):
+    body = StreamField(
+        hotel_base_blocks + [("events_footer", EventsFooter())],
+        null=True,
+        blank=True,
+    )
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+
 class EventsPage(Page):
     body = StreamField(
         [
