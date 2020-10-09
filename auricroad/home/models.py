@@ -285,7 +285,6 @@ class AbstractFormField(WagtailFormField):
     """
     Database Fields required for building a Django Form field.
     """
-
     label = models.CharField(
         verbose_name=_("label"),
         max_length=255,
