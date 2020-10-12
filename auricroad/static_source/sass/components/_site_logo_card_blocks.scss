@@ -7,7 +7,6 @@
 
   justify-content: center;
   margin-bottom: 50px;
-  flex-flow: row;
 
   @include breakpoint(tablet) {
     @include xy-cell(10);
