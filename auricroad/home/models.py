@@ -281,6 +281,9 @@ class FormBuilder(WagtailFormBuilder):
         return type(str("WagtailForm"), (BaseForm,), new_formfields)
 
 
+WAGTAIL_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (('file', _('File')),)
+
+
 class AbstractFormField(WagtailFormField):
     """
     Database Fields required for building a Django Form field.
