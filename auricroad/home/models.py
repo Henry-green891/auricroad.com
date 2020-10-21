@@ -17,7 +17,7 @@ from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
                                          StreamFieldPanel)
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
-from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField as WagtailFormField
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
