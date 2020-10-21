@@ -281,9 +281,6 @@ class FormBuilder(WagtailFormBuilder):
         return type(str("WagtailForm"), (BaseForm,), new_formfields)
 
 
-WAGTAIL_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (('file', _('File')),)
-
-
 class AbstractFormField(WagtailFormField):
     """
     Database Fields required for building a Django Form field.
@@ -296,8 +293,6 @@ class AbstractFormField(WagtailFormField):
             "MUST BE UNIQUE. The label that will be associated with the data on the back-end."
         ),
     )
-    field_type = models.CharField(verbose_name=_(
-        'field type'), max_length=16, choices=FORM_FIELD_CHOICES)
     display_label = models.CharField(
         verbose_name=_("display label"),
         max_length=255,
