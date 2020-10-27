@@ -285,6 +285,7 @@ class AbstractFormField(WagtailFormField):
     """
     Database Fields required for building a Django Form field.
     """
+
     label = models.CharField(
         verbose_name=_("label"),
         max_length=255,
@@ -514,9 +515,7 @@ class HotelEventsPage(Page):
 
 class HotelEventsPage(Page):
     body = StreamField(
-        hotel_base_blocks + [("events_footer", EventsFooter())],
-        null=True,
-        blank=True,
+        hotel_base_blocks + [("events_footer", EventsFooter())], null=True, blank=True,
     )
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
