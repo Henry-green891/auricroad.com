@@ -2,6 +2,8 @@
 
 source scripts/get-env-secrets.sh;
 
+ENV_NAME=auricroad
+
 dropdb $ENV_NAME
 heroku pg:pull DATABASE_URL $ENV_NAME --app $ENV_NAME-dev
 for tbl in `psql -qAt -c "select tablename from pg_tables where schemaname = 'public';" $ENV_NAME` ; do  psql -c "alter table \"$tbl\" owner to $ENV_NAME" $ENV_NAME ; done

@@ -1,234 +1,294 @@
 $hero-play-button-width: 115px;
 
 .hero {
-    @include xy-grid('vertical');
-    align-items: center;
-    &.extended-bottom-padding {
-        margin-bottom: -340px;
-        .hero-background-wrapper {
-            padding-bottom: 250px;
-            .static-section-header {
-                margin-top: 230px;
-            }
-        }
-    }
-    &.reduced-padding {
-        .hero-background-wrapper {
-            .static-section-header {
-                margin-top: 170px;
-                @include breakpoint(tablet) {
-                    margin-top: 210px;
-                }
-                @include breakpoint(large) {
-                    margin-top: 170px;
-                }
-            }
-        }
-    }
-    &.wider-desktop-layout {
-        .static-section-header {
-            @include xy-cell(10);
-            @include breakpoint(tablet) {
-                @include xy-cell(10);
-            }
-            @include breakpoint(large) {
-                @include xy-cell(10);
-            }
-        }
-    }
-    &.video-only-hero {
-        position: relative;
-        .hero-video {
-            margin-left: 0;
-            margin-right: 0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-            background-size: cover;
-            &:not(.is-playing) {
-                z-index: -1;
-                .video-diamond-overlay {
-                    z-index: 1;
-                    @include breakpoint(tablet) {
-                        display: inline-block;
-                        top: -10vh;
-                        height: 120vh;
-                    }
-                    @include breakpoint(large) {
-                        top: -15vh;
-                        height: 130vh;
-                    }
-                    @include breakpoint(xxlarge) {
-                        top: -30vh;
-                        height: 160vh;
-                    }
-                    @media screen and (min-aspect-ratio: 3/2) {
-                        @include breakpoint(tablet) {
-                            top: unset;
-                            height: auto;
-                            width: 95vw;
-                        }
-                    }
-                }
-            }
-            &.is-playing {
-                #hero-video-iframe {
-                    background-color: $black;
-                }
-            }
-            #hero-video-iframe {
-                width: 100vw;
-                height: 100vh;
-                &.hide-on-load {
-                    display: none;
-                }
-            }
-            .video-diamond-overlay {
-                position: absolute;
-                max-width: none;
-                display: none;
-            }
-        }
-        #play-button-wrapper {
-            position: absolute;
-            top: calc(50% - (#{$hero-play-button-width} / 2));
-            left: calc(50% - (#{$hero-play-button-width} / 2));
-            height: $hero-play-button-width;
-            width: $hero-play-button-width;
-            &.hidden {
-                display: none;
-            }
-            #video-play-button {
-                width: 100%;
-                height: 100%;
-                color: $pearl;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-        }
-        
-    }
-    .hero-video {
-        position: relative;
-        @include xy-cell(10);
-        video {
-            @include xy-cell(12);
-        }
-    }
+  @include xy-grid('vertical');
+  align-items: center;
+
+  &.extended-bottom-padding {
+    margin-bottom: -340px;
+
     .hero-background-wrapper {
-        @include xy-grid('vertical');
-        width: 100%;
-        align-items: center;
-        padding-bottom: 40px;
-        @include breakpoint(tablet) {
-            padding-bottom: 50px;
-        }
-        @include breakpoint(large) {
-            padding-bottom: 90px;
-        }
-        position: relative;
-        z-index: -1;
-        .hero-background-gradient {
-            position: absolute;
-            width: 100%;
-            top: 70%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-        background-size: cover;
-        background-position-x: center;
-        &.x-left {
-            background-position-x: left;
-        }
-        &.x-right {
-            background-position-x: right;
-        }
-        &.has-overlay {
-            background-size: 0%, cover;
-            background-position-x: center, center;
-            &.x-left {
-                background-position-x: center, left;
-            }
-            &.x-right {
-                background-position-x: center, right;
-            }
-            background-repeat: no-repeat, no-repeat;
-            @include breakpoint(large) {
-                background-size: auto 130vh, cover;
-                background-position-y: -15vh, top;
-                &.y-center {
-                    background-position-y: -15vh, center;
-                }
-                &.y-bottom {
-                    background-position-y: -15vh, bottom;
-                }
-            }
-            @include breakpoint(xxlarge) {
-                background-size: auto 160vh, cover;
-                background-position-y: -30vh, top;
-                &.y-center {
-                    background-position-y: -30vh, center;
-                }
-                &.y-bottom {
-                    background-position-y: -30vh, bottom;
-                }
-            }
-            @media screen and (min-aspect-ratio: 3/2) {
-                @include breakpoint(large) {
-                    background-size: 95vw auto, cover;
-                    background-position-y: calc(50vh - 47.6vw), top;
-                    &.y-center {
-                        background-position-y: calc(50vh - 47.5vw), center;
-                    }
-                    &.y-bottom {
-                        background-position-y: calc(50vh - 47.5vw), bottom;
-                    }
-                }
-            }
-            &.has-cards {
-                @include breakpoint(medium down) {
-                    background-size: 0%, auto 50%;
-                }
-            }
-        }
-        .static-section-header {
-            @include xy-cell(10);
-            @include breakpoint(tablet) {
-                @include xy-cell(8);
-            }
-            @include breakpoint(large) {
-                @include xy-cell(7);
-            }
-            margin-top: 170px;
-            @include breakpoint(tablet) {
-                margin-top: 220px;
-            }
-            @include breakpoint(large) {
-                margin-top: 270px;
-            }
-            .header.accented-text {
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-            .body {
-                margin-bottom: 90px;
-                @include breakpoint(tablet) {
-                    margin-bottom: 110px;
-                }
-                @include breakpoint(large) {
-                    margin-bottom: 150px;
-                }
-                
-            }
-            .center-vertical-line {
-                margin-bottom: 28px;
-            }
-        }
+      padding-bottom: 250px;
+
+      .static-section-header {
+        margin-top: 230px;
+      }
     }
-    
+  }
+
+  &.reduced-padding {
+    .hero-background-wrapper {
+      .static-section-header {
+        margin-top: 170px;
+
+        @include breakpoint(tablet) {
+          margin-top: 210px;
+        }
+
+        @include breakpoint(large) {
+          margin-top: 170px;
+        }
+      }
+    }
+  }
+
+  &.wider-desktop-layout {
+    .static-section-header {
+      @include xy-cell(10);
+
+      @include breakpoint(tablet) {
+        @include xy-cell(10);
+      }
+
+      @include breakpoint(large) {
+        @include xy-cell(10);
+      }
+    }
+  }
+
+  &.video-only-hero {
+    position: relative;
+
+    .hero-video {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+
+      &:not(.is-playing) {
+        z-index: -1;
+
+        .video-diamond-overlay {
+          z-index: 1;
+
+          @include breakpoint(tablet) {
+            display: inline-block;
+            top: -10vh;
+            height: 120vh;
+          }
+
+          @include breakpoint(large) {
+            top: -15vh;
+            height: 130vh;
+          }
+
+          @include breakpoint(xxlarge) {
+            top: -30vh;
+            height: 160vh;
+          }
+
+          @media screen and (min-aspect-ratio: 3/2) {
+            @include breakpoint(tablet) {
+              top: unset;
+              height: auto;
+              width: 95vw;
+            }
+          }
+        }
+      }
+
+      &.is-playing {
+        #hero-video-iframe {
+          background-color: $black;
+        }
+      }
+
+      #hero-video-iframe {
+        width: 100vw;
+        height: 100vh;
+
+        &.hide-on-load {
+          display: none;
+        }
+      }
+
+      .video-diamond-overlay {
+        position: absolute;
+        max-width: none;
+        display: none;
+      }
+    }
+
+    #play-button-wrapper {
+      position: absolute;
+      top: calc(50% - (#{$hero-play-button-width} / 2));
+      left: calc(50% - (#{$hero-play-button-width} / 2));
+      height: $hero-play-button-width;
+      width: $hero-play-button-width;
+
+      &.hidden {
+        display: none;
+      }
+
+      #video-play-button {
+        width: 100%;
+        height: 100%;
+        color: $pearl;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .hero-video {
+    position: relative;
+    @include xy-cell(10);
+
+    video {
+      @include xy-cell(12);
+    }
+  }
+
+  .hero-background-wrapper {
+    @include xy-grid('vertical');
+    width: 100%;
+    align-items: center;
+    padding-bottom: 40px;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 50px;
+    }
+
+    @include breakpoint(large) {
+      padding-bottom: 90px;
+    }
+
+    position: relative;
+
+    .hero-background-gradient {
+      position: absolute;
+      width: 100%;
+      top: 70%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    background-size: cover;
+    background-position-x: center;
+
+    &.x-left {
+      background-position-x: left;
+    }
+
+    &.x-right {
+      background-position-x: right;
+    }
+
+    &.has-overlay {
+      background-size: 0%, cover;
+      background-position-x: center, center;
+
+      &.x-left {
+        background-position-x: center, left;
+      }
+
+      &.x-right {
+        background-position-x: center, right;
+      }
+
+      background-repeat: no-repeat,
+      no-repeat;
+
+      @include breakpoint(large) {
+        background-size: auto 130vh, cover;
+        background-position-y: -15vh, top;
+
+        &.y-center {
+          background-position-y: -15vh, center;
+        }
+
+        &.y-bottom {
+          background-position-y: -15vh, bottom;
+        }
+      }
+
+      @include breakpoint(xxlarge) {
+        background-size: auto 160vh, cover;
+        background-position-y: -30vh, top;
+
+        &.y-center {
+          background-position-y: -30vh, center;
+        }
+
+        &.y-bottom {
+          background-position-y: -30vh, bottom;
+        }
+      }
+
+      @media screen and (min-aspect-ratio: 3/2) {
+        @include breakpoint(large) {
+          background-size: 95vw auto, cover;
+          background-position-y: calc(50vh - 47.6vw), top;
+
+          &.y-center {
+            background-position-y: calc(50vh - 47.5vw), center;
+          }
+
+          &.y-bottom {
+            background-position-y: calc(50vh - 47.5vw), bottom;
+          }
+        }
+      }
+
+      &.has-cards {
+        @include breakpoint(medium down) {
+          background-size: 0%, auto 50%;
+        }
+      }
+    }
+
+    .static-section-header {
+      @include xy-cell(10);
+
+      @include breakpoint(tablet) {
+        @include xy-cell(8);
+      }
+
+      @include breakpoint(large) {
+        @include xy-cell(7);
+      }
+
+      margin-top: 170px;
+
+      @include breakpoint(tablet) {
+        margin-top: 220px;
+      }
+
+      @include breakpoint(large) {
+        margin-top: 270px;
+      }
+
+      .header.accented-text {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .body {
+        margin-bottom: 90px;
+
+        @include breakpoint(tablet) {
+          margin-bottom: 110px;
+        }
+
+        @include breakpoint(large) {
+          margin-bottom: 150px;
+        }
+
+      }
+
+      .center-vertical-line {
+        margin-bottom: 28px;
+      }
+    }
+  }
+
 }

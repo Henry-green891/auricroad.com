@@ -1,11 +1,24 @@
+import json
+from collections import OrderedDict
+from django.core.serializers.json import DjangoJSONEncoder
+# from django import forms
 from django.db import models  # NOQA
+from django.forms import Field, FileField, HiddenInput
+from django.forms.fields import CharField, EmailField
+from django.utils.six import text_type
+from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
+from salesforce import models as SFModels
+from unidecode import unidecode
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
                                          StreamFieldPanel)
-from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.forms import BaseForm
+from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
+from wagtail.contrib.forms.models import AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractFormField as WagtailFormField
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -54,7 +67,8 @@ from wagtailmedia.models import AbstractMedia  # isort:skip
 @register_model_chooser
 class Hotel(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
     location = models.CharField(max_length=255)
     environment = models.CharField(
         max_length=50, choices=ENVIRONMENT_CHOICES, default=""
@@ -88,7 +102,8 @@ class Hotel(models.Model):
 @register_model_chooser
 class NavBar(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
     on_load_image = models.ForeignKey(
         "home.CustomImage",
         on_delete=models.SET_NULL,
@@ -124,12 +139,15 @@ class NavBar(models.Model):
         null=True,
         blank=True,
     )
-    desktop_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+    desktop_links = StreamField(
+        [("links", HeaderLinkBlock())], null=True, blank=True)
     mobile_top_nav_links = StreamField(
         [("links", HeaderLinkBlock())], null=True, blank=True
     )
-    mobile_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
-    social_icons = StreamField([("icons", SocialIconLink())], null=True, blank=True)
+    mobile_links = StreamField(
+        [("links", HeaderLinkBlock())], null=True, blank=True)
+    social_icons = StreamField(
+        [("icons", SocialIconLink())], null=True, blank=True)
 
     panels = [
         FieldPanel("name"),
@@ -151,7 +169,8 @@ class NavBar(models.Model):
 @register_model_chooser
 class Footer(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
 
     form_section_name = models.CharField(max_length=50)
     form_section_caption = models.CharField(max_length=250)
@@ -214,8 +233,102 @@ class CustomMedia(AbstractMedia):
     )
 
 
+class FormBuilder(WagtailFormBuilder):
+    def create_singleline_field(self, field, options):
+        options["max_length"] = field.max_length
+        return CharField(**options)
+
+    def create_multiline_field(self, field, options):
+        options["max_length"] = field.max_length
+        return super(FormBuilder, self).create_multiline_field(field, options)
+
+    def create_email_field(self, field, options):
+        options["max_length"] = field.max_length
+        return EmailField(**options)
+
+    def create_blank_field(self, field, options):
+        return Field(label="Blank", widget=HiddenInput, required=False)
+
+    def create_file_field(self, field, options):
+        return FileField(**options)
+
+    def create_phone_field(self, field, options):
+        options["max_length"] = field.max_length
+        return CharField(**options)
+
+    def create_header_field(self, field, options):
+        options.pop("required")
+        field = Field(widget=HiddenInput, required=False, **options)
+        field.is_header = True
+        return field
+
+    # def create_captcha_field(self, field, options):
+    #     return NPACCaptchaField(label="Captcha", required=True)
+
+    def get_form_class(self):
+        new_formfields = OrderedDict()
+        for key in self.formfields:
+            for field in self.fields:
+                if key == field.clean_name:
+                    formfield = self.formfields[key]
+                    if field.display_label:
+                        formfield.display_label = field.display_label
+                    if field.italic_help:
+                        formfield.italic_help = field.italic_help
+                    if field.full_width:
+                        formfield.full_width = field.full_width
+                    new_formfields[key] = formfield
+        return type(str("WagtailForm"), (BaseForm,), new_formfields)
+
+
+class AbstractFormField(WagtailFormField):
+    """
+    Database Fields required for building a Django Form field.
+    """
+
+    label = models.CharField(
+        verbose_name=_("label"),
+        max_length=255,
+        help_text=_(
+            "MUST BE UNIQUE. The label that will be associated with the data on the back-end."
+        ),
+    )
+    display_label = models.CharField(
+        verbose_name=_("display label"),
+        max_length=255,
+        blank=True,
+        help_text=_(
+            "The label that the user will see. Does not need to be unique. If left blank, Label will be displayed to the user."
+        ),
+    )
+    italic_help = models.BooleanField(
+        default=False, help_text="Should the help text for the field show up in italics"
+    )
+    full_width = models.BooleanField(default=False)
+    max_length = models.IntegerField(default=50)
+
+    @property
+    def clean_name(self):
+        # unidecode will return an ascii string while slugify wants a
+        # unicode string on the other hand, slugify returns a safe-string
+        # which will be converted to a normal str
+        return str(slugify(text_type(unidecode(self.label))))
+
+    panels = WagtailFormField.panels + [
+        FieldPanel("display_label"),
+        FieldPanel("italic_help"),
+        FieldPanel("full_width"),
+        FieldPanel("max_length"),
+    ]
+
+    class Meta:
+        abstract = True
+        ordering = ["sort_order"]
+
+
 class FormField(AbstractFormField):
-    page = ParentalKey("FormPage", on_delete=models.CASCADE, related_name="form_fields")
+    page = ParentalKey("FormPage", on_delete=models.CASCADE,
+                       related_name="form_fields")
 
 
 class HomePage(Page):
@@ -238,6 +351,7 @@ class HomePage(Page):
 
 
 class FormPage(AbstractEmailForm):
+    form_builder = FormBuilder
     body = StreamField(
         [
             ("hero", Hero()),
@@ -271,6 +385,22 @@ class FormPage(AbstractEmailForm):
     ]
 
 
+class EventsFormPage(FormPage):
+    def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+
+        EventResponses.objects.create(**form.cleaned_data)
+
+        return self.get_submission_class().objects.create(
+            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder), page=self,
+        )
+
+
 class Contact(models.Model):
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=30, blank=True)
@@ -297,30 +427,34 @@ class HotelsPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
+hotel_base_blocks = [
+    ("hero", Hero()),
+    ("intro", HotelIntro()),
+    ("image_section", ImageSection()),
+    ("static_text_section", StaticTextSection()),
+    ("section_header", SectionHeader()),
+    ("block_quote", BlockQuote()),
+    ("activity_section", ActivitySection()),
+    ("floor_plan_section", FloorPlanSection()),
+    ("detail_section", HotelDetailSection()),
+    ("fade_in_footer", FadeInFooter()),
+    ("button_block", ButtonBlock()),
+    ("rich_text_section", blocks.RichTextBlock()),
+    ("video_section", EmbedVideoBlock()),
+]
+
+
 class HotelDetailPage(Page):
-    body = StreamField(
-        [
-            ("hero", Hero()),
-            ("intro", HotelIntro()),
-            ("image_section", ImageSection()),
-            ("static_text_section", StaticTextSection()),
-            ("section_header", SectionHeader()),
-            ("block_quote", BlockQuote()),
-            ("activity_section", ActivitySection()),
-            ("floor_plan_section", FloorPlanSection()),
-            ("detail_section", HotelDetailSection()),
-            ("fade_in_footer", FadeInFooter()),
-            ("button_block", ButtonBlock()),
-            ("rich_text_section", blocks.RichTextBlock()),
-            ("video_section", EmbedVideoBlock()),
-        ],
-        null=True,
-        blank=True,
-    )
-
+    body = StreamField(hotel_base_blocks, null=True, blank=True,)
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
     parent_page_types = [HotelsPage]
+
+
+class HotelEventsPage(Page):
+    body = StreamField(
+        hotel_base_blocks + [("events_footer", EventsFooter())], null=True, blank=True,
+    )
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
 class EventsPage(Page):
@@ -338,7 +472,6 @@ class EventsPage(Page):
         null=True,
         blank=True,
     )
-
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
@@ -485,3 +618,159 @@ class BasicInfoPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+
+class EventResponses(SFModels.Model):
+    """This is pulled directly from salesforce after creating it there. This should
+    only be edited if the salesforce form changes."""
+
+    company = models.CharField(
+        db_column="company__c",
+        max_length=255,
+        verbose_name="company",
+        blank=True,
+        null=True,
+    )
+    last_name = models.CharField(
+        db_column="last_name__c",
+        max_length=255,
+        verbose_name="last_name",
+        blank=True,
+        null=True,
+    )
+    city = models.CharField(
+        db_column="city__c", max_length=255, verbose_name="city", blank=True, null=True
+    )
+    phone = models.CharField(
+        db_column="phone__c", max_length=25, verbose_name="phone", blank=True, null=True
+    )
+    salutation = models.CharField(
+        db_column="salutation__c",
+        max_length=255,
+        verbose_name="salutation",
+        blank=True,
+        null=True,
+    )
+    first_name = models.CharField(
+        db_column="first_name__c",
+        max_length=255,
+        verbose_name="first_name",
+        blank=True,
+        null=True,
+    )
+    preferred_date = models.DateField(
+        db_column="preferred_date__c", verbose_name="preferred_date", blank=True, null=True
+    )
+    flexible_dates = models.BooleanField(
+        db_column="flexible_dates__c",
+        verbose_name="flexible_dates",
+        default=SFModels.DefaultedOnCreate(False),
+    )
+    state = models.CharField(
+        db_column="state__c",
+        max_length=255,
+        verbose_name="state",
+        blank=True,
+        null=True,
+    )
+    alternate_date = models.DateField(
+        db_column="alternate_date__c",
+        verbose_name="alternate_date",
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(
+        db_column="email__c", verbose_name="email", blank=True, null=True
+    )
+    additional_comments = models.CharField(
+        db_column="additional_comments__c",
+        max_length=255,
+        verbose_name="additional_comments",
+        blank=True,
+        null=True,
+    )
+    referral = models.CharField(
+        db_column="referral__c",
+        max_length=255,
+        verbose_name="referral",
+        blank=True,
+        null=True,
+    )
+    petite_resort = models.CharField(
+        db_column="petite_resort__c",
+        max_length=255,
+        verbose_name="petite_resort",
+        blank=True,
+        null=True,
+    )
+    number_of_guests = models.DecimalField(
+        db_column="number_of_guests__c",
+        max_digits=18,
+        decimal_places=0,
+        verbose_name="number_of_guests",
+        blank=True,
+        null=True,
+    )
+    number_of_guest_rooms = models.DecimalField(
+        db_column="number_of_guest_rooms__c",
+        max_digits=18,
+        decimal_places=0,
+        verbose_name="number_of_guest_rooms",
+        blank=True,
+        null=True,
+    )
+    number_of_nights = models.DecimalField(
+        db_column="number_of_nights__c",
+        max_digits=18,
+        decimal_places=0,
+        verbose_name="number_of_nights",
+        blank=True,
+        null=True,
+    )
+    address = models.CharField(
+        db_column="address__c",
+        max_length=255,
+        verbose_name="address",
+        blank=True,
+        null=True,
+    )
+    zip_code = models.CharField(
+        db_column="zip_code__c",
+        max_length=255,
+        verbose_name="zip_code",
+        blank=True,
+        null=True,
+    )
+    event_type = models.CharField(
+        db_column="event_type__c",
+        max_length=255,
+        verbose_name="event_type",
+        blank=True,
+        null=True,
+    )
+    country = models.CharField(
+        db_column="country__c",
+        max_length=255,
+        verbose_name="country",
+        blank=True,
+        null=True,
+    )
+    contact_method = models.CharField(
+        db_column="contact_method__c",
+        max_length=255,
+        verbose_name="contact_method",
+        blank=True,
+        null=True,
+    )
+    submission_date = models.DateTimeField(
+        db_column="Submission_date__c",
+        verbose_name="Submission date",
+        blank=True,
+        null=True,
+    )
+
+    class Meta(SFModels.Model.Meta):
+        db_table = "eventresponses__c"
+        verbose_name = "Event Response"
+        verbose_name_plural = "Event Responses"
+        # keyPrefix = 'a0I'

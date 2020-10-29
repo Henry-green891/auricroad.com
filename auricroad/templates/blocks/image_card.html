@@ -24,10 +24,15 @@ style="background-image: url({{ value.background_image.file.url }});"
     {% endif %}
     <div class="image-card-link-row">
         {% if value.detail_link or value.detail_link_external_url %}
-        <a href="{{ value.detail_link.url or value.detail_link_external_url }}"><button class="button white rounded font-c size-2">{{ value.detail_link_text }}</button></a>
+            <a href="{{ value.detail_link.url or value.detail_link_external_url }}"><button class="button white rounded font-c size-2">{{ value.detail_link_text }}</button></a>
         {% endif %}
         {% if value.additional_detail_link or value.additional_link_url %}
-        <a href="{{ value.additional_detail_link.url or value.additional_link_url }}"><button class="button white rounded font-c size-2">{{ value.additional_link_text }}</button></a>
+            <a href="{{ value.additional_detail_link.url or value.additional_link_url }}"><button class="button white rounded font-c size-2">{{ value.additional_link_text }}</button></a>
+        {% endif %}
+        {% if value.brochure_link %}
+        <a href="{{ value.brochure_link.url }}">
+            <button class="button white rounded font-c size-2">{{ value.brochure_link_text }}</button>
+        </a>
         {% endif %}
     </div>
 </div>

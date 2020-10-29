@@ -1,0 +1,18 @@
+<div class="site-logo-card">
+  {% if value.external_url %}
+    <a href="{{value.external_url}}">
+  {% endif %}
+  {{ image(value.logo, "width-1500", class="hero-card-icon") }}
+  {% if value.external_url %}
+    </a>
+  {% endif %}
+  {% if value.header %}
+    <h2 class="header font-b size-2">{{ value.header }}</h2>
+  {% endif %}
+  {% if value.header and value.body %}
+    <div class="partial-horizontal-line"></div>
+  {% endif %}
+  {% if value.body %}
+    <p class="body font-d size-4">{{ value.body }}</p>
+  {% endif %}
+</div>

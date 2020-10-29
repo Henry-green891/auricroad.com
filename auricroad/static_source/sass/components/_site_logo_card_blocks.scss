@@ -1,27 +1,34 @@
-.hero-cards {
-  @include xy-grid('vertical');
+.hero-site-logos {
+  @include xy-grid();
 
-  @include breakpoint(tablet) {
-    @include xy-grid();
-  }
+  @include xy-grid();
 
   @include xy-cell(11);
 
+  justify-content: center;
+  margin-bottom: 50px;
+
   @include breakpoint(tablet) {
     @include xy-cell(10);
+    margin-bottom: 60px;
+  }
+
+  @include breakpoint(large) {
+    margin-bottom: 75px;
   }
 
   .block-card {
-    @include xy-cell(12);
+    @include xy-cell(6);
     margin-bottom: 6px;
 
-    @include breakpoint(tablet) {
-      @include xy-cell(4);
+    @include breakpoint(large) {
+      flex: 1;
     }
 
-    .hero-card {
-      background-color: $pearl;
+    .site-logo-card {
+      background-color: rgba(211, 201, 190, 0.5);
       @include xy-grid('vertical');
+      justify-content: center;
       width: 100%;
       padding: 30px 50px;
 
@@ -30,22 +37,14 @@
       }
 
       @include breakpoint(large) {
-        padding: 40px 40px;
+        padding: 20px;
       }
 
-      @include breakpoint(xxlarge) {
-        padding: 40px 40px;
-      }
-
-      opacity: 0.9;
       align-items: center;
       text-align: center;
       height: 100%;
 
-      .hero-card-icon {
-        margin-bottom: 20px;
-        width: 150px;
-      }
+      .hero-card-icon {}
 
       .header {
         color: $text-black;
@@ -70,5 +69,4 @@
       }
     }
   }
-
 }

@@ -125,7 +125,7 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: 5px,
+  small: 6px,
   large: 10px,
 );
 $grid-column-align-edge: true;
@@ -865,7 +865,7 @@ $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
-  small: 5px,
+  small: 6px,
   large: 10px
 );
 $grid-padding-gutters: $grid-margin-gutters;

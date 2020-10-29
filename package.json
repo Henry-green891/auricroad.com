@@ -6,7 +6,7 @@
   "license": "ISC",
   "main": "node/dev-server.js",
   "engines": {
-    "node": "8.1.4"
+    "node": ">=10.14.2"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p",
@@ -51,6 +51,7 @@
     "jquery": "^3.3.1",
     "jquery-datepicker": "^1.12.3",
     "jquery-ui": "^1.12.1",
+    "js-datepicker": "^5.16.0",
     "mini-css-extract-plugin": "^0.4.0",
     "moment": "^2.22.1",
     "node-sass": "^4.12.0",

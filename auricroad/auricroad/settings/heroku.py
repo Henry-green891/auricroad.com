@@ -9,6 +9,15 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 DATABASES = {}
 DATABASES["default"] = env.db()
+DATABASES["salesforce"] = {
+    "ENGINE": "salesforce.backend",
+    "CONSUMER_KEY": env("SALESFORCE_CONSUMER_KEY", default=""),
+    "CONSUMER_SECRET": env("SALESFORCE_CONSUMER_SECRET", default=""),
+    "USER": env("SALESFORCE_USER", default=""),
+    "PASSWORD": env("SALESFORCE_PASSWORD", default=""),
+    "HOST": env("SALESFORCE_HOST", default="https://test.salesforce.com"),
+}
+DATABASE_ROUTERS = ["salesforce.router.ModelRouter"]
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -61,7 +70,8 @@ AWS_IS_GZIPPED = True
 AWS_S3_REGION_NAME = "us-west-1"
 AWS_S3_FILE_OVERWRITE = False
 
-sentry_sdk.init(dsn=env("SENTRY_DSN", default=""), integrations=[DjangoIntegration()])
+sentry_sdk.init(dsn=env("SENTRY_DSN", default=""),
+                integrations=[DjangoIntegration()])
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'

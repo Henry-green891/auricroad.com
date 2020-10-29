@@ -10,6 +10,7 @@
             class="
                 hero-background-wrapper
                 {% if value.show_diamond_overlay %}has-overlay{% endif %}
+                {% if value.site_logos %}has-site-logos{% endif %}
                 {% if value.cards %}has-cards{% endif %}
                 {% if value.background_image_x_position %}x-{{value.background_image_x_position}}{% endif %}
                 {% if value.background_image_y_position %}y-{{value.background_image_y_position}}{% endif %}
@@ -36,6 +37,11 @@
                     <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">{{ value.static_body|richtext }}</div>
                 {% endif %}
             </div>
+            {% if value.site_logos %}
+                <div class="hero-site-logos">
+                    {{ value.site_logos }}
+                </div>
+            {% endif %}
             {% if value.cards %}
                 <div class="hero-cards">
                     {{ value.cards }}

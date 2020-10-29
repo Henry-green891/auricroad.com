@@ -16,6 +16,7 @@ from .constants import (  # isort:skip
     VIDEO_SOURCES,
     X_POSITIONS,
     Y_POSITIONS,
+    PETITE_RESORTS,
 )
 
 from wagtailmedia.blocks import AbstractMediaChooserBlock  # isort:skip
@@ -106,6 +107,16 @@ class HeroCard(blocks.StructBlock):
         template = "blocks/hero_card_block.html"
 
 
+class SiteLogoCard(blocks.StructBlock):
+    logo = ImageChooserBlock()
+    header = blocks.CharBlock(max_length=50, required=False)
+    body = blocks.CharBlock(max_length=200, required=False)
+    external_url = blocks.URLBlock(required=False)
+
+    class Meta:
+        template = "blocks/site_logo_card_block.html"
+
+
 class Hero(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100, required=False)
     static_tagline = blocks.CharBlock(max_length=50, required=False)
@@ -116,12 +127,16 @@ class Hero(blocks.StructBlock):
     background_image_x_position = blocks.ChoiceBlock(
         choices=X_POSITIONS, default="center"
     )
-    background_image_y_position = blocks.ChoiceBlock(choices=Y_POSITIONS, default="top")
+    background_image_y_position = blocks.ChoiceBlock(
+        choices=Y_POSITIONS, default="top")
     background_gradient_fade_out = blocks.BooleanBlock(required=False)
     show_diamond_overlay = blocks.BooleanBlock(required=False)
     reduced_padding = blocks.BooleanBlock(required=False)
     extended_bottom_padding = blocks.BooleanBlock(required=False)
     wider_desktop_layout = blocks.BooleanBlock(required=False)
+    site_logos = blocks.StreamBlock(
+        [("card", SiteLogoCard())], null=True, blank=True, required=False
+    )
     cards = blocks.StreamBlock(
         [("card", HeroCard())], null=True, blank=True, required=False
     )
@@ -151,7 +166,8 @@ class FullWidthImageCardSection(blocks.StructBlock):
 class BlockQuote(blocks.StructBlock):
     body = blocks.RichTextBlock()
     name = blocks.CharBlock(max_length=100, required=False)
-    name_font_style = blocks.ChoiceBlock(choices=FONT_STYLE_CHOICES, required=False)
+    name_font_style = blocks.ChoiceBlock(
+        choices=FONT_STYLE_CHOICES, required=False)
     title = blocks.CharBlock(max_length=100, required=False)
     background_text = blocks.CharBlock(max_length=10, required=False)
     accent_image = ImageChooserBlock()
@@ -218,8 +234,11 @@ class BookNowImageCard(ImageCard):
 
 class EventImageCard(ImageCard):
     detail_link = blocks.PageChooserBlock(
-        target_model=("home.BrochuresPage", "home.HotelDetailPage"), required=False
+        target_model=("home.BrochuresPage", "home.HotelDetailPage", "home.HotelEventsPage"), required=False
     )
+    brochure_link_text = blocks.CharBlock(
+        max_length=50, required=False, default="Download Brochure")
+    brochure_link = DocumentChooserBlock(required=False)
 
 
 class ExperienceImageCard(ImageCard):
@@ -302,7 +321,8 @@ class ImageSection(blocks.StructBlock):
 class HotelIntro(blocks.StructBlock):
     dont_shift_up_into_hero = blocks.BooleanBlock(required=False)
     tagline = blocks.CharBlock(max_length=50, required=False)
-    tagline_bar_style = blocks.ChoiceBlock(choices=ACCENT_BAR_CHOICES, required=False)
+    tagline_bar_style = blocks.ChoiceBlock(
+        choices=ACCENT_BAR_CHOICES, required=False)
     tagline_maintain_horizontal = blocks.BooleanBlock(required=False)
     header = blocks.CharBlock(max_length=250)
     header_size = blocks.ChoiceBlock(choices=FONT_SIZE_CHOICES, required=False)
@@ -323,9 +343,11 @@ class HotelIntro(blocks.StructBlock):
     )
     finer_points_header = blocks.CharBlock(max_length=50, required=False)
     finer_points_body = blocks.RichTextBlock(required=False)
-    button_text = blocks.CharBlock(max_length=50, required=False)
+    button_link_text = blocks.CharBlock(max_length=50, required=False)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
+    button_download_text = blocks.CharBlock(max_length=50, required=False)
+    download_document = DocumentChooserBlock(required=False)
 
     class Meta:
         template = "blocks/hotel_intro.html"
@@ -383,7 +405,8 @@ class FloorPlanSlide(blocks.StructBlock):
     floor_plan_document_text = blocks.CharBlock(max_length=50, required=False)
     floor_plan_document = DocumentChooserBlock(required=False)
     floor_plan_image = ImageChooserBlock(required=False)
-    other_images = blocks.ListBlock(ImageChooserBlock(required=False), required=False)
+    other_images = blocks.ListBlock(
+        ImageChooserBlock(required=False), required=False)
 
     class Meta:
         template = "blocks/floor_plan_slide.html"
@@ -399,7 +422,8 @@ class FloorPlanSection(blocks.StructBlock):
     more_info = blocks.RichTextBlock(required=False)
     additional_document_text = blocks.CharBlock(max_length=50, required=False)
     additional_document = DocumentChooserBlock(required=False)
-    additional_document_two_text = blocks.CharBlock(max_length=50, required=False)
+    additional_document_two_text = blocks.CharBlock(
+        max_length=50, required=False)
     additional_document_two = DocumentChooserBlock(required=False)
 
     class Meta:
@@ -414,7 +438,8 @@ class HotelDetailCard(blocks.StructBlock):
     action_header = blocks.CharBlock(max_length=50)
     action_text = blocks.CharBlock(max_length=250, required=False)
     action_text_two = blocks.CharBlock(max_length=250, required=False)
-    action_text_type = blocks.ChoiceBlock(choices=CUSTOM_TEXT_FUNCTIONS, required=False)
+    action_text_type = blocks.ChoiceBlock(
+        choices=CUSTOM_TEXT_FUNCTIONS, required=False)
     action_text_two_type = blocks.ChoiceBlock(
         choices=CUSTOM_TEXT_FUNCTIONS, required=False
     )
@@ -461,12 +486,16 @@ class EventsFooter(blocks.StructBlock):
     header = blocks.CharBlock(max_length=50)
     body = blocks.RichTextBlock()
     background_image = ImageChooserBlock(required=False)
-    button_text = blocks.CharBlock(max_length=50, required=False)
+    petite_resort = blocks.ChoiceBlock(
+        choices=PETITE_RESORTS, default="", required=False)
+    button_link_text = blocks.CharBlock(max_length=50, required=False)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
-    button_text_two = blocks.CharBlock(max_length=50, required=False)
+    button_link_text_two = blocks.CharBlock(max_length=50, required=False)
     internal_page_two = blocks.PageChooserBlock(required=False)
     external_link_two = blocks.CharBlock(max_length=250, required=False)
+    button_download_text = blocks.CharBlock(max_length=50, required=False)
+    download_document = DocumentChooserBlock(required=False)
 
     class Meta:
         template = "blocks/events_footer.html"
@@ -475,18 +504,22 @@ class EventsFooter(blocks.StructBlock):
 class FadeInFooter(blocks.StructBlock):
     background_image = ImageChooserBlock(required=False)
     background_text = blocks.CharBlock(max_length=10, required=False)
-    button_text = blocks.CharBlock(max_length=50, required=False)
+    button_link_text = blocks.CharBlock(max_length=50, required=False)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
+    button_download_text = blocks.CharBlock(max_length=50, required=False)
+    download_document = DocumentChooserBlock(required=False)
 
     class Meta:
         template = "blocks/fade_out_footer.html"
 
 
 class ButtonBlock(blocks.StructBlock):
-    button_text = blocks.CharBlock(max_length=50, required=False)
+    button_link_text = blocks.CharBlock(max_length=50, required=False)
     internal_page = blocks.PageChooserBlock(required=False)
     external_link = blocks.CharBlock(max_length=250, required=False)
+    button_download_text = blocks.CharBlock(max_length=50, required=False)
+    download_document = DocumentChooserBlock(required=False)
 
     class Meta:
         template = "blocks/button_block.html"
@@ -557,7 +590,8 @@ class ContactCard(blocks.StructBlock):
     action_header = blocks.CharBlock(max_length=50)
     action_text = blocks.CharBlock(max_length=250, required=False)
     action_text_two = blocks.CharBlock(max_length=250, required=False)
-    action_text_type = blocks.ChoiceBlock(choices=CUSTOM_TEXT_FUNCTIONS, required=False)
+    action_text_type = blocks.ChoiceBlock(
+        choices=CUSTOM_TEXT_FUNCTIONS, required=False)
     action_text_two_type = blocks.ChoiceBlock(
         choices=CUSTOM_TEXT_FUNCTIONS, required=False
     )

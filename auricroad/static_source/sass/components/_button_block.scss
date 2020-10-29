@@ -1,9 +1,11 @@
 .button-container {
   @include xy-grid();
   justify-content: center;
+
   .button-wrapper {
-    margin-bottom: 120px;
+    margin: 0 15px 120px;
     z-index: 1;
+
     .button {
       margin-bottom: 0;
     }

@@ -12,14 +12,19 @@
         </div>
         <h2 class="body semi-bold font-d size-2">{{ value.body|richtext }}</h2>
         <div class="button-row center-buttons">
-            {% if value.button_text and (value.internal_page or value.external_link) %}
+            {% if value.button_link_text and (value.internal_page or value.external_link) %}
                 <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
-                    <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+                    <button class="button black rounded font-c size-2 {{value.petite_resort}}">{{ value.button_link_text }}</button>
                 </a>
             {% endif %}
-            {% if value.button_text_two and (value.internal_page_two or value.external_link_two) %}
+            {% if value.button_download_text and value.download_document %}
+                <a href="{{ value.download_document.url }}">
+                    <button class="button black rounded font-c size-2">{{ value.button_download_text }}</button>
+                </a>
+            {% endif %}
+            {% if value.button_link_text_two and (value.internal_page_two or value.external_link_two) %}
                 <a href="{% if value.internal_page_two %}{{ value.internal_page_two.url }}{% elif value.external_link_two %}{{ value.external_link_two}}{% endif %}">
-                    <button class="button black rounded font-c size-2">{{ value.button_text_two }}</button>
+                    <button class="button black rounded font-c size-2">{{ value.button_link_text_two }}</button>
                 </a>
             {% endif %}
         </div>

@@ -1,0 +1,21 @@
+.hotel-events {
+
+  .block-static_text_section,
+  .block-events_footer {
+    .static-section-header {
+      color: $text-black;
+    }
+  }
+
+  .block-button_block,
+  .button-container {
+    .button-wrapper {
+      margin: 25px 15px;
+    }
+  }
+
+  .button-row.center-buttons .button {
+    margin: 0 20px;
+  }
+
+}
