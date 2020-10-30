@@ -117,16 +117,6 @@ class SiteLogoCard(blocks.StructBlock):
         template = "blocks/site_logo_card_block.html"
 
 
-class SiteLogoCard(blocks.StructBlock):
-    logo = ImageChooserBlock()
-    header = blocks.CharBlock(max_length=50, required=False)
-    body = blocks.CharBlock(max_length=200, required=False)
-    external_url = blocks.URLBlock(required=False)
-
-    class Meta:
-        template = "blocks/site_logo_card_block.html"
-
-
 class Hero(blocks.StructBlock):
     static_header = blocks.CharBlock(max_length=100, required=False)
     static_tagline = blocks.CharBlock(max_length=50, required=False)
