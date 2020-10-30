@@ -1,6 +1,11 @@
 @import '~js-datepicker/src/datepicker';
 
 .events-form-page {
+
+  .hero .hero-background-wrapper {
+    background-position-y: bottom;
+  }
+
   .form-right {
     width: 100% !important; // TODO: !important not ideal, need to find better styling solution at some point
     padding: 0 !important;
