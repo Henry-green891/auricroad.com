@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django_jinja.builtins import DEFAULT_EXTENSIONS  # noqa
 from environ import Env, Path
 
-DEBUG = False
+DEBUG = True
 
 
 root = Path(__file__) - 3
