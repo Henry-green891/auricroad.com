@@ -1,6 +1,6 @@
 {% extends "base.jinja" %}
 
-{% block page_class %}events-form-page{% endblock page_class %}
+{% block page_class %}guest-profile-form-page{% endblock page_class %}
 
 {% block title %}
     {{ page.title }}
@@ -15,27 +15,27 @@
                     {% csrf_token %}
                     <!--must display fields manually to add headers-->
                     <!--{{ form.as_p() }}-->
-                    <div class="fieldWrapper {% if form.reservation.field.full_width %}full-width{% endif %} {% if form.reservation.field.half_width %}half-width{% endif %}">
+                    <div class="fieldWrapper {% if form.reservation.field.full_width %}full-width{% endif %} {% if form.reservation.field.half_width %}half-width{% endif %} mobile-full-width half-width-left-justified">
                         {{ form.reservation.errors }}
                         <label for="{{ form.reservation.id_for_label }}">{{ form.reservation.field.display_label }} {% if form.reservation.field.required %}*{% endif %}</label>
                         {{ form.reservation }}
                     </div>
-                    <div class="fieldWrapper {% if form.first_name.field.full_width %}full-width{% endif %} {% if form.first_name.field.half_width %}half-width{% endif %}">
+                    <div class="fieldWrapper {% if form.first_name.field.full_width %}full-width{% endif %} {% if form.first_name.field.half_width %}half-width{% endif %} mobile-full-width">
                         {{ form.first_name.errors }}
                         <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.field.display_label }} {% if form.first_name.field.required %}*{% endif %}</label>
                         {{ form.first_name }}
                     </div>
-                    <div class="fieldWrapper {% if form.last_name.field.full_width %}full-width{% endif %} {% if form.last_name.field.half_width %}half-width{% endif %}">
+                    <div class="fieldWrapper {% if form.last_name.field.full_width %}full-width{% endif %} {% if form.last_name.field.half_width %}half-width{% endif %} mobile-full-width">
                         {{ form.last_name.errors }}
                         <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.field.display_label }} {% if form.last_name.field.required %}*{% endif %}</label>
                         {{ form.last_name }}
                     </div>
-                    <div class="fieldWrapper {% if form.email.field.full_width %}full-width{% endif %} {% if form.email.field.half_width %}half-width{% endif %}">
+                    <div class="fieldWrapper {% if form.email.field.full_width %}full-width{% endif %} {% if form.email.field.half_width %}half-width{% endif %} mobile-full-width">
                         {{ form.email.errors }}
                         <label for="{{ form.email.id_for_label }}">{{ form.email.field.display_label }} {% if form.email.field.required %}*{% endif %}</label>
                         {{ form.email }}
                     </div>
-                    <div class="fieldWrapper {% if form.phone.field.full_width %}full-width{% endif %} {% if form.phone.field.half_width %}half-width{% endif %}">
+                    <div class="fieldWrapper {% if form.phone.field.full_width %}full-width{% endif %} {% if form.phone.field.half_width %}half-width{% endif %} mobile-full-width">
                         {{ form.phone.errors }}
                         <label for="{{ form.phone.id_for_label }}">{{ form.phone.field.display_label }} {% if form.phone.field.required %}*{% endif %}</label>
                         {{ form.phone }}
