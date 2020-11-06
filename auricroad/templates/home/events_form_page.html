@@ -11,7 +11,7 @@
     <div class="form-section-wrapper">
         <div class="form-body">
             <div class="form-right"> 
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <!--must display fields manually to add headers-->
                     <!--{{ form.as_p() }}-->
@@ -126,6 +126,11 @@
                         {{ form.additional_comments.errors }}
                         <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }} {% if form.additional_comments.field.required %}*{% endif %}</label>
                         {{ form.additional_comments }}
+                    </div>
+                    <div class="fieldWrapper {% if form.file_upload.field.full_width %}full-width{% endif %}">                    
+                        {{ form.file_upload.errors }}
+                        <label for="{{ form.file_upload.id_for_label }}">{{ form.file_upload.field.display_label }} {% if form.file_upload.field.required %}*{% endif %}</label>
+                        {{ form.file_upload }}
                     </div>
                     <div class="buttonWrapper">
                         <input class="button black rounded" type="submit" name="Submit">

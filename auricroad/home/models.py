@@ -17,7 +17,7 @@ from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
                                          StreamFieldPanel)
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
-from wagtail.contrib.forms.models import AbstractEmailForm
+from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField as WagtailFormField
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -262,8 +262,8 @@ class FormBuilder(WagtailFormBuilder):
         field.is_header = True
         return field
 
-    # def create_captcha_field(self, field, options):
-    #     return NPACCaptchaField(label="Captcha", required=True)
+    def create_file_upload_field(self, field, options):
+        return FileField(**options)
 
     def get_form_class(self):
         new_formfields = OrderedDict()
@@ -293,6 +293,8 @@ class AbstractFormField(WagtailFormField):
             "MUST BE UNIQUE. The label that will be associated with the data on the back-end."
         ),
     )
+    field_type = models.CharField(verbose_name=_(
+        'field type'), max_length=16, choices=FORM_FIELD_CHOICES)
     display_label = models.CharField(
         verbose_name=_("display label"),
         max_length=255,
@@ -327,6 +329,11 @@ class AbstractFormField(WagtailFormField):
 
 
 class FormField(AbstractFormField):
+    FORM_FIELD_CHOICES = list(FORM_FIELD_CHOICES) + [('file', 'Upload File')]
+    field_type = models.CharField(
+        verbose_name=_('field type'),
+        max_length=16,
+        choices=FORM_FIELD_CHOICES)
     page = ParentalKey("FormPage", on_delete=models.CASCADE,
                        related_name="form_fields")
 
@@ -350,8 +357,41 @@ class HomePage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
+class SalesForceFile(models.Model):
+    file_upload = models.FileField(upload_to="uploads/%Y/%m/%d/")
+
+
 class FormPage(AbstractEmailForm):
     form_builder = FormBuilder
+
+    def process_form_submission(self, form):
+        """
+        Processes the form submission, if an Image upload is found, pull out the
+        files data, create an actual Wgtail Image and reference its ID only in the
+        stored form response.
+        """
+
+        cleaned_data = form.cleaned_data
+        for name, field in form.fields.items():
+            if isinstance(field, FileField):
+                file_data = cleaned_data[name]
+                if file_data:
+
+                    new_file_upload = SalesForceFile.objects.create(
+                        file_upload=file_data)
+
+                    cleaned_data.update(
+                        {name: new_file_upload.file_upload.url})
+
+                else:
+                    del cleaned_data[name]
+
+        submission = self.get_submission_class().objects.create(
+            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder),
+            page=self,
+        )
+        return submission
+
     body = StreamField(
         [
             ("hero", Hero()),
@@ -393,12 +433,28 @@ class EventsFormPage(FormPage):
         You can override this method if you want to have custom creation logic.
         For example, if you want to save reference to a user.
         """
-
+        submission = super().process_form_submission(form)
         EventResponses.objects.create(**form.cleaned_data)
+        return submission
 
-        return self.get_submission_class().objects.create(
-            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder), page=self,
-        )
+
+class GuestProfileFormPage(FormPage):
+    def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+
+        submission = super().process_form_submission(form)
+
+        for key, value in form.cleaned_data.items():
+            if isinstance(value, list):
+                form.cleaned_data[key] = ", ".join(value)
+
+        GuestProfileResponses.objects.create(**form.cleaned_data)
+        return submission
 
 
 class Contact(models.Model):
@@ -762,6 +818,13 @@ class EventResponses(SFModels.Model):
         blank=True,
         null=True,
     )
+    file_upload = models.URLField(
+        db_column="file_upload__c",
+        max_length=255,
+        verbose_name="file_upload",
+        blank=True,
+        null=True,
+    )
     submission_date = models.DateTimeField(
         db_column="Submission_date__c",
         verbose_name="Submission date",
@@ -773,4 +836,133 @@ class EventResponses(SFModels.Model):
         db_table = "eventresponses__c"
         verbose_name = "Event Response"
         verbose_name_plural = "Event Responses"
+        # keyPrefix = 'a0I'
+
+
+class GuestProfileResponses(SFModels.Model):
+    """This is pulled directly from salesforce after creating it there. This should
+    only be edited if the salesforce form changes."""
+
+    additional_comments = models.CharField(
+        db_column="additional_comments__c",
+        max_length=32768,
+        verbose_name="additional_comments",
+        blank=True,
+        null=True,
+    )
+    allergies = models.CharField(
+        db_column="allergies__c",
+        max_length=255,
+        verbose_name="allergies",
+        blank=True,
+        null=True,
+    )
+    dining_time = models.CharField(
+        db_column="dining_time__c",
+        max_length=255,
+        verbose_name="dining_time",
+        blank=True,
+        null=True,
+    )
+    first_name = models.CharField(
+        db_column="first_name__c",
+        max_length=255,
+        verbose_name="first_name",
+        blank=True,
+        null=True,
+    )
+    last_name = models.CharField(
+        db_column="last_name__c",
+        max_length=255,
+        verbose_name="last_name",
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(
+        db_column="email__c", max_length=255, verbose_name="email", blank=True, null=True
+    )
+
+    number_of_adults = models.CharField(
+        db_column="number_of_adults__c",
+        max_length=255,
+        verbose_name="number_of_adults",
+        blank=True,
+        null=True,
+    )
+    number_of_children = models.CharField(
+        db_column="number_of_children__c",
+        max_length=255,
+        verbose_name="number_of_children",
+        blank=True,
+        null=True,
+    )
+    off_ranch_add_on_activities = models.CharField(
+        db_column="off_ranch_add_on_activities__c",
+        max_length=32768,
+        verbose_name="off_ranch_add_on_activities",
+        blank=True,
+        null=True,
+    )
+    on_ranch_add_on_activities = models.CharField(
+        db_column="on_ranch_add_on_activities__c",
+        max_length=32768,
+        verbose_name="on_ranch_add_on_activities",
+        blank=True,
+        null=True,
+    )
+    party_member_details = models.CharField(
+        db_column="party_member_details__c",
+        max_length=32768,
+        verbose_name="party_member_details",
+        blank=True,
+        null=True,
+    )
+    phone = models.CharField(
+        db_column="phone__c", max_length=255, verbose_name="phone", blank=True, null=True
+    )
+    reservation = models.CharField(
+        db_column="reservation__c", max_length=255, verbose_name="reservation", blank=True, null=True
+    )
+    spa_activities = models.CharField(
+        db_column="spa_activities__c", max_length=255, verbose_name="spa_activities", blank=True, null=True
+    )
+    special_occasions = models.CharField(
+        db_column="special_occasions__c",
+        max_length=32768,
+        verbose_name="special_occasions",
+        blank=True,
+        null=True,
+    )
+    transportation = models.CharField(
+        db_column="transportation__c",
+        max_length=255,
+        verbose_name="transportation",
+        blank=True,
+        null=True,
+    )
+    transportation_details = models.CharField(
+        db_column="transportation_details__c",
+        max_length=32768,
+        verbose_name="transportation_details",
+        blank=True,
+        null=True,
+    )
+    winter_package_activites = models.CharField(
+        db_column="winter_package_activites__c",
+        max_length=32768,
+        verbose_name="winter_package_activites",
+        blank=True,
+        null=True,
+    )
+    submission_date = models.DateTimeField(
+        db_column="Submission_date__c",
+        verbose_name="Submission date",
+        blank=True,
+        null=True,
+    )
+
+    class Meta(SFModels.Model.Meta):
+        db_table = "guestprofileresponses__c"
+        verbose_name = "Guest Profile Response"
+        verbose_name_plural = "Guest Profile Responses"
         # keyPrefix = 'a0I'

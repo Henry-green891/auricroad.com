@@ -50,6 +50,11 @@
         margin: 0 auto;
 
       }
+
+      input[type=file] {
+        border: none;
+        padding: 10px 0;
+      }
     }
   }
 
