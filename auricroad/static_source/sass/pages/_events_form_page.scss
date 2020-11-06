@@ -32,6 +32,10 @@
           width: 100%;
         }
 
+        &.half-width {
+          width: calc(50% - 20px);
+        }
+
         &.flexible-dates {
           pointer-events: none;
 
