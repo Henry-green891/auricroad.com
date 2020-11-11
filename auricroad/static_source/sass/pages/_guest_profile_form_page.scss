@@ -1,6 +1,4 @@
-@import '~js-datepicker/src/datepicker';
-
-.events-form-page {
+.guest-profile-form-page {
 
   .hero .hero-background-wrapper {
     background-position-y: bottom;
@@ -48,6 +46,23 @@
             pointer-events: all;
           }
         }
+
+        &.mobile-full-width {
+          @media (max-width: 768px) {
+            width: 100%;
+          }
+
+          &.half-width-left-justified {
+            width: 100%;
+
+            margin-right: calc(50% + 10px);
+
+            @media (max-width: 768px) {
+              margin-right: 10px;
+            }
+          }
+        }
+
       }
 
       .buttonWrapper {

@@ -277,6 +277,8 @@ class FormBuilder(WagtailFormBuilder):
                         formfield.italic_help = field.italic_help
                     if field.full_width:
                         formfield.full_width = field.full_width
+                    if field.half_width:
+                        formfield.half_width = field.half_width
                     new_formfields[key] = formfield
         return type(str("WagtailForm"), (BaseForm,), new_formfields)
 
@@ -307,6 +309,7 @@ class AbstractFormField(WagtailFormField):
         default=False, help_text="Should the help text for the field show up in italics"
     )
     full_width = models.BooleanField(default=False)
+    half_width = models.BooleanField(default=False)
     max_length = models.IntegerField(default=50)
 
     @property
@@ -320,6 +323,7 @@ class AbstractFormField(WagtailFormField):
         FieldPanel("display_label"),
         FieldPanel("italic_help"),
         FieldPanel("full_width"),
+        FieldPanel("half_width"),
         FieldPanel("max_length"),
     ]
 
