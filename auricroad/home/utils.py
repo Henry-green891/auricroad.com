@@ -1,4 +1,4 @@
-from wagtail.admin.utils import send_mail
+from wagtail.admin.mail import send_mail
 
 
 #  taken from https://github.com/wagtail/wagtail/blob/master/wagtail/contrib/forms/models.py
