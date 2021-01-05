@@ -310,7 +310,9 @@ class AbstractFormField(WagtailFormField):
     )
     full_width = models.BooleanField(default=False)
     half_width = models.BooleanField(default=False)
-    max_length = models.IntegerField(default=50)
+    max_length = models.IntegerField(
+        default=255, help_text="IMPORTANT!! Typically should be set to '255', but if the field is a comment text area set this to '131072'.")
+    # '131072' is the character count for a 'Text Field (Long)' in SalesForce
 
     @property
     def clean_name(self):
@@ -744,11 +746,12 @@ class EventResponses(SFModels.Model):
     )
     additional_comments = models.CharField(
         db_column="additional_comments__c",
-        max_length=255,
+        max_length=131072,
         verbose_name="additional_comments",
         blank=True,
         null=True,
     )
+    # '131072' is the character count for a 'Text Field (Long)' in SalesForce
     referral = models.CharField(
         db_column="referral__c",
         max_length=255,
