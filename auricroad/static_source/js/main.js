@@ -2,7 +2,7 @@ var $ = require('jquery');
 import 'foundation-sites/dist/js/foundation.min.js';
 import Player from '@vimeo/player';
 import 'slick-carousel/slick/slick.min.js';
-import datepicker from 'js-datepicker';
+import datepickerFactory from 'jquery-datepicker';
 
 window.videoPlayer = null;
 (function () {
@@ -257,18 +257,89 @@ $(':button').click(function () {
   }
 });
 
-// NOTE: datepickers must be below the "$(':button').click" above or the button click won't trigger on any page that is not the event form itself, which break the autopopulate.
-datepicker('#id_preferred_date', {
-  formatter: (input, date) => {
-    const value = date.toLocaleDateString()
-    input.value = value
+// ADDS TRANSPORTATION DETAIL DROPDOWNS IF "Driving Myself" IS SELECTED ON GUEST PROFILE FORM
+$('input[id=id_transportation_1]').click(function () {
+  $('.renting-car').css('display', 'block')
+})
+
+$('input[id=id_transportation_0]').click(function () {
+  $('.renting-car').css('display', 'none')
+  $('.booked-car').css('display', 'none')
+  $('input[id=id_renting_car_0]').prop('checked', false)
+  $('input[id=id_renting_car_1]').prop('checked', false)
+  $('input[id=id_booked_car_0]').prop('checked', false)
+  $('input[id=id_booked_car_1]').prop('checked', false)
+})
+
+$('input[id=id_renting_car_0]').click(function () {
+  $('.booked-car').css('display', 'block')
+})
+
+$('input[id=id_renting_car_1]').click(function () {
+  $('.booked-car').css('display', 'none')
+  $('input[id=id_booked_car_0]').prop('checked', false)
+  $('input[id=id_booked_car_1]').prop('checked', false)
+});
+
+// NOTE: rerenders selected option in the event of submission error
+$(document).ready(function () {
+  let number_selected_adults = $('#id_number_of_adults')[0].value;
+  let number_selected_children = $('#id_number_of_children')[0].value;
+  if (number_selected_adults > 0) {
+    for (let i = 1; i <= number_selected_adults; i++) {
+      let element_header = $('.party-details-header-adult-' + i)[0];
+      let element = $('.party-details-adult-' + i)[0];
+      element.style.display = 'flex';
+      element_header.style.display = 'flex';
+    }
+  }
+  if (number_selected_children > 0) {
+    for (let i = 1; i <= number_selected_children; i++) {
+      let element_header = $('.party-details-header-child-' + i)[0];
+      let element = $('.party-details-child-' + i)[0];
+      element.style.display = 'flex';
+      element_header.style.display = 'flex';
+    }
   }
 });
-datepicker('#id_alternate_date', {
-  formatter: (input, date) => {
-    const value = date.toLocaleDateString()
-    input.value = value
+
+// TODO: too much repeating code, needs refactor
+$('#id_number_of_adults').change(function () {
+  for (let i = 1; i <= 10; i++) {
+    let element_header = $('.party-details-header-adult-' + i)[0];
+    let element = $('.party-details-adult-' + i)[0];
+    element.style.display = 'none';
+    element_header.style.display = 'none';
   }
+  let number_selected = $('#id_number_of_adults')[0].value;
+  for (let i = 1; i <= number_selected; i++) {
+    let element_header = $('.party-details-header-adult-' + i)[0];
+    let element = $('.party-details-adult-' + i)[0];
+    element.style.display = 'flex';
+    element_header.style.display = 'flex';
+  }
+});
+
+$('#id_number_of_children').change(function () {
+  for (let i = 1; i <= 10; i++) {
+    let element_header = $('.party-details-header-child-' + i)[0];
+    let element = $('.party-details-child-' + i)[0];
+    element.style.display = 'none';
+    element_header.style.display = 'none';
+  }
+  let number_selected = $('#id_number_of_children')[0].value;
+  for (let i = 1; i <= number_selected; i++) {
+    let element_header = $('.party-details-header-child-' + i)[0];
+    let element = $('.party-details-child-' + i)[0];
+    element.style.display = 'flex';
+    element_header.style.display = 'flex';
+  }
+});
+
+datepickerFactory($);
+
+$(function () {
+  $('.datepicker-wrapper input').datepicker();
 });
 
 // AUTO-POPULATING EVENTS FORM

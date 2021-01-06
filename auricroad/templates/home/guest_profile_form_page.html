@@ -50,22 +50,94 @@
                         <label for="{{ form.number_of_children.id_for_label }}">{{ form.number_of_children.field.display_label }} {% if form.number_of_children.field.required %}*{% endif %}</label>
                         {{ form.number_of_children }}
                     </div>
+                    {% with person="adult", number="1" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="2" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="3" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="4" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="5" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="6" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="7" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="8" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="9" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="adult", number="10" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="1" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="2" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="3" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="4" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="5" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="6" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="7" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="8" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="9" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
+                    {% with person="child", number="10" %}
+                        {% include "home/guest_profile_party_options.html" %}
+                    {% endwith %}
                     <div class="fieldWrapper {% if form.party_member_details.field.full_width %}full-width{% endif %} {% if form.party_member_details.field.half_width %}half-width{% endif %}">
                         {{ form.party_member_details.errors }}
                         <label for="{{ form.party_member_details.id_for_label }}">{{ form.party_member_details.field.display_label }} {% if form.party_member_details.field.required %}*{% endif %}</label>
                         {{ form.party_member_details }}
+                    </div>
+                    <div class="fieldWrapper full-width">
+                        <h4>Transportation Needs</h4>
                     </div>
                     <div class="fieldWrapper {% if form.transportation.field.full_width %}full-width{% endif %} {% if form.transportation.field.half_width %}half-width{% endif %}">
                         {{ form.transportation.errors }}
                         <label for="{{ form.transportation.id_for_label }}">{{ form.transportation.field.display_label }} {% if form.transportation.field.required %}*{% endif %}</label>
                         {{ form.transportation }}
                     </div>
+                    <div class="fieldWrapper renting-car{% if form.renting_car.field.full_width %}full-width{% endif %} {% if form.renting_car.field.half_width %}half-width{% endif %}" style="display: none;">
+                        {{ form.renting_car.errors }}
+                        <label for="{{ form.renting_car.id_for_label }}">{{ form.renting_car.field.display_label }} {% if form.renting_car.field.required %}*{% endif %}</label>
+                        {{ form.renting_car }}
+                    </div>
+                    <div class="fieldWrapper booked-car{% if form.booked_car.field.full_width %}full-width{% endif %} {% if form.booked_car.field.half_width %}half-width{% endif %}" style="display: none;">
+                        {{ form.booked_car.errors }}
+                        <label for="{{ form.booked_car.id_for_label }}">{{ form.booked_car.field.display_label }} {% if form.booked_car.field.required %}*{% endif %}</label>
+                        {{ form.booked_car }}
+                    </div>
                     <div class="fieldWrapper {% if form.transportation_details.field.full_width %}full-width{% endif %} {% if form.transportation_details.field.half_width %}half-width{% endif %}">
                         {{ form.transportation_details.errors }}
                         <label for="{{ form.transportation_details.id_for_label }}">{{ form.transportation_details.field.display_label }} {% if form.transportation_details.field.required %}*{% endif %}</label>
                         {{ form.transportation_details }}
                     </div>
-
                     <div class="fieldWrapper {% if form.dining_time.field.full_width %}full-width{% endif %} {% if form.dining_time.field.half_width %}half-width{% endif %}">
                         {{ form.dining_time.errors }}
                         <label for="{{ form.dining_time.id_for_label }}">{{ form.dining_time.field.display_label }} {% if form.dining_time.field.required %}*{% endif %}</label>
@@ -75,6 +147,9 @@
                         {{ form.allergies.errors }}
                         <label for="{{ form.allergies.id_for_label }}">{{ form.allergies.field.display_label }} {% if form.allergies.field.required %}*{% endif %}</label>
                         {{ form.allergies }}
+                    </div>
+                    <div class="fieldWrapper full-width">
+                        <h4>Activities</h4>
                     </div>
                     <div class="fieldWrapper {% if form.winter_package_activites.field.full_width %}full-width{% endif %} {% if form.winter_package_activites.field.half_width %}half-width{% endif %}">
                         {{ form.winter_package_activites.errors }}
@@ -96,6 +171,24 @@
                         <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
                         {{ form.spa_activities }}
                     </div>
+                    <div class="fieldWrapper full-width">
+                        <h4>Tell Us A Little About Yourself</h4>
+                    </div>
+                    <div class="fieldWrapper {% if form.coffee_preference.field.full_width %}full-width{% endif %} {% if form.coffee_preference.field.half_width %}half-width{% endif %}">
+                        {{ form.coffee_preference.errors }}
+                        <label for="{{ form.coffee_preference.id_for_label }}">{{ form.coffee_preference.field.display_label }} {% if form.coffee_preference.field.required %}*{% endif %}</label>
+                        {{ form.coffee_preference }}
+                    </div>
+                    <div class="fieldWrapper {% if form.music_preference.field.full_width %}full-width{% endif %} {% if form.music_preference.field.half_width %}half-width{% endif %}">
+                        {{ form.music_preference.errors }}
+                        <label for="{{ form.music_preference.id_for_label }}">{{ form.music_preference.field.display_label }} {% if form.music_preference.field.required %}*{% endif %}</label>
+                        {{ form.music_preference }}
+                    </div>
+                    <div class="fieldWrapper {% if form.wine_preference.field.full_width %}full-width{% endif %} {% if form.wine_preference.field.half_width %}half-width{% endif %}">
+                        {{ form.wine_preference.errors }}
+                        <label for="{{ form.wine_preference.id_for_label }}">{{ form.wine_preference.field.display_label }} {% if form.wine_preference.field.required %}*{% endif %}</label>
+                        {{ form.wine_preference }}
+                    </div>
                     <div class="fieldWrapper {% if form.special_occasions.field.full_width %}full-width{% endif %} {% if form.special_occasions.field.half_width %}half-width{% endif %}">
                         {{ form.special_occasions.errors }}
                         <label for="{{ form.special_occasions.id_for_label }}">{{ form.special_occasions.field.display_label }} {% if form.special_occasions.field.required %}*{% endif %}</label>
@@ -106,7 +199,6 @@
                         <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }} {% if form.additional_comments.field.required %}*{% endif %}</label>
                         {{ form.additional_comments }}
                     </div>
-
                     <div class="buttonWrapper">
                         <input class="button black rounded" type="submit" name="Submit">
                     </div>

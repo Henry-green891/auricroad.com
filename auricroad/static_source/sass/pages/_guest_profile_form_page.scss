@@ -34,6 +34,10 @@
           width: calc(50% - 20px);
         }
 
+        &.flex {
+          display: flex;
+        }
+
         &.flexible-dates {
           pointer-events: none;
 
@@ -61,6 +65,34 @@
               margin-right: 10px;
             }
           }
+        }
+      }
+
+      .party-details {
+        flex-flow: column;
+        width: 100%;
+
+        @include breakpoint(900px) {
+          flex-flow: row;
+        }
+      }
+
+      .party-details-header {
+        width: 100%;
+        margin: 0 10px;
+
+        @include breakpoint(900px) {
+          margin: 0 5px;
+        }
+
+      }
+
+      .party-details-inner {
+        margin: 0 10px;
+
+        @include breakpoint(900px) {
+          width: 100%;
+          margin: 0 5px;
         }
 
       }
