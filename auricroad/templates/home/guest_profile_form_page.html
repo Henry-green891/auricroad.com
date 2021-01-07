@@ -110,11 +110,6 @@
                     {% with person="child", number="10" %}
                         {% include "home/guest_profile_party_options.html" %}
                     {% endwith %}
-                    <div class="fieldWrapper {% if form.party_member_details.field.full_width %}full-width{% endif %} {% if form.party_member_details.field.half_width %}half-width{% endif %}">
-                        {{ form.party_member_details.errors }}
-                        <label for="{{ form.party_member_details.id_for_label }}">{{ form.party_member_details.field.display_label }} {% if form.party_member_details.field.required %}*{% endif %}</label>
-                        {{ form.party_member_details }}
-                    </div>
                     <div class="fieldWrapper full-width">
                         <h4>Transportation Needs</h4>
                     </div>

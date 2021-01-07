@@ -1778,13 +1778,6 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    party_member_details = models.CharField(
-        db_column="party_member_details__c",
-        max_length=32768,
-        verbose_name="party_member_details",
-        blank=True,
-        null=True,
-    )
     phone = models.CharField(
         db_column="phone__c", max_length=255, verbose_name="phone", blank=True, null=True
     )
