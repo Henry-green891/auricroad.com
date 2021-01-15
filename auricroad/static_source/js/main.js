@@ -257,18 +257,35 @@ $(':button').click(function () {
   }
 });
 
-// ADDS TRANSPORTATION DETAIL DROPDOWNS IF "Driving Myself" IS SELECTED ON GUEST PROFILE FORM
+// ADDS TRANSPORTATION DETAIL DROPDOWNS IF "Driving Myself" or "Need Transportation" IS SELECTED ON GUEST PROFILE FORM
 $('input[id=id_transportation_1]').click(function () {
   $('.renting-car').css('display', 'block')
+  $('.flight-details-header').css('display', 'none')
+  $('.flight-details').css('display', 'none')
+  $('.party-eta').css('display', 'block')
+  $('input[id=id_arrival_location]').val('')
+  $('input[id=id_arrival_flight_date]').val('')
+  $('input[id=id_arrival_flight_time]').val('')
+  $('input[id=id_arrival_airline]').val('')
+  $('input[id=id_arrival_flight_number]').val('')
+  $('input[id=id_departure_location]').val('')
+  $('input[id=id_departure_flight_date]').val('')
+  $('input[id=id_departure_flight_time]').val('')
+  $('input[id=id_departure_airline]').val('')
+  $('input[id=id_departure_flight_number]').val('')
 })
 
 $('input[id=id_transportation_0]').click(function () {
   $('.renting-car').css('display', 'none')
   $('.booked-car').css('display', 'none')
+  $('.party-eta').css('display', 'none')
+  $('input[id=id_party_eta]').val('')
   $('input[id=id_renting_car_0]').prop('checked', false)
   $('input[id=id_renting_car_1]').prop('checked', false)
   $('input[id=id_booked_car_0]').prop('checked', false)
   $('input[id=id_booked_car_1]').prop('checked', false)
+  $('.flight-details-header').css('display', 'flex')
+  $('.flight-details').css('display', 'flex')
 })
 
 $('input[id=id_renting_car_0]').click(function () {

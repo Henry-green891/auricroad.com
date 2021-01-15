@@ -97,6 +97,18 @@
 
       }
 
+      .flight-details-header {
+        margin: 0 10px;
+      }
+
+      .flight-details {
+        flex-flow: column;
+        width: 65%;
+        margin: 0 10px;
+      }
+
+      .flight-details-inner {}
+
       .buttonWrapper {
         margin: 0 auto;
 

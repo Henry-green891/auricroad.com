@@ -1815,6 +1815,83 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
+    party_eta = models.CharField(
+        db_column="party_eta__c",
+        max_length=255,
+        verbose_name="party_eta",
+        blank=True,
+        null=True,
+    )
+    arrival_location = models.CharField(
+        db_column="arrival_location__c",
+        max_length=255,
+        verbose_name="arrival_location",
+        blank=True,
+        null=True,
+    )
+    arrival_flight_date = models.CharField(
+        db_column="arrival_flight_date__c",
+        max_length=255,
+        verbose_name="arrival_flight_date",
+        blank=True,
+        null=True,
+    )
+    arrival_flight_time = models.CharField(
+        db_column="arrival_flight_time__c",
+        max_length=255,
+        verbose_name="arrival_flight_time",
+        blank=True,
+        null=True,
+    )
+    arrival_airline = models.CharField(
+        db_column="arrival_airline__c",
+        max_length=255,
+        verbose_name="arrival_airline",
+        blank=True,
+        null=True,
+    )
+    arrival_flight_number = models.CharField(
+        db_column="arrival_flight_number__c",
+        max_length=255,
+        verbose_name="arrival_flight_number",
+        blank=True,
+        null=True,
+    )
+    departure_location = models.CharField(
+        db_column="departure_location__c",
+        max_length=255,
+        verbose_name="departure_location",
+        blank=True,
+        null=True,
+    )
+    departure_flight_date = models.CharField(
+        db_column="departure_flight_date__c",
+        max_length=255,
+        verbose_name="departure_flight_date",
+        blank=True,
+        null=True,
+    )
+    departure_flight_time = models.CharField(
+        db_column="departure_flight_time__c",
+        max_length=255,
+        verbose_name="departure_flight_time",
+        blank=True,
+        null=True,
+    )
+    departure_airline = models.CharField(
+        db_column="departure_airline__c",
+        max_length=255,
+        verbose_name="departure_airline",
+        blank=True,
+        null=True,
+    )
+    departure_flight_number = models.CharField(
+        db_column="departure_flight_number__c",
+        max_length=255,
+        verbose_name="departure_flight_number",
+        blank=True,
+        null=True,
+    )
     transportation_details = models.CharField(
         db_column="transportation_details__c",
         max_length=32768,

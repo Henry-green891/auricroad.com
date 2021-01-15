@@ -118,15 +118,26 @@
                         <label for="{{ form.transportation.id_for_label }}">{{ form.transportation.field.display_label }} {% if form.transportation.field.required %}*{% endif %}</label>
                         {{ form.transportation }}
                     </div>
-                    <div class="fieldWrapper renting-car{% if form.renting_car.field.full_width %}full-width{% endif %} {% if form.renting_car.field.half_width %}half-width{% endif %}" style="display: none;">
+                    <div class="fieldWrapper renting-car {% if form.renting_car.field.full_width %}full-width{% endif %} {% if form.renting_car.field.half_width %}half-width{% endif %}" style="display: none;">
                         {{ form.renting_car.errors }}
                         <label for="{{ form.renting_car.id_for_label }}">{{ form.renting_car.field.display_label }} {% if form.renting_car.field.required %}*{% endif %}</label>
                         {{ form.renting_car }}
                     </div>
-                    <div class="fieldWrapper booked-car{% if form.booked_car.field.full_width %}full-width{% endif %} {% if form.booked_car.field.half_width %}half-width{% endif %}" style="display: none;">
+                    <div class="fieldWrapper booked-car {% if form.booked_car.field.full_width %}full-width{% endif %} {% if form.booked_car.field.half_width %}half-width{% endif %}" style="display: none;">
                         {{ form.booked_car.errors }}
                         <label for="{{ form.booked_car.id_for_label }}">{{ form.booked_car.field.display_label }} {% if form.booked_car.field.required %}*{% endif %}</label>
                         {{ form.booked_car }}
+                    </div>
+                    {% with direction="arrival" %}
+                        {% include "home/guest_profile_flight_details.html" %}
+                    {% endwith %}
+                    {% with direction="departure" %}
+                        {% include "home/guest_profile_flight_details.html" %}
+                    {% endwith %}
+                    <div class="fieldWrapper party-eta {% if form.party_eta.field.full_width %}full-width{% endif %} {% if form.party_eta.field.half_width %}half-width{% endif %} mobile-full-width half-width-left-justified" style="display: none;">
+                        {{ form.party_eta.errors }}
+                        <label for="{{ form.party_eta.id_for_label }}">{{ form.party_eta.field.display_label }} {% if form.party_eta.field.required %}*{% endif %}</label>
+                        {{ form.party_eta }}
                     </div>
                     <div class="fieldWrapper {% if form.transportation_details.field.full_width %}full-width{% endif %} {% if form.transportation_details.field.half_width %}half-width{% endif %}">
                         {{ form.transportation_details.errors }}
