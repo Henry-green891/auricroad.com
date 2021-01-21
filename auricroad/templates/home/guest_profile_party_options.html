@@ -1,0 +1,50 @@
+{% set display_first = "{}_first_{}".format(person, number) %}
+{% set display_last = "{}_last_{}".format(person, number) %}
+{% set display_bday = "{}_bday_{}".format(person, number) %}
+{% set display_shoe = "{}_shoe_{}".format(person, number) %}
+{% set display_height = "{}_height_{}".format(person, number) %}
+{% set display_weight = "{}_weight_{}".format(person, number) %}
+
+<div class="full-width party-details-header party-details-header-{{person}}-{{number}}" style="display: none;">
+  <h5>{{person | title}} #{{number}}:</h5>
+</div>
+<div class=" flex party-details party-details-{{person}}-{{number}}" style="display: none;">
+
+
+  <div class="party-details-inner">
+    <label for="{{ form[display_first].id_for_label }}">{{ form[display_first].field.display_label }}
+      {% if form[display_first].field.required %}*{% endif %}</label>
+    {{ form[display_first] }}
+    {{ form[display_first].errors }}
+  </div>
+  <div class="party-details-inner">
+    <label for="{{ form[display_last].id_for_label }}">{{ form[display_last].field.display_label }}
+      {% if form[display_last].field.required %}*{% endif %}</label>
+    {{ form[display_last] }}
+    {{ form[display_last].errors }}
+  </div>
+  <div class="party-details-inner datepicker-wrapper">
+    <label for="{{ form[display_bday].id_for_label }}">{{ form[display_bday].field.display_label }}
+      {% if form[display_bday].field.required %}*{% endif %}</label>
+    {{ form[display_bday] }}
+    {{ form[display_bday].errors }}
+  </div>
+  <div class="party-details-inner">
+    <label for="{{ form[display_shoe].id_for_label }}">{{ form[display_shoe].field.display_label }}
+      {% if form[display_shoe].field.required %}*{% endif %}</label>
+    {{ form[display_shoe] }}
+    {{ form[display_shoe].errors }}
+  </div>
+  <div class="party-details-inner">
+    <label for="{{ form[display_height].id_for_label }}">{{ form[display_height].field.display_label }}
+      {% if form[display_height].field.required %}*{% endif %}</label>
+    {{ form[display_height] }}
+    {{ form[display_height].errors }}
+  </div>
+  <div class="party-details-inner">
+    <label for="{{ form[display_weight].id_for_label }}">{{ form[display_weight].field.display_label }}
+      {% if form[display_weight].field.required %}*{% endif %}</label>
+    {{ form[display_weight] }}
+    {{ form[display_weight].errors }}
+  </div>
+</div>

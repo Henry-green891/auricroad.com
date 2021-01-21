@@ -34,6 +34,10 @@
           width: calc(50% - 20px);
         }
 
+        &.flex {
+          display: flex;
+        }
+
         &.flexible-dates {
           pointer-events: none;
 
@@ -62,8 +66,48 @@
             }
           }
         }
+      }
+
+      .party-details {
+        flex-flow: column;
+        width: 100%;
+
+        @include breakpoint(900px) {
+          flex-flow: row;
+        }
+      }
+
+      .party-details-header {
+        width: 100%;
+        margin: 0 10px;
+
+        @include breakpoint(900px) {
+          margin: 0 5px;
+        }
 
       }
+
+      .party-details-inner {
+        margin: 0 10px;
+
+        @include breakpoint(900px) {
+          width: 100%;
+          margin: 0 5px;
+        }
+
+      }
+
+      .flight-details-header {
+        margin: 0 10px;
+      }
+
+      .flight-details {
+        flex-flow: column;
+        width: 65%;
+        margin: 0 10px;
+      }
+
+      .flight-details-inner {}
 
       .buttonWrapper {
         margin: 0 auto;

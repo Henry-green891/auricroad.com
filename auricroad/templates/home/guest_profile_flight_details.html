@@ -1,0 +1,42 @@
+{% set display_location = "{}_location".format(direction) %}
+{% set display_flight_date = "{}_flight_date".format(direction) %}
+{% set display_flight_time = "{}_flight_time".format(direction) %}
+{% set display_airline = "{}_airline".format(direction) %}
+{% set display_flight_number = "{}_flight_number".format(direction) %}
+
+<div class="full-width flight-details-header" style="display: none;">
+  <h5>If you require {{ direction | upper }} transportation, please complete the information below.</h5>
+</div>
+<div class=" flex flight-details" style="display: none;">
+  <div class="flight-details-inner">
+    <label for="{{ form[display_location].id_for_label }}">{{ form[display_location].field.display_label }}:
+      {% if form[display_location].field.required %}*{% endif %}</label>
+    {{ form[display_location] }}
+    {{ form[display_location].errors }}
+  </div>
+  <div class="flight-details-inner datepicker-wrapper">
+    <label for="{{ form[display_flight_date].id_for_label }}">{{ form[display_flight_date].field.display_label }}:
+      {% if form[display_flight_date].field.required %}*{% endif %}</label>
+    {{ form[display_flight_date] }}
+    {{ form[display_flight_date].errors }}
+  </div>
+  <div class="flight-details-inner">
+    <label for="{{ form[display_flight_time].id_for_label }}">{{ form[display_flight_time].field.display_label }}:
+      {% if form[display_flight_time].field.required %}*{% endif %}</label>
+      <i>{{ form[display_flight_time].field.help_text }}</i>
+    {{ form[display_flight_time] }}
+    {{ form[display_flight_time].errors }}
+  </div>
+  <div class="flight-details-inner">
+    <label for="{{ form[display_airline].id_for_label }}">{{ form[display_airline].field.display_label }}:
+      {% if form[display_airline].field.required %}*{% endif %}</label>
+    {{ form[display_airline] }}
+    {{ form[display_airline].errors }}
+  </div>
+  <div class="flight-details-inner">
+    <label for="{{ form[display_flight_number].id_for_label }}">{{ form[display_flight_number].field.display_label }}:
+      {% if form[display_flight_number].field.required %}*{% endif %}</label>
+    {{ form[display_flight_number] }}
+    {{ form[display_flight_number].errors }}
+  </div>  
+</div>

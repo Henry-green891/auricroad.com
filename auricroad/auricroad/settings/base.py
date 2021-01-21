@@ -265,6 +265,8 @@ SOCIAL_AUTH_DEFAULT_USERNAME = "new_social_auth_user"
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default="")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="")
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
+
 
 try:
     from model_mommy import random_gen  # noqa
