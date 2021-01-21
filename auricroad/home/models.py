@@ -1899,10 +1899,10 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    winter_package_activites = models.CharField(
-        db_column="winter_package_activites__c",
+    package_activites = models.CharField(
+        db_column="package_activites__c",
         max_length=32768,
-        verbose_name="winter_package_activites",
+        verbose_name="package_activites",
         blank=True,
         null=True,
     )
