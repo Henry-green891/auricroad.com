@@ -144,6 +144,9 @@
                         <label for="{{ form.transportation_details.id_for_label }}">{{ form.transportation_details.field.display_label }} {% if form.transportation_details.field.required %}*{% endif %}</label>
                         {{ form.transportation_details }}
                     </div>
+                    <div class="fieldWrapper full-width">
+                        <h4>Dining at Horn & Cantle</h4>
+                    </div>
                     <div class="fieldWrapper {% if form.dining_time.field.full_width %}full-width{% endif %} {% if form.dining_time.field.half_width %}half-width{% endif %}">
                         {{ form.dining_time.errors }}
                         <label for="{{ form.dining_time.id_for_label }}">{{ form.dining_time.field.display_label }} {% if form.dining_time.field.required %}*{% endif %}</label>
