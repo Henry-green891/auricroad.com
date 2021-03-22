@@ -537,6 +537,14 @@ class ImageLogoLinkCard(blocks.StructBlock):
         template = "blocks/image_logo_link_card.html"
 
 
+class ResortThingsToKnow(blocks.StructBlock):
+    hotel_name = blocks.CharBlock(max_length=200)
+    hotel_info = blocks.RichTextBlock()
+
+    class Meta:
+        template = "blocks/resort_things_to_know.html"
+
+
 class ImageLogoLinkCardSection(blocks.StructBlock):
     cards = blocks.StreamBlock(
         [("card", ImageLogoLinkCard())], null=True, blank=True, required=False

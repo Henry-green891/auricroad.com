@@ -59,6 +59,7 @@ from .blocks import (  # isort:skip
     SplitImageTextCardSection,
     StaticTextSection,
     SectionHeader,
+    ResortThingsToKnow,
 )
 
 from wagtailmedia.models import AbstractMedia  # isort:skip
@@ -443,9 +444,14 @@ class EventsFormPage(FormPage):
         EventResponses.objects.create(**form.cleaned_data)
         return submission
 
+    events_body = StreamField(
+        [("things_to_know", ResortThingsToKnow()),], null=True, blank=True
+    )
+
+    content_panels = FormPage.content_panels + [StreamFieldPanel("events_body")]
+
 
 class GuestProfileFormPage(FormPage):
-
     def process_form_submission(self, form):
         """
         Accepts form instance with submitted data, user and page.
