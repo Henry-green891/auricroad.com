@@ -15,6 +15,7 @@
         {% csrf_token %}
         <!--must display fields manually to add headers-->
         <!--{{ form.as_p() }}-->
+        {{ page.events_body }}
         <h2 class="form-section-header">Contact Details</h2>
         <div
           class="fieldWrapper {% if form.salutation.field.full_width %}full-width{% endif %} {% if form.salutation.field.half_width %}half-width{% endif %}">

@@ -363,11 +363,13 @@ $(function () {
 $(document).ready(function () {
   if (document.URL.includes('?resort=korakia')) {
     $('#id_petite_resort').val('Korakia Pensione (Palm Springs CA)');
+    $('.event-form-things-to-know.korakia').css('display', 'block');
     if (document.URL.includes('&event=wedding')) {
       $('#id_event_type').val('Wedding Ceremony & Reception');
     }
   } else if (document.URL.includes('?resort=hoteljoaquin')) {
     $('#id_petite_resort').val('Hotel Joaquin (Laguna Beach CA)');
+    $('.event-form-things-to-know.hotel-joaquin').css('display', 'block');
     if (document.URL.includes('&event=wedding')) {
       $('#id_event_type').val('Wedding Ceremony & Reception');
     } else if (document.URL.includes('&event=corporateretreat')) {
@@ -377,9 +379,11 @@ $(document).ready(function () {
     }
   } else if (document.URL.includes('?resort=lonemountainranch')) {
     $('#id_petite_resort').val('Lone Mountain Ranch (Big Sky MT)');
+    $('.event-form-things-to-know.lone-mountain-ranch').css('display', 'block');
     // can't use wedding for now because all sub-event pages use the same template (event-individual-wide.php)
   } else if (document.URL.includes('?resort=sonoma')) {
     // no sonoma link to the events form yet, will need to add this to the link url when it's eventually created
     $('#id_petite_resort').val('Sonoma Coast Villa (Sonoma Coast CA)');
+    $('.event-form-things-to-know.sonoma').css('display', 'block');
   }
 });
