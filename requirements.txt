@@ -3,7 +3,8 @@ django-environ==0.4.3
 django-autoslug==1.9.4
 
 #Admin
-Pillow==8.1.1
+# Pillow==8.1.1
+Pillow
 django-localflavor==1.5.2
 django-import-export==1.0.1
 wagtail==2.7.4
