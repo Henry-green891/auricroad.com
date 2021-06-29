@@ -374,6 +374,7 @@ $(document).ready(function () {
       $('#id_event_type').val('Wedding Ceremony & Reception');
     } else if (document.URL.includes('&event=corporateretreat')) {
       $('#id_event_type').val('Corporate Retreat');
+      $('.event-form-things-to-know.hotel-joaquin').css('display', 'none');
     } else if (document.URL.includes('&event=photoshoot')) {
       $('#id_event_type').val('Photoshoot');
     }

@@ -4,7 +4,7 @@ ptpython==0.39
 isort==4.3.17
 
 # Debug Tools
-django-debug-toolbar==1.9.1
+django-debug-toolbar==1.11.1
 django-template-debug==0.3.5
 
 # Testing
