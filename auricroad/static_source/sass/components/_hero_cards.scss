@@ -1,59 +1,74 @@
 .hero-cards {
-    @include xy-grid('vertical');
+  @include xy-grid('vertical');
+
+  @include breakpoint(tablet) {
+    @include xy-grid();
+  }
+
+  @include xy-cell(11);
+
+  @include breakpoint(tablet) {
+    @include xy-cell(10);
+  }
+
+  .block-card {
+    @include xy-cell(12);
+    margin-bottom: 6px;
+
     @include breakpoint(tablet) {
-        @include xy-grid();
+      @include xy-cell(4);
     }
-    @include xy-cell(11);
-    @include breakpoint(tablet) {
-        @include xy-cell(10);
-    }
-    .block-card {
-        @include xy-cell(12);
-        margin-bottom: 6px;
-        @include breakpoint(tablet) {
-            @include xy-cell(4);
+
+    .hero-card {
+      background-color: $pearl;
+      @include xy-grid('vertical');
+      width: 100%;
+      padding: 30px 50px;
+
+      @include breakpoint(tablet) {
+        padding: 30px 15px;
+      }
+
+      @include breakpoint(large) {
+        padding: 40px 40px;
+      }
+
+      @include breakpoint(xxlarge) {
+        padding: 40px 40px;
+      }
+
+      opacity: 0.9;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+
+      .hero-card-icon {
+        margin-bottom: 20px;
+        width: 150px;
+      }
+
+      .header {
+        color: $text-black;
+        margin-bottom: 11px;
+
+        @include breakpoint(large) {
+          margin-bottom: 13px;
         }
-        
-        .hero-card {
-            background-color: $pearl;
-            @include xy-grid('vertical');
-            width: 100%;
-            padding: 30px 50px;
-            @include breakpoint(tablet) {
-                padding: 30px 15px;
-            }
-            @include breakpoint(large) {
-                padding: 40px 40px;
-            }
-            @include breakpoint(xxlarge) {
-                padding: 40px 40px;
-            }
-            opacity: 0.9;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-            .hero-card-icon {
-                margin-bottom: 20px;
-                width: 150px;
-            }
-            .header {
-                color: $text-black;
-                margin-bottom: 11px;
-                @include breakpoint(large) {
-                    margin-bottom: 13px;
-                }
-                font-weight: bold;
-            }
-            .subheader {
-                color: $text-black;
-                margin-bottom: 15px;
-                margin-top: 0;
-            }
-            .body {
-                margin-top: 20px;
-                color: $text-charcoal;
-            }
-        }
+
+        font-weight: bold;
+      }
+
+      .subheader {
+        color: $text-black;
+        margin-bottom: 15px;
+        margin-top: 0;
+      }
+
+      .body {
+        margin-top: 20px;
+        color: $text-charcoal;
+      }
     }
-    
+  }
+
 }

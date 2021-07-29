@@ -8,6 +8,15 @@ DEBUG = True
 
 
 DATABASES = {"default": env.db()}
+DATABASES["salesforce"] = {
+    "ENGINE": "salesforce.backend",
+    "CONSUMER_KEY": env("SALESFORCE_CONSUMER_KEY", default=""),
+    "CONSUMER_SECRET": env("SALESFORCE_CONSUMER_SECRET", default=""),
+    "USER": env("SALESFORCE_USER", default=""),
+    "PASSWORD": env("SALESFORCE_PASSWORD", default=""),
+    "HOST": env("SALESFORCE_HOST", default="https://test.salesforce.com"),
+}
+DATABASE_ROUTERS = ["salesforce.router.ModelRouter"]
 
 CACHES = {
     "default": {

@@ -49,7 +49,7 @@
                 }
                 color: $text-charcoal;
                 text-align: center;
-                
+
                 text-transform: uppercase;
                 @extend .font-d;
                 @extend .font-d.size-5;
@@ -80,11 +80,12 @@
                     @include xy-grid('vertical');
                     flex-direction: column-reverse;
                     align-items: center;
+                    width: 100%;
                     @include breakpoint(large) {
                         align-items: unset;
                         @include xy-grid();
                     }
-                    
+
                     .slide-left {
                         @include xy-cell(12);
                         @include breakpoint(large) {
@@ -121,6 +122,38 @@
                             margin-bottom: 0px;
                             @include xy-cell(7);
                         }
+
+                        .slider, .slick-list, .slick-track {
+                          height: 100%;
+                        }
+
+                        .slick-slide {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          height: 100%;
+                        }
+                        .slick-arrow {
+                            background-color: $auric-gold;
+                            width: 30px;
+                            height: 30px;
+                            &:before {
+                              color: $text-charcoal;
+                              font-size: 20px;
+                            }
+                        }
+                        .slick-prev {
+                          left: -35px;
+                          &:before {
+                              content: url('/static/svg/chevron-left.svg');
+                          }
+                      }
+                      .slick-next {
+                          right: -35px;
+                          &:before {
+                              content: url('/static/svg/chevron-right.svg');
+                          }
+                      }
                     }
                 }
             }

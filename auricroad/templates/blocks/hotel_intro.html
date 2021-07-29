@@ -48,7 +48,11 @@
                     </video>
                 </div>
             {% endif %}
+
             {{ value.images }}
+            {% if value.intro_video_embed %}
+            {{ value.intro_video_embed }}
+            {% endif %}
             {% if value.accent_image and value.finer_points_header and value.finer_points_body %}
                 {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
             {% endif %}
@@ -62,16 +66,21 @@
                 <h2 class="body semi-bold font-d size-1">{{ value.second_body|richtext }}</h2>
             {% endif %}
             {% if value.bottom_right_image %}
-                <div class="bottom-right-image-wrapper{% if value.button_text %} has-button{% endif %}">
+                <div class="bottom-right-image-wrapper{% if value.button_link_text or value.button_download_text %} has-button{% endif %}">
                     <div class="left-section">
             {% endif %}
             {% if value.accent_image %}
                         {{ image(value.accent_image, "fill-115x13", class="accent-image")}}
             {% endif %}
-            {% if value.button_text %}
+            {% if value.button_link_text %}
                         <a class="button-wrapper" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
-                            <button class="button black rounded font-c size-2">{{ value.button_text }}</button>
+                            <button class="button black rounded font-c size-2">{{ value.button_link_text }}</button>
                         </a>
+            {% endif %}
+            {% if value.button_download_text %}
+                <a class="button-wrapper" href="{{ value.download_document.url }}">
+                    <button class="button black rounded font-c size-2">{{ value.button_download_text }}</button>
+                </a>
             {% endif %}
             {% if value.bottom_right_image %}
                     </div>

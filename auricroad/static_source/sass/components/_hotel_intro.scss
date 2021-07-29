@@ -1,124 +1,168 @@
 .hotel-intro {
+  @include xy-grid();
+  justify-content: center;
+
+  .hotel-intro-inner {
+    z-index: 1;
+
+    &:not(.no-margin-top) {
+      margin-top: -80px;
+
+      @include breakpoint(large) {
+        margin-top: -150px;
+      }
+    }
+
+    @include xy-cell(10);
+    @include xy-grid('vertical');
+    align-items: center;
+    background-color: $pearl;
+    padding-top: 30px;
+
+    @include breakpoint(tablet) {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    .hotel-intro-inner-inner {
+      @include xy-cell(11);
+
+      @include breakpoint(tablet) {
+        @include xy-cell(8);
+      }
+
+      @include breakpoint(xxlarge) {
+        @include xy-cell(7);
+      }
+
+      .intro-show-desktop-mobile {
+        @media screen and (min-width: 767px) and (max-width: 1023px) {
+          display: none;
+        }
+      }
+
+      .intro-show-tablet {
+        display: none;
+
+        @include breakpoint(tablet only) {
+          display: block;
+        }
+      }
+
+      .center {
+        text-align: center;
+
+        .center-vertical-line {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  color: $text-black;
+
+  .tagline,
+  .body,
+  .subheader,
+  .finer-points-header,
+  .finer-points-body,
+  .tagline-no-margin {
+    color: $text-charcoal;
+  }
+
+  .tagline {
+    margin-bottom: 0px;
+
+    @include breakpoint(tablet) {
+      font-size: 15px;
+      line-height: 25px;
+    }
+
+    @include breakpoint(xxlarge) {
+      margin-bottom: 50px;
+    }
+  }
+
+  .body {
+    margin-bottom: 50px;
+  }
+
+  .header-wrapper {
+    @include breakpoint(tablet only) {
+      text-align: center;
+    }
+  }
+
+  .subheader {
+    margin: 0;
+  }
+
+  .intro-video {
+    width: 100%;
+
+    video {
+      width: 100%;
+    }
+  }
+
+  .embed-video-section {
+    margin: 2px;
+
+    iframe {
+      width: 100% !important;
+      height: 400px !important;
+    }
+  }
+
+  .accent-image {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: block;
+  }
+
+  .finer-points-body {
+    li {
+      @extend .font-d;
+      @extend .size-3;
+    }
+  }
+
+  .accented-text-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .center-vertical-line,
+  .text-dash {
+    margin-bottom: 20px;
+
+    @include breakpoint(tablet) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .center.bottom-margin-tablet {
+    @include breakpoint(tablet only) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .bottom-right-image-wrapper {
     @include xy-grid();
-    justify-content: center;
-    .hotel-intro-inner {
-        &:not(.no-margin-top) {
-            margin-top: -80px;
-            @include breakpoint(large) {
-                margin-top: -150px;
-            }
-        }
-        @include xy-cell(10);
-        @include xy-grid('vertical');
-        align-items: center;
-        background-color: $pearl;
-        padding-top: 30px;
-        @include breakpoint(tablet) {
-            padding-top: 70px;
-            padding-bottom: 70px;
-        }
-        .hotel-intro-inner-inner {
-            @include xy-cell(11);
-            @include breakpoint(tablet) {
-                @include xy-cell(8);
-            }
-            @include breakpoint(xxlarge) {
-                @include xy-cell(7);
-            }
-            .intro-show-desktop-mobile {
-                @media screen and (min-width: 767px) and (max-width: 1023px) {
-                    display: none;
-                }
-            }
-            .intro-show-tablet {
-                display: none;
-                @include breakpoint(tablet only) {
-                    display: block;
-                }
-            }
-            .center {
-                text-align: center;
-                .center-vertical-line {
-                    display: inline;
-                }
-            }
-        }
+    justify-content: space-between;
+
+    .left-section {
+      @include xy-grid('vertical');
+      align-items: flex-start;
+      justify-content: flex-end;
     }
-    color: $text-black;
-    .tagline,
-    .body,
-    .subheader,
-    .finer-points-header,
-    .finer-points-body,
-    .tagline-no-margin {
-        color: $text-charcoal;
+
+    .bottom-right-image {
+      align-self: center;
+      width: 100px;
+
+      @include breakpoint(tablet) {
+        width: 200px;
+      }
     }
-    .tagline {
-        margin-bottom: 0px;
-        @include breakpoint(tablet) {
-          font-size: 15px;
-          line-height: 25px;
-        }
-        @include breakpoint(xxlarge) {
-            margin-bottom: 50px;
-        }
-    }
-    .body {
-        margin-bottom: 50px;
-    }
-    .header-wrapper {
-        @include breakpoint(tablet only) {
-            text-align: center;
-        }
-    }
-    .subheader {
-        margin: 0;
-    }
-    .intro-video {
-        width: 100%;
-        video {
-            width: 100%;
-        }
-    }
-    .accent-image {
-        margin-top: 40px;
-        margin-bottom: 40px;
-        display: block;
-    }
-    .finer-points-body {
-        li {
-            @extend .font-d;
-            @extend .size-3;
-        }
-    }
-    .accented-text-wrapper {
-        margin-bottom: 40px;
-    }
-    .center-vertical-line, .text-dash {
-        margin-bottom: 20px;
-        @include breakpoint(tablet) {
-            margin-bottom: 40px;
-        }
-    }
-    .center.bottom-margin-tablet {
-        @include breakpoint(tablet only) {
-            margin-bottom: 40px;
-        }
-    }
-    .bottom-right-image-wrapper {
-        @include xy-grid();
-        justify-content: space-between;
-        .left-section {
-            @include xy-grid('vertical');
-            align-items: flex-start;
-            justify-content: flex-end;
-        }
-        .bottom-right-image {
-            align-self: center;
-            width: 100px;
-            @include breakpoint(tablet) {
-                width: 200px;
-            }
-        }
-    }
+  }
 }

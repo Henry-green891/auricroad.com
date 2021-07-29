@@ -1,0 +1,13 @@
+<div class="button-container">
+  {% if value.button_link_text %}
+  <a class="button-wrapper" href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
+    <button class="button black rounded font-c size-2">{{ value.button_link_text }}</button>
+  </a>
+  {% endif %}
+  {% if value.button_download_text %}
+  <a class="button-wrapper" href="{{ value.download_document.url }}">
+    <button class="button black rounded font-c size-2">{{ value.button_download_text }}</button>
+  </a>
+  {% endif %}
+
+</div>

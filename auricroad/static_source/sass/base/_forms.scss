@@ -10,4 +10,8 @@ form {
     p {
         margin-bottom: 25px;
     }
+
+    input[name*="date"] {
+        background: #fff url('../img/calendar.png') no-repeat 96% center;
+    }
 }

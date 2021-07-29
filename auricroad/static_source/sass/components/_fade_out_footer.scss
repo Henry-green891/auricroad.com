@@ -1,29 +1,36 @@
 .fade-out-footer {
-    position: relative;
-    &:not(.no-bg) {
-        margin-top: -25%;
+  position: relative;
+  z-index: -1;
+
+  &:not(.no-bg) {
+    margin-top: -25%;
+  }
+
+  @include xy-grid();
+  justify-content: center;
+
+  img {
+    width: 100%;
+    align-self: center;
+  }
+
+  .background-text {
+    position: absolute;
+    top: 0;
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: block;
+      top: -200px;
     }
-    @include xy-grid();
-    justify-content: center;
-    
-    img {
-        width: 100%;
-        align-self: center;
+  }
+
+  .button-wrapper {
+    margin: 0 15px 120px;
+    z-index: 1;
+
+    .button {
+      margin-bottom: 0;
     }
-    .background-text {
-        position: absolute;
-        top: 0;
-        display: none;
-        @include breakpoint(tablet) {
-            display: block;
-            top: -200px;
-        }
-    }
-    .button-wrapper {
-        margin-bottom: 120px;
-        z-index: 1;
-        .button {
-            margin-bottom: 0;
-        }
-    }
+  }
 }

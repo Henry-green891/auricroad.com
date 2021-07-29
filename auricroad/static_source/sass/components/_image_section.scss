@@ -34,11 +34,11 @@
             &.only-inner-margins {
                 img:first-of-type {
                     margin-left: 0;
-                    width: calc(50% - 0.15625rem)
+                    // width: calc(50% - 0.15625rem)
                 }
                 img:last-of-type {
                     margin-right: 0;
-                    width: calc(50% - 0.15625rem)
+                    // width: calc(50% - 0.15625rem)
                 }
             }
         }

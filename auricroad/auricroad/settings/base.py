@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     "social_django",
     "django_jinja",
     "webpack_loader",
+    "salesforce",
     "auricroad.home",
     "auricroad.account",
     "auricroad.util",
@@ -200,7 +201,8 @@ TEMPLATES = [
         "APP_DIRS": False,
         "OPTIONS": {
             "match_extension": None,
-            "match_regex": r"^(?!admin/).*",  # this is additive to match_extension
+            # this is additive to match_extension
+            "match_regex": r"^(?!admin/).*",
             "context_processors": CONTEXT_PROCESSORS,
             "extensions": DEFAULT_EXTENSIONS
             + [
@@ -236,8 +238,8 @@ WEBPACK_LOADER = {
 
 #  registration
 ACCOUNT_ACTIVATION_DAYS = (
-    7
-)  # One-week activation window; you may, of course, use a different value.
+    7  # One-week activation window; you may, of course, use a different value.
+)
 
 #  social
 SOCIAL_AUTH_PIPELINE = (
@@ -262,6 +264,8 @@ SOCIAL_AUTH_DEFAULT_USERNAME = "new_social_auth_user"
 
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default="")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="")
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
 
 
 try:

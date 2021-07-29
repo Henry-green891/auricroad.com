@@ -4,7 +4,7 @@ ptpython==0.39
 isort==4.3.17
 
 # Debug Tools
-django-debug-toolbar==1.9.1
+django-debug-toolbar==1.11.1
 django-template-debug==0.3.5
 
 # Testing
@@ -16,6 +16,6 @@ watchdog
 pylint==2.1.1
 astroid==2.0.4
 prospector==1.1.6.2
-service-factory==0.1.5
-Werkzeug==0.15.2
+service-factory==0.1.6
+Werkzeug==0.15.3
 bandit==1.5.1

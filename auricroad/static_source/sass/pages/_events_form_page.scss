@@ -1,0 +1,70 @@
+.events-form-page {
+
+  .form-right {
+    width: 100% !important; // TODO: !important not ideal, need to find better styling solution at some point
+    padding: 0 !important;
+
+    form {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+
+      .form-section-header {
+        width: 100%;
+      }
+
+      .fieldWrapper {
+        width: 100%;
+
+        @include breakpoint(large) {
+          width: calc(33.33333334% - 20px);
+        }
+
+        margin: 0 10px;
+
+        &.full-width {
+          width: 100%;
+        }
+
+        &.half-width {
+          width: calc(50% - 20px);
+        }
+
+        &.flexible-dates {
+          pointer-events: none;
+
+          label {
+            pointer-events: none;
+
+          }
+
+          input {
+            pointer-events: all;
+          }
+        }
+      }
+
+      .buttonWrapper {
+        margin: 0 auto;
+
+      }
+
+      input[type=file] {
+        border: none;
+        padding: 10px 0;
+      }
+    }
+  }
+
+  // NOTE: hiding number input arrows
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // for Firefox
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+}

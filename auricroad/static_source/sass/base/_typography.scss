@@ -14,6 +14,13 @@
 }
 
 @font-face {
+  font-family: 'ChronicleDisplay';
+  src: url('../fonts/ChronicleDisplay.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'HelveticaNeueRegular';
   src: url('../fonts/HelveticaNeueRegular.ttf') format('ttf');
 }
@@ -32,13 +39,19 @@
   font-family: 'Londrina Outline';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/londrina-outline-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/londrina-outline-v9-latin-regular.eot');
+  /* IE9 Compat Modes */
   src: local('Londrina Outline Regular'), local('LondrinaOutline-Regular'),
-       url('../fonts/londrina-outline-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/londrina-outline-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/londrina-outline-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/londrina-outline-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/londrina-outline-v9-latin-regular.svg#LondrinaOutline') format('svg'); /* Legacy iOS */
+    url('../fonts/londrina-outline-v9-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../fonts/londrina-outline-v9-latin-regular.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../fonts/londrina-outline-v9-latin-regular.woff') format('woff'),
+    /* Modern Browsers */
+    url('../fonts/londrina-outline-v9-latin-regular.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('../fonts/londrina-outline-v9-latin-regular.svg#LondrinaOutline') format('svg');
+  /* Legacy iOS */
 }
 
 h1 {
@@ -60,12 +73,17 @@ strong {
   letter-spacing: 1px;
 }
 
+.errorlist {
+  color: red;
+}
+
 a {
   transition: color 0.1s ease-out
 }
 
 select {
   -moz-appearance: none;
+
   &:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 #000;
@@ -77,40 +95,48 @@ select {
   background: linear-gradient(to bottom, transparent 60%, $auric-gold-bg 40%);
   padding-left: 5px;
   padding-right: 5px;
+
   &.gray {
     background: linear-gradient(to bottom, transparent 60%, $accent-gray 40%);
+
     .rich-text {
       display: inline;
-      & > * {
+
+      &>* {
         display: inline;
       }
     }
   }
+
   &.slim {
     background: linear-gradient(to bottom, transparent 0%, transparent 70%,
-      $auric-gold-bg 70%, $auric-gold-bg 85%,
-      transparent 85%, transparent 100%);
+        $auric-gold-bg 70%, $auric-gold-bg 85%,
+        transparent 85%, transparent 100%);
   }
 }
 
 .accent-quote-left {
-  font-family: "ChronicleDisplayBold";
+  font-family: "ChronicleDisplay";
   font-size: 175px;
   margin-bottom: -110px;
   margin-top: -65px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .background-text {
   font-family: 'Londrina Outline', cursive;
-  
+
   color: $text-light-gray;
   letter-spacing: 40px;
   z-index: -1;
   opacity: 0.1;
   font-size: 180px;
+
   @include breakpoint(tablet) {
     font-size: 425px;
   }
+
   @include breakpoint(xxlarge) {
     font-size: 725px;
   }
@@ -130,95 +156,117 @@ select {
 
 .font-a {
   font-family: "ChronicleDisplayRoman";
+
   &.size-1 {
     font-size: 80px;
     letter-spacing: 0.03em;
+
     @include breakpoint(xxlarge) {
       font-size: 150px;
     }
   }
+
   &.size-2 {
     font-size: 50px;
     line-height: 55px;
     letter-spacing: 0.025em;
+
     @include breakpoint(tablet) {
       font-size: 70px;
       line-height: 75px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 85px;
       line-height: 90px;
     }
   }
+
   &.size-3 {
     font-size: 35px;
     line-height: 41px;
     letter-spacing: 0.025em;
+
     @include breakpoint(tablet) {
       font-size: 50px;
       line-height: 60px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 65px;
       line-height: 65px;
     }
   }
+
   &.size-4 {
     font-size: 25px;
     line-height: 32px;
+
     &.skip-tablet {
       @include breakpoint(tablet) {
         font-size: 50px;
         line-height: 60px;
       }
     }
+
     @include breakpoint(tablet) {
       font-size: 35px;
       line-height: 42px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 50px;
       line-height: 60px;
     }
   }
+
   &.size-5 {
     font-size: 23px;
     line-height: 31px;
     letter-spacing: 0.025em;
+
     @include breakpoint(tablet) {
       font-size: 32px;
       line-height: 42px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 40px;
       line-height: 50px;
     }
   }
+
   &.size-6 {
     font-size: 21px;
     line-height: 27px;
+
     @include breakpoint(tablet) {
       font-size: 23px;
       line-height: 30px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 28px;
       line-height: 35px;
     }
   }
+
   &.size-7 {
     font-size: 21px;
     line-height: 26px;
     letter-spacing: 0.025em;
+
     @include breakpoint(xxlarge) {
       font-size: 25px;
       line-height: 32px;
     }
   }
+
   &.size-8 {
     font-size: 17px;
     line-height: 22px;
     letter-spacing: 0.01em;
+
     @include breakpoint(xxlarge) {
       font-size: 22px;
       line-height: 30px;
@@ -228,21 +276,26 @@ select {
 
 .font-b {
   font-family: "ChronicleDisplayBold";
+
   &.size-2 {
     font-size: 21px;
     line-height: 27px;
+
     @include breakpoint(tablet) {
       font-size: 23px;
       line-height: 30px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 28px;
       line-height: 35px;
     }
   }
+
   &.size-3 {
     font-size: 18px;
     line-height: 24px;
+
     @include breakpoint(tablet) {
       font-size: 23px;
       line-height: 35px;
@@ -252,9 +305,11 @@ select {
 
 .font-c {
   font-family: "ChronicleTextRoman";
+
   &.size-2 {
     font-size: 15px;
     letter-spacing: 0.065em;
+
     @include breakpoint(tablet) {
       font-size: 16px;
     }
@@ -263,50 +318,61 @@ select {
 
 .font-d {
   font-family: "HelveticaNeueRegular", sans-serif;
+
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0.04em;
+
     @include breakpoint(tablet) {
       font-size: 18px;
       line-height: 30px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 19px;
       line-height: 31px;
     }
   }
+
   &.size-2 {
     font-size: 15px;
     line-height: 21px;
     letter-spacing: 0.04em;
+
     @include breakpoint(tablet) {
       font-size: 17px;
       line-height: 25px;
     }
   }
+
   &.size-3 {
     font-size: 13px;
     line-height: 20px;
     letter-spacing: 0.05em;
+
     @include breakpoint(tablet) {
       font-size: 14px;
       line-height: 21px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 15px;
       line-height: 23px;
     }
   }
+
   &.size-4 {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.05em;
+
     @include breakpoint(tablet) {
       font-size: 13px;
       line-height: 21px;
     }
   }
+
   &.size-5 {
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -315,28 +381,34 @@ select {
 
 .font-e {
   font-family: "HelveticaNeueMedium", sans-serif;
+
   &.size-1 {
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0.04em;
+
     @include breakpoint(tablet) {
       font-size: 18px;
       line-height: 30px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 19px;
       line-height: 31px;
     }
   }
+
   &.size-2 {
     font-size: 15px;
     line-height: 21px;
     letter-spacing: 0.04em;
+
     @include breakpoint(tablet) {
       font-size: 17px;
       line-height: 25px;
     }
   }
+
   &.size-3 {
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -345,19 +417,23 @@ select {
 
 .font-f {
   font-family: "EngraversGothic", sans-serif;
+
   &.size-1 {
     font-size: 11px;
     letter-spacing: 0.2em;
     line-height: 16px;
+
     @include breakpoint(tablet) {
       font-size: 13px;
       line-height: 23px;
     }
+
     @include breakpoint(xxlarge) {
       font-size: 15px;
       line-height: 25px;
     }
   }
+
   &.size-3 {
     font-size: 10px;
     letter-spacing: 0.3em;

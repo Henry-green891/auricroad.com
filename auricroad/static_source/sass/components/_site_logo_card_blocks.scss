@@ -1,0 +1,72 @@
+.hero-site-logos {
+  @include xy-grid();
+
+  @include xy-grid();
+
+  @include xy-cell(11);
+
+  justify-content: center;
+  margin-bottom: 50px;
+
+  @include breakpoint(tablet) {
+    @include xy-cell(10);
+    margin-bottom: 60px;
+  }
+
+  @include breakpoint(large) {
+    margin-bottom: 75px;
+  }
+
+  .block-card {
+    @include xy-cell(6);
+    margin-bottom: 6px;
+
+    @include breakpoint(large) {
+      flex: 1;
+    }
+
+    .site-logo-card {
+      background-color: rgba(211, 201, 190, 0.5);
+      @include xy-grid('vertical');
+      justify-content: center;
+      width: 100%;
+      padding: 30px 50px;
+
+      @include breakpoint(tablet) {
+        padding: 30px 15px;
+      }
+
+      @include breakpoint(large) {
+        padding: 20px;
+      }
+
+      align-items: center;
+      text-align: center;
+      height: 100%;
+
+      .hero-card-icon {}
+
+      .header {
+        color: $text-black;
+        margin-bottom: 11px;
+
+        @include breakpoint(large) {
+          margin-bottom: 13px;
+        }
+
+        font-weight: bold;
+      }
+
+      .subheader {
+        color: $text-black;
+        margin-bottom: 15px;
+        margin-top: 0;
+      }
+
+      .body {
+        margin-top: 20px;
+        color: $text-charcoal;
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 <div
-    class="image-card"
-    {% if value.background_image %}
-        style="background-image: url({{ value.background_image.file.url }});"
-    {% endif %}
+class="image-card"
+{% if value.background_image %}
+style="background-image: url({{ value.background_image.file.url }});"
+{% endif %}
 >
+<div class="gradient">
     {% if value.arrow_color %}
-        <div style="border-top-color: {{ value.arrow_color }};" class="arrow-down satin"></div>
+    <div style="border-top-color: {{ value.arrow_color }};" class="arrow-down satin"></div>
     {% endif %}
     <span class="text-dash">
         <h1 class="font-f size-1">{{ value.tagline }}</h1>
@@ -13,13 +14,13 @@
         <div class="partial-horizontal-line white double-width"></div>
     </span>
     {% if value.tagline_2 %}
-        <h1 class="font-f size-1">{{ value.tagline_2 }}</h1>
+    <h1 class="font-f size-1">{{ value.tagline_2 }}</h1>
     {% endif %}
     <h3 class="font-a size-{{ value.header_size }}">{{ value.header }}</h3>
     {% if value.subheader %}
-        <p class="subheader font-a size-7">{{ value.subheader }}</p>
+    <p class="subheader font-a size-7">{{ value.subheader }}</p>
     {% elif value.body %}
-        <div class="body font-d size-3{% if value.tagline_2 %}{% if value.header|length > 50 %} extra-reduced-margin{% else %} reduced-margin{% endif %}{% endif %}">{{ value.body | richtext }}</div>
+    <div class="body font-d size-3{% if value.tagline_2 %}{% if value.header|length > 50 %} extra-reduced-margin{% else %} reduced-margin{% endif %}{% endif %}">{{ value.body | richtext }}</div>
     {% endif %}
     <div class="image-card-link-row">
         {% if value.detail_link or value.detail_link_external_url %}
@@ -28,6 +29,12 @@
         {% if value.additional_detail_link or value.additional_link_url %}
             <a href="{{ value.additional_detail_link.url or value.additional_link_url }}"><button class="button white rounded font-c size-2">{{ value.additional_link_text }}</button></a>
         {% endif %}
+        {% if value.brochure_link %}
+        <a href="{{ value.brochure_link.url }}">
+            <button class="button white rounded font-c size-2">{{ value.brochure_link_text }}</button>
+        </a>
+        {% endif %}
     </div>
-    
+</div>
+
 </div>
