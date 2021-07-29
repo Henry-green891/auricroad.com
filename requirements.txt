@@ -59,3 +59,5 @@ raven==6.1.0
 sendgrid-django==4.0.4
 django-webpack-loader==0.5.0
 sentry-sdk==0.11.1
+
+django-queryset-csv==1.1.0
