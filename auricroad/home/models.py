@@ -296,8 +296,9 @@ class AbstractFormField(WagtailFormField):
             "MUST BE UNIQUE. The label that will be associated with the data on the back-end."
         ),
     )
-    field_type = models.CharField(verbose_name=_(
-        'field type'), max_length=16, choices=FORM_FIELD_CHOICES)
+    field_type = models.CharField(
+        verbose_name=_("field type"), max_length=16, choices=FORM_FIELD_CHOICES
+    )
     display_label = models.CharField(
         verbose_name=_("display label"),
         max_length=255,
@@ -312,7 +313,9 @@ class AbstractFormField(WagtailFormField):
     full_width = models.BooleanField(default=False)
     half_width = models.BooleanField(default=False)
     max_length = models.IntegerField(
-        default=255, help_text="IMPORTANT!! Typically should be set to '255', but if the field is a comment text area set this to '131072'.")
+        default=255,
+        help_text="IMPORTANT!! Typically should be set to '255', but if the field is a comment text area set this to '131072'.",
+    )
     # '131072' is the character count for a 'Text Field (Long)' in SalesForce
 
     @property
@@ -336,13 +339,11 @@ class AbstractFormField(WagtailFormField):
 
 
 class FormField(AbstractFormField):
-    FORM_FIELD_CHOICES = list(FORM_FIELD_CHOICES) + [('file', 'Upload File')]
+    FORM_FIELD_CHOICES = list(FORM_FIELD_CHOICES) + [("file", "Upload File")]
     field_type = models.CharField(
-        verbose_name=_('field type'),
-        max_length=16,
-        choices=FORM_FIELD_CHOICES)
-    page = ParentalKey("FormPage", on_delete=models.CASCADE,
-                       related_name="form_fields")
+        verbose_name=_("field type"), max_length=16, choices=FORM_FIELD_CHOICES
+    )
+    page = ParentalKey("FormPage", on_delete=models.CASCADE, related_name="form_fields")
 
 
 class HomePage(Page):
@@ -385,17 +386,16 @@ class FormPage(AbstractEmailForm):
                 if file_data:
 
                     new_file_upload = SalesForceFile.objects.create(
-                        file_upload=file_data)
+                        file_upload=file_data
+                    )
 
-                    cleaned_data.update(
-                        {name: new_file_upload.file_upload.url})
+                    cleaned_data.update({name: new_file_upload.file_upload.url})
 
                 else:
                     del cleaned_data[name]
 
         submission = self.get_submission_class().objects.create(
-            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder),
-            page=self,
+            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder), page=self,
         )
         return submission
 
@@ -474,6 +474,32 @@ class Contact(models.Model):
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=30, blank=True)
     email = models.EmailField(_("email address"))
+
+    def process_contact_footer_form_submission(self, form):
+        """
+        Processes the form submission, if an Image upload is found, pull out the
+        files data, create an actual Wgtail Image and reference its ID only in the
+        stored form response.
+        """
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+
+        cleaned_data = form.cleaned_data
+        for name, field in form.fields.items():
+            if isinstance(field, FileField):
+                file_data = cleaned_data[name]
+                if file_data:
+                    new_file_upload = SalesForceFile.objects.create(
+                        file_upload=file_data
+                    )
+                    cleaned_data.update({name: new_file_upload.file_upload.url})
+                else:
+                    del cleaned_data[name]
+        FooterContactResponses.objects.create(**form.cleaned_data)
 
     def __str__(self):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
@@ -728,7 +754,10 @@ class EventResponses(SFModels.Model):
         null=True,
     )
     preferred_date = models.DateField(
-        db_column="preferred_date__c", verbose_name="preferred_date", blank=True, null=True
+        db_column="preferred_date__c",
+        verbose_name="preferred_date",
+        blank=True,
+        null=True,
     )
     flexible_dates = models.BooleanField(
         db_column="flexible_dates__c",
@@ -893,7 +922,11 @@ class GuestProfileResponses(SFModels.Model):
         null=True,
     )
     email = models.EmailField(
-        db_column="email__c", max_length=255, verbose_name="email", blank=True, null=True
+        db_column="email__c",
+        max_length=255,
+        verbose_name="email",
+        blank=True,
+        null=True,
     )
     number_of_adults = models.CharField(
         db_column="number_of_adults__c",
@@ -1785,13 +1818,25 @@ class GuestProfileResponses(SFModels.Model):
         null=True,
     )
     phone = models.CharField(
-        db_column="phone__c", max_length=255, verbose_name="phone", blank=True, null=True
+        db_column="phone__c",
+        max_length=255,
+        verbose_name="phone",
+        blank=True,
+        null=True,
     )
     reservation = models.CharField(
-        db_column="reservation__c", max_length=255, verbose_name="reservation", blank=True, null=True
+        db_column="reservation__c",
+        max_length=255,
+        verbose_name="reservation",
+        blank=True,
+        null=True,
     )
     spa_activities = models.CharField(
-        db_column="spa_activities__c", max_length=255, verbose_name="spa_activities", blank=True, null=True
+        db_column="spa_activities__c",
+        max_length=255,
+        verbose_name="spa_activities",
+        blank=True,
+        null=True,
     )
     special_occasions = models.CharField(
         db_column="special_occasions__c",
@@ -1924,3 +1969,29 @@ class GuestProfileResponses(SFModels.Model):
         verbose_name = "Guest Profile Response"
         verbose_name_plural = "Guest Profile Responses"
         # keyPrefix = 'a0I'
+
+
+class FooterContactResponses(SFModels.Model):
+    """This is pulled directly from salesforce after creating it there. This should
+    only be edited if the salesforce form changes."""
+
+    first_name = models.CharField(
+        db_column="first_name__c",
+        max_length=255,
+        verbose_name="first_name",
+        blank=True,
+        null=True,
+    )
+    last_name = models.CharField(
+        db_column="last_name__c",
+        max_length=255,
+        verbose_name="last_name",
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(db_column="email__c", verbose_name="email",)
+
+    class Meta(SFModels.Model.Meta):
+        db_table = "AR_footer_contact__c"
+        verbose_name = "AR Footer Contact Response"
+        verbose_name_plural = "AR Footer Contact Responses"

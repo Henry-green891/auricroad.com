@@ -62,6 +62,7 @@ class ContactFormView(FormView, ModelFormMixin):
                 contact_form_settings.subject,
             )
         return_url = self.request.POST.get("return_url", "/")
+        Contact.process_contact_footer_form_submission(self, form)
         return redirect(return_url)
 
     def form_invalid(self, form):
