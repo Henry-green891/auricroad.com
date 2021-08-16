@@ -68,7 +68,8 @@ from wagtailmedia.models import AbstractMedia  # isort:skip
 @register_model_chooser
 class Hotel(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
     location = models.CharField(max_length=255)
     environment = models.CharField(
         max_length=50, choices=ENVIRONMENT_CHOICES, default=""
@@ -102,7 +103,8 @@ class Hotel(models.Model):
 @register_model_chooser
 class NavBar(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
     on_load_image = models.ForeignKey(
         "home.CustomImage",
         on_delete=models.SET_NULL,
@@ -138,12 +140,15 @@ class NavBar(models.Model):
         null=True,
         blank=True,
     )
-    desktop_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
+    desktop_links = StreamField(
+        [("links", HeaderLinkBlock())], null=True, blank=True)
     mobile_top_nav_links = StreamField(
         [("links", HeaderLinkBlock())], null=True, blank=True
     )
-    mobile_links = StreamField([("links", HeaderLinkBlock())], null=True, blank=True)
-    social_icons = StreamField([("icons", SocialIconLink())], null=True, blank=True)
+    mobile_links = StreamField(
+        [("links", HeaderLinkBlock())], null=True, blank=True)
+    social_icons = StreamField(
+        [("icons", SocialIconLink())], null=True, blank=True)
 
     panels = [
         FieldPanel("name"),
@@ -165,7 +170,8 @@ class NavBar(models.Model):
 @register_model_chooser
 class Footer(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from="name", null=True, default=None, unique=True)
+    slug = AutoSlugField(populate_from="name", null=True,
+                         default=None, unique=True)
 
     form_section_name = models.CharField(max_length=50)
     form_section_caption = models.CharField(max_length=250)
