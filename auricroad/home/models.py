@@ -1,7 +1,6 @@
 import json
 from collections import OrderedDict
 from django.core.serializers.json import DjangoJSONEncoder
-
 # from django import forms
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
@@ -14,7 +13,8 @@ from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
 from salesforce import models as SFModels
 from unidecode import unidecode
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
+                                         StreamFieldPanel)
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
 from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
