@@ -164,6 +164,7 @@
                         {{ form.package_activites.errors }}
                         <label for="{{ form.package_activites.id_for_label }}">{{ form.package_activites.field.display_label }} {% if form.package_activites.field.required %}*{% endif %}</label>
                         {{ form.package_activites }}
+                        <span style="position: relative; top: -20px;">{{ form.package_activites.help_text }}</span>
                     </div>
                     <div class="fieldWrapper {% if form.on_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.on_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
                         {{ form.on_ranch_add_on_activities.errors }}
@@ -179,34 +180,6 @@
                         {{ form.spa_activities.errors }}
                         <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
                         {{ form.spa_activities }}
-                    </div>
-                    <div class="fieldWrapper full-width">
-                        <h4>Tell Us A Little About Yourself</h4>
-                    </div>
-                    <div class="fieldWrapper {% if form.coffee_preference.field.full_width %}full-width{% endif %} {% if form.coffee_preference.field.half_width %}half-width{% endif %}">
-                        {{ form.coffee_preference.errors }}
-                        <label for="{{ form.coffee_preference.id_for_label }}">{{ form.coffee_preference.field.display_label }} {% if form.coffee_preference.field.required %}*{% endif %}</label>
-                        {{ form.coffee_preference }}
-                    </div>
-                    <div class="fieldWrapper {% if form.music_preference.field.full_width %}full-width{% endif %} {% if form.music_preference.field.half_width %}half-width{% endif %}">
-                        {{ form.music_preference.errors }}
-                        <label for="{{ form.music_preference.id_for_label }}">{{ form.music_preference.field.display_label }} {% if form.music_preference.field.required %}*{% endif %}</label>
-                        {{ form.music_preference }}
-                    </div>
-                    <div class="fieldWrapper {% if form.wine_preference.field.full_width %}full-width{% endif %} {% if form.wine_preference.field.half_width %}half-width{% endif %}">
-                        {{ form.wine_preference.errors }}
-                        <label for="{{ form.wine_preference.id_for_label }}">{{ form.wine_preference.field.display_label }} {% if form.wine_preference.field.required %}*{% endif %}</label>
-                        {{ form.wine_preference }}
-                    </div>
-                    <div class="fieldWrapper {% if form.special_occasions.field.full_width %}full-width{% endif %} {% if form.special_occasions.field.half_width %}half-width{% endif %}">
-                        {{ form.special_occasions.errors }}
-                        <label for="{{ form.special_occasions.id_for_label }}">{{ form.special_occasions.field.display_label }} {% if form.special_occasions.field.required %}*{% endif %}</label>
-                        {{ form.special_occasions }}
-                    </div>
-                    <div class="fieldWrapper {% if form.additional_comments.field.full_width %}full-width{% endif %} {% if form.additional_comments.field.half_width %}half-width{% endif %}">
-                        {{ form.additional_comments.errors }}
-                        <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }} {% if form.additional_comments.field.required %}*{% endif %}</label>
-                        {{ form.additional_comments }}
                     </div>
                     <div class="buttonWrapper">
                         <input class="button black rounded" type="submit" name="Submit">
