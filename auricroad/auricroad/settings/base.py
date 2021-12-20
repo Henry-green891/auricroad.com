@@ -67,6 +67,7 @@ STATICFILES_FINDERS = (
 )
 
 MIDDLEWARE = (
+    "wagtailcache.cache.UpdateCacheMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -78,6 +79,7 @@ MIDDLEWARE = (
     "social_django.middleware.SocialAuthExceptionMiddleware",
     "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtailcache.cache.FetchFromCacheMiddleware",
 )
 
 ROOT_URLCONF = "auricroad.auricroad.urls"
@@ -123,6 +125,7 @@ INSTALLED_APPS = (
     "modelcluster",
     "taggit",
     "wagtailmedia",
+    "wagtailcache",
 )
 
 # A sample logging configuration. The only tangible logging
@@ -149,7 +152,6 @@ LOGGING = {
         }
     },
 }
-
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
@@ -266,7 +268,6 @@ STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default="")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="")
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
-
 
 try:
     from model_mommy import random_gen  # noqa

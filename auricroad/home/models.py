@@ -5,6 +5,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
 from django.forms.fields import CharField, EmailField
+from django.utils.decorators import method_decorator
 from django.utils.six import text_type
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -24,9 +25,10 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
+from wagtailcache.cache import WagtailCacheMixin, cache_page
 from wagtailmodelchooser import register_model_chooser
 
-from .constants import ENVIRONMENT_CHOICES
+from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
     ActionCardSection,
@@ -339,7 +341,6 @@ class FormField(AbstractFormField):
     )
     page = ParentalKey("FormPage", on_delete=models.CASCADE, related_name="form_fields")
 
-
 class HomePage(Page):
     body = StreamField(
         [
@@ -498,8 +499,10 @@ class Contact(models.Model):
     def __str__(self):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
+@method_decorator(cache_page, name="serve")
+class HotelsPage(WagtailCacheMixin, Page):
+    cache_control = CACHE_STRING
 
-class HotelsPage(Page):
     body = StreamField(
         [
             ("hero", Hero()),
@@ -532,8 +535,10 @@ hotel_base_blocks = [
     ("video_section", EmbedVideoBlock()),
 ]
 
-
+@method_decorator(cache_page, name="serve")
 class HotelDetailPage(Page):
+    cache_control = CACHE_STRING
+
     body = StreamField(hotel_base_blocks, null=True, blank=True,)
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
     parent_page_types = [HotelsPage]
@@ -627,8 +632,10 @@ class PressPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
+@method_decorator(cache_page, name='serve')
+class MissionPage(WagtailCacheMixin, Page):
+    cache_control = CACHE_STRING
 
-class MissionPage(Page):
     body = StreamField(
         [
             ("hero", Hero()),
