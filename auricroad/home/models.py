@@ -340,6 +340,7 @@ class FormField(AbstractFormField):
         verbose_name=_("field type"), max_length=16, choices=FORM_FIELD_CHOICES
     )
     page = ParentalKey("FormPage", on_delete=models.CASCADE, related_name="form_fields")
+    
 
 class HomePage(Page):
     body = StreamField(
