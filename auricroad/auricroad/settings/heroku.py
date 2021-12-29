@@ -31,6 +31,8 @@ CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",
         "LOCATION": "%s:%s" % (redis_url.hostname, redis_url.port),
+        "KEY_PREFIX": "wagtailcache",
+        "TIMEOUT": 3600,
         "OPTIONS": {
             "DB": 0,
             "PASSWORD": redis_url.password,
