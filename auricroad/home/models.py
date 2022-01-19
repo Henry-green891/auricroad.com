@@ -1,6 +1,7 @@
 import json
 from collections import OrderedDict
 from django.core.serializers.json import DjangoJSONEncoder
+
 # from django import forms
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
@@ -14,8 +15,7 @@ from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
 from salesforce import models as SFModels
 from unidecode import unidecode
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
 from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
@@ -436,6 +436,9 @@ class EventsFormPage(FormPage):
         You can override this method if you want to have custom creation logic.
         For example, if you want to save reference to a user.
         """
+        # import ipdb
+
+        # ipdb.set_trace()
         submission = super().process_form_submission(form)
         EventResponses.objects.create(**form.cleaned_data)
         return submission
@@ -500,6 +503,7 @@ class Contact(models.Model):
     def __str__(self):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
+
 @method_decorator(cache_page, name="serve")
 class HotelsPage(WagtailCacheMixin, Page):
     cache_control = CACHE_STRING
@@ -535,6 +539,7 @@ hotel_base_blocks = [
     ("rich_text_section", blocks.RichTextBlock()),
     ("video_section", EmbedVideoBlock()),
 ]
+
 
 @method_decorator(cache_page, name="serve")
 class HotelDetailPage(Page):
@@ -633,7 +638,8 @@ class PressPage(Page):
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
-@method_decorator(cache_page, name='serve')
+
+@method_decorator(cache_page, name="serve")
 class MissionPage(WagtailCacheMixin, Page):
     cache_control = CACHE_STRING
 
