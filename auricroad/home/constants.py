@@ -58,3 +58,5 @@ PETITE_RESORTS = (
     ("lone_mountain_ranch_events_form_link",
      "Lone Mountain Ranch"), ("sonoma_events_form_link", "Sonoma Coast Villa")
 )
+
+CACHE_STRING = "public, max-age=600, must-revalidate"

@@ -20,8 +20,7 @@ urlpatterns = [
     path(r"cms/", include(wagtailadmin_urls)),
     path(r"documents/", include(wagtaildocs_urls)),
     path("", include("social_django.urls", namespace="social")),
-    path(r"", include("auricroad.home.urls")),
-    path(r"", include(wagtail_urls)),
+
 ]
 
 handler404 = home_views.handler404
@@ -34,3 +33,9 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += [path(r"__debug__/", include(debug_toolbar.urls))]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += [
+        path(r"", include("auricroad.home.urls")),
+        path(r"", include(wagtail_urls)),
+    ]
