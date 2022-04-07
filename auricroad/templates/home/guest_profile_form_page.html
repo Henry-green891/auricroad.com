@@ -166,21 +166,25 @@
                         {{ form.package_activites }}
                         <span style="position: relative; top: -20px;">{{ form.package_activites.help_text }}</span>
                     </div>
-                    <div class="fieldWrapper {% if form.on_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.on_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
-                        {{ form.on_ranch_add_on_activities.errors }}
-                        <label for="{{ form.on_ranch_add_on_activities.id_for_label }}">{{ form.on_ranch_add_on_activities.field.display_label }} {% if form.on_ranch_add_on_activities.field.required %}*{% endif %}</label>
-                        {{ form.on_ranch_add_on_activities }}
-                    </div>
+                    {% if form.on_ranch_add_on_activities %}
+                        <div class="fieldWrapper {% if form.on_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.on_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
+                            {{ form.on_ranch_add_on_activities.errors }}
+                            <label for="{{ form.on_ranch_add_on_activities.id_for_label }}">{{ form.on_ranch_add_on_activities.field.display_label }} {% if form.on_ranch_add_on_activities.field.required %}*{% endif %}</label>
+                            {{ form.on_ranch_add_on_activities }}
+                        </div>
+                    {% endif %}
                     <div class="fieldWrapper {% if form.off_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.off_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
                         {{ form.off_ranch_add_on_activities.errors }}
                         <label for="{{ form.off_ranch_add_on_activities.id_for_label }}">{{ form.off_ranch_add_on_activities.field.display_label }} {% if form.off_ranch_add_on_activities.field.required %}*{% endif %}</label>
                         {{ form.off_ranch_add_on_activities }}
                     </div>
-                    <div class="fieldWrapper {% if form.spa_activities.field.full_width %}full-width{% endif %} {% if form.spa_activities.field.half_width %}half-width{% endif %}">
-                        {{ form.spa_activities.errors }}
-                        <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
-                        {{ form.spa_activities }}
-                    </div>
+                    {% if form.spa_activities %}
+                        <div class="fieldWrapper {% if form.spa_activities.field.full_width %}full-width{% endif %} {% if form.spa_activities.field.half_width %}half-width{% endif %}">
+                            {{ form.spa_activities.errors }}
+                            <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
+                            {{ form.spa_activities }}
+                        </div>
+                    {% endif %}
                     <div class="buttonWrapper">
                         <input class="button black rounded" type="submit" name="Submit">
                     </div>
