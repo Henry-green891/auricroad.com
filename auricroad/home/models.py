@@ -436,9 +436,6 @@ class EventsFormPage(FormPage):
         You can override this method if you want to have custom creation logic.
         For example, if you want to save reference to a user.
         """
-        # import ipdb
-
-        # ipdb.set_trace()
         submission = super().process_form_submission(form)
         EventResponses.objects.create(**form.cleaned_data)
         return submission
@@ -503,10 +500,6 @@ class Contact(models.Model):
     def __str__(self):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
-@method_decorator(cache_page, name="serve")
-class HotelsPage(WagtailCacheMixin, Page):
-    cache_control = CACHE_STRING
-
 
 @method_decorator(cache_page, name="serve")
 class HotelsPage(WagtailCacheMixin, Page):
@@ -543,6 +536,7 @@ hotel_base_blocks = [
     ("rich_text_section", blocks.RichTextBlock()),
     ("video_section", EmbedVideoBlock()),
 ]
+
 
 @method_decorator(cache_page, name="serve")
 class HotelDetailPage(Page):
@@ -640,10 +634,6 @@ class PressPage(Page):
     )
 
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
-
-@method_decorator(cache_page, name='serve')
-class MissionPage(WagtailCacheMixin, Page):
-    cache_control = CACHE_STRING
 
 
 @method_decorator(cache_page, name="serve")
