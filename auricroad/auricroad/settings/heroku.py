@@ -31,8 +31,8 @@ CACHES = {
     "default": {
         "BACKEND": "redis_cache.RedisCache",
         "LOCATION": "%s:%s" % (redis_url.hostname, redis_url.port),
-        "KEY_PREFIX": "wagtailcache",
-        "TIMEOUT": 3600,
+        # "KEY_PREFIX": "wagtailcache",
+        # "TIMEOUT": 3600,
         "OPTIONS": {
             "DB": 0,
             "PASSWORD": redis_url.password,
@@ -72,8 +72,7 @@ AWS_IS_GZIPPED = True
 AWS_S3_REGION_NAME = "us-west-1"
 AWS_S3_FILE_OVERWRITE = False
 
-sentry_sdk.init(dsn=env("SENTRY_DSN", default=""),
-                integrations=[DjangoIntegration()])
+sentry_sdk.init(dsn=env("SENTRY_DSN", default=""), integrations=[DjangoIntegration()])
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
