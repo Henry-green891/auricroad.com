@@ -20,13 +20,15 @@ social-auth-app-django==2.1.0
 #Utils
 django-extensions==2.0.0
 django-jinja==2.3.1
+Jinja2==2.7.3
+markupsafe==2.0.1
 django-model-utils==3.0.0
 django-braces==1.11.0
 pytz==2018.3
 easy-thumbnails==2.4.1
 wagtail-modelchooser==2.3.3
 wagtailmedia==0.6.0
-wagtail-cache==1.0.2
+# wagtail-cache==1.0.2
 django-salesforce==3.1
 
 #REDIS CACHING
