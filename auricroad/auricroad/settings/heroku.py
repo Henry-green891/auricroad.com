@@ -72,8 +72,7 @@ AWS_IS_GZIPPED = True
 AWS_S3_REGION_NAME = "us-west-1"
 AWS_S3_FILE_OVERWRITE = False
 
-sentry_sdk.init(dsn=env("SENTRY_DSN", default=""),
-                integrations=[DjangoIntegration()])
+sentry_sdk.init(dsn=env("SENTRY_DSN", default=""), integrations=[DjangoIntegration()])
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'

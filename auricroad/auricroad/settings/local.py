@@ -23,7 +23,7 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "unique-snowflake",
         "KEY_PREFIX": "wagtailcache",
-        "TIMEOUT": 3600
+        "TIMEOUT": 3600,
     }
 }
 
