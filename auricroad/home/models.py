@@ -5,7 +5,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
 from django.forms.fields import CharField, EmailField
-# from django.utils.decorators import method_decorator
+from django.utils.decorators import method_decorator
 from django.utils.six import text_type
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -25,10 +25,10 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
-# from wagtailcache.cache import WagtailCacheMixin, cache_page
+from wagtailcache.cache import WagtailCacheMixin, cache_page
 from wagtailmodelchooser import register_model_chooser
 
-from .constants import ENVIRONMENT_CHOICES  # CACHE_STRING,
+from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
     ActionCardSection,

@@ -67,7 +67,7 @@ STATICFILES_FINDERS = (
 )
 
 MIDDLEWARE = (
-    # "wagtailcache.cache.UpdateCacheMiddleware",
+    "wagtailcache.cache.UpdateCacheMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -79,7 +79,7 @@ MIDDLEWARE = (
     "social_django.middleware.SocialAuthExceptionMiddleware",
     "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    # "wagtailcache.cache.FetchFromCacheMiddleware",
+    "wagtailcache.cache.FetchFromCacheMiddleware",
 )
 
 ROOT_URLCONF = "auricroad.auricroad.urls"
@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     "modelcluster",
     "taggit",
     "wagtailmedia",
-    # "wagtailcache",
+    "wagtailcache",
 )
 
 # A sample logging configuration. The only tangible logging
