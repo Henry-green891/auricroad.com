@@ -386,5 +386,7 @@ $(document).ready(function () {
     // no sonoma link to the events form yet, will need to add this to the link url when it's eventually created
     $('#id_petite_resort').val('Sonoma Coast Villa (Sonoma Coast CA)');
     $('.event-form-things-to-know.sonoma').css('display', 'block');
+  } else if (document.URL.includes('?resort=fostercreekfarm')) {
+    $('#id_petite_resort').val('Foster Creek Farm (Belgrade MT)');
   }
 });
