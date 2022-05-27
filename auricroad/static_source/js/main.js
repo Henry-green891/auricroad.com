@@ -383,7 +383,7 @@ $(document).ready(function () {
     $('.event-form-things-to-know.lone-mountain-ranch').css('display', 'block');
     // can't use wedding for now because all sub-event pages use the same template (event-individual-wide.php)
   } else if (document.URL.includes('?resort=sonoma')) {
-    // no sonoma link to the events form yet, will need to add this to the link url when it's eventually created
+    // no sonoma link to the events form yet, will need to add this to the link url when it's eventually created!
     $('#id_petite_resort').val('Sonoma Coast Villa (Sonoma Coast CA)');
     $('.event-form-things-to-know.sonoma').css('display', 'block');
   } else if (document.URL.includes('?resort=fostercreekfarm')) {
