@@ -28,7 +28,7 @@ pytz==2018.3
 easy-thumbnails==2.4.1
 wagtail-modelchooser==2.3.3
 wagtailmedia==0.6.0
-wagtail-cache==1.0.2
+#wagtail-cache==1.0.2
 django-salesforce==3.1
 
 #REDIS CACHING
