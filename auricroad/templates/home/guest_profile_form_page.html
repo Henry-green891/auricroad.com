@@ -165,6 +165,11 @@
                         <label for="{{ form.package_activites.id_for_label }}">{{ form.package_activites.field.display_label }} {% if form.package_activites.field.required %}*{% endif %}</label>
                         {{ form.package_activites }}
                         <span style="position: relative; top: -20px;">{{ form.package_activites.help_text }}</span>
+                        {% if 'Summer' in page.title %}
+                            <span style="position: relative; top: -15px; margin: 0 5px; font-weight: bold;">
+                                Click <a href="https://lonemountainranch.com/horse-program-faq/" target="_blank">Here</a> for our Horse Program FAQ Page
+                            </span>
+                        {% endif %}
                     </div>
                     {% if form.on_ranch_add_on_activities %}
                         <div class="fieldWrapper {% if form.on_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.on_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
