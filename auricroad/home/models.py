@@ -503,7 +503,6 @@ class Contact(models.Model):
 
 
 #@method_decorator(cache_page, name="serve")
-#class HotelsPage(WagtailCacheMixin, Page):
 class HotelsPage(Page):
     #cache_control = CACHE_STRING
 
@@ -639,7 +638,6 @@ class PressPage(Page):
 
 
 #@method_decorator(cache_page, name="serve")
-#class MissionPage(WagtailCacheMixin, Page):
 class MissionPage(Page):
     #cache_control = CACHE_STRING
 
