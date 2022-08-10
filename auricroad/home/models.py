@@ -2104,4 +2104,3 @@ class FooterContactResponses(SFModels.Model):
         verbose_name_plural = "Press Inquiry Responses"
         # keyPrefix = 'a0I'
 """
-
