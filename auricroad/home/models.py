@@ -450,11 +450,15 @@ class EventsFormPage(FormPage):
 
 class PressInquiriesPage(FormPage):
     def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
         submission = super().process_form_submission(form)
         #PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
-
-    content_panels = FormPage.content_panels
 
 
 class GuestProfileFormPage(FormPage):
