@@ -2013,6 +2013,7 @@ class FooterContactResponses(SFModels.Model):
         verbose_name = "AR Footer Contact Response"
         verbose_name_plural = "AR Footer Contact Responses"
 
+
 """class PressInquiryResponses(SFModels.Model):
     #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
 
@@ -2103,3 +2104,4 @@ class FooterContactResponses(SFModels.Model):
         verbose_name_plural = "Press Inquiry Responses"
         # keyPrefix = 'a0I'
 """
+
