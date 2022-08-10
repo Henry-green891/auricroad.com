@@ -446,7 +446,7 @@ class EventsFormPage(FormPage):
     )
 
     content_panels = FormPage.content_panels + [StreamFieldPanel("events_body")]
-    
+
 class PressInquiriesPage(FormPage):
     def process_form_submission(self, form):
         """
@@ -2076,7 +2076,7 @@ class PressInquiryResponses(SFModels.Model):
         verbose_name="number_of_guests",
         blank=True,
         null=True,
-    )    
+    )
     preferred_date = models.DateField(
         db_column="preferred_date__c",
         verbose_name="preferred_date",
