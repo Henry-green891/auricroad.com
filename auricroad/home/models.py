@@ -2013,9 +2013,8 @@ class FooterContactResponses(SFModels.Model):
         verbose_name = "AR Footer Contact Response"
         verbose_name_plural = "AR Footer Contact Responses"
 
-class PressInquiryResponses(SFModels.Model):
-    """This is pulled directly from salesforce after creating it there. This should
-    only be edited if the salesforce form changes."""
+"""class PressInquiryResponses(SFModels.Model):
+    #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
 
     first_name = models.CharField(
         db_column="first_name__c",
@@ -2103,3 +2102,4 @@ class PressInquiryResponses(SFModels.Model):
         verbose_name = "Press Inquiry Response"
         verbose_name_plural = "Press Inquiry Responses"
         # keyPrefix = 'a0I'
+"""
