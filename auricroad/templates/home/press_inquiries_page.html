@@ -1,0 +1,104 @@
+{% extends "base.jinja" %}
+
+{% block page_class %}press-inquiries-page{% endblock page_class %}
+
+{% block title %}
+{{ page.title }}
+{% endblock title %}
+
+{% block content %}
+{{ page.body }}
+<div class="form-section-wrapper">
+  <div class="form-body">
+    <div class="form-right">
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--must display fields manually to add headers-->
+        <!--{{ form.as_p() }}-->
+        <h2 class="form-section-header">Contact Details</h2>
+        <div
+          class="fieldWrapper {% if form.first_name.field.full_width %}full-width{% endif %} {% if form.first_name.field.half_width %}half-width{% endif %}">
+          {{ form.first_name.errors }}
+          <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.field.display_label }}
+            {% if form.first_name.field.required %}*{% endif %}</label>
+          {{ form.first_name }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.last_name.field.full_width %}full-width{% endif %} {% if form.last_name.field.half_width %}half-width{% endif %}">
+          {{ form.last_name.errors }}
+          <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.field.display_label }}
+            {% if form.last_name.field.required %}*{% endif %}</label>
+          {{ form.last_name }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.company.field.full_width %}full-width{% endif %} {% if form.company.field.half_width %}half-width{% endif %}">
+          {{ form.company.errors }}
+          <label for="{{ form.company.id_for_label }}">{{ form.company.field.display_label }}
+            {% if form.company.field.required %}*{% endif %}</label>
+          {{ form.company }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.email.field.full_width %}full-width{% endif %} {% if form.email.field.half_width %}half-width{% endif %}">
+          {{ form.email.errors }}
+          <label for="{{ form.email.id_for_label }}">{{ form.email.field.display_label }}
+            {% if form.email.field.required %}*{% endif %}</label>
+          {{ form.email }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.zip_code.field.full_width %}full-width{% endif %} {% if form.zip_code.field.half_width %}half-width{% endif %}">
+          {{ form.zip_code.errors }}
+          <label for="{{ form.zip_code.id_for_label }}">{{ form.zip_code.field.display_label }}
+            {% if form.zip_code.field.required %}*{% endif %}</label>
+          {{ form.zip_code }}
+        </div>
+		<div
+          class="fieldWrapper {% if form.social_media_handles.field.full_width %}full-width{% endif %} {% if form.social_media_handles.field.half_width %}half-width{% endif %}">
+          {{ form.social_media_handles.errors }}
+          <label for="{{ form.social_media_handles.id_for_label }}">{{ form.social_media_handles.field.display_label }}
+            {% if form.social_media_handles.field.required %}*{% endif %}</label>
+          {{ form.social_media_handles }}
+        </div>
+		<div
+          class="fieldWrapper {% if form.website.field.full_width %}full-width{% endif %} {% if form.website.field.half_width %}half-width{% endif %}">
+          {{ form.website.errors }}
+          <label for="{{ form.website.id_for_label }}">{{ form.website.field.display_label }}
+            {% if form.website.field.required %}*{% endif %}</label>
+          {{ form.website }}
+        </div>
+        <h2 class="form-section-header">Request Details</h2>
+        <div
+          class="fieldWrapper {% if form.petite_resort.field.full_width %}full-width{% endif %} {% if form.petite_resort.field.half_width %}half-width{% endif %}">
+          {{ form.petite_resort.errors }}
+          <label for="{{ form.petite_resort.id_for_label }}">{{ form.petite_resort.field.display_label }}
+            {% if form.petite_resort.field.required %}*{% endif %}</label>
+          {{ form.petite_resort }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.number_of_guests.field.full_width %}full-width{% endif %} {% if form.number_of_guests.field.half_width %}half-width{% endif %}">
+          {{ form.number_of_guests.errors }}
+          <label for="{{ form.number_of_guests.id_for_label }}">{{ form.number_of_guests.field.display_label }}
+            {% if form.number_of_guests.field.required %}*{% endif %}</label>
+          {{ form.number_of_guests }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.preferred_date.field.full_width %}full-width{% endif %} {% if form.preferred_date.field.half_width %}half-width{% endif %} datepicker-wrapper">
+          {{ form.preferred_date.errors }}
+          <label for="{{ form.preferred_date.id_for_label }}">{{ form.preferred_date.field.display_label }}
+            {% if form.preferred_date.field.required %}*{% endif %}</label>
+          {{ form.preferred_date }}
+        </div>
+        <div
+          class="fieldWrapper {% if form.additional_comments.field.full_width %}full-width{% endif %} {% if form.additional_comments.field.half_width %}half-width{% endif %}">
+          {{ form.additional_comments.errors }}
+          <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }}
+            {% if form.additional_comments.field.required %}*{% endif %}</label>
+          {{ form.additional_comments }}
+        </div>
+        <div class="buttonWrapper">
+          <input class="button black rounded" type="submit" name="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
