@@ -448,12 +448,13 @@ class EventsFormPage(FormPage):
     content_panels = FormPage.content_panels + [StreamFieldPanel("events_body")]
 
 
-"""class PressInquiriesPage(FormPage):
+class PressInquiriesPage(FormPage):
     def process_form_submission(self, form):
         submission = super().process_form_submission(form)
         #PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
-"""
+
+    content_panels = FormPage.content_panels
 
 
 class GuestProfileFormPage(FormPage):
