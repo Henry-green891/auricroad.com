@@ -59,6 +59,10 @@ STATIC_URL = "/static/"
 # Additional locations of static files
 STATICFILES_DIRS = (str(root.path("static_source")),)
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
