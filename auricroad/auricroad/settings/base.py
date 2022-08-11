@@ -1,4 +1,5 @@
 # Django settings for project project.
+import os
 import pathlib
 from django.core.exceptions import ImproperlyConfigured
 
