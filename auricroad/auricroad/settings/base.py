@@ -8,6 +8,8 @@ from environ import Env, Path
 
 DEBUG = False
 
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 root = Path(__file__) - 3
 repo_root = root - 1
