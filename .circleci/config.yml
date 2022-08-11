@@ -40,8 +40,8 @@ jobs:
       - run: npm install
       - run: npm install webpack
       - run: npm run build
-      - run: manage.py makemigrations
-      - run: manage.py migrate
+      - run: python manage.py makemigrations
+      - run: python manage.py migrate
       - run: bandit -r auricroad/ -l --ini .bandit -x tests.py
       - run: isort --recursive --check-only --builtin django --skip-glob "*/migrations/*.py" auricroad/
       - run: prospector auricroad -X -I "auricroad/settings/*"
