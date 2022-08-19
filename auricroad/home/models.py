@@ -735,7 +735,18 @@ class BasicInfoPage(Page):
 
 
 class AuricRoomPage(Page):
-    content_panels = Page.content_panels
+    body = StreamField(
+        [
+            ("header", PageHeaderText()),
+            ("body_section", HeaderTextParagraph()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
 class EventResponses(SFModels.Model):
