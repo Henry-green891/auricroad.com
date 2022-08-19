@@ -734,6 +734,10 @@ class BasicInfoPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
+class AuricRoomPage(Page):
+    content_panels = Page.content_panels
+
+
 class EventResponses(SFModels.Model):
     """This is pulled directly from salesforce after creating it there. This should
     only be edited if the salesforce form changes."""
