@@ -10,6 +10,9 @@
     <title>Auric Road | {% block title %}{% endblock title %}</title>
   </head>
   <body class="{% block page_class %}{% endblock page_class %}">
+	  {% block extra_body %}
+	  {% endblock extra_body %}
+	  
       {% include "header.jinja" %}
 
       <div id="main">
