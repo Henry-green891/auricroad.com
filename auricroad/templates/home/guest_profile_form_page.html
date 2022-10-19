@@ -190,6 +190,23 @@
                             {{ form.spa_activities }}
                         </div>
                     {% endif %}
+					{% if form.coffee_order_type %}
+						<div class="fieldWrapper full-width">
+							<h4>If you would like coffee delivered to your room each morning, please select the following.</h4>
+						</div>
+                        <div class="fieldWrapper {% if form.coffee_order_type.field.full_width %}full-width{% endif %} {% if form.coffee_order_type.field.half_width %}half-width{% endif %}">
+                            {{ form.coffee_order_type.errors }}
+                            <label for="{{ form.coffee_order_type.id_for_label }}">{{ form.coffee_order_type.field.display_label }} {% if form.coffee_order_type.field.required %}*{% endif %}</label>
+                            {{ form.coffee_order_type }}
+                        </div>
+                    {% endif %}
+					{% if form.coffee_order_preferences %}
+                        <div class="fieldWrapper {% if form.coffee_order_preferences.field.full_width %}full-width{% endif %} {% if form.coffee_order_preferences.field.half_width %}half-width{% endif %}">
+                            {{ form.coffee_order_preferences.errors }}
+                            <label for="{{ form.coffee_order_preferences.id_for_label }}">{{ form.coffee_order_preferences.field.display_label }} {% if form.coffee_order_preferences.field.required %}*{% endif %}</label>
+                            {{ form.coffee_order_preferences }}
+                        </div>
+                    {% endif %}
                     <div class="buttonWrapper">
                         <input class="button black rounded" type="submit" name="Submit">
                     </div>
