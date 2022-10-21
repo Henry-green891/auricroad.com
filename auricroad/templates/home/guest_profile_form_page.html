@@ -11,7 +11,7 @@
     <div class="form-section-wrapper">
         <div class="form-body">
             <div class="form-right"> 
-				<h4 style="text-align:center;">Please complete the survey below so that your concierge can best assist you with your stay at Lone Mountain Ranch. Once you have completed this survey, your concierge will reach out to you directly to build your perfect vacation!</h4>
+				<h5 style="text-align:center;">Please complete the survey below so that your concierge can best assist you with your stay at Lone Mountain Ranch. Once you have completed this survey, your concierge will reach out to you directly to build your perfect vacation!</h5>
 				<br />
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -161,6 +161,7 @@
                     </div>
                     <div class="fieldWrapper full-width">
                         <h4>Activities</h4>
+						<p>Guests on the Bed &amp; Breakfast packages will receive a pricing sheet from their personal pre-arrival concierge for "On-Ranch" activity costs.</p>
                     </div>
                     <div class="fieldWrapper {% if form.package_activites.field.full_width %}full-width{% endif %} {% if form.package_activites.field.half_width %}half-width{% endif %}">
                         {{ form.package_activites.errors }}
@@ -183,6 +184,7 @@
                     <div class="fieldWrapper {% if form.off_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.off_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
                         {{ form.off_ranch_add_on_activities.errors }}
                         <label for="{{ form.off_ranch_add_on_activities.id_for_label }}">{{ form.off_ranch_add_on_activities.field.display_label }} {% if form.off_ranch_add_on_activities.field.required %}*{% endif %}</label>
+						<p>*These activities will be an additional cost based on outfitter availability*</p>
                         {{ form.off_ranch_add_on_activities }}
                     </div>
                     {% if form.spa_activities %}
