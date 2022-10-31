@@ -1,11 +1,13 @@
 import json
 from collections import OrderedDict
 from django.core.serializers.json import DjangoJSONEncoder
+
 # from django import forms
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
 from django.forms.fields import CharField, EmailField
-#from django.utils.decorators import method_decorator
+
+# from django.utils.decorators import method_decorator
 from django.utils.six import text_type
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -14,8 +16,7 @@ from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
 from salesforce import models as SFModels
 from unidecode import unidecode
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
 from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
@@ -25,10 +26,11 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
-#from wagtailcache.cache import WagtailCacheMixin, cache_page
+
+# from wagtailcache.cache import WagtailCacheMixin, cache_page
 from wagtailmodelchooser import register_model_chooser
 
-#from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
+# from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
 from .constants import ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
@@ -481,7 +483,6 @@ class PressInquiriesPage(FormPage):
         for key, value in form.cleaned_data.items():
             if isinstance(value, list):
                 form.cleaned_data[key] = ", ".join(value)
-	
         PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
 
@@ -521,9 +522,9 @@ class Contact(models.Model):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
 
-#@method_decorator(cache_page, name="serve")
+# @method_decorator(cache_page, name="serve")
 class HotelsPage(Page):
-    #cache_control = CACHE_STRING
+    # cache_control = CACHE_STRING
 
     body = StreamField(
         [
@@ -558,9 +559,9 @@ hotel_base_blocks = [
 ]
 
 
-#@method_decorator(cache_page, name="serve")
+# @method_decorator(cache_page, name="serve")
 class HotelDetailPage(Page):
-    #cache_control = CACHE_STRING
+    # cache_control = CACHE_STRING
 
     body = StreamField(hotel_base_blocks, null=True, blank=True,)
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
@@ -656,9 +657,9 @@ class PressPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
-#@method_decorator(cache_page, name="serve")
+# @method_decorator(cache_page, name="serve")
 class MissionPage(Page):
-    #cache_control = CACHE_STRING
+    # cache_control = CACHE_STRING
 
     body = StreamField(
         [
@@ -2037,7 +2038,7 @@ class FooterContactResponses(SFModels.Model):
 
 
 class PressInquiryResponses(SFModels.Model):
-    #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
+    # This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
 
     first_name = models.CharField(
         db_column="first_name__c",
