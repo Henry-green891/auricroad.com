@@ -1997,6 +1997,20 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
+    coffee_order_type = models.CharField(
+        db_column="coffee_order_type__c",
+        max_length=255,
+        verbose_name="coffee_order_type",
+        blank=True,
+        null=True,
+    )
+    coffee_order_preferences = models.CharField(
+        db_column="coffee_order_preferences__c",
+        max_length=131072,
+        verbose_name="coffee_order_preferences",
+        blank=True,
+        null=True,
+    )
 
     class Meta(SFModels.Model.Meta):
         db_table = "guestprofileresponses__c"
