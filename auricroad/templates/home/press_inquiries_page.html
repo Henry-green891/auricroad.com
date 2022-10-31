@@ -52,11 +52,11 @@
           {{ form.zip_code }}
         </div>
 		<div
-          class="fieldWrapper {% if form.social_media_handles.field.full_width %}full-width{% endif %} {% if form.social_media_handles.field.half_width %}half-width{% endif %}">
-          {{ form.social_media_handles.errors }}
-          <label for="{{ form.social_media_handles.id_for_label }}">{{ form.social_media_handles.field.display_label }}
-            {% if form.social_media_handles.field.required %}*{% endif %}</label>
-          {{ form.social_media_handles }}
+          class="fieldWrapper {% if form.social_media_handle.field.full_width %}full-width{% endif %} {% if form.social_media_handle.field.half_width %}half-width{% endif %}">
+          {{ form.social_media_handle.errors }}
+          <label for="{{ form.social_media_handle.id_for_label }}">{{ form.social_media_handle.field.display_label }}
+            {% if form.social_media_handle.field.required %}*{% endif %}</label>
+          {{ form.social_media_handle }}
         </div>
 		<div
           class="fieldWrapper {% if form.website.field.full_width %}full-width{% endif %} {% if form.website.field.half_width %}half-width{% endif %}">
@@ -81,18 +81,18 @@
           {{ form.number_of_guests }}
         </div>
         <div
-          class="fieldWrapper {% if form.preferred_date.field.full_width %}full-width{% endif %} {% if form.preferred_date.field.half_width %}half-width{% endif %} datepicker-wrapper">
-          {{ form.preferred_date.errors }}
-          <label for="{{ form.preferred_date.id_for_label }}">{{ form.preferred_date.field.display_label }}
-            {% if form.preferred_date.field.required %}*{% endif %}</label>
-          {{ form.preferred_date }}
+          class="fieldWrapper {% if form.requested_dates_of_stay.field.full_width %}full-width{% endif %} {% if form.requested_dates_of_stay.field.half_width %}half-width{% endif %} datepicker-wrapper">
+          {{ form.requested_dates_of_stay.errors }}
+          <label for="{{ form.requested_dates_of_stay.id_for_label }}">{{ form.requested_dates_of_stay.field.display_label }}
+            {% if form.requested_dates_of_stay.field.required %}*{% endif %}</label>
+          {{ form.requested_dates_of_stay }}
         </div>
         <div
-          class="fieldWrapper {% if form.additional_comments.field.full_width %}full-width{% endif %} {% if form.additional_comments.field.half_width %}half-width{% endif %}">
-          {{ form.additional_comments.errors }}
-          <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }}
-            {% if form.additional_comments.field.required %}*{% endif %}</label>
-          {{ form.additional_comments }}
+          class="fieldWrapper {% if form.additional_details.field.full_width %}full-width{% endif %} {% if form.additional_details.field.half_width %}half-width{% endif %}">
+          {{ form.additional_details.errors }}
+          <label for="{{ form.additional_details.id_for_label }}">{{ form.additional_details.field.display_label }}
+            {% if form.additional_details.field.required %}*{% endif %}</label>
+          {{ form.additional_details }}
         </div>
         <div class="buttonWrapper">
           <input class="button black rounded" type="submit" name="Submit">
