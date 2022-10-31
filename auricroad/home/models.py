@@ -2128,12 +2128,6 @@ class PressInquiryResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    submission_date = models.DateTimeField(
-        db_column="Submission_date__c",
-        verbose_name="Submission date",
-        blank=True,
-        null=True,
-    )
 
     class Meta(SFModels.Model.Meta):
         db_table = "Press_Inquiry__c"
