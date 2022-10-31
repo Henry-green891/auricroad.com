@@ -81,7 +81,7 @@
           {{ form.number_of_guests }}
         </div>
         <div
-          class="fieldWrapper {% if form.requested_dates_of_stay.field.full_width %}full-width{% endif %} {% if form.requested_dates_of_stay.field.half_width %}half-width{% endif %} datepicker-wrapper">
+          class="fieldWrapper {% if form.requested_dates_of_stay.field.full_width %}full-width{% endif %} {% if form.requested_dates_of_stay.field.half_width %}half-width{% endif %}">
           {{ form.requested_dates_of_stay.errors }}
           <label for="{{ form.requested_dates_of_stay.id_for_label }}">{{ form.requested_dates_of_stay.field.display_label }}
             {% if form.requested_dates_of_stay.field.required %}*{% endif %}</label>
