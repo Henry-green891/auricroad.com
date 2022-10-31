@@ -457,7 +457,12 @@ class PressInquiriesPage(FormPage):
         For example, if you want to save reference to a user.
         """
         submission = super().process_form_submission(form)
-        #PressInquiryResponses.objects.create(**form.cleaned_data)
+
+        for key, value in form.cleaned_data.items():
+            if isinstance(value, list):
+                form.cleaned_data[key] = ", ".join(value)
+    
+        PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
 
 
@@ -2045,7 +2050,7 @@ class FooterContactResponses(SFModels.Model):
         verbose_name_plural = "AR Footer Contact Responses"
 
 
-"""class PressInquiryResponses(SFModels.Model):
+class PressInquiryResponses(SFModels.Model):
     #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
 
     first_name = models.CharField(
@@ -2079,10 +2084,10 @@ class FooterContactResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    social_media_handles = models.CharField(
-        db_column="social_media_handles__c",
+    social_media_handle = models.CharField(
+        db_column="social_media_handle__c",
         max_length=255,
-        verbose_name="social_media_handles",
+        verbose_name="social_media_handle",
         blank=True,
         null=True,
     )
@@ -2108,17 +2113,17 @@ class FooterContactResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    preferred_date = models.DateField(
-        db_column="preferred_date__c",
-        verbose_name="preferred_date",
+    requested_dates_of_stay = models.DateField(
+        db_column="requested_dates_of_stay__c",
+        verbose_name="requested_dates_of_stay",
         blank=True,
         null=True,
     )
     # '131072' is the character count for a 'Text Field (Long)' in SalesForce
-    additional_comments = models.CharField(
-        db_column="additional_comments__c",
+    additional_details = models.CharField(
+        db_column="additional_details__c",
         max_length=131072,
-        verbose_name="additional_comments",
+        verbose_name="additional_details",
         blank=True,
         null=True,
     )
@@ -2130,8 +2135,7 @@ class FooterContactResponses(SFModels.Model):
     )
 
     class Meta(SFModels.Model.Meta):
-        db_table = "pressinquiryresponses__c"
+        db_table = "Press_Inquiry__c"
         verbose_name = "Press Inquiry Response"
         verbose_name_plural = "Press Inquiry Responses"
         # keyPrefix = 'a0I'
-"""
