@@ -467,6 +467,25 @@ class GuestProfileFormPage(FormPage):
         return submission
 
 
+class PressInquiriesPage(FormPage):
+    def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+
+        submission = super().process_form_submission(form)
+
+        for key, value in form.cleaned_data.items():
+            if isinstance(value, list):
+                form.cleaned_data[key] = ", ".join(value)
+	
+        PressInquiryResponses.objects.create(**form.cleaned_data)
+        return submission
+
+
 class Contact(models.Model):
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=30, blank=True)
@@ -2015,3 +2034,94 @@ class FooterContactResponses(SFModels.Model):
         db_table = "AR_footer_contact__c"
         verbose_name = "AR Footer Contact Response"
         verbose_name_plural = "AR Footer Contact Responses"
+
+
+class PressInquiryResponses(SFModels.Model):
+    #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
+
+    first_name = models.CharField(
+        db_column="first_name__c",
+        max_length=255,
+        verbose_name="first_name",
+        blank=True,
+        null=True,
+    )
+    last_name = models.CharField(
+        db_column="last_name__c",
+        max_length=255,
+        verbose_name="last_name",
+        blank=True,
+        null=True,
+    )
+    company = models.CharField(
+        db_column="company__c",
+        max_length=255,
+        verbose_name="company",
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(
+        db_column="email__c", verbose_name="email", blank=True, null=True
+    )
+    zip_code = models.CharField(
+        db_column="zip_code__c",
+        max_length=255,
+        verbose_name="zip_code",
+        blank=True,
+        null=True,
+    )
+    social_media_handle = models.CharField(
+        db_column="social_media_handle__c",
+        max_length=255,
+        verbose_name="social_media_handle",
+        blank=True,
+        null=True,
+    )
+    website = models.CharField(
+        db_column="website__c",
+        max_length=255,
+        verbose_name="website",
+        blank=True,
+        null=True,
+    )
+    petite_resort = models.CharField(
+        db_column="petite_resort__c",
+        max_length=255,
+        verbose_name="petite_resort",
+        blank=True,
+        null=True,
+    )
+    number_of_guests = models.DecimalField(
+        db_column="number_of_guests__c",
+        max_digits=18,
+        decimal_places=0,
+        verbose_name="number_of_guests",
+        blank=True,
+        null=True,
+    )
+    requested_dates_of_stay = models.DateField(
+        db_column="requested_dates_of_stay__c",
+        verbose_name="requested_dates_of_stay",
+        blank=True,
+        null=True,
+    )
+    # '131072' is the character count for a 'Text Field (Long)' in SalesForce
+    additional_details = models.CharField(
+        db_column="additional_details__c",
+        max_length=131072,
+        verbose_name="additional_details",
+        blank=True,
+        null=True,
+    )
+    submission_date = models.DateTimeField(
+        db_column="Submission_date__c",
+        verbose_name="Submission date",
+        blank=True,
+        null=True,
+    )
+
+    class Meta(SFModels.Model.Meta):
+        db_table = "Press_Inquiry__c"
+        verbose_name = "Press Inquiry Response"
+        verbose_name_plural = "Press Inquiry Responses"
+        # keyPrefix = 'a0I'
