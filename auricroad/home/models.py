@@ -461,7 +461,7 @@ class PressInquiriesPage(FormPage):
         for key, value in form.cleaned_data.items():
             if isinstance(value, list):
                 form.cleaned_data[key] = ", ".join(value)
-    
+
         PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
 
