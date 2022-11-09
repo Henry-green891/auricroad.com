@@ -37,7 +37,7 @@
                     <div class="body {% if value.body_size | int < 3 %}bold{% endif %} font-{{value.body_font}} size-{{value.body_size}}">
 						{{ value.static_body|richtext }}
 						{% if value.external_link %}
-							<a href="{{ value.external_link.url }}">
+							<a href="{{ value.external_link }}">
 								<button class="button black rounded font-c size-2">{{ value.external_link_text }}</button>
 							</a>
 						{% endif %}
