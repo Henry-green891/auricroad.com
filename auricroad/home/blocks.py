@@ -144,6 +144,8 @@ class Hero(blocks.StructBlock):
     replacement_video_load_background = ImageChooserBlock(required=False)
     hero_video_play_icon = ImageChooserBlock(required=False)
     video_only_hero = blocks.BooleanBlock(required=False)
+    external_link_text = blocks.CharBlock(max_length=50, required=False, default="Inquire")
+    external_link = blocks.CharBlock(max_length=250, required=False)
 
     class Meta:
         template = "blocks/hero_block.html"
@@ -239,6 +241,8 @@ class EventImageCard(ImageCard):
     brochure_link_text = blocks.CharBlock(
         max_length=50, required=False, default="Download Brochure")
     brochure_link = DocumentChooserBlock(required=False)
+    external_link_text = blocks.CharBlock(max_length=50, required=False, default="Inquire")
+    external_link = blocks.CharBlock(max_length=250, required=False)
 
 
 class ExperienceImageCard(ImageCard):

@@ -23,6 +23,14 @@
             color: $white;
         }
     }
+	&.orange, &[disabled].orange {
+        background-color: $button-orange;
+        color: $white;
+        &:hover {
+            background-color: $button-orange;
+            color: $white;
+        }
+    }
     &.transparant {
         background-color: transparent;
         border: 1px solid $text-charcoal;
