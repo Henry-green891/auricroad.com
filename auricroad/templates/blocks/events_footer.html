@@ -14,7 +14,7 @@
         <div class="button-row center-buttons">
             {% if value.button_link_text and (value.internal_page or value.external_link) %}
                 <a href="{% if value.internal_page %}{{ value.internal_page.url }}{% elif value.external_link %}{{ value.external_link}}{% endif %}">
-                    <button class="button black rounded font-c size-2 {{value.petite_resort}}">{{ value.button_link_text }}</button>
+                    <button class="button orange rounded font-c size-2 {{value.petite_resort}}">{{ value.button_link_text }}</button>
                 </a>
             {% endif %}
             {% if value.button_download_text and value.download_document %}
