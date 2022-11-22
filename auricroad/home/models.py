@@ -2098,8 +2098,9 @@ class PressInquiryResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    requested_dates_of_stay = models.DateField(
+    requested_stay = models.CharField(
         db_column="requested_dates_of_stay__c",
+        max_length=255,
         verbose_name="requested_dates_of_stay",
         blank=True,
         null=True,
@@ -2109,12 +2110,6 @@ class PressInquiryResponses(SFModels.Model):
         db_column="additional_details__c",
         max_length=131072,
         verbose_name="additional_details",
-        blank=True,
-        null=True,
-    )
-    submission_date = models.DateTimeField(
-        db_column="Submission_date__c",
-        verbose_name="Submission date",
         blank=True,
         null=True,
     )
