@@ -19,3 +19,6 @@ prospector==1.1.6.2
 service-factory==0.1.6
 Werkzeug==0.15.3
 bandit==1.5.1
+
+#Other
+python-jose==3.3.0
