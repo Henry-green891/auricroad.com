@@ -58,4 +58,4 @@ PETITE_RESORTS = (
     ("sonoma_events_form_link", "Sonoma Coast Villa"),
 )
 
-CACHE_STRING = "public, max-age=600, must-revalidate"
+#CACHE_STRING = "public, max-age=600, must-revalidate"

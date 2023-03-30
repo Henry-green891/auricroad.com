@@ -5,7 +5,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
 from django.forms.fields import CharField, EmailField
-from django.utils.decorators import method_decorator
+#from django.utils.decorators import method_decorator
 from django.utils.six import text_type
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -25,10 +25,11 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
-from wagtailcache.cache import WagtailCacheMixin, cache_page
+#from wagtailcache.cache import WagtailCacheMixin, cache_page
 from wagtailmodelchooser import register_model_chooser
 
-from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
+#from .constants import CACHE_STRING, ENVIRONMENT_CHOICES
+from .constants import ENVIRONMENT_CHOICES
 
 from .blocks import (  # isort:skip
     ActionCardSection,
@@ -447,6 +448,24 @@ class EventsFormPage(FormPage):
     content_panels = FormPage.content_panels + [StreamFieldPanel("events_body")]
 
 
+class PressInquiriesPage(FormPage):
+    def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+        submission = super().process_form_submission(form)
+
+        for key, value in form.cleaned_data.items():
+            if isinstance(value, list):
+                form.cleaned_data[key] = ", ".join(value)
+
+        PressInquiryResponses.objects.create(**form.cleaned_data)
+        return submission
+
+
 class GuestProfileFormPage(FormPage):
     def process_form_submission(self, form):
         """
@@ -501,9 +520,9 @@ class Contact(models.Model):
         return "{} {} ({})".format(self.first_name, self.last_name, self.email)
 
 
-@method_decorator(cache_page, name="serve")
-class HotelsPage(WagtailCacheMixin, Page):
-    cache_control = CACHE_STRING
+#@method_decorator(cache_page, name="serve")
+class HotelsPage(Page):
+    #cache_control = CACHE_STRING
 
     body = StreamField(
         [
@@ -538,9 +557,9 @@ hotel_base_blocks = [
 ]
 
 
-@method_decorator(cache_page, name="serve")
+#@method_decorator(cache_page, name="serve")
 class HotelDetailPage(Page):
-    cache_control = CACHE_STRING
+    #cache_control = CACHE_STRING
 
     body = StreamField(hotel_base_blocks, null=True, blank=True,)
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
@@ -636,9 +655,9 @@ class PressPage(Page):
     content_panels = Page.content_panels + [StreamFieldPanel("body")]
 
 
-@method_decorator(cache_page, name="serve")
-class MissionPage(WagtailCacheMixin, Page):
-    cache_control = CACHE_STRING
+#@method_decorator(cache_page, name="serve")
+class MissionPage(Page):
+    #cache_control = CACHE_STRING
 
     body = StreamField(
         [
@@ -706,6 +725,21 @@ class FoundationPage(Page):
 
 
 class BasicInfoPage(Page):
+    body = StreamField(
+        [
+            ("header", PageHeaderText()),
+            ("body_section", HeaderTextParagraph()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+
+class AuricRoomPage(Page):
     body = StreamField(
         [
             ("header", PageHeaderText()),
@@ -1968,6 +2002,20 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
+    coffee_order_type = models.CharField(
+        db_column="coffee_order_type__c",
+        max_length=255,
+        verbose_name="coffee_order_type",
+        blank=True,
+        null=True,
+    )
+    coffee_order_preferences = models.CharField(
+        db_column="coffee_order_preferences__c",
+        max_length=131072,
+        verbose_name="coffee_order_preferences",
+        blank=True,
+        null=True,
+    )
 
     class Meta(SFModels.Model.Meta):
         db_table = "guestprofileresponses__c"
@@ -2000,3 +2048,89 @@ class FooterContactResponses(SFModels.Model):
         db_table = "AR_footer_contact__c"
         verbose_name = "AR Footer Contact Response"
         verbose_name_plural = "AR Footer Contact Responses"
+
+
+class PressInquiryResponses(SFModels.Model):
+    #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
+
+    first_name = models.CharField(
+        db_column="first_name__c",
+        max_length=255,
+        verbose_name="first_name",
+        blank=True,
+        null=True,
+    )
+    last_name = models.CharField(
+        db_column="last_name__c",
+        max_length=255,
+        verbose_name="last_name",
+        blank=True,
+        null=True,
+    )
+    company = models.CharField(
+        db_column="company__c",
+        max_length=255,
+        verbose_name="company",
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(
+        db_column="email__c", verbose_name="email", blank=True, null=True
+    )
+    zip_code = models.CharField(
+        db_column="zip_code__c",
+        max_length=255,
+        verbose_name="zip_code",
+        blank=True,
+        null=True,
+    )
+    social_media_handle = models.CharField(
+        db_column="social_media_handle__c",
+        max_length=255,
+        verbose_name="social_media_handle",
+        blank=True,
+        null=True,
+    )
+    website = models.CharField(
+        db_column="website__c",
+        max_length=255,
+        verbose_name="website",
+        blank=True,
+        null=True,
+    )
+    petite_resort = models.CharField(
+        db_column="petite_resort__c",
+        max_length=255,
+        verbose_name="petite_resort",
+        blank=True,
+        null=True,
+    )
+    number_of_guests = models.DecimalField(
+        db_column="number_of_guests__c",
+        max_digits=18,
+        decimal_places=0,
+        verbose_name="number_of_guests",
+        blank=True,
+        null=True,
+    )
+    requested_stay = models.CharField(
+        db_column="requested_dates_of_stay__c",
+        max_length=255,
+        verbose_name="requested_dates_of_stay",
+        blank=True,
+        null=True,
+    )
+    # '131072' is the character count for a 'Text Field (Long)' in SalesForce
+    additional_details = models.CharField(
+        db_column="additional_details__c",
+        max_length=131072,
+        verbose_name="additional_details",
+        blank=True,
+        null=True,
+    )
+
+    class Meta(SFModels.Model.Meta):
+        db_table = "Press_Inquiry__c"
+        verbose_name = "Press Inquiry Response"
+        verbose_name_plural = "Press Inquiry Responses"
+        # keyPrefix = 'a0I'

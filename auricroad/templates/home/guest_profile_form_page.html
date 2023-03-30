@@ -11,6 +11,8 @@
     <div class="form-section-wrapper">
         <div class="form-body">
             <div class="form-right"> 
+				<h5 style="text-align:center;">Please complete the survey below so that your concierge can best assist you with your stay at Lone Mountain Ranch. Once you have completed this survey, your concierge will reach out to you directly to build your perfect vacation!</h5>
+				<br />
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <!--must display fields manually to add headers-->
@@ -159,12 +161,18 @@
                     </div>
                     <div class="fieldWrapper full-width">
                         <h4>Activities</h4>
+						<p>Guests on the Bed &amp; Breakfast packages will receive a pricing sheet from their personal pre-arrival concierge for "On-Ranch" activity costs.</p>
                     </div>
                     <div class="fieldWrapper {% if form.package_activites.field.full_width %}full-width{% endif %} {% if form.package_activites.field.half_width %}half-width{% endif %}">
                         {{ form.package_activites.errors }}
                         <label for="{{ form.package_activites.id_for_label }}">{{ form.package_activites.field.display_label }} {% if form.package_activites.field.required %}*{% endif %}</label>
                         {{ form.package_activites }}
                         <span style="position: relative; top: -20px;">{{ form.package_activites.help_text }}</span>
+                        {% if 'Summer' in page.title %}
+                            <span style="position: relative; top: -15px; margin: 0 5px; font-weight: bold;">
+                                Click <a href="https://lonemountainranch.com/horse-program-faq/" target="_blank">Here</a> for our Horse Program FAQ Page
+                            </span>
+                        {% endif %}
                     </div>
                     {% if form.on_ranch_add_on_activities %}
                         <div class="fieldWrapper {% if form.on_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.on_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
@@ -176,6 +184,7 @@
                     <div class="fieldWrapper {% if form.off_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.off_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
                         {{ form.off_ranch_add_on_activities.errors }}
                         <label for="{{ form.off_ranch_add_on_activities.id_for_label }}">{{ form.off_ranch_add_on_activities.field.display_label }} {% if form.off_ranch_add_on_activities.field.required %}*{% endif %}</label>
+						<p>*These activities will be an additional cost based on outfitter availability*</p>
                         {{ form.off_ranch_add_on_activities }}
                     </div>
                     {% if form.spa_activities %}
@@ -183,6 +192,23 @@
                             {{ form.spa_activities.errors }}
                             <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
                             {{ form.spa_activities }}
+                        </div>
+                    {% endif %}
+					{% if form.coffee_order_type %}
+						<div class="fieldWrapper full-width">
+							<h4>If you would like coffee delivered to your room each morning, please select the following.</h4>
+						</div>
+                        <div class="fieldWrapper {% if form.coffee_order_type.field.full_width %}full-width{% endif %} {% if form.coffee_order_type.field.half_width %}half-width{% endif %}">
+                            {{ form.coffee_order_type.errors }}
+                            <label for="{{ form.coffee_order_type.id_for_label }}">{{ form.coffee_order_type.field.display_label }} {% if form.coffee_order_type.field.required %}*{% endif %}</label>
+                            {{ form.coffee_order_type }}
+                        </div>
+                    {% endif %}
+					{% if form.coffee_order_preferences %}
+                        <div class="fieldWrapper {% if form.coffee_order_preferences.field.full_width %}full-width{% endif %} {% if form.coffee_order_preferences.field.half_width %}half-width{% endif %}">
+                            {{ form.coffee_order_preferences.errors }}
+                            <label for="{{ form.coffee_order_preferences.id_for_label }}">{{ form.coffee_order_preferences.field.display_label }} {% if form.coffee_order_preferences.field.required %}*{% endif %}</label>
+                            {{ form.coffee_order_preferences }}
                         </div>
                     {% endif %}
                     <div class="buttonWrapper">
