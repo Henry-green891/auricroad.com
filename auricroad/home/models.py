@@ -2009,10 +2009,10 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    coffee_order_preferences = models.CharField(
-        db_column="coffee_order_preferences__c",
-        max_length=131072,
-        verbose_name="coffee_order_preferences",
+    cream_and_sugar = models.CharField(
+        db_column="cream_and_sugar__c",
+        max_length=255,
+        verbose_name="cream_and_sugar",
         blank=True,
         null=True,
     )
@@ -2127,6 +2127,12 @@ class PressInquiryResponses(SFModels.Model):
         verbose_name="additional_details",
         blank=True,
         null=True,
+    )
+    owner_id = models.CharField(
+        db_column="OwnerID",
+        max_length=255,
+        verbose_name="owner_id",
+        default="0056g000006LjPc"
     )
 
     class Meta(SFModels.Model.Meta):
