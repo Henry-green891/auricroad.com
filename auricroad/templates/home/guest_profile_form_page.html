@@ -161,7 +161,7 @@
                     </div>
                     {% if form.coffee_order_type %}
                         <div class="fieldWrapper full-width">
-                            <h4>Please select your preferred coffee and cream options.</h4>
+                            <h4>Coffee Order</h4>
                         </div>
                         <div class="fieldWrapper {% if form.coffee_order_type.field.full_width %}full-width{% endif %} {% if form.coffee_order_type.field.half_width %}half-width{% endif %}">
                             {{ form.coffee_order_type.errors }}
@@ -172,7 +172,7 @@
 
                     {% if form.wine_preference %}
 						<div class="fieldWrapper full-width">
-							<h4>Please select your wine preference.</h4>
+							<h4>Cabin Welcome Wine Preference</h4>
 						</div>
                         <div class="fieldWrapper {% if form.wine_preference.field.full_width %}full-width{% endif %} {% if form.wine_preference.field.half_width %}half-width{% endif %}">
                             {{ form.wine_preference.errors }}
