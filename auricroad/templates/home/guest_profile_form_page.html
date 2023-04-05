@@ -159,6 +159,28 @@
                         <label for="{{ form.allergies.id_for_label }}">{{ form.allergies.field.display_label }} {% if form.allergies.field.required %}*{% endif %}</label>
                         {{ form.allergies }}
                     </div>
+                    {% if form.coffee_order_type %}
+                        <div class="fieldWrapper full-width">
+                            <h4>Please select your preferred coffee and cream options.</h4>
+                        </div>
+                        <div class="fieldWrapper {% if form.coffee_order_type.field.full_width %}full-width{% endif %} {% if form.coffee_order_type.field.half_width %}half-width{% endif %}">
+                            {{ form.coffee_order_type.errors }}
+                            <label for="{{ form.coffee_order_type.id_for_label }}">{{ form.coffee_order_type.field.display_label }} {% if form.coffee_order_type.field.required %}*{% endif %}</label>
+                            {{ form.coffee_order_type }}
+                        </div>
+                    {% endif %}
+
+                    {% if form.wine_preference %}
+						<div class="fieldWrapper full-width">
+							<h4>Please select your wine preference.</h4>
+						</div>
+                        <div class="fieldWrapper {% if form.wine_preference.field.full_width %}full-width{% endif %} {% if form.wine_preference.field.half_width %}half-width{% endif %}">
+                            {{ form.wine_preference.errors }}
+                            <label for="{{ form.wine_preference.id_for_label }}">{{ form.wine_preference.field.display_label }} {% if form.wine_preference.field.required %}*{% endif %}</label>
+                            {{ form.wine_preference }}
+                        </div>
+                    {% endif %}
+
                     <div class="fieldWrapper full-width">
                         <h4>Activities</h4>
 						<p>Guests on the Bed &amp; Breakfast packages will receive a pricing sheet from their personal pre-arrival concierge for "On-Ranch" activity costs.</p>
@@ -192,16 +214,6 @@
                             {{ form.spa_activities.errors }}
                             <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
                             {{ form.spa_activities }}
-                        </div>
-                    {% endif %}
-					{% if form.coffee_order_type %}
-						<div class="fieldWrapper full-width">
-							<h4>If you would like coffee delivered to your room each morning, please select the following.</h4>
-						</div>
-                        <div class="fieldWrapper {% if form.coffee_order_type.field.full_width %}full-width{% endif %} {% if form.coffee_order_type.field.half_width %}half-width{% endif %}">
-                            {{ form.coffee_order_type.errors }}
-                            <label for="{{ form.coffee_order_type.id_for_label }}">{{ form.coffee_order_type.field.display_label }} {% if form.coffee_order_type.field.required %}*{% endif %}</label>
-                            {{ form.coffee_order_type }}
                         </div>
                     {% endif %}
 					{% if form.cream_and_sugar %}
