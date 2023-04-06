@@ -172,7 +172,7 @@
 
                     {% if form.wine_preference %}
 						<div class="fieldWrapper full-width">
-							<h4>Cabin Welcome Wine Preference</h4>
+							<h4>Wine Preference</h4>
 						</div>
                         <div class="fieldWrapper {% if form.wine_preference.field.full_width %}full-width{% endif %} {% if form.wine_preference.field.half_width %}half-width{% endif %}">
                             {{ form.wine_preference.errors }}
@@ -183,7 +183,7 @@
 
                     <div class="fieldWrapper full-width">
                         <h4>Activities</h4>
-						<p>Activities included in the Summer Discovery Package | *Please select all activities of interest (Some activities are dependent on experience level)*</p>
+						<p>*Please select all activities of interest (some activities are dependent on experience level)*</p>
                     </div>
                     <div class="fieldWrapper {% if form.package_activites.field.full_width %}full-width{% endif %} {% if form.package_activites.field.half_width %}half-width{% endif %}">
                         {{ form.package_activites.errors }}
@@ -206,7 +206,7 @@
                     <div class="fieldWrapper {% if form.off_ranch_add_on_activities.field.full_width %}full-width{% endif %} {% if form.off_ranch_add_on_activities.field.half_width %}half-width{% endif %}">
                         {{ form.off_ranch_add_on_activities.errors }}
                         <label for="{{ form.off_ranch_add_on_activities.id_for_label }}">{{ form.off_ranch_add_on_activities.field.display_label }} {% if form.off_ranch_add_on_activities.field.required %}*{% endif %}</label>
-						<p>*These activities will be an additional cost based on outfitter availability*</p>
+						<p>*These activities are based on outfitter availability*</p>
                         {{ form.off_ranch_add_on_activities }}
                     </div>
                     {% if form.spa_activities %}
