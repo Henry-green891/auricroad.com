@@ -9,56 +9,172 @@ import salesforce.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0122_footercontactresponses'),
+        ("home", "0122_footercontactresponses"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PressInquiriesPage',
+            name="PressInquiryResponses",
             fields=[
-                ('formpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home.FormPage')),
+                (
+                    "id",
+                    salesforce.fields.SalesforceAutoField(
+                        auto_created=True,
+                        db_column="Id",
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(
+                        blank=True,
+                        db_column="first_name__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="first_name",
+                    ),
+                ),
+                (
+                    "last_name",
+                    models.CharField(
+                        blank=True,
+                        db_column="last_name__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="last_name",
+                    ),
+                ),
+                (
+                    "company",
+                    models.CharField(
+                        blank=True,
+                        db_column="company__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="company",
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        blank=True,
+                        db_column="email__c",
+                        max_length=254,
+                        null=True,
+                        verbose_name="email",
+                    ),
+                ),
+                (
+                    "zip_code",
+                    models.CharField(
+                        blank=True,
+                        db_column="zip_code__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="zip_code",
+                    ),
+                ),
+                (
+                    "social_media_handle",
+                    models.CharField(
+                        blank=True,
+                        db_column="social_media_handle__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="social_media_handle",
+                    ),
+                ),
+                (
+                    "website",
+                    models.CharField(
+                        blank=True,
+                        db_column="website__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="website",
+                    ),
+                ),
+                (
+                    "petite_resort",
+                    models.CharField(
+                        blank=True,
+                        db_column="petite_resort__c",
+                        max_length=255,
+                        null=True,
+                        verbose_name="petite_resort",
+                    ),
+                ),
+                (
+                    "number_of_guests",
+                    models.DecimalField(
+                        blank=True,
+                        db_column="number_of_guests__c",
+                        decimal_places=0,
+                        max_digits=18,
+                        null=True,
+                        verbose_name="number_of_guests",
+                    ),
+                ),
+                (
+                    "requested_dates_of_stay",
+                    models.DateField(
+                        blank=True,
+                        db_column="requested_dates_of_stay__c",
+                        null=True,
+                        verbose_name="requested_dates_of_stay",
+                    ),
+                ),
+                (
+                    "additional_details",
+                    models.CharField(
+                        blank=True,
+                        db_column="additional_details__c",
+                        max_length=131072,
+                        null=True,
+                        verbose_name="additional_details",
+                    ),
+                ),
+                (
+                    "submission_date",
+                    models.DateTimeField(
+                        blank=True,
+                        db_column="Submission_date__c",
+                        null=True,
+                        verbose_name="Submission date",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "verbose_name": "Press Inquiry Response",
+                "verbose_name_plural": "Press Inquiry Responses",
+                "db_table": "Press_Inquiry__c",
+                "abstract": False,
+                "base_manager_name": "base_manager",
             },
-            bases=('home.formpage',),
-        ),
-        migrations.CreateModel(
-            name='PressInquiryResponses',
-            fields=[
-                ('id', salesforce.fields.SalesforceAutoField(auto_created=True, db_column='Id', primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(blank=True, db_column='first_name__c', max_length=255, null=True, verbose_name='first_name')),
-                ('last_name', models.CharField(blank=True, db_column='last_name__c', max_length=255, null=True, verbose_name='last_name')),
-                ('company', models.CharField(blank=True, db_column='company__c', max_length=255, null=True, verbose_name='company')),
-                ('email', models.EmailField(blank=True, db_column='email__c', max_length=254, null=True, verbose_name='email')),
-                ('zip_code', models.CharField(blank=True, db_column='zip_code__c', max_length=255, null=True, verbose_name='zip_code')),
-                ('social_media_handle', models.CharField(blank=True, db_column='social_media_handle__c', max_length=255, null=True, verbose_name='social_media_handle')),
-                ('website', models.CharField(blank=True, db_column='website__c', max_length=255, null=True, verbose_name='website')),
-                ('petite_resort', models.CharField(blank=True, db_column='petite_resort__c', max_length=255, null=True, verbose_name='petite_resort')),
-                ('number_of_guests', models.DecimalField(blank=True, db_column='number_of_guests__c', decimal_places=0, max_digits=18, null=True, verbose_name='number_of_guests')),
-                ('requested_dates_of_stay', models.DateField(blank=True, db_column='requested_dates_of_stay__c', null=True, verbose_name='requested_dates_of_stay')),
-                ('additional_details', models.CharField(blank=True, db_column='additional_details__c', max_length=131072, null=True, verbose_name='additional_details')),
-                ('submission_date', models.DateTimeField(blank=True, db_column='Submission_date__c', null=True, verbose_name='Submission date')),
-            ],
-            options={
-                'verbose_name': 'Press Inquiry Response',
-                'verbose_name_plural': 'Press Inquiry Responses',
-                'db_table': 'Press_Inquiry__c',
-                'abstract': False,
-                'base_manager_name': 'base_manager',
-            },
-            managers=[
-                ('base_manager', django.db.models.manager.Manager()),
-            ],
+            managers=[("base_manager", django.db.models.manager.Manager()),],
         ),
         migrations.AddField(
-            model_name='guestprofileresponses',
-            name='coffee_order_preferences',
-            field=models.CharField(blank=True, db_column='coffee_order_preferences__c', max_length=131072, null=True, verbose_name='coffee_order_preferences'),
+            model_name="guestprofileresponses",
+            name="coffee_order_preferences",
+            field=models.CharField(
+                blank=True,
+                db_column="coffee_order_preferences__c",
+                max_length=131072,
+                null=True,
+                verbose_name="coffee_order_preferences",
+            ),
         ),
         migrations.AddField(
-            model_name='guestprofileresponses',
-            name='coffee_order_type',
-            field=models.CharField(blank=True, db_column='coffee_order_type__c', max_length=255, null=True, verbose_name='coffee_order_type'),
+            model_name="guestprofileresponses",
+            name="coffee_order_type",
+            field=models.CharField(
+                blank=True,
+                db_column="coffee_order_type__c",
+                max_length=255,
+                null=True,
+                verbose_name="coffee_order_type",
+            ),
         ),
     ]
