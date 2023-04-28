@@ -1,10 +1,12 @@
 import json
 from collections import OrderedDict
 from django.core.serializers.json import DjangoJSONEncoder
+
 # from django import forms
 from django.db import models  # NOQA
 from django.forms import Field, FileField, HiddenInput
 from django.forms.fields import CharField, EmailField
+
 # from django.utils.decorators import method_decorator
 from django.utils.six import text_type
 from django.utils.text import slugify
@@ -14,8 +16,7 @@ from autoslug import AutoSlugField
 from modelcluster.fields import ParentalKey
 from salesforce import models as SFModels
 from unidecode import unidecode
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.contrib.forms.forms import BaseForm
 from wagtail.contrib.forms.forms import FormBuilder as WagtailFormBuilder
 from wagtail.contrib.forms.models import FORM_FIELD_CHOICES, AbstractEmailForm
@@ -25,6 +26,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
+
 # from wagtailcache.cache import WagtailCacheMixin, cache_page
 from wagtailmodelchooser import register_model_chooser
 
@@ -482,24 +484,6 @@ class GuestProfileFormPage(FormPage):
                 form.cleaned_data[key] = ", ".join(value)
 
         GuestProfileResponses.objects.create(**form.cleaned_data)
-        return submission
-
-
-class PressInquiriesPage(FormPage):
-    def process_form_submission(self, form):
-        """
-        Accepts form instance with submitted data, user and page.
-        Creates submission instance.
-        You can override this method if you want to have custom creation logic.
-        For example, if you want to save reference to a user.
-        """
-
-        submission = super().process_form_submission(form)
-
-        for key, value in form.cleaned_data.items():
-            if isinstance(value, list):
-                form.cleaned_data[key] = ", ".join(value)
-        PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
 
 
@@ -2069,7 +2053,7 @@ class FooterContactResponses(SFModels.Model):
 
 
 class PressInquiryResponses(SFModels.Model):
-    #This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
+    # This is pulled directly from salesforce after creating it there. This should only be edited if the salesforce form changes.
 
     first_name = models.CharField(
         db_column="first_name__c",
@@ -2150,7 +2134,7 @@ class PressInquiryResponses(SFModels.Model):
         db_column="OwnerID",
         max_length=255,
         verbose_name="owner_id",
-        default="0056g000006LjPc"
+        default="0056g000006LjPc",
     )
 
     class Meta(SFModels.Model.Meta):
