@@ -448,6 +448,24 @@ class EventsFormPage(FormPage):
     content_panels = FormPage.content_panels + [StreamFieldPanel("events_body")]
 
 
+class PressInquiriesPage(FormPage):
+    def process_form_submission(self, form):
+        """
+        Accepts form instance with submitted data, user and page.
+        Creates submission instance.
+        You can override this method if you want to have custom creation logic.
+        For example, if you want to save reference to a user.
+        """
+        submission = super().process_form_submission(form)
+
+        for key, value in form.cleaned_data.items():
+            if isinstance(value, list):
+                form.cleaned_data[key] = ", ".join(value)
+
+        PressInquiryResponses.objects.create(**form.cleaned_data)
+        return submission
+
+
 class GuestProfileFormPage(FormPage):
     def process_form_submission(self, form):
         """
@@ -464,24 +482,6 @@ class GuestProfileFormPage(FormPage):
                 form.cleaned_data[key] = ", ".join(value)
 
         GuestProfileResponses.objects.create(**form.cleaned_data)
-        return submission
-
-
-class PressInquiriesPage(FormPage):
-    def process_form_submission(self, form):
-        """
-        Accepts form instance with submitted data, user and page.
-        Creates submission instance.
-        You can override this method if you want to have custom creation logic.
-        For example, if you want to save reference to a user.
-        """
-
-        submission = super().process_form_submission(form)
-
-        for key, value in form.cleaned_data.items():
-            if isinstance(value, list):
-                form.cleaned_data[key] = ", ".join(value)
-        PressInquiryResponses.objects.create(**form.cleaned_data)
         return submission
 
 
@@ -725,6 +725,21 @@ class FoundationPage(Page):
 
 
 class BasicInfoPage(Page):
+    body = StreamField(
+        [
+            ("header", PageHeaderText()),
+            ("body_section", HeaderTextParagraph()),
+            ("rich_text_section", blocks.RichTextBlock()),
+            ("video_section", EmbedVideoBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("body")]
+
+
+class AuricRoomPage(Page):
     body = StreamField(
         [
             ("header", PageHeaderText()),
@@ -1994,10 +2009,10 @@ class GuestProfileResponses(SFModels.Model):
         blank=True,
         null=True,
     )
-    coffee_order_preferences = models.CharField(
-        db_column="coffee_order_preferences__c",
-        max_length=131072,
-        verbose_name="coffee_order_preferences",
+    cream_and_sugar = models.CharField(
+        db_column="cream_and_sugar__c",
+        max_length=255,
+        verbose_name="cream_and_sugar",
         blank=True,
         null=True,
     )
@@ -2112,6 +2127,12 @@ class PressInquiryResponses(SFModels.Model):
         verbose_name="additional_details",
         blank=True,
         null=True,
+    )
+    owner_id = models.CharField(
+        db_column="OwnerID",
+        max_length=255,
+        verbose_name="owner_id",
+        default="0056g000006LjPc",
     )
 
     class Meta(SFModels.Model.Meta):

@@ -1,4 +1,5 @@
 # Django settings for project project.
+import os
 import pathlib
 from django.core.exceptions import ImproperlyConfigured
 
@@ -7,6 +8,8 @@ from environ import Env, Path
 
 DEBUG = False
 
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 root = Path(__file__) - 3
 repo_root = root - 1
@@ -58,6 +61,10 @@ STATIC_URL = "/static/"
 
 # Additional locations of static files
 STATICFILES_DIRS = (str(root.path("static_source")),)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 # List of finder classes that know how to find static files in
 # various locations.
