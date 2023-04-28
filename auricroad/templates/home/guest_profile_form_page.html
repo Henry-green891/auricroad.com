@@ -169,7 +169,13 @@
                             {{ form.coffee_order_type }}
                         </div>
                     {% endif %}
-
+                    {% if form.cream_and_sugar %}
+                        <div class="fieldWrapper {% if form.cream_and_sugar.field.full_width %}full-width{% endif %} {% if form.cream_and_sugar.field.half_width %}half-width{% endif %}">
+                            {{ form.cream_and_sugar.errors }}
+                            <label for="{{ form.cream_and_sugar.id_for_label }}">{{ form.cream_and_sugar.field.display_label }} {% if form.cream_and_sugar.field.required %}*{% endif %}</label>
+                            {{ form.cream_and_sugar }}
+                        </div>
+                    {% endif %}
                     {% if form.wine_preference %}
 						<div class="fieldWrapper full-width">
 							<h4>Wine Preference</h4>
@@ -214,13 +220,6 @@
                             {{ form.spa_activities.errors }}
                             <label for="{{ form.spa_activities.id_for_label }}">{{ form.spa_activities.field.display_label }} {% if form.spa_activities.field.required %}*{% endif %}</label>
                             {{ form.spa_activities }}
-                        </div>
-                    {% endif %}
-					{% if form.cream_and_sugar %}
-                        <div class="fieldWrapper {% if form.cream_and_sugar.field.full_width %}full-width{% endif %} {% if form.cream_and_sugar.field.half_width %}half-width{% endif %}">
-                            {{ form.cream_and_sugar.errors }}
-                            <label for="{{ form.cream_and_sugar.id_for_label }}">{{ form.cream_and_sugar.field.display_label }} {% if form.cream_and_sugar.field.required %}*{% endif %}</label>
-                            {{ form.cream_and_sugar }}
                         </div>
                     {% endif %}
                     <div class="buttonWrapper">
