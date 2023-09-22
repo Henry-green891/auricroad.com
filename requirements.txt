@@ -32,7 +32,7 @@ wagtailmedia==0.6.0
 django-salesforce==3.1
 
 #REDIS CACHING
-hiredis==0.2.0
+hiredis
 redis==2.10.5
 django-redis-cache==1.7.1
 django-redis-sessions==0.5.6
