@@ -1,5 +1,5 @@
 -r requirements.txt
-ipdb==0.12.3
+ipdb
 ptpython==0.39
 isort==4.3.17
 
@@ -15,7 +15,7 @@ codecov==2.1.13
 watchdog
 pylint
 astroid
-prospector==1.1.6.2
+prospector
 service-factory==0.1.6
 Werkzeug==0.15.3
 bandit==1.5.1
