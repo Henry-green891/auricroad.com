@@ -16,6 +16,7 @@ jobs:
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
             sudo apt-get install -y libjpeg-turbo8
+      
 
       - python/install-packages:
           pkg-manager: pip
@@ -40,6 +41,12 @@ jobs:
     working_directory: /home/circleci/project
     steps:
       - checkout
+      - run:
+          name: Install system dependencies for Pillow
+          command: |
+            sudo apt-get update 
+            sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
+            sudo apt-get install -y libjpeg-turbo8
       - python/install-packages:
           pkg-manager: pip
           pypi-cache: true
@@ -51,6 +58,7 @@ jobs:
       - run: npm run build
       - run: python manage.py makemigrations
       - run: python manage.py migrate
+
 
   deploy:
     executor:
