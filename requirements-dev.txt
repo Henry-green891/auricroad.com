@@ -13,8 +13,8 @@ coverage==4.4.1
 unittest-xml-reporting==2.1.0
 codecov==2.1.13
 watchdog
-pylint==2.1.1
-astroid==2.0.4
+pylint
+astroid
 prospector==1.1.6.2
 service-factory==0.1.6
 Werkzeug==0.15.3
