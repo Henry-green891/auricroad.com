@@ -68,22 +68,21 @@ jobs:
 
 
   deploy:
-      docker:
-          - image: buildpack-deps:trusty
-      working_directory: /home/circleci/project
-      steps:
-        - checkout
-        - run:
-            name: "Deploy"
-            command: |
-                  if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                    git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-dev.git develop:master;
-                  elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                    git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-staging.git staging:master;
-                  elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                    git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-prod.git master;
-                  fi
-              fi
+    docker:
+        - image: buildpack-deps:trusty
+    working_directory: /home/circleci/project
+    steps:
+      - checkout
+      - run:
+          name: "Deploy"
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then \
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-dev.git develop:master; \
+            elif [ "${CIRCLE_BRANCH}" == "staging" ]; then \
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-staging.git staging:master; \
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then \
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/auricroad-prod.git master; \
+            fi
 
 workflows:
   version: 2.1 
