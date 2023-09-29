@@ -10,7 +10,7 @@ django-import-export==1.0.1
 wagtail==2.7.4
 
 #DB
-psycopg2-binary==2.8.5
+psycopg2-binary==2.8.6
 
 #User Accounts
 django-registration-redux==2.4
@@ -25,14 +25,14 @@ markupsafe==2.0.1
 django-model-utils==3.0.0
 django-braces==1.11.0
 pytz==2018.3
-easy-thumbnails==2.4.1
+easy-thumbnails
 wagtail-modelchooser==2.3.3
 wagtailmedia==0.6.0
 #wagtail-cache==1.0.2
 django-salesforce==3.1
 
 #REDIS CACHING
-hiredis==0.2.0
+hiredis
 redis==2.10.5
 django-redis-cache==1.7.1
 django-redis-sessions==0.5.6

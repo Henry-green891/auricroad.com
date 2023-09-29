@@ -1,0 +1,232 @@
+# Orb 'circleci/python@1.2' resolved to 'circleci/python@1.2.1'
+# Orb 'circleci/node@4.1' resolved to 'circleci/node@4.1.1'
+# Orb 'circleci/heroku@1.2' resolved to 'circleci/heroku@1.2.6'
+version: 2
+jobs:
+  build:
+    docker:
+    - image: cimg/python:3.9-node
+    steps:
+    - checkout
+    - run:
+        name: Install system dependencies for Pillow
+        command: "sudo apt-get update \nsudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential\nsudo apt-get install -y libjpeg-turbo8\n"
+    - restore_cache:
+        keys:
+        - -pypi-v1-{{ .Branch }}-{{ checksum "~/project/requirements.txt" }}-{{ checksum "/home/circleci/.pyenv/version" }}-
+    - run:
+        command: "pip install -r requirements.txt \n"
+        name: Install dependencies with pip using project requirements.txt
+        working_directory: ~/project
+    - save_cache:
+        key: -pypi-v1-{{ .Branch }}-{{ checksum "~/project/requirements.txt" }}-{{ checksum "/home/circleci/.pyenv/version" }}-
+        paths:
+        - /home/circleci/.cache/pip
+        - /home/circleci/.pyenv/versions/
+        - /home/circleci/.local/lib/
+    - run:
+        command: |
+          if [ ! -f "package.json" ]; then
+            echo
+            echo "---"
+            echo "Unable to find your package.json file. Did you forget to set the app-dir parameter?"
+            echo "---"
+            echo
+            echo "Current directory: $(pwd)"
+            echo
+            echo
+            echo "List directory: "
+            echo
+            ls
+            exit 1
+          fi
+        name: Checking for package.json.
+        working_directory: .
+    - restore_cache:
+        keys:
+        - node-deps-v1-{{ .Branch }}-{{ checksum "./package-lock.json" }}
+    - run:
+        command: "if [[ ! -z \"\" ]]; then\n  echo \"Running override package installation command:\"\n  \nelse\n  npm ci\nfi\n"
+        name: Installing NPM packages
+        working_directory: .
+    - save_cache:
+        key: node-deps-v1-{{ .Branch }}-{{ checksum "./package-lock.json" }}
+        paths:
+        - ~/.npm
+    - run:
+        command: npm install webpack
+    - run:
+        command: npm run build
+  test:
+    docker:
+    - image: cimg/python:3.6
+      environment:
+        DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
+    - image: circleci/postgres:10-alpine-postgis
+      environment:
+        POSTGRES_USER: ubuntu
+        POSTGRES_DB: circle_test
+    - image: circleci/redis
+    working_directory: /home/circleci/project
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - dependencies-{{ checksum "requirements.txt" }}-{{ checksum "requirements-dev.txt" }}
+    - run:
+        command: |
+          echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
+          source $BASH_ENV
+    - run:
+        name: Install system dependencies for cryptography
+        command: "sudo apt-get update \nsudo apt-get install -y build-essential libssl-dev libffi-dev python3-dev cargo\n"
+    - run:
+        command: pip install --user -r requirements-dev.txt
+    - run:
+        command: npm install
+    - run:
+        command: npm install webpack
+    - run:
+        command: npm run build
+    - run:
+        command: bandit -r auricroad/ -l --ini .bandit -x tests.py
+    - run:
+        command: isort --recursive --check-only --builtin django --skip-glob "*/migrations/*.py" auricroad/
+    - run:
+        command: prospector auricroad -X -I "auricroad/settings/*"
+    - run:
+        command: coverage run --source='.' manage.py test
+    - run:
+        command: codecov
+  deploy:
+    docker:
+    - image: cimg/base:stable
+    steps:
+    - checkout
+    - run:
+        command: |
+          if [[ $(command -v heroku) == "" ]]; then
+            curl https://cli-assets.heroku.com/install.sh | sh
+          else
+            echo "Heroku is already installed. No operation was performed."
+          fi
+        name: Install Heroku CLI (If not installed)
+    - run:
+        name: Deploy
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+            heroku/git:remote heroku-app-name=auricroad-dev.git;
+          elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
+            heroku/git:remote heroku-app-name=auricroad-staging.git;
+          elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+            heroku/git:remote heroku-app-name=auricroad-prod.git;
+          fi
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+    - build
+    - test:
+        requires:
+        - build
+    - deploy:
+        requires:
+        - test
+
+# Original config.yml file:
+# version: 2.1
+# orbs:
+#   python: circleci/python@1.2
+#   node: circleci/node@4.1
+#   heroku: circleci/heroku@1.2
+# 
+# jobs:
+#   build:
+#     docker:
+#       - image: cimg/python:3.9-node
+#     steps:
+#       - checkout
+#       - run:
+#           name: Install system dependencies for Pillow
+#           command: |
+#             sudo apt-get update 
+#             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
+#             sudo apt-get install -y libjpeg-turbo8
+#       
+# 
+#       - python/install-packages:
+#           pkg-manager: pip
+#           pypi-cache: true
+#           app-dir: ~/project
+#       - node/install-packages:
+#           pkg-manager: npm
+#           cache-path: ~/.npm
+#       - run: npm install webpack
+#       - run: npm run build
+# 
+#   test:
+#     docker:
+#       - image: cimg/python:3.6
+#         environment:
+#           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
+#       - image: circleci/postgres:10-alpine-postgis
+#         environment:
+#           POSTGRES_USER: ubuntu
+#           POSTGRES_DB: circle_test
+#       - image: circleci/redis
+#     working_directory: /home/circleci/project
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           keys:
+#             - dependencies-{{ checksum \"requirements.txt\" }}-{{ checksum \"requirements-dev.txt\" }}
+#       - run:
+#           command: |
+#             echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
+#             source $BASH_ENV
+#       - run:
+#           name: Install system dependencies for cryptography
+#           command: |
+#             sudo apt-get update 
+#             sudo apt-get install -y build-essential libssl-dev libffi-dev python3-dev cargo
+#       - run: pip install --user -r requirements-dev.txt
+#       - run: npm install
+#       - run: npm install webpack
+#       - run: npm run build
+#       - run: bandit -r auricroad/ -l --ini .bandit -x tests.py
+#       - run: isort --recursive --check-only --builtin django --skip-glob \"*/migrations/*.py\" auricroad/
+#       - run: prospector auricroad -X -I \"auricroad/settings/*\"
+#       - run: coverage run --source='.' manage.py test
+#       - run: codecov
+# 
+# 
+# 
+# 
+#   deploy:
+#     executor:
+#       name: heroku/default
+#     steps:
+#       - checkout
+#       - heroku/install
+#       - run:
+#           name: \"Deploy\"
+#           command: |
+#             if [ \"${CIRCLE_BRANCH}\" == \"develop\" ]; then
+#               heroku/git:remote heroku-app-name=auricroad-dev.git;
+#             elif [ \"${CIRCLE_BRANCH}\" == \"staging\" ]; then
+#               heroku/git:remote heroku-app-name=auricroad-staging.git;
+#             elif [ \"${CIRCLE_BRANCH}\" == \"master\" ]; then
+#               heroku/git:remote heroku-app-name=auricroad-prod.git;
+#             fi
+# 
+# workflows:
+#   version: 2.1 
+#   build_test_deploy:
+#     jobs:
+#       - build 
+#       - test:
+#           requires:
+#             - build 
+#       - deploy:
+#           requires:
+#             - test 
