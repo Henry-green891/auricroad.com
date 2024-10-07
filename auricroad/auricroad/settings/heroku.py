@@ -26,21 +26,23 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS").split("|")
 
 STATIC_ROOT = root("static")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-redis_url = urlparse(env("REDIS_URL", default="redis://localhost:6959"))
-CACHES = {
-    "default": {
-        "BACKEND": "redis_cache.RedisCache",
-        "LOCATION": "%s:%s" % (redis_url.hostname, redis_url.port),
-        "KEY_PREFIX": "wagtailcache",
-        "TIMEOUT": 3600,
-        "OPTIONS": {
-            "DB": 0,
-            "PASSWORD": redis_url.password,
-            "PARSER_CLASS": "redis.connection.HiredisParser",
-            "PICKLE_VERSION": 2,
-        },
-    }
-}
+redis_url = ""
+CACHES = {}
+#redis_url = urlparse(env("REDIS_URL", default="redis://localhost:6959"))
+#CACHES = {
+#    "default": {
+#        "BACKEND": "redis_cache.RedisCache",
+#        "LOCATION": "%s:%s" % (redis_url.hostname, redis_url.port),
+#        "KEY_PREFIX": "wagtailcache",
+#        "TIMEOUT": 3600,
+#        "OPTIONS": {
+#            "DB": 0,
+#            "PASSWORD": redis_url.password,
+#            "PARSER_CLASS": "redis.connection.HiredisParser",
+#            "PICKLE_VERSION": 2,
+#        },
+#    }
+#}
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
