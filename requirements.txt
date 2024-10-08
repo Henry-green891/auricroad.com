@@ -33,7 +33,7 @@ django-salesforce==3.1
 
 #REDIS CACHING
 hiredis
-redis==4.6.0
+redis==2.10.5
 django-redis-cache==1.7.1
 django-redis-sessions==0.5.6
 
