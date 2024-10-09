@@ -1,5 +1,5 @@
 -r requirements.txt
-ipdb==0.10.3
+ipdb
 ptpython==0.39
 isort==4.3.17
 
@@ -11,11 +11,14 @@ django-template-debug==0.3.5
 model-mommy==1.6.0
 coverage==4.4.1
 unittest-xml-reporting==2.1.0
-codecov==2.0.9
+codecov==2.1.13
 watchdog
-pylint==2.1.1
-astroid==2.0.4
-prospector==1.1.6.2
+pylint
+astroid
+prospector
 service-factory==0.1.6
 Werkzeug==0.15.3
 bandit==1.5.1
+
+#Other
+python-jose==3.3.0

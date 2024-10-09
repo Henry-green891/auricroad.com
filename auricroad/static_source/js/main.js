@@ -366,6 +366,10 @@ $(document).ready(function () {
     $('.event-form-things-to-know.korakia').css('display', 'block');
     if (document.URL.includes('&event=wedding')) {
       $('#id_event_type').val('Wedding Ceremony & Reception');
+    } else if (document.URL.includes('&event=elopement')) {
+      $('#id_event_type').val('Elopement');
+    } else if (document.URL.includes('&event=proposal')) {
+      $('#id_event_type').val('Proposal');
     }
   } else if (document.URL.includes('?resort=hoteljoaquin')) {
     $('#id_petite_resort').val('Hotel Joaquin (Laguna Beach CA)');
@@ -386,5 +390,7 @@ $(document).ready(function () {
     // no sonoma link to the events form yet, will need to add this to the link url when it's eventually created
     $('#id_petite_resort').val('Sonoma Coast Villa (Sonoma Coast CA)');
     $('.event-form-things-to-know.sonoma').css('display', 'block');
+  } else if (document.URL.includes('?resort=fostercreekfarm')) {
+    $('#id_petite_resort').val('Foster Creek Farm (Belgrade MT)');
   }
 });

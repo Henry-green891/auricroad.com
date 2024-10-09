@@ -10,23 +10,49 @@ django-import-export==1.0.1
 wagtail==2.7.4
 
 #DB
-psycopg2-binary==2.8.5
+psycopg2-binary==2.8.6
 
 #User Accounts
 django-registration-redux==2.4
 social-auth-app-django==2.1.0
 
+#Debug
+ipdb
+ptpython==0.39
+isort==4.3.17
+
+# Debug Tools
+django-debug-toolbar==1.11.1
+django-template-debug==0.3.5
+
+# Testing
+model-mommy==1.6.0
+coverage==4.4.1
+unittest-xml-reporting==2.1.0
+codecov==2.1.13
+watchdog
+pylint
+astroid
+prospector
+service-factory==0.1.6
+Werkzeug==0.15.3
+bandit==1.5.1
+
+#Other
+python-jose==3.3.0
 
 #Utils
 django-extensions==2.0.0
 django-jinja==2.3.1
+Jinja2==2.7.3
+markupsafe==2.0.1
 django-model-utils==3.0.0
 django-braces==1.11.0
 pytz==2018.3
-easy-thumbnails==2.4.1
+easy-thumbnails
 wagtail-modelchooser==2.3.3
 wagtailmedia==0.6.0
-wagtail-cache==1.0.2
+#wagtail-cache==1.0.2
 django-salesforce==3.1
 
 #REDIS CACHING
