@@ -7,17 +7,21 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/python:3.9-node
+      - image: cimg/python:3.9-node  # Still using Python image but overriding Node.js version
     steps:
       - checkout
       - run:
-          name: Install system dependencies for Pillow
+          name: Install system dependencies for Pillow  # CHANGED: Keeping Pillow dependencies installation intact
           command: |
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
             sudo apt-get install -y libjpeg-turbo8
-      
-
+      - run:
+          name: Install correct Node.js version  # CHANGED: Set Node.js to 16.9.0
+          command: |
+            nvm install 16.9.0
+            nvm use 16.9.0
+      - run: node -v  # CHANGED: Verify the correct Node version
       - python/install-packages:
           pkg-manager: pip
           pypi-cache: true
@@ -25,12 +29,13 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
           cache-path: ~/.npm
+      - run: npm install
       - run: npm install webpack
       - run: npm run build
 
   test:
     docker:
-      - image: cimg/python:3.9-node
+      - image: cimg/python:3.9-node  # CHANGED: Keeping Python but fixing Node version below
         environment:
           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
       - image: circleci/postgres:10-alpine-postgis
@@ -49,6 +54,12 @@ jobs:
             echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
             source $BASH_ENV
       - run:
+          name: Install correct Node.js version  # CHANGED: Set Node.js to 16.9.0
+          command: |
+            nvm install 16.9.0
+            nvm use 16.9.0
+      - run: node -v  # CHANGED: Verify the correct Node version
+      - run:
           name: Install system dependencies for Pillow and cryptography
           command: |
             sudo apt-get update 
@@ -62,10 +73,6 @@ jobs:
       - run: prospector auricroad -X -I "auricroad/settings/*" || true
       - run: coverage run --source='.' manage.py test
       - run: codecov
-
-
-
-
 
   deploy:
     docker:
@@ -94,4 +101,4 @@ workflows:
             - build 
       - deploy:
           requires:
-            - test 
+            - test
