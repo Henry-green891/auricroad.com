@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/python:3.9-node  # Still using Python image but overriding Node.js version
+      - image: cimg/python:3.9-node  # Using the Python image with the pre-installed Node.js, but we will adjust Node version.
     steps:
       - checkout
       - run:
@@ -16,8 +16,8 @@ jobs:
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
             sudo apt-get install -y libjpeg-turbo8
-      - node/with-cache:
-          version: '16.9.0'  # Specify Node.js version here
+      - node/install-packages:  # Correct way to use the node orb to install Node.js
+          version: "16.9.0"  # Specify the Node.js version here
           pkg-manager: npm
           cache-path: ~/.npm
       - python/install-packages:
@@ -48,8 +48,8 @@ jobs:
           command: |
             echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
             source $BASH_ENV
-      - node/with-cache:
-          version: '16.9.0'  # Specify Node.js version here
+      - node/install-packages:  # Correct way to use the node orb to install Node.js
+          version: "16.9.0"  # Specify the Node.js version here
           pkg-manager: npm
           cache-path: ~/.npm
       - run:
