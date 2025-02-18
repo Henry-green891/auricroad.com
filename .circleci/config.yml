@@ -11,31 +11,26 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install system dependencies for Pillow  # CHANGED: Keeping Pillow dependencies installation intact
+          name: Install system dependencies for Pillow  # Keeping Pillow dependencies installation intact
           command: |
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
             sudo apt-get install -y libjpeg-turbo8
-      - run:
-          name: Install correct Node.js version  # CHANGED: Set Node.js to 16.9.0
-          command: |
-            nvm install 16.9.0
-            nvm use 16.9.0
-      - run: node -v  # CHANGED: Verify the correct Node version
+      - node/with-cache:
+          version: '16.9.0'  # Specify Node.js version here
+          pkg-manager: npm
+          cache-path: ~/.npm
       - python/install-packages:
           pkg-manager: pip
           pypi-cache: true
           app-dir: ~/project
-      - node/install-packages:
-          pkg-manager: npm
-          cache-path: ~/.npm
       - run: npm install
       - run: npm install webpack
       - run: npm run build
 
   test:
     docker:
-      - image: cimg/python:3.9-node  # CHANGED: Keeping Python but fixing Node version below
+      - image: cimg/python:3.9-node  # Keeping Python but fixing Node version below
         environment:
           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
       - image: circleci/postgres:10-alpine-postgis
@@ -53,12 +48,10 @@ jobs:
           command: |
             echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
             source $BASH_ENV
-      - run:
-          name: Install correct Node.js version  # CHANGED: Set Node.js to 16.9.0
-          command: |
-            nvm install 16.9.0
-            nvm use 16.9.0
-      - run: node -v  # CHANGED: Verify the correct Node version
+      - node/with-cache:
+          version: '16.9.0'  # Specify Node.js version here
+          pkg-manager: npm
+          cache-path: ~/.npm
       - run:
           name: Install system dependencies for Pillow and cryptography
           command: |
