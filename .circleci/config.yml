@@ -10,6 +10,7 @@ jobs:
       - image: cimg/python:3.9-node
         environment:
           NODE_VERSION: 16.20.2  # Using Node.js version compatible with package.json
+          DJANGO_SECRET_KEY: "dummy_key_for_ci_only"  # Non-sensitive key for CI environment
     steps:
       - checkout
       - node/install:
@@ -45,6 +46,7 @@ jobs:
         environment:
           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
           NODE_VERSION: 16.20.2  # Changed to match package.json requirement
+          DJANGO_SECRET_KEY: "dummy_key_for_ci_only"  # Non-sensitive key for CI environment
       - image: circleci/postgres:10-alpine-postgis
         environment:
           POSTGRES_USER: ubuntu

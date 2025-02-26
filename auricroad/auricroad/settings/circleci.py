@@ -1,11 +1,12 @@
 from .base import *
+import os
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "circle_test",
         "USER": "ubuntu",
-        "PASSWORD": "",
+        "PASSWORD": "",  # No password needed for CI database
         "HOST": "localhost",
         "PORT": "",
     }
@@ -21,7 +22,11 @@ STATIC_ROOT = root("static")
 STATIC_URL = "/static/"
 
 DEBUG = True
-SECRET_KEY = "testing"
+
+# Get secret key from environment variable
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+if not SECRET_KEY:  # pragma: no cover
+    raise ValueError("DJANGO_SECRET_KEY environment variable is required")
 
 TEST_RUNNER = "xmlrunner.extra.djangotestrunner.XMLTestRunner"
 TEST_OUTPUT_DIR = env("CIRCLE_TEST_REPORTS", default=".")
