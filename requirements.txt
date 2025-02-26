@@ -36,7 +36,7 @@ astroid
 prospector
 service-factory==0.1.6
 Werkzeug==0.15.3
-bandit==1.5.1
+# Moved bandit to requirements-dev.txt
 
 #Other
 python-jose==3.3.0
