@@ -3,7 +3,7 @@ var webpack = require("webpack");
 const config = require('./webpack.base');
 var {PATHS, PROJECT_NAME} = require('./paths');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = merge(config, {
@@ -18,9 +18,11 @@ module.exports = merge(config, {
         {
           loader: 'postcss-loader',
           options: {
-            plugins: () => autoprefixer({
-              browsers: ['last 3 versions', '> 1%']
-            })
+            postcssOptions: {
+              plugins: [
+                autoprefixer()
+              ]
+            }
           }
         },
         'sass-loader'
@@ -29,15 +31,27 @@ module.exports = merge(config, {
       }],
   },
   optimization: {
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: true,
-        uglifyOptions: {
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
           compress: {
-            inline: false
-          }
-        }
-      })
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+      }),
     ],
   }
 });

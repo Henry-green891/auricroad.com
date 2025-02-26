@@ -9,7 +9,7 @@
     "node": ">=10.14.2 <17.0.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production node --openssl-legacy-provider ./node_modules/.bin/webpack -p",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --mode production",
     "dev": "NODE_ENV=dev webpack-dev-server",
     "test": "jest --verbose",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
@@ -23,6 +23,7 @@
     "imports-loader": "^0.8.0",
     "jsdom": "^11.6.2",
     "koa-connect": "^2.0.1",
+    "terser-webpack-plugin": "^5.3.9",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.1.10"
   },
