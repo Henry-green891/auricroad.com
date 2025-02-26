@@ -9,11 +9,12 @@ jobs:
     docker:
       - image: cimg/python:3.9-node
         environment:
-          NODE_VERSION: 18.17.1  # LTS version
+          NODE_VERSION: 16.20.2  # Changed to match package.json requirement
+          NODE_OPTIONS: --openssl-legacy-provider  # Added for webpack compatibility
     steps:
       - checkout
       - node/install:
-          node-version: 18.17.1  # Explicitly set Node.js version
+          node-version: 16.20.2  # Changed to match package.json requirement
           install-yarn: false
       - run:
           name: Install system dependencies for Pillow  # Keeping Pillow dependencies installation intact
@@ -33,6 +34,7 @@ jobs:
       - run: 
           name: Build frontend assets
           command: |
+            export NODE_OPTIONS=--openssl-legacy-provider
             node -v
             npm -v
             npm ci
@@ -44,7 +46,8 @@ jobs:
       - image: cimg/python:3.9-node
         environment:
           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
-          NODE_VERSION: 18.17.1
+          NODE_VERSION: 16.20.2  # Changed to match package.json requirement
+          NODE_OPTIONS: --openssl-legacy-provider  # Added for webpack compatibility
       - image: circleci/postgres:10-alpine-postgis
         environment:
           POSTGRES_USER: ubuntu
@@ -54,7 +57,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: 18.17.1
+          node-version: 16.20.2  # Changed to match package.json requirement
           install-yarn: false
       - restore_cache:
           keys:
