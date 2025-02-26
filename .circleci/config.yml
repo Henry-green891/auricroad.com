@@ -1,38 +1,50 @@
 version: 2.1
 orbs:
   python: circleci/python@1.2
-  node: circleci/node@4.1
+  node: circleci/node@5.1.0  # Updated to latest stable version
   heroku: circleci/heroku@1.2
 
 jobs:
   build:
     docker:
-      - image: cimg/python:3.9-node  # Using the Python image with the pre-installed Node.js
+      - image: cimg/python:3.9-node
+        environment:
+          NODE_VERSION: 18.17.1  # LTS version
     steps:
       - checkout
+      - node/install:
+          node-version: 18.17.1  # Explicitly set Node.js version
+          install-yarn: false
       - run:
           name: Install system dependencies for Pillow  # Keeping Pillow dependencies installation intact
           command: |
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential
-            sudo apt-get install -y libjpeg-turbo8
-      - node/install-packages:  # This will install Node.js and npm correctly
+            sudo apt-get install -y libjpeg-turbo8 libssl-dev libffi-dev python3-dev
+      - node/install-packages:
           pkg-manager: npm
           cache-path: ~/.npm
-      - run: node -v  # To verify Node version after installation
+          include-branch-in-cache-key: false
+          override-ci-command: npm ci
       - python/install-packages:
           pkg-manager: pip
           pypi-cache: true
           app-dir: ~/project
-      - run: npm install
-      - run: npm install webpack
+      - run: 
+          name: Build frontend assets
+          command: |
+            node -v
+            npm -v
+            npm ci
+            npm run build
       - run: npm run build
 
   test:
     docker:
-      - image: cimg/python:3.9-node  # Keeping Python but fixing Node version below
+      - image: cimg/python:3.9-node
         environment:
           DJANGO_SETTINGS_MODULE: auricroad.auricroad.settings.circleci
+          NODE_VERSION: 18.17.1
       - image: circleci/postgres:10-alpine-postgis
         environment:
           POSTGRES_USER: ubuntu
@@ -41,6 +53,9 @@ jobs:
     working_directory: /home/circleci/project
     steps:
       - checkout
+      - node/install:
+          node-version: 18.17.1
+          install-yarn: false
       - restore_cache:
           keys:
             - dependencies-{{ checksum "requirements.txt" }}-{{ checksum "requirements-dev.txt" }}
@@ -48,17 +63,18 @@ jobs:
           command: |
             echo 'export PATH=/home/circleci/.local/bin/:$PATH' >> $BASH_ENV
             source $BASH_ENV
-      - node/install-packages:  # This will install Node.js and npm correctly
+      - node/install-packages:
           pkg-manager: npm
           cache-path: ~/.npm
+          include-branch-in-cache-key: false
+          override-ci-command: npm ci
       - run:
           name: Install system dependencies for Pillow and cryptography
           command: |
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential libssl-dev libffi-dev python3-dev cargo
       - run: pip install --user -r requirements-dev.txt
-      - run: npm install
-      - run: npm install webpack
+      - run: npm ci
       - run: npm run build
       - run: python manage.py makemigrations
       - run: python manage.py migrate
