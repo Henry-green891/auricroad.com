@@ -1,5 +1,6 @@
-from .base import *
 import secrets
+
+from .base import *
 
 # Generate a secure random key if not provided in .env
 default_key = secrets.token_urlsafe(50)
