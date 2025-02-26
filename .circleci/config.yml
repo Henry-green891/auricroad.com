@@ -73,7 +73,11 @@ jobs:
           command: |
             sudo apt-get update 
             sudo apt-get install -y libjpeg-dev libfreetype6-dev zlib1g-dev libjpeg-turbo8 build-essential libssl-dev libffi-dev python3-dev cargo
-      - run: pip install --user -r requirements-dev.txt
+      - run:
+          name: Install test dependencies
+          command: |
+            pip install -r requirements-dev.txt
+            pip install bandit==1.7.5  # Specify compatible version for Python 3.9
       - run: npm ci
       - run: npm run build
       - run: python manage.py makemigrations
