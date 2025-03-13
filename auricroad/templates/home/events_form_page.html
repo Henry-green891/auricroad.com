@@ -23,183 +23,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% endblock extra_body %}
 
-{% block content %}
+{% macro render_field(field) %}
+  {% if field %}
+    <div class="fieldWrapper {% if field.field.full_width %}full-width{% endif %} {% if field.field.half_width %}half-width{% endif %} {% if field.field.field_type == 'date' or field.field.field_type == 'datetime' %}datepicker-wrapper{% endif %} {% if field.name == 'flexible_dates' %}flexible-dates{% endif %}">
+      {{ field.errors }}
+      <label for="{{ field.id_for_label }}">{{ field.field.display_label }}
+        {% if field.field.required %}*{% endif %}</label>
+      {{ field }}
+    </div>
+  {% endif %}
+{% endmacro %}
 
+{% block content %}
 {{ page.body }}
 <div class="form-section-wrapper">
   <div class="form-body">
     <div class="form-right">
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <!--must display fields manually to add headers-->
-        <!--{{ form.as_p() }}-->
+        {% if form.non_field_errors %}
+          <div class="form-errors">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
         {{ page.events_body }}
+
         <h2 class="form-section-header">Contact Details</h2>
-        <div
-          class="fieldWrapper {% if form.salutation.field.full_width %}full-width{% endif %} {% if form.salutation.field.half_width %}half-width{% endif %}">
-          {{ form.salutation.errors }}
-          <label for="{{ form.salutation.id_for_label }}">{{ form.salutation.field.display_label }}
-            {% if form.salutation.field.required %}*{% endif %}</label>
-          {{ form.salutation }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.first_name.field.full_width %}full-width{% endif %} {% if form.first_name.field.half_width %}half-width{% endif %}">
-          {{ form.first_name.errors }}
-          <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.field.display_label }}
-            {% if form.first_name.field.required %}*{% endif %}</label>
-          {{ form.first_name }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.last_name.field.full_width %}full-width{% endif %} {% if form.last_name.field.half_width %}half-width{% endif %}">
-          {{ form.last_name.errors }}
-          <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.field.display_label }}
-            {% if form.last_name.field.required %}*{% endif %}</label>
-          {{ form.last_name }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.company.field.full_width %}full-width{% endif %} {% if form.company.field.half_width %}half-width{% endif %}">
-          {{ form.company.errors }}
-          <label for="{{ form.company.id_for_label }}">{{ form.company.field.display_label }}
-            {% if form.company.field.required %}*{% endif %}</label>
-          {{ form.company }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.email.field.full_width %}full-width{% endif %} {% if form.email.field.half_width %}half-width{% endif %}">
-          {{ form.email.errors }}
-          <label for="{{ form.email.id_for_label }}">{{ form.email.field.display_label }}
-            {% if form.email.field.required %}*{% endif %}</label>
-          {{ form.email }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.phone.field.full_width %}full-width{% endif %} {% if form.phone.field.half_width %}half-width{% endif %}">
-          {{ form.phone.errors }}
-          <label for="{{ form.phone.id_for_label }}">{{ form.phone.field.display_label }}
-            {% if form.phone.field.required %}*{% endif %}</label>
-          {{ form.phone }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.address.field.full_width %}full-width{% endif %} {% if form.address.field.half_width %}half-width{% endif %}">
-          {{ form.address.errors }}
-          <label for="{{ form.address.id_for_label }}">{{ form.address.field.display_label }}
-            {% if form.address.field.required %}*{% endif %}</label>
-          {{ form.address }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.city.field.full_width %}full-width{% endif %} {% if form.city.field.half_width %}half-width{% endif %}">
-          {{ form.city.errors }}
-          <label for="{{ form.city.id_for_label }}">{{ form.city.field.display_label }}
-            {% if form.city.field.required %}*{% endif %}</label>
-          {{ form.city }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.state.field.full_width %}full-width{% endif %} {% if form.state.field.half_width %}half-width{% endif %}">
-          {{ form.state.errors }}
-          <label for="{{ form.state.id_for_label }}">{{ form.state.field.display_label }}
-            {% if form.state.field.required %}*{% endif %}</label>
-          {{ form.state }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.zip_code.field.full_width %}full-width{% endif %} {% if form.zip_code.field.half_width %}half-width{% endif %}">
-          {{ form.zip_code.errors }}
-          <label for="{{ form.zip_code.id_for_label }}">{{ form.zip_code.field.display_label }}
-            {% if form.zip_code.field.required %}*{% endif %}</label>
-          {{ form.zip_code }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.country.field.full_width %}full-width{% endif %} {% if form.country.field.half_width %}half-width{% endif %}">
-          {{ form.country.errors }}
-          <label for="{{ form.country.id_for_label }}">{{ form.country.field.display_label }}
-            {% if form.country.field.required %}*{% endif %}</label>
-          {{ form.country }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.contact_method.field.full_width %}full-width{% endif %} {% if form.contact_method.field.half_width %}half-width{% endif %}">
-          {{ form.contact_method.errors }}
-          <label for="{{ form.contact_method.id_for_label }}">{{ form.contact_method.field.display_label }}
-            {% if form.contact_method.field.required %}*{% endif %}</label>
-          {{ form.contact_method }}
-        </div>
+        {# Personal Information #}
+        {{ render_field(form.salutation) }}
+        {{ render_field(form.first_name) }}
+        {{ render_field(form.last_name) }}
+        {{ render_field(form.company) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.phone) }}
+
+        {# Address Information #}
+        {{ render_field(form.address) }}
+        {{ render_field(form.city) }}
+        {{ render_field(form.state) }}
+        {{ render_field(form.zip_code) }}
+        {{ render_field(form.country) }}
+        {{ render_field(form.contact_method) }}
+
         <h2 class="form-section-header">Event Details</h2>
-        <div
-          class="fieldWrapper {% if form.petite_resort.field.full_width %}full-width{% endif %} {% if form.petite_resort.field.half_width %}half-width{% endif %}">
-          {{ form.petite_resort.errors }}
-          <label for="{{ form.petite_resort.id_for_label }}">{{ form.petite_resort.field.display_label }}
-            {% if form.petite_resort.field.required %}*{% endif %}</label>
-          {{ form.petite_resort }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.event_type.field.full_width %}full-width{% endif %} {% if form.event_type.field.half_width %}half-width{% endif %}">
-          {{ form.event_type.errors }}
-          <label for="{{ form.event_type.id_for_label }}">{{ form.event_type.field.display_label }}
-            {% if form.event_type.field.required %}*{% endif %}</label>
-          {{ form.event_type }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.number_of_guests.field.full_width %}full-width{% endif %} {% if form.number_of_guests.field.half_width %}half-width{% endif %}">
-          {{ form.number_of_guests.errors }}
-          <label for="{{ form.number_of_guests.id_for_label }}">{{ form.number_of_guests.field.display_label }}
-            {% if form.number_of_guests.field.required %}*{% endif %}</label>
-          {{ form.number_of_guests }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.preferred_date.field.full_width %}full-width{% endif %} {% if form.preferred_date.field.half_width %}half-width{% endif %} datepicker-wrapper">
-          {{ form.preferred_date.errors }}
-          <label for="{{ form.preferred_date.id_for_label }}">{{ form.preferred_date.field.display_label }}
-            {% if form.preferred_date.field.required %}*{% endif %}</label>
-          {{ form.preferred_date }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.alternate_date.field.full_width %}full-width{% endif %} {% if form.alternate_date.field.half_width %}half-width{% endif %} datepicker-wrapper">
-          {{ form.alternate_date.errors }}
-          <label for="{{ form.alternate_date.id_for_label }}">{{ form.alternate_date.field.display_label }}
-            {% if form.alternate_date.field.required %}*{% endif %}</label>
-          {{ form.alternate_date }}
-        </div>
-        <div
-          class="fieldWrapper flexible-dates {% if form.flexible_dates.field.full_width %}full-width{% endif %} {% if form.flexible_dates.field.half_width %}half-width{% endif %}">
-          {{ form.flexible_dates.errors }}
-          <label for="{{ form.flexible_dates.id_for_label }}">{{ form.flexible_dates.field.display_label }}
-            {% if form.flexible_dates.field.required %}*{% endif %}</label>
-          {{ form.flexible_dates }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.number_of_nights.field.full_width %}full-width{% endif %} {% if form.number_of_nights.field.half_width %}half-width{% endif %}">
-          {{ form.number_of_nights.errors }}
-          <label for="{{ form.number_of_nights.id_for_label }}">{{ form.number_of_nights.field.display_label }}
-            {% if form.number_of_nights.field.required %}*{% endif %}</label>
-          {{ form.number_of_nights }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.number_of_guest_rooms.field.full_width %}full-width{% endif %} {% if form.number_of_guest_rooms.field.half_width %}half-width{% endif %}">
-          {{ form.number_of_guest_rooms.errors }}
-          <label
-            for="{{ form.number_of_guest_rooms.id_for_label }}">{{ form.number_of_guest_rooms.field.display_label }}
-            {% if form.number_of_guest_rooms.field.required %}*{% endif %}</label>
-          {{ form.number_of_guest_rooms }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.referral.field.full_width %}full-width{% endif %} {% if form.referral.field.half_width %}half-width{% endif %}">
-          {{ form.referral.errors }}
-          <label for="{{ form.referral.id_for_label }}">{{ form.referral.field.display_label }}
-            {% if form.referral.field.required %}*{% endif %}</label>
-          {{ form.referral }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.additional_comments.field.full_width %}full-width{% endif %} {% if form.additional_comments.field.half_width %}half-width{% endif %}">
-          {{ form.additional_comments.errors }}
-          <label for="{{ form.additional_comments.id_for_label }}">{{ form.additional_comments.field.display_label }}
-            {% if form.additional_comments.field.required %}*{% endif %}</label>
-          {{ form.additional_comments }}
-        </div>
-        <div
-          class="fieldWrapper {% if form.file_upload.field.full_width %}full-width{% endif %} {% if form.file_upload.field.half_width %}half-width{% endif %}">
-          {{ form.file_upload.errors }}
-          <label for="{{ form.file_upload.id_for_label }}">{{ form.file_upload.field.display_label }}
-            {% if form.file_upload.field.required %}*{% endif %}</label>
-          {{ form.file_upload }}
-        </div>
-        <div class="buttonWrapper">
-          <input class="button black rounded" type="submit" name="Submit">
+        {# Venue Information #}
+        {{ render_field(form.petite_resort) }}
+        {{ render_field(form.event_type) }}
+        {{ render_field(form.number_of_guests) }}
+
+        {# Date Information #}
+        {{ render_field(form.preferred_date) }}
+        {{ render_field(form.alternate_date) }}
+        {{ render_field(form.flexible_dates) }}
+
+        {# Stay Information #}
+        {{ render_field(form.number_of_nights) }}
+        {{ render_field(form.number_of_guest_rooms) }}
+
+        {# Additional Information #}
+        {{ render_field(form.referral) }}
+        {{ render_field(form.additional_comments) }}
+        {{ render_field(form.file_upload) }}
+
+        <div class="form-actions">
+          <button type="submit" class="button">Submit</button>
         </div>
       </form>
     </div>
