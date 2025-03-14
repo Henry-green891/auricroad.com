@@ -1,95 +1,41 @@
 {% extends "base.jinja" %}
 
-{% block extra_head %}
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P5FXSLV');</script>
-<!-- End Google Tag Manager -->
-{% endblock extra_head %}
-
 {% block page_class %}events-form-page{% endblock page_class %}
 
 {% block title %}
-{{ page.title }}
+    {{ page.title }}
 {% endblock title %}
 
-{% block extra_body %}
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5FXSLV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-{% endblock extra_body %}
-
-{% macro render_field(field) %}
-  {% if field %}
-    <div class="fieldWrapper {% if field.field.full_width %}full-width{% endif %} {% if field.field.half_width %}half-width{% endif %} {% if field.field.field_type == 'date' or field.field.field_type == 'datetime' %}datepicker-wrapper{% endif %} {% if field.name == 'flexible_dates' %}flexible-dates{% endif %}">
-      {{ field.errors }}
-      <label for="{{ field.id_for_label }}">{{ field.field.display_label }}
-        {% if field.field.required %}*{% endif %}</label>
-      {{ field }}
-    </div>
-  {% endif %}
-{% endmacro %}
-
 {% block content %}
-{{ page.body }}
-<div class="form-section-wrapper">
-  <div class="form-body">
-    <div class="form-right">
-      <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-          <div class="form-errors">
-            {{ form.non_field_errors }}
-          </div>
-        {% endif %}
-        {{ page.events_body }}
-
-        <h2 class="form-section-header">Contact Details</h2>
-        {# Personal Information #}
-        {{ render_field(form.salutation) }}
-        {{ render_field(form.first_name) }}
-        {{ render_field(form.last_name) }}
-        {{ render_field(form.company) }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.phone) }}
-
-        {# Address Information #}
-        {{ render_field(form.address) }}
-        {{ render_field(form.city) }}
-        {{ render_field(form.state) }}
-        {{ render_field(form.zip_code) }}
-        {{ render_field(form.country) }}
-        {{ render_field(form.contact_method) }}
-
-        <h2 class="form-section-header">Event Details</h2>
-        {# Venue Information #}
-        {{ render_field(form.petite_resort) }}
-        {{ render_field(form.event_type) }}
-        {{ render_field(form.number_of_guests) }}
-
-        {# Date Information #}
-        {{ render_field(form.preferred_date) }}
-        {{ render_field(form.alternate_date) }}
-        {{ render_field(form.flexible_dates) }}
-
-        {# Stay Information #}
-        {{ render_field(form.number_of_nights) }}
-        {{ render_field(form.number_of_guest_rooms) }}
-
-        {# Additional Information #}
-        {{ render_field(form.referral) }}
-        {{ render_field(form.additional_comments) }}
-        {{ render_field(form.file_upload) }}
-
-        <div class="form-actions">
-          <button type="submit" class="button">Submit</button>
+    {{ page.body }}
+    <div class="form-section-wrapper">
+        <div class="form-body">
+            <div class="form-right"> 
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <h2 class="form-section-header">Contact Details</h2>
+                    {% for field in form %}
+                      <div class="fieldWrapper {% if field.field.full_width %}full-width{% endif %} {% if field.field.half_width %}half-width{% endif %}">
+                        {{ field.errors }}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}
+                          {% if field.field.required %}*{% endif %}</label>
+                        {{ field }}
+                      </div>
+                    {% endfor %}
+                    <h2 class="form-section-header">Event Details</h2>
+                    {% for field in form %}
+                      <div class="fieldWrapper {% if field.field.full_width %}full-width{% endif %} {% if field.field.half_width %}half-width{% endif %}">
+                        {{ field.errors }}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}
+                          {% if field.field.required %}*{% endif %}</label>
+                        {{ field }}
+                      </div>
+                    {% endfor %}
+                    <div class="buttonWrapper">
+                        <input class="button black rounded" type="submit" name="Submit">
+                    </div>
+                </form>
+            </div>
         </div>
-      </form>
     </div>
-  </div>
-</div>
 {% endblock content %}
